@@ -5,11 +5,11 @@ end
 Given /^I am (not )?an admin$/ do |not_admin|
 end
 
-Given /^I am on the LEP homepage$/ do
+Given /^I am viewing the LEP homepage$/ do
 end
 
 # When step definitions
-When /^I go to the LEP page$/ do
+When /^I view the LEP page$/ do
 end
 
 # Then step definitions
