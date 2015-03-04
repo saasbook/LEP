@@ -1,4 +1,10 @@
 LEP::Application.routes.draw do
+
+  resources :users
+  resources :groups
+
+  root :to => 'users#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
