@@ -7,7 +7,7 @@ Feature: log in from the LEP website
 Scenario: Prompts user to login if not logged in
   Given I am not authenticated
   And I am viewing the LEP homepage
-  When I press login 
+  When I press "login" 
   Then I should see the Calnet Authentication page
 
 Scenario: Redirects non-admin user to homepage when successfully authenticated

@@ -6,5 +6,5 @@ Feature: Submit Application Form
 Scenario: 
 	Given I am on the form page
 	And I have filled out the form
-	When I press submit
+	When I press "submit"
 	Then I should see a page confirming my application
