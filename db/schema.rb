@@ -11,6 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20150304021522) do
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "sid"
+    t.string   "email"
+    t.string   "academic_title"
+    t.string   "major"
+    t.string   "residency"
+    t.string   "gender"
+    t.string   "gender_preference"
+    t.string   "fluent_languages"
+    t.string   "lang_additional_info"
+    t.string   "first_lang_preference"
+    t.string   "first_lang_proficiency"
+    t.string   "second_lang_preference"
+    t.string   "second_lang_proficiency"
+    t.string   "time_preference"
+    t.string   "time_additional_info"
+    t.string   "user_motivation"
+    t.string   "user_plan"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
 end
