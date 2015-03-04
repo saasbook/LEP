@@ -15,6 +15,8 @@ module NavigationHelpers
 
     when /^the (LEP )?home\s?page$/ then '/home'
 
+    when /^the form page$/ then '/users/new'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
