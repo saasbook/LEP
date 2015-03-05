@@ -1,4 +1,4 @@
 class Group < ActiveRecord::Base
-  attr_accessible :id, :members, :languages
+  attr_accessor :id, :members, :languages
 
 end
