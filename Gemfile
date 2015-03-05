@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.16'
+gem 'rails', '4.1.5'
 
 group :development, :test do
   gem 'sqlite3'
@@ -19,8 +19,8 @@ end
 group :assets do
   gem 'uglifier'
   gem 'therubyracer'
-  gem 'sass-rails'
-  gem 'coffee-rails'
+  gem 'coffee-rails', '~> 4.1.0'
+  gem 'sass-rails', '~> 5.0.1'
 end
 
 gem 'jquery-rails'
