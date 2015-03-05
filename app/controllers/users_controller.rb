@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.create(params[:user])
-  	redirect_to users_path #redirect to show action
+    @auth = request.env['omniauth.auth']['credentials']
+    #@user = User.create(params[:user])
+    #redirect_to users_path #redirect to show action
   end
 
   def index

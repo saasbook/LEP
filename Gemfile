@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 gem 'rails', '4.1.5'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
+gem 'json'
 
 group :development, :test do
   gem 'sqlite3'
