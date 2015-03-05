@@ -204,6 +204,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   rails (= 4.1.5)
+  rake
   rspec-rails (~> 2.14.0)
   ruby-debug19
   sass-rails (~> 5.0.1)
