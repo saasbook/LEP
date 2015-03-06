@@ -8,7 +8,7 @@ gem 'json'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'ruby-debug19'
+  gem 'debugger'
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails','~> 2.14.0'
