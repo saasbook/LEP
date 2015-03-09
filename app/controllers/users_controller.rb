@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  #@user = nil
+
   def new
     @user = User.new
   end
@@ -8,10 +10,11 @@ class UsersController < ApplicationController
     #@auth = request.env['omniauth.auth']['credentials']
     #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
-    #@user = User.create!(params[:user])
     @user.application = true
     @user.is_admin = false
-    #redirect_to user_path(params[:id]) #redirect to show action
+    @user.save!
+    print "******************CREATE****************", @user.first_name
+    print "**********************************"
     redirect_to user_path(@user)
   end
 
@@ -20,7 +23,11 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+  	#@user = User.where(id: params[:id])
+    @id = params[id]
+    @user = User.find(@id)
+    print "*****************SHOW*****************", @user.first_name
+    print "**********************************"
   end
 
   def edit
@@ -32,22 +39,21 @@ class UsersController < ApplicationController
 
   def home
     email = request.env['omniauth.auth']['info']['email']
-    print "*****************EMAIL******************", email
     @user = User.where(:email => email)
-    print "*****************FOUND EMAIL******************", @user.pluck(:email)
-    print "***********************************"
     #no application yet
     if @user.blank?
       redirect_to new_user_path
     else
       is_admin = @user.pluck(:is_admin)
-      redirect_to user_path(params[:id]) if not is_admin
-      #redirect_to admin_path if is_admin 
+      redirect_to user_path(params[:id]) if not is_admin 
     end
   end
 
+
+
   private
 
+  #rails 4 idiosyncracy; helper method for create
   def user_params
     params.require(:user).permit(:first_name, :last_name, :sid, :email, :academic_title, :major, :residency,
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
