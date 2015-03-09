@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-@user = User.create({first_name: 'Jane', 
+@user = User.create([{first_name: 'Jane', 
 						last_name: 'Doe', 
 						sid: '12345678', 
 						email: 'example@gmail.com',
@@ -24,4 +24,8 @@
 						time_preference: 'Monday', 
 						time_additional_info: '',
 						user_motivation: 'I will be studying abroad.', 
-						user_plan: 'I will set a regular meeting time with them.'})
+						user_plan: 'I will set a regular meeting time with them.'},
+            
+            { first_name: 'Admin', is_admin: true}])
+
+

@@ -1,0 +1,12 @@
+%h2 All Users
+
+%table
+  %tr
+    %th ID
+    %th First Name
+    %th Last Name
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.first_name
+        %td= user.last_name
