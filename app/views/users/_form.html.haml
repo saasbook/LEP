@@ -1,0 +1,59 @@
+= form_for :user, url: users_path, :class => "field_with_errors" do |f|
+
+  = f.label :first_name, "First Name"
+  = f.text_field :first_name
+
+  = f.label :last_name, "Last Name"
+  = f.text_field :last_name
+
+  = f.label :sid, "Student ID Number"
+  = f.text_field :sid
+
+  = f.label :email, "Email"
+  = f.text_field :email
+
+  = f.label :academic_title, "Academic Title"
+  = f.select :academic_title, [["Undergraduate", "undergraduate"], ["Graduate", "graduate"], ["Staff", "staff"], ["scholar", "scholar"], ["Instructor", "instructor"], ["Instructor", "instructor"], ["Other", "other"]]
+
+  = f.label :major, "Major(s)"
+  = f.text_field :major
+
+  = f.label :residency, "Residency"
+  = f.select :residency, [["International", "international"], ["Domestic", "domestic"]]
+
+  = f.label :gender, "Self-Identified Gender (For matching purpose only)"
+  = f.select :gender, [["Male", "international"], ["Female", "female"], ["Both or neither", "both_or_neither"]]
+
+  = f.label :fluent_languages, "Language(s) you speak with native fluency"
+  = f.select :fluent_languages, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+
+  = f.label :first_lang_preference, "1. Language(s) you are interested in practicing"
+  = f.select :first_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+
+
+  = f.label :first_lang_proficiency, "How proficient are you in this language?"
+  = f.select :first_lang_proficiency, [["Elementary proficiency", "elementary"],["Limited proficiency", "limited"], ["Intermediate proficiency","intermediate"], ["Nearly-full professional proficiency", "nearly_proficient"]]
+
+  = f.label :second_lang_preference, "2. Language(s) you are interested in practicing"
+  = f.select :second_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+
+  = f.label :second_lang_proficiency, "How proficient are you in this language?"
+  = f.select :second_lang_proficiency, [["Elementary proficiency", "elementary"],["Limited proficiency", "limited"], ["Intermediate proficiency","intermediate"], ["Nearly-full professional proficiency", "nearly_proficient"]]
+
+  = f.label :lang_additional_info, "Additional information you would like us to know"
+  = f.text_field :lang_additional_info
+
+  = f.label :time_preference, "Times you could meet with your partner(s)"
+  = f.select :time_preference, [["Monday", "monday"],["Tuesday","tuesday"],["Wednesday", "wednesday"],["Thursday","thursday"],["Friday","friday"]]
+
+  = f.label :time_additional_info, "Please describe in the box below if you have any other preferences"
+  = f.text_field :time_additional_info
+
+  = f.label :user_motivation, "What do you hope to gain from the SLC’s Language Exchange Program?"
+  = f.text_field :user_motivation
+
+  = f.label :user_plan, "How do you plan to maintain your motivation to meet with your partner(s) weekly?"
+  = f.text_field :user_plan
+
+  %p
+  = f.submit 'Submit'
