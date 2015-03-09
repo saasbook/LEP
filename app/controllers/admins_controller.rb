@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class AdminsController < ApplicationController
 
   def new
   end
@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   end
 
   def index
-  	  @users = User.all
+  	@users = User.all
+
   end
 
   def show
@@ -23,36 +24,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admins_path
   end
 
-  def home
-    email = request.env['omniauth.auth']['info']['email']
-    @user = User.where(email: email)
-    #no application yet
-    if @user.blank?
-      redirect_to new_user_path
-    else
-      is_admin = @user.pluck(:is_admin)
-      redirect_to user_path(id: @user.id, admin: is_admin)
-    end
-  end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

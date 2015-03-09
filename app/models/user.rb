@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :admin
+  attr_accessor :is_admin
   attr_accessor :first_name, :last_name, :sid, :email
   attr_accessor :academic_title, :major, :residency, :gender, :gender_preference
   attr_accessor :fluent_languages, :lang_additional_info

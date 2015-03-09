@@ -5,8 +5,8 @@ Feature: Viewing information about Groups
 
 Background: admin has been added to database
   Given the following users exist:
-  | first_name     | admin |
-  | Admin          | true  |
+  | first_name     | is_admin |
+  | Admin          | true     |
 
 Scenario: View all groups
   Given I am an admin
