@@ -3,6 +3,11 @@ Feature: Viewing information about Groups
   I want to look at information about groups
   In order to contact people or check group pairings    
 
+Background: admin has been added to database
+  Given the following users exist:
+  | first_name     | admin |
+  | Admin          | true  |
+
 Scenario: View all groups
   Given I am an admin
   And I am on the admin home page
