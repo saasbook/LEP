@@ -24,10 +24,10 @@ class UsersController < ApplicationController
 
   def show
   	#@user = User.where(id: params[:id])
-    @id = params[id]
-    @user = User.find(@id)
-    print "*****************SHOW*****************", @user.first_name
-    print "**********************************"
+    #@id = params[id]
+    @user = User.find(params[:id]) #this is nil right now
+    #print "*****************SHOW*****************", @user.first_name
+    #print "**********************************"
   end
 
   def edit
