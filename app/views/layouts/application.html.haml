@@ -1,10 +1,17 @@
 !!!
 %html
-	%head
-		%title LEP
-		= stylesheet_link_tag 'application', :media => "all"
-		= javascript_include_tag 'application'
-		-#= csrf_meta_tags
+    %head
+        %title LEP
+        = stylesheet_link_tag 'application', :media => "all"
+        = javascript_include_tag 'application'
+        -#= csrf_meta_tags
 
-	%body
-		= yield
+    %body
+        %h1.title Menu
+        #main
+            - if flash[:notice]
+                #notice.message= flash[:notice]
+            - elsif flash[:warning]
+                #warning.message= flash[:warning]
+            = link_to "Logout", 'https://mail.google.com/mail/u/0/?logout&hl=en'
+        = yield

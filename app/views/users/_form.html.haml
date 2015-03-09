@@ -9,7 +9,7 @@
   = f.label :sid, "Student ID Number"
   = f.text_field :sid
 
-  = f.label :email, "Email"
+  = f.label :email, "Berkeley Email"
   = f.text_field :email
 
   = f.label :academic_title, "Academic Title"
@@ -56,4 +56,4 @@
   = f.text_field :user_plan
 
   %p
-  = f.submit 'Submit'
+  = f.submit 'Submit' #, user_path(@user)
