@@ -65,7 +65,7 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
-    execjs (2.3.0)
+    execjs (2.4.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     gherkin (2.12.2)

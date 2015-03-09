@@ -1,11 +1,15 @@
 %h2 Editing User
 
-= render 'basic_info_form'
 
-= render 'lang_proficiency_form'
+-#= render 'basic_info_form'
 
-= render 'time_preferences_form'
+-#= render 'lang_proficiency_form'
 
-= render 'additional_information'
+-#= render 'time_preferences_form'
 
+-#= render 'additional_information'
+
+= render 'form'
+
+%p
 = link_to 'Back', users_path
