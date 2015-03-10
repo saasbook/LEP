@@ -38,18 +38,25 @@ class UsersController < ApplicationController
   end
 
   def home
-    email = request.env['omniauth.auth']['info']['email']
-    @user = User.where(:email => email)
-    #no application yet
-    if @user.blank?
-      redirect_to new_user_path
+    @email = request.env['omniauth.auth']['info']['email']
+    if @email =~ /.*berkeley.edu$/
+      @user = User.where(:email => @email)
+      #no application yet
+      if @user.blank?
+        redirect_to new_user_path
+      else
+        is_admin = @user.pluck(:is_admin)
+        redirect_to user_path(@user.pluck[:id]) if not is_admin 
+        redirect_to admin_path(@user.pluck[:id]) if is_admin
+      end
     else
-      is_admin = @user.pluck(:is_admin)
-      redirect_to user_path(params[:id]) if not is_admin 
+      redirect_to users_invalid_path :email => @email
     end
   end
 
-
+def invalid
+  @email = params[:email]
+end
 
   private
 
@@ -63,21 +70,3 @@ class UsersController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

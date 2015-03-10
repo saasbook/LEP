@@ -1,6 +1,7 @@
 LEP::Application.routes.draw do
 
   get 'welcome/index'
+  get 'users/invalid', to: 'users#invalid'
 
   resources :groups
   resources :users

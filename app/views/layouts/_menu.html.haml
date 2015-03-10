@@ -1,0 +1,9 @@
+%h1.menu Menu
+= link_to "Logout", "https://mail.google.com/mail/u/0/?logout&hl=en"
+
+- if flash[:notice]
+  #notice.message= flash[:notice]
+- if flash[:warning]
+  #notice.warning= flash[:warning]
+
+%br
