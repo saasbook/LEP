@@ -24,10 +24,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    #@user = User.where(id: params[:id])
     @id = params[:id]
     @user = User.find(@id) #this is nil right now
-    #@user = User.where(:id => @id)
+    #@user = User.where(email: @email)
+    #name = @user.pluck(:first_name)
     name = @user.first_name
     print "*****************SHOW*****************", name
     print "**********************************"
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
   end
 
   def home
-    email = request.env['omniauth.auth']['info']['email']
-    @user = User.where(:email => email)
+    @email = request.env['omniauth.auth']['info']['email']
+    @user = User.where(:email => @email)
     #no application yet
     if @user.blank?
       redirect_to new_user_path
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
   #rails 4 idiosyncracy; helper method for create
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :sid, :email, :academic_title, :major, :residency,
+    params.require(:user).permit(:id, :first_name, :last_name, :sid, :email, :academic_title, :major, :residency,
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :time_additional_info, 

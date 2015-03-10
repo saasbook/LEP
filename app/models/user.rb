@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   attr_accessor :is_admin, :application
 
   def has_application?(email)
-	@user = User.where(email: email)
-	@user.application
+	 @user = User.where(email: email)
+	 @user.application
   end
 
 end
