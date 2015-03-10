@@ -22,3 +22,18 @@
 
 = link_to 'Show groups', groups_path
 = link_to 'Home', admin_path
+
+=begin
+%h2 All Users
+
+%table
+  %tr
+    %th ID
+    %th First Name
+    %th Last Name
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.first_name
+        %td= user.last_name
+=end
