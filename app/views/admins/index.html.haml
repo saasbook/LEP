@@ -1,0 +1,24 @@
+%h1 All Users
+
+%table#users
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th SID
+      %th Gender
+      %th Academic Title
+      %th Major
+      %th Residency
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td=user.first_name + " " + user.last_name
+        %td=user.email
+        %td=user.sid
+        %td=user.gender
+        %td=user.academic_title
+        %td=user.major
+
+= link_to 'Show groups', groups_path
+= link_to 'Home', admin_path

@@ -4,10 +4,11 @@ LEP::Application.routes.draw do
 
   resources :groups
   resources :users
+  resources :admins
 
   root :to => 'welcome#index'
   get "/auth/:provider/callback" => 'users#home'
-
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

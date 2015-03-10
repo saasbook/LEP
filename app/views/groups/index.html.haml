@@ -1,0 +1,18 @@
+%h1 All Groups
+
+%table#groups
+  %thead
+    %tr
+      %th Group ID
+      %th Members
+      %th Languages
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td=group.id
+        %td=group.members
+        %td=group.languages
+
+= link_to 'Show users', admins_path
+= link_to 'Home', admin_path
+
