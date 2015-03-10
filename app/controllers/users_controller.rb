@@ -13,9 +13,6 @@ class UsersController < ApplicationController
     @user.application = true
     @user.is_admin = false
     @user.save
-    print "******************CREATE****************", @user.first_name
-    print "**********************************", @user.id
-    print "**********************************"
     redirect_to user_path(@user)
   end
 
@@ -26,11 +23,6 @@ class UsersController < ApplicationController
   def show
     @id = params[:id]
     @user = User.find(@id) #this is nil right now
-    #@user = User.where(email: @email)
-    #name = @user.pluck(:first_name)
-    name = @user.first_name
-    print "*****************SHOW*****************", name
-    print "**********************************"
   end
 
   def edit
