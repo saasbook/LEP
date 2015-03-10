@@ -7,11 +7,12 @@
         -#= csrf_meta_tags
 
     %body
-        %h1.title Menu
+        %h1.menu Menu
+        = link_to 'Logout', 'https://mail.google.com/mail/u/0/?logout&hl=en'
+
         #main
             - if flash[:notice]
                 #notice.message= flash[:notice]
             - elsif flash[:warning]
                 #warning.message= flash[:warning]
-            = link_to "Logout", 'https://mail.google.com/mail/u/0/?logout&hl=en'
         = yield
