@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+<<<<<<< HEAD
   attr_accessor :is_admin
   attr_accessor :first_name, :last_name, :sid, :email
   attr_accessor :academic_title, :major, :residency, :gender, :gender_preference
@@ -8,9 +9,11 @@ class User < ActiveRecord::Base
   attr_accessor :user_motivation, :user_plan
   attr_accessor :is_admin, :application
 
+=======
+>>>>>>> User_show_info
   def has_application?(email)
-	@user = User.where(email: email)
-	@user.application
+	 @user = User.where(email: email)
+	 @user.application
   end
 
 end
