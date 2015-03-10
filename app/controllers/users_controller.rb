@@ -12,26 +12,29 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.application = true
     @user.is_admin = false
-    @user.save!
+    @user.save
     print "******************CREATE****************", @user.first_name
+    print "**********************************", @user.id
     print "**********************************"
     redirect_to user_path(@user)
   end
 
   def index
-  	@users = User.all
+      @users = User.all
   end
 
   def show
-  	#@user = User.where(id: params[:id])
-    #@id = params[id]
-    @user = User.find(params[:id]) #this is nil right now
-    #print "*****************SHOW*****************", @user.first_name
-    #print "**********************************"
+    #@user = User.where(id: params[:id])
+    @id = params[:id]
+    @user = User.find(@id) #this is nil right now
+    #@user = User.where(:id => @id)
+    name = @user.first_name
+    print "*****************SHOW*****************", name
+    print "**********************************"
   end
 
   def edit
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def destroy
