@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @id = params[:id]
+    #@id = params[:id]
+    @id = @user.pluck(:id)
     @user = User.find(@id) #this is nil right now
   end
 
@@ -41,8 +42,9 @@ class UsersController < ApplicationController
         redirect_to new_user_path
       else
         is_admin = @user.pluck(:is_admin)
-        redirect_to user_path(@user.pluck[:id]) if not is_admin 
-        redirect_to admin_path(@user.pluck[:id]) if is_admin
+        @id = @user.pluck(:id)
+        redirect_to user_path(@id) if not is_admin 
+        redirect_to admin_path(@id) if is_admin
       end
     else
       redirect_to users_invalid_path :email => @email
