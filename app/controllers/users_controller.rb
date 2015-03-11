@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def index
-  	  @users = User.all
+  	@users = User.all
   end
 
   def show
@@ -46,6 +46,7 @@ class UsersController < ApplicationController
         redirect_to new_user_path
       else
         is_admin = @user.pluck(:is_admin)
+        session[:id] = @user.id
         redirect_to user_path(@user.pluck[:id]) if not is_admin 
         redirect_to admin_path(@user.pluck[:id]) if is_admin
       end
