@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  #@user = nil
-
   def new
     @user = User.new
   end
@@ -21,9 +19,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    #@id = params[:id]
-    @id = @user.pluck(:id)
-    @user = User.find(@id) #this is nil right now
+    @id = params[:id]
+    @user = User.find(@id)
   end
 
   def edit
@@ -41,7 +38,7 @@ class UsersController < ApplicationController
       if @user.blank?
         redirect_to new_user_path
       else
-        is_admin = @user.pluck(:is_admin)
+        is_admin = @user.pluck(:is_admin)[0]
         @id = @user.pluck(:id)
         redirect_to user_path(@id) if not is_admin 
         redirect_to admin_path(@id) if is_admin
