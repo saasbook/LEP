@@ -56,3 +56,13 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+#Mocking for tests
+#Capybara.default_host = 'example.org'
+Before('@omniauth_test') do
+#Capybara.default_host = 'example.org'
+  OmniAuth.config.test_mode = true
+end
+
+After('@omniauth_test') do
+  OmniAuth.config.test_mode = false
+end
