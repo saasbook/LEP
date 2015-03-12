@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20150312024346) do
     t.string   "time_additional_info"
     t.string   "user_motivation"
     t.string   "user_plan"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.boolean  "application"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "admin",                   default: false
   end
 
