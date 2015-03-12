@@ -26,7 +26,7 @@ user1 = {first_name: 'Jane',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
-		application: true}
+		}
 
 shana = {first_name: 'Shana',
     email: 'shanahu@berkeley.edu',
@@ -52,7 +52,7 @@ user27 = {first_name: 'Robyn',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
-		application: true}
+		}
 
 admin = { first_name: 'Admin', admin: true }
 admin2 = { first_name: 'adminmeister', 
