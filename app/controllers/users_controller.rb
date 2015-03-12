@@ -1,5 +1,17 @@
 class UsersController < ApplicationController
 
+  before_filter :check_user
+
+  def check_user
+    if params[:id]
+      #session[:id]["admin"] = current user's id
+      if params[:id].to_s != session[:id]["admin"].to_s
+        @user = User.find(session[:id]["admin"])
+        redirect_to user_path(@user)
+      end
+    end
+  end
+
   def new
     @user = User.new
   end
@@ -67,11 +79,7 @@ end
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :time_additional_info, 
-<<<<<<< HEAD
                                 :user_motivation, :user_plan, :admin)
-=======
-                                :user_motivation, :user_plan, :admin, :application)
->>>>>>> admin_view_groups
   end
 
 end
