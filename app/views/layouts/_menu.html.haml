@@ -1,8 +1,10 @@
 %nav
   %span#header Language Exchange Program 
-  %ul
-    %li
-      = link_to "Logout", "https://mail.google.com/mail/u/0/?logout&hl=en"
+
+  - if request.env['PATH_INFO'] != '/'
+    %ul
+      %li
+        = link_to "Logout", "https://mail.google.com/mail/u/0/?logout&hl=en"
 
 
 - if flash[:notice]
