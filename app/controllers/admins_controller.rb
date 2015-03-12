@@ -41,9 +41,7 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admins_path
+
   end
 
 end

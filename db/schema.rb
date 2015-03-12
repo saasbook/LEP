@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312024346) do
+ActiveRecord::Schema.define(version: 20150312233346) do
 
-# Could not dump table "groups" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "groups", force: true do |t|
+    t.string   "members"
+    t.string   "languages"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"
@@ -36,7 +40,6 @@ ActiveRecord::Schema.define(version: 20150312024346) do
     t.string   "time_additional_info"
     t.string   "user_motivation"
     t.string   "user_plan"
-    t.boolean  "application"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                   default: false
