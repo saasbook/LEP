@@ -5,8 +5,13 @@ class AdminsController < ApplicationController
   def check_admin
     if params[:id] then
       @user = User.find(params[:id])
-      unless session[:id][:admin] == @user.id and @user.admin
+      unless session[:id]["admin"] == @user.id and @user.admin
         redirect_to user_path
+      end
+    else
+      @id = session[:id]["admin"]
+      unless User.find(@id).admin
+        redirect_to user_path :id => @id
       end
     end
   end
