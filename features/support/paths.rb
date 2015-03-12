@@ -17,7 +17,7 @@ module NavigationHelpers
 
     when /^the form page$/ then '/users/new'
 
-    when /^the admin home page$/ then '/admins
+    when /^the admin home page$/ then '/admins'
 
     when /^the view groups page$/ then '/users'
 
