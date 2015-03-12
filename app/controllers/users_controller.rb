@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
     @user.application = true
-    @user.is_admin = false
+    @user.admin = false
     @user.save
     redirect_to user_path(@user)
   end
@@ -30,6 +30,12 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def is_admin?(user)
+    @email = request.env['omniauth.auth']['info']['email']
+    user = User.where(:email => @email)
+    return user.pluck(:admin)[0]
+  end
+
   def home
     @email = request.env['omniauth.auth']['info']['email']
     if @email =~ /.*berkeley.edu$/
@@ -38,10 +44,9 @@ class UsersController < ApplicationController
       if @user.blank?
         redirect_to new_user_path
       else
-        is_admin = @user.pluck(:is_admin)[0]
         @id = @user.pluck(:id)
-        redirect_to user_path(@id) if not is_admin 
-        redirect_to admin_path(@id) if is_admin
+        redirect_to user_path(@id) if not is_admin?(@user)
+        redirect_to admin_path(@id) if is_admin?(@user)
       end
     else
       redirect_to users_invalid_path :email => @email
@@ -60,7 +65,7 @@ end
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :time_additional_info, 
-                                :user_motivation, :user_plan, :is_admin, :application)
+                                :user_motivation, :user_plan, :admin)
   end
 
 end
