@@ -3,9 +3,12 @@ class AdminsController < ApplicationController
   before_filter :check_admin
 
   def check_admin
-    @user = User.find(params[:id])
-    unless session[:id] == @user.id and @user.admin
-      redirect_to user_path
+    print "***********************************8", params[:id]
+    if params[:id] then
+      @user = User.find(params[:id])
+      unless session[:id] == @user.id and @user.admin
+        redirect_to user_path
+      end
     end
   end
 
