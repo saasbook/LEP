@@ -20,6 +20,7 @@ class CreateUsers < ActiveRecord::Migration
 			t.string :time_additional_info 
 			t.string :user_motivation 
 			t.string :user_plan
+      t.boolean :application
 
 			t.timestamps
 		end

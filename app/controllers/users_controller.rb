@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
     @user.application = true
-    @user.is_admin = false
+    @user.admin = false
     @user.save
     redirect_to user_path(@user)
   end
@@ -41,7 +41,8 @@ class UsersController < ApplicationController
       if @user.blank?
         redirect_to new_user_path
       else
-        is_admin = @user.pluck(:is_admin)
+        is_admin = @user.pluck(:admin)
+        print "**********************", @user.id
         session[:id] = @user.id
         redirect_to user_path(@user.pluck[:id]) if not is_admin 
         redirect_to admin_path(@user.pluck[:id]) if is_admin
@@ -63,7 +64,7 @@ end
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :time_additional_info, 
-                                :user_motivation, :user_plan, :is_admin, :application)
+                                :user_motivation, :user_plan, :admin, :application)
   end
 
 end

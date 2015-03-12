@@ -27,6 +27,7 @@ user1 = {first_name: 'Jane',
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
 		application: true}
+
 shana = {first_name: 'Shana',
     email: 'shanahu@berkeley.edu',
     admin: false}
@@ -53,6 +54,6 @@ user27 = {first_name: 'Robyn',
 		admin: false,
 		application: true}
 
-admin = { first_name: 'Admin', is_admin: true}
+admin = { first_name: 'Admin', admin: true}
 users = User.create!([user1, shana, user27, admin])
 
