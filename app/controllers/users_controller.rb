@@ -1,13 +1,22 @@
 class UsersController < ApplicationController
 
   before_filter :check_user
+  before_filter :check_email, :except => [:home, :create, :invalid]
+
+  def check_email
+    #Check that the user is properly logged in
+    if session[:invalid_email]
+      flash[:warning] = "#{session[:invalid_email]} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
+      redirect_to users_invalid_path
+    end
+  end
 
   def check_user
-    if params[:id]
-      #session[:id]["admin"] = current user's id
-      if params[:id].to_s != session[:id]["admin"].to_s
-        @user = User.find(session[:id]["admin"])
-        redirect_to user_path(@user)
+    if params[:id] && session[:id]
+      @user = User.where(:id => session[:id])
+      @admin = @user.pluck(:admin)[0]
+      if ((params[:id].to_s != session[:id].to_s) && (!@admin))
+        redirect_to user_path(session[:id])
       end
     end
   end
@@ -20,9 +29,9 @@ class UsersController < ApplicationController
     #@auth = request.env['omniauth.auth']['credentials']
     #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
-    @user.application = true
     @user.admin = false
     @user.save
+    session[:id] = @user.id
     redirect_to user_path(@user)
   end
 
@@ -58,17 +67,18 @@ class UsersController < ApplicationController
       else
         is_admin = @user.pluck(:admin)[0]
         @id = @user.pluck(:id)[0]
-        session[:id] = {admin: @id}
+        session[:id] = @id
         redirect_to user_path(@id) if not is_admin 
         redirect_to admin_path(@id) if is_admin
       end
     else
-      redirect_to users_invalid_path :email => @email
+      flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
+      session[:invalid_email] = @email
+      redirect_to users_invalid_path
     end
   end
 
 def invalid
-  @email = params[:email]
 end
 
   private
