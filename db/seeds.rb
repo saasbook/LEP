@@ -25,7 +25,16 @@ user1 = {first_name: 'Jane',
 		time_additional_info: '',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
+<<<<<<< HEAD
 		admin: false}
+=======
+		admin: false,
+		application: true}
+>>>>>>> admin_view_groups
+
+shana = {first_name: 'Shana',
+    email: 'shanahu@berkeley.edu',
+    admin: false}
 
 user27 = {first_name: 'Robyn', 
 		last_name: 'Zhang', 
@@ -46,9 +55,17 @@ user27 = {first_name: 'Robyn',
 		time_additional_info: '',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
+<<<<<<< HEAD
 		admin: false}
 
 admin = { first_name: 'Admin', admin: true}
 users = User.create!([user1, user27, admin])
 
+=======
+		admin: false,
+		application: true}
+
+admin = { first_name: 'Admin', admin: true}
+users = User.create!([user1, shana, user27, admin])
+>>>>>>> admin_view_groups
 

@@ -44,9 +44,11 @@ class UsersController < ApplicationController
       if @user.blank?
         redirect_to new_user_path
       else
-        @id = @user.pluck(:id)
-        redirect_to user_path(@id) if not is_admin?(@user)
-        redirect_to admin_path(@id) if is_admin?(@user)
+        is_admin = @user.pluck(:admin)[0]
+        @id = @user.pluck(:id)[0]
+        session[:id] = {admin: @id}
+        redirect_to user_path(@id) if not is_admin 
+        redirect_to admin_path(@id) if is_admin
       end
     else
       redirect_to users_invalid_path :email => @email
@@ -65,7 +67,11 @@ end
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :time_additional_info, 
+<<<<<<< HEAD
                                 :user_motivation, :user_plan, :admin)
+=======
+                                :user_motivation, :user_plan, :admin, :application)
+>>>>>>> admin_view_groups
   end
 
 end

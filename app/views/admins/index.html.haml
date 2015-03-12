@@ -3,12 +3,18 @@
 %h2 All Users
 
 %table
-  %tr
-    %th ID
-    %th First Name
-    %th Last Name
+  %thead
+    %tr
+      %th ID
+      %th First Name
+      %th Last Name
+  %tbody
     - @users.each do |user|
       %tr
         %td= user.id
         %td= user.first_name
         %td= user.last_name
+        
+= link_to 'Show groups', groups_path
+= link_to 'Home', admins_path
+
