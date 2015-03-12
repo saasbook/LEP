@@ -49,6 +49,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if User.find(session[:id]).admin then
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to admins_path
+    else
+      redirect_to user_path(session[:id])
+    end
   end
 
   def is_admin?(user)
