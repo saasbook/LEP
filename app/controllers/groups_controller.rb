@@ -4,19 +4,19 @@ class GroupsController < ApplicationController
   end
 
   def create
-
-  end
-
-  def index
-
-  end
-
-  def show
     
   end
 
-  def destroy
+  def index
+    @user = User.find(session[:id]['admin'])
+    @groups = Group.all
+  end
 
+  def show
+    @group
+  end
+
+  def destroy
   end
 
 end
