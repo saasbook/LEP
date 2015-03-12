@@ -1,35 +1,15 @@
-= render "layouts/menu"
+%h2= "Welcome, #{@user.first_name}!"
 
-%h2= "User #{@user.id}"
-
-%br ID
-= @user.id
-
-%br First Name
-= @user.first_name
-
-%br Last Name
-= @user.last_name
-
-%br Email
-= @user.email
-
-%br Academic Title
-= @user.academic_title
-
-%br Major
-= @user.major
-
-%br Fluent Languages
+%p Your Languages
 = @user.fluent_languages
 
-%br Language Preference 1
+%p Language Preference 1
 = @user.first_lang_preference
 
-%br Language Preference 2
+%p Language Preference 2
 = @user.second_lang_preference
 
-%br GROUP NAMES HERE
+%p Groups 
 = @user.second_lang_preference
 
             
