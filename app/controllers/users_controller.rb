@@ -65,11 +65,10 @@ class UsersController < ApplicationController
       if @user.blank?
         redirect_to new_user_path
       else
-        is_admin = @user.pluck(:admin)[0]
         @id = @user.pluck(:id)[0]
         session[:id] = @id
-        redirect_to user_path(@id) if not is_admin 
-        redirect_to admin_path(@id) if is_admin
+        redirect_to user_path(@id) if not is_admin?(@user) 
+        redirect_to admin_path(@id) if is_admin?(@user)
       end
     else
       flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
@@ -78,8 +77,6 @@ class UsersController < ApplicationController
     end
   end
 
-def invalid
-end
 
   private
 
