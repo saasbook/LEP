@@ -11,15 +11,14 @@ Background: admin has been added to database
 Scenario: View all groups
   Given I am an admin
   And I am on the admin home page
-  When I click “View All Groups”
-  Then I should see “Paired Groups”
-  And I should not see “Click to Pair”
+  When I click “Show Groups”
+  Then I should see all groups
 
-Scenario: Searching for a group
-  Given I am an admin 
-  And I am on the view groups page
-  When I filter for a group
-  Then I should see information about the members in that group
+#Scenario: Searching for a group
+#Given I am an admin 
+#  And I am on the view groups page
+#  When I filter for a group
+#  Then I should see p
 
 Scenario: Looking for a person’s contact info
   Given I am an admin
