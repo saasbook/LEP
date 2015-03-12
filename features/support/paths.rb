@@ -12,19 +12,26 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-
-    when /^the (LEP )?home\s?page$/ then '/home'
+    when /^the (LEP )?home\s?page$/ then '/welcome/index'
 
     when /^the form page$/ then '/users/new'
 
-    when /^the admin home page$/ then '/admins
+    when /^the admin home page$/ then '/admins'
 
     when /^the view groups page$/ then '/users'
+
+    when /^the invalid page$/ then '/users/invalid'
+
+    when /^the new user page$/ then '/users/new'
+    
+    when /^the admin show page$/ then '/admins/2'
+    
+    when /^the existing user show page$/ then '/users/1'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
-    #   when /^(.*)'s profile page$/i
+    #   when /^(.*)\'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
     else
