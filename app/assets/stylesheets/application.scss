@@ -15,6 +15,7 @@
 $white: #fff;
 $black: #000;
 $blue: #00B0DA;
+$grey: #d3d3d3;
 $unit: 10px;
 
 html,
@@ -73,8 +74,33 @@ nav {
   }
 }
 
-form label {
-  display: block;
-  line-height: 35px;
+
+form {
+
+  .question {
+    margin-bottom: 2*$unit;
+  }
+
+  label {
+    display: block;
+    font-style: bold;
+  }
+
+  input {
+    border: 1px solid $grey;
+    padding: $unit/2;
+  }
+
+
+  select {
+    border: 1px solid $grey;
+    border-radius: 0;
+    height: 3*$unit;
+    padding: $unit/2;
+    background: transparent;
+
+
+  }
+
 }
 

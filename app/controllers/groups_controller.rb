@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:id]['admin'])
+    @user = User.find(session[:id])
     @groups = Group.all
   end
 

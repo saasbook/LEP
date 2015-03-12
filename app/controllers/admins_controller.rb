@@ -5,11 +5,11 @@ class AdminsController < ApplicationController
   def check_admin
     if params[:id] then
       @user = User.find(params[:id])
-      unless session[:id]["admin"] == @user.id and @user.admin
+      unless session[:id] == @user.id and @user.admin
         redirect_to user_path
       end
     else
-      @id = session[:id]["admin"]
+      @id = session[:id]
       unless User.find(@id).admin
         redirect_to user_path :id => @id
       end
@@ -27,7 +27,7 @@ class AdminsController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:id]['admin'])
+    @user = User.find(session[:id])
     @users = User.where(!:admin) # want to list all non-admin users
     @groups = Group.all
   end
