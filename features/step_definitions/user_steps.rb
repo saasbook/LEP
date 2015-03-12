@@ -3,6 +3,8 @@ Given /^I am (not )?authenticated$/ do |unauthenticated|
 end
 
 Given /^I am (not )?an admin$/ do |not_admin|
+  #assert !@user.admin if not_admin
+  #assert @user.admin if !not_admin
 end
 
 Given /^I am viewing the LEP homepage$/ do

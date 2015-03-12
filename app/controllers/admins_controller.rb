@@ -27,13 +27,13 @@ class AdminsController < ApplicationController
   end
 
   def index
+    @user = User.find(session[:id]['admin'])
     @users = User.where(!:admin) # want to list all non-admin users
     @groups = Group.all
   end
 
   def show
     @user = User.find(params[:id])
-    redirect_to admin_path
   end
 
   def edit
