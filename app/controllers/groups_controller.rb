@@ -13,7 +13,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group
   end
 
   def destroy

@@ -7,7 +7,7 @@
       %th Members
       %th Languages
   %tbody
-    = @groups.each do |group|
+    - @groups.each do |group|
       %tr
         %td=group.id
         %td=group.members
