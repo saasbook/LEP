@@ -9,11 +9,6 @@ Background: Two users are in the database
   | 1  | existing   | existing@berkeley.edu  | false |
   | 2  | admin      | admin@berkeley.edu     | true  |
 
-Scenario: Prompts user to login if not logged in
-  Given I am on the LEP homepage
-  When I follow "Please authenticate with your Berkeley email address." 
-  Then I should see "Calnet Authentication"
-
 Scenario: Redirects non-admin user to homepage when successfully authenticated
   Given I am an existing user
   When I sign in

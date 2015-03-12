@@ -3,41 +3,47 @@ Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     User.create!(user)
   end
+  debugger
 end
 
 Given /^I am an? (.*) user$/ do |user_type|
-  OmniAuth.config.mock_auth[:google] = nil
+  OmniAuth.config.mock_auth[:google_oauth2] = nil
   if user_type == "existing"
-    OmniAuth.config.add_mock(:google, {
-      :uid => '0',
-      :user_info => {
-        :name => 'existing',
-        :email => 'existing@berkeley.edu'
-      }
-    })
+    OmniAuth.config.mock_auth[:google_oauth2] = 
+      OmniAuth::AuthHash.new({:provider => 'google_oauth2',
+        :uid => '0',
+        :info => {
+          :name => 'existing',
+          :email => 'existing@berkeley.edu'
+        }
+      })
   elsif user_type == "admin"
-    OmniAuth.config.add_mock(:google, {
-      :uid => '1',
-      :user_info => {
-        :name => 'admin',
-        :email => 'admin@berkeley.edu'
-      }
-    })
+    OmniAuth.config.mock_auth[:google_oauth2] = 
+      OmniAuth::AuthHash.new({:provider => 'google_oauth2',
+        :uid => '1',
+        :info => {
+          :name => 'admin',
+          :email => 'admin@berkeley.edu'
+        }
+      })
   elsif user_type == "non-existing"
-    OmniAuth.config.add_mock(:google, {
-      :uid => '2',
-      :user_info => {
-        :name => 'non-existing',
-        :email => 'non-existing@berkeley.edu'
-      }
-    })
+    OmniAuth.config.mock_auth[:google_oauth2] = 
+      OmniAuth::AuthHash.new({:provider => 'google_oauth2',
+        :uid => '2',
+        :info => {
+          :name => 'non-existing',
+          :email => 'non-existing@berkeley.edu'
+        }
+      })
   elsif user_type == "invalid"
-    OmniAuth.config.add_mock(:google, { :uid => '3',
-      :user_info => {
-        :name => 'invalid',
-        :email => 'invalid@berkeley.edu'
-      }
-    })
+    OmniAuth.config.mock_auth[:google_oauth2] = 
+      OmniAuth::AuthHash.new({:provider => 'google_oauth2',
+        :uid => '3',
+        :info => {
+          :name => 'invalid',
+          :email => 'invalid@berkeley.edu'
+        }
+      })
   else 
     flunk "Not a valid user type"
   end 

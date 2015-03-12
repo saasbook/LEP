@@ -59,6 +59,7 @@ class UsersController < ApplicationController
 
   def home
     @email = request.env['omniauth.auth']['info']['email']
+    debugger
     if @email =~ /.*berkeley.edu$/
       @user = User.where(:email => @email)
       #no application yet
