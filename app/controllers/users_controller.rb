@@ -49,6 +49,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if User.find(session[:id]).admin then
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to admins_path
+    else
+      redirect_to user_path(session[:id])
+    end
   end
 
   def is_admin?(user)
@@ -65,11 +72,10 @@ class UsersController < ApplicationController
       if @user.blank?
         redirect_to new_user_path
       else
-        is_admin = @user.pluck(:admin)[0]
         @id = @user.pluck(:id)[0]
         session[:id] = @id
-        redirect_to user_path(@id) if not is_admin 
-        redirect_to admin_path(@id) if is_admin
+        redirect_to user_path(@id) if not is_admin?(@user) 
+        redirect_to admin_path(@id) if is_admin?(@user)
       end
     else
       flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
@@ -78,8 +84,6 @@ class UsersController < ApplicationController
     end
   end
 
-def invalid
-end
 
   private
 
