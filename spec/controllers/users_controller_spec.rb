@@ -48,11 +48,21 @@ describe UsersController do
 
   describe '#show' do
     before :each do
-      @user = double(User, first_name: 'Jane', id: '10')
+      @user = double(User, first_name: 'Jane', id: '10', admin: false)
     end
     it 'should call User with find' do
       User.should_receive(:find).with(@user.id).and_return(double('User'))
       get :show, id: '10'
+    end
+    it 'should call check_email and redirect when the email is invalid' do
+      get :show, {:id => "10"}, {:invalid_email => "lep@gmail.com"}
+      response.should redirect_to users_invalid_path
+      flash[:warning].should eq("lep@gmail.com is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address.")
+    end
+    it "'should call check_user and redirect when the user id doesn't match" do
+      get :show, {:id => "5"}, {:id => "10"}
+      assigns(:admin).should be_false
+      response.should redirect_to user_path(session[:id])
     end
   end
 

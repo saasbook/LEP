@@ -59,9 +59,7 @@ class UsersController < ApplicationController
   end
 
   def is_admin?(user)
-    @email = request.env['omniauth.auth']['info']['email']
-    user = User.where(:email => @email)
-    return user.pluck(:admin)[0]
+    return @user.pluck(:admin)[0]
   end
 
   def home
@@ -74,8 +72,8 @@ class UsersController < ApplicationController
       else
         @id = @user.pluck(:id)[0]
         session[:id] = @id
-        redirect_to user_path(@id) if not is_admin?(@user) 
-        redirect_to admin_path(@id) if is_admin?(@user)
+        redirect_to user_path(@id) if not is_admin?
+        redirect_to admin_path(@id) if is_admin?
       end
     else
       flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
