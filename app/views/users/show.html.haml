@@ -1,15 +1,29 @@
 %h2= "Welcome, #{@user.first_name}!"
 
-%p Your Languages
+%h4= "Your Languages"
 = @user.fluent_languages
 
-%p Language Preference 1
+%h4= "Language Preference 1"
 = @user.first_lang_preference
 
-%p Language Preference 2
+%h4= "Language Preference 2"
 = @user.second_lang_preference
 
-%p Groups 
-= @user.second_lang_preference
 
-            
+%h3= "Your Group Information"
+
+%h4= "Group ID: 1"
+
+%h4= "Group Languages"
+="#{@user.first_lang_preference}, #{@user.fluent_languages}"
+
+%p
+
+%table
+  %tr
+    %th Group Member
+    %th Contact Info
+    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+      %tr
+        %td= member["name"]
+        %td= member["contact"]

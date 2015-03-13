@@ -21,6 +21,8 @@ module NavigationHelpers
 
     when /^the view groups page$/ then '/users'
 
+    when /^\/users\/(.*)$/ then "/users/#{$1}"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
