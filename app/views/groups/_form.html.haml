@@ -1,0 +1,9 @@
+= form_for :group, url: groups_path, :class => "field_with_errors" do |f|
+
+  %div.question
+    = f.label :languages, "What languages will this group be learning/teaching?"
+    = f.select :languages, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+
+  %div.question
+    %p
+    = f.submit 'Submit'
