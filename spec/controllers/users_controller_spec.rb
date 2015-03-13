@@ -77,6 +77,13 @@ describe UsersController do
   end
 
   describe '#destroy' do
+#    it 'should render the template' do
+#      @user = double(User, id: 2, first_name: 'Bob', email: 'delete@berkeley.edu', admin: false)
+#      get :destroy, id: @user.id
+#      expect(response).to render_template('index')
+#    end
+
+
   end
 
   #working on this right now -Robyn; rspec went from 38% to 51.79% with new, index, edit, show
