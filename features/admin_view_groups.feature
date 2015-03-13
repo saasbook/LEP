@@ -15,12 +15,14 @@ Background: admin has been added to database
   |    c, d      |    fra, ger    |
 
 Scenario: View all groups
-  Given I am on the admin home page
+  Given I am an admin
+  When I am on the admin home page
   When I press “Show groups”
   Then I should see all groups
 
 Scenario: View all users
-  Given I am on the admin home page
+  Given I am an admin
+  When I am on the admin home page
   When I press "Show users"
   Then I should see all users
 
