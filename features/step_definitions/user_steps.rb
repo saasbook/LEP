@@ -41,7 +41,7 @@ Given /^I am an? (.*) user$/ do |user_type|
         :uid => '3',
         :info => {
           :name => 'invalid',
-          :email => 'invalid@berkeley.edu'
+          :email => 'invalid@gmail.com'
         }
       })
   else 

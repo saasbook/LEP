@@ -5,15 +5,15 @@ Feature: log out from the LEP website
   I want to be able to log out of my account
 
 Scenario: log out as a normal user
-  Given I am not an admin
-  And I am authenticated
-  And I am on the LEP student home page
-  When I press logout
-  Then I should be on the logged out page
+  Given I am an existing user
+  And I sign in
+  Then I should see "Logout"
+  When I follow "Logout"
+  Then I should not see "Language Exchange Program"
 
 Scenario: log out as an admin
-  Given I am an admin
-  And I am authenticated
-  And I am on the LEP admin home page
-  When I press logout
-  Then I should be on the logged out page
+  Given I am an admin user
+  And I sign in
+  Then I should see "Logout"
+  When I follow "Logout"
+  Then I should not see "Language Exchange Program"
