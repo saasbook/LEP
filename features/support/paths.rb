@@ -17,9 +17,11 @@ module NavigationHelpers
 
     when /^the form page$/ then '/users/new'
 
-    when /^the admin home page$/ then '/admins
+    when /^the admin home page$/ then '/admins'
 
     when /^the view groups page$/ then '/users'
+
+    when /^\/users\/(.*)$/ then "/users/#{$1}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

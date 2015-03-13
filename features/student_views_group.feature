@@ -6,27 +6,23 @@ Feature: display group members when student user views their group
   
 Background: student has been added to a group
 
-  Given the following students are in a group:
-  | name       | group number |
-  | Billy Bob  |       1      |  
-  | Joe Schmoe |       1      |
-  | Sally Sue  |       1      |
-  | Jane Doe   |       2      |
-  | John Smith |       2      |
-
-  And  I am on the LEP home page and I am Billy Bob
+  Given the following students exist:
+  | group_id | first_name | last_name |  sid  | email | gender | fluent_languages | first_lang_preference |
+  |    1     |   Billy    |   Bob     |  1234566 |  billy@berkeley.edu | male | arabic | english |
+  |    1     |   Joe      |   Shmoe   |  1234567 |  joe@berkeley.edu | male | arabic | english |
+  |    1     |   Sally    |   Sue     |  1234568 |  sally@berkeley.edu | male | arabic | english |
+  |    2     |   Jane     |   Doe     |  1234570 |  jane@berkeley.edu | male | arabic | english |
+  |    2     |   John     |   Smith   |  1234530 |  john@berkeley.edu | male | arabic | english |
+  |    3     |   Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | arabic | english |
 
 Scenario: student is in a group
-
-  When I press "View Group"
-  Then I should see "Billy Bob"
-  Then I should see "Joe Schmoe"
-  Then I should see "Sally Sue"
-  Then I should not see "Jane Doe"
-  Then I should not see "John Smith"
-
-Scenario: student is not in a group
-  When I press "View Group"
-  Then I should see an error message
+  Given I am logged in as "Billy"
+  Then I should see "Group Information"
+  And I should see "Group Member"
+  And I should see "Joe Schmoe"
+  And I should see "Sally Sue"
+  And I should not see "Jane Doe"
+  And I should not see "John Smith"
+  And I should not see "Jerry Maguire"
 
 
