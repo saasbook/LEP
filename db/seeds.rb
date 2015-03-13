@@ -6,7 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = {first_name: 'Jane', 
+admin_group = Group.create({languages: 'Null'})
+
+student_group = Group.create({languages: 'Arabic, English'})
+
+user1 = {group_id: student_group.id,
+		first_name: 'Jane', 
 		last_name: 'Doe', 
 		sid: '12345678', 
 		email: 'example@gmail.com',
@@ -28,11 +33,13 @@ user1 = {first_name: 'Jane',
 		admin: false,
 		}
 
-shana = {first_name: 'Shana',
+shana = {group_id: student_group.id,
+		first_name: 'Shana',
     email: 'shanahu@berkeley.edu',
     admin: true}
 
-user27 = {first_name: 'Robyn', 
+user27 = {group_id: student_group.id,
+		first_name: 'Robyn', 
 		last_name: 'Zhang', 
 		sid: '22223333', 
 		email: 'robynz@berkeley.edu',
@@ -54,9 +61,14 @@ user27 = {first_name: 'Robyn',
 		admin: false,
 		}
 
-admin = { first_name: 'Admin', admin: true }
-admin2 = { first_name: 'adminmeister', 
-  email: 'swchoi727@berkeley.edu', 
-  admin: true }
+admin = {group_id: admin_group.id, 
+				first_name: 'Admin', 
+				admin: true }
+
+admin2 = {group_id: admin_group.id,
+		first_name: 'adminmeister', 
+	  email: 'swchoi727@berkeley.edu', 
+	  admin: true }
+
 users = User.create!([user1, shana, user27, admin, admin2])
 
