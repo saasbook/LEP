@@ -1,6 +1,7 @@
 Given /the following students exist/ do |students|
   students.hashes.each do |student|
-    User.create(first_name: student['first_name'], 
+    User.create(group_id: student['group_id'],
+    first_name: student['first_name'], 
 		last_name: student['last_name'], 
 		sid: student['sid'], 
 		email: student['email'],
@@ -8,6 +9,13 @@ Given /the following students exist/ do |students|
 		fluent_languages: student['fluent_languages'], 
 		first_lang_preference: student['first_lang_preference'], 
 		admin: false)
+  end
+end
+
+Given /the following groups exist/ do |groups|
+  groups.hashes.each do |group|
+    Group.create(id: group['id'], 
+		languages: group['id'])
   end
 end
 
