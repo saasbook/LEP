@@ -28,12 +28,25 @@ class UsersController < ApplicationController
   def create
     #@auth = request.env['omniauth.auth']['credentials']
     #@email = request.env['omniauth.auth']['info']['email']
-    @user = User.new(user_params)
+    # @user = User.new(user_params)
+    # @user.admin = false
+    # @user.save
+    # session[:id] = @user.id
+    # redirect_to user_path(@user)
+    @group = Group.find(params[:user][:group_id])
+    @user = @group.users.new(user_params)
     @user.admin = false
     @user.save
     session[:id] = @user.id
     redirect_to user_path(@user)
   end
+
+  #### Use our algorithm to find the group for this user 
+  # def add_user_to_group
+  #   # params[:user][:group_id] = 2 # Default: Add every user to group 1
+  #   @group = Group.find(params[:user][:group_id])
+  #   @group.users.create(params[:user])
+  # end
 
   def index
     @users = User.all
@@ -41,10 +54,12 @@ class UsersController < ApplicationController
 
   def show
     @id = params[:id]
-    @user = User.find(@id)
+    @user = User.find(params[:id])
+    @group = Group.find(@user.group_id)
   end
 
   def edit
+    @group = Group.find(params[:user][:group_id])
     @user = User.find(params[:id])
   end
 
