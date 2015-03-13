@@ -9,29 +9,13 @@ describe UsersController do
   	end
   end
 
-  # describe '#create' do
-  #   before :each do
-  #     @user = double(User, first_name: 'Sue', id: '5', email: 'sue@berkeley.edu')
-  #     post :create
-  #   end
-  #   # it 'redirects to show' do
-  #   #   response.should redirect_to '/users/5'
-  #   #   #response.should be(200)
-  #   #   #get :show, id: '5'
-  #   # end
-  #   it 'renders who template' do
-  #     post :create, @user
-  #     expect(response).to render_template('show')
-  #   end
-  # end
-
-  # def create
-  #   @user = User.new(user_params)
-  #   @user.admin = false
-  #   @user.save
-  #   session[:id] = @user.id
-  #   redirect_to user_path(@user)
-  # end
+  describe '#create' do
+    let(:valid_params) { {'user' => {first_name: 'Bob', id: 5, email: 'bob@berkeley.edu'} }}
+    it 'creates a user' do
+      post :create, valid_params
+      assigns(:user).should be_persisted
+    end
+  end
 
   describe '#index' do
   	it 'renders index template' do
@@ -86,20 +70,6 @@ describe UsersController do
       response.should redirect_to user_path(session[:id])
     end
   end
-
-  #working on this right now -Robyn; rspec went from 38% to 51.79% with new, index, edit, show
-  # describe '#is_admin?' do
-  #   before :each do
-  #     @user = double(User, first_name: 'Bob', id: '11', email: 'bob@berkeley.edu', admin: false)
-  #     allow(UsersController).to receive(:is_admin?).with(@user)
-  #   end
-  #   it 'pluck admin from user' do
-  #     #User.should_receive(:where).with(:email => @user.email).and_return(double('User'))
-  #     #@user.should_receive(:pluck).with(:admin).and_return(false)
-  #     #response.should be(false)
-  #     expect(response).to eq(false)
-  #   end
-  # end
 
   # describe '#home' do
   #   # before :each do
