@@ -10,9 +10,9 @@ Background: admin has been added to database
   |  aladdin       | false |
 
   Given the following groups exist:
-  |   members    |   languages    |
-  |    a, b      |    eng, esp    |
-  |    c, d      |    fra, ger    |
+  |   members   |   languages   |
+  |    a,b      |    eng,esp    |
+  |    c,d      |    fra,ger    |
 
 Scenario: View all groups
   Given I am an admin
