@@ -12,7 +12,7 @@
 
 %h3= "Your Group Information"
 
-%h4= "Group ID: 1"
+%h4= "Group ID: #{@user.group_id}"
 
 %h4= "Group Languages"
 ="#{@user.first_lang_preference}, #{@user.fluent_languages}"
@@ -23,7 +23,16 @@
   %tr
     %th Group Member
     %th Contact Info
-    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+    - @group.users.each do |member|
       %tr
-        %td= member["name"]
-        %td= member["contact"]
+        %td= member.first_name
+        %td= member.email
+
+/ %table
+/   %tr
+/     %th Group Member
+/     %th Contact Info
+/     - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+/       %tr
+/         %td= member["name"]
+/         %td= member["contact"]
