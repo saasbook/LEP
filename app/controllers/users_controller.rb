@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def is_admin?(user)
+  def is_admin?
     return @user.pluck(:admin)[0]
   end
 
