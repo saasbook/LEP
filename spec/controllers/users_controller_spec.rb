@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe UsersController do
 
-  describe 'check_email' do
-  end
-
-  describe '#check_user' do
-  end
-
   describe '#new' do
   	it 'renders form template' do
       get :new
