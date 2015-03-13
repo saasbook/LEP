@@ -5,6 +5,7 @@
 %table
   %tr
     %th ID
+    %th Group ID
     %th First Name
     %th Last Name
     %th SID
@@ -26,6 +27,7 @@
     - @users.each do |user|
       %tr
         %td= user.id
+        %td= user.group_id
         %td= user.first_name
         %td= user.last_name
         %td= user.sid
