@@ -71,13 +71,20 @@ describe UsersController do
   end
 
   describe '#destroy' do
-#    it 'should render the template' do
-#      @user = double(User, id: 2, first_name: 'Bob', email: 'delete@berkeley.edu', admin: false)
-#      get :destroy, id: @user.id
-#      expect(response).to render_template('index')
-#    end
+    before :each do
+      @user = User.create(id: 2, first_name: 'Bob', email: 'delete@berkeley.edu', admin: false)
+    end
 
+    it 'should redirect to admin path when admin deletes a user' do
+      @admin = User.create(first_name: 'Admin', id: 1, admin: true)
+      get(:destroy, {id: @user.id}, {id: @admin.id})
+      response.should redirect_to admins_path
+    end
 
+    it 'should redirect to user path when user tries to delete a user' do
+      get(:destroy, {id: @user.id}, {id: @user.id})
+      response.should redirect_to user_path(session[:id])
+    end
   end
 
   #working on this right now -Robyn; rspec went from 38% to 51.79% with new, index, edit, show
