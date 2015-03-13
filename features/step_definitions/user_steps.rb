@@ -3,7 +3,6 @@ Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     User.create!(user)
   end
-  debugger
 end
 
 Given /^I am an? (.*) user$/ do |user_type|

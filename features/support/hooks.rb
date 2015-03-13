@@ -6,4 +6,5 @@ end
 After do
   OmniAuth.config.test_mode = false 
   Capybara.use_default_driver
+  DatabaseCleaner.clean_with(:truncation)
 end
