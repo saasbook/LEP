@@ -6,8 +6,8 @@ Feature: Viewing information about Groups
 Background: admin has been added to database
   Given the following users exist:
   | first_name     | admin |
-  |   Admin        | true  |
   |  aladdin       | false |
+  |   Admin        | true  |
 
   Given the following groups exist:
   |   members   |   languages   |
