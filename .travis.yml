@@ -10,5 +10,5 @@ bundler_args: --without production
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - "bundle exec rake cucumber"
-  - "bundle exec rake rspec"
+  - "bundle exec rake spec"
 
