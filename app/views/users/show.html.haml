@@ -10,6 +10,22 @@
 = @user.second_lang_preference
 
 
+%h3= "Your Pair Information"
+
+%h4= "Pair ID: #{@user.pair_id}"
+
+%table
+	%tr
+		%th Member ID
+		%th Pair Member
+		%th Contact Info
+		- @pair.users.each do |member|
+			%tr
+				%td= member.id
+				%td= member.first_name
+				%td= member.email
+
+
 %h3= "Your Group Information"
 
 %h4= "Group ID: 1"
@@ -20,10 +36,10 @@
 %p
 
 %table
-  %tr
-    %th Group Member
-    %th Contact Info
-    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
-      %tr
-        %td= member["name"]
-        %td= member["contact"]
+	%tr
+		%th Group Member
+		%th Contact Info
+		- [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+			%tr
+				%td= member["name"]
+				%td= member["contact"]

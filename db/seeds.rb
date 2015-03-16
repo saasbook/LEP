@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-admin_pair = Pair.create({name: "Null", languages: 'Null'})
+admin_pair = Pair.create({name: "Admin Pair", languages: 'Null'})
 student_pair = Pair.create({name: "eng & arabic pair", languages: 'Arabic, English'})
 
 
@@ -39,11 +39,6 @@ jane = {pair_id: student_pair.id,
 		admin: false,
 		}
 
-shana = {pair_id: student_pair.id,
-		first_name: 'Shana',
-    email: 'shanahu@berkeley.edu',
-    admin: true}
-
 robyn = {pair_id: student_pair.id,
 		first_name: 'Robyn', 
 		last_name: 'Zhang', 
@@ -66,14 +61,14 @@ robyn = {pair_id: student_pair.id,
 		user_plan: 'I will set a regular meeting time with them.',
 		}
 
-admin = {first_name: 'Admin',admin: true}
+admin = {pair_id: admin_pair.id, 
+	first_name: 'Admin', 
+	admin: true }
 
-users = User.create!([jane, robyn, admin])
-
-admin = { first_name: 'Admin', admin: true }
-admin2 = { first_name: 'adminmeister', 
+admin2 = {pair_id: admin_pair.id, 
+	first_name: 'adminmeister', 
   email: 'swchoi727@berkeley.edu', 
   admin: true }
 
-users = User.create!([user1, shana, user27, admin, admin2])
+users = User.create!([jane, robyn, shana, admin, admin2])
 

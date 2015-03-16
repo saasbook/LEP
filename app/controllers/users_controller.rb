@@ -36,12 +36,16 @@ class UsersController < ApplicationController
 
     pair_id = params[:pair_id]
     if pair_id.nil?
-      pair_id = 2
+      if params[:admin] == "true"
+        pair_id = 1
+      else
+        pair_id = 2
+      end
     end
-    @pair = Pair.find(pair_id)
-    @user = @pair.users.new(user_params)
+    @pair = Pair.find_by_id(pair_id)
+    @user = @pair.users.new(user_params.except(:pair_id))
     @user.admin = false
-    @user.save
+    @user.save!
     session[:id] = @user.id
     redirect_to user_path(@user)
   end
@@ -52,8 +56,10 @@ class UsersController < ApplicationController
 
   def show
     @id = params[:id]
-    @user = User.find(@id)
-    @pair = Pair.find(@user.pair_id)
+    @user = User.find_by_id(@id)
+    @pair = Pair.find_by_id(@user.pair_id)
+    puts "user id: #{@user.id}"
+    puts "pair id: #{@user.pair_id}"
   end
 
   def edit

@@ -4,6 +4,11 @@ Feature: Viewing information about Groups
   In order to contact people or check group pairings    
 
 Background: admin has been added to database
+#  Given the following pairs exist:
+#  |        name        |  languages |
+#  |       Admin        |    Null    |
+#  |  Unpaired Students |  arb,eng   |
+
   Given the following users exist:
   | first_name     | admin |
   |  aladdin       | false |

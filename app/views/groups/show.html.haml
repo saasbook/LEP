@@ -1,0 +1,15 @@
+%h2= "Group #{@group.id}!"
+
+%h4= "Group Languages"
+= @group.languages
+
+%h4= "Group Members"
+
+%table
+  %tr
+    %th Group Member
+    %th Contact Info
+    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+      %tr
+        %td= member["name"]
+        %td= member["contact"]
