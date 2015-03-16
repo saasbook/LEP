@@ -1,5 +1,6 @@
 LEP::Application.routes.draw do
 
+  devise_for :users
   get 'welcome/index'
   get 'users/invalid', to: 'users#invalid'
 

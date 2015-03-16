@@ -25,8 +25,9 @@ user1 = {first_name: 'Jane',
 		time_additional_info: '',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		is_admin: false,
-		application: true}
+		# is_admin: false,
+		# application: true
+		}
 
 user27 = {first_name: 'Robyn', 
 		last_name: 'Zhang', 
@@ -47,10 +48,13 @@ user27 = {first_name: 'Robyn',
 		time_additional_info: '',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		is_admin: false,
-		application: true}
+		# is_admin: false,
+		# application: true
+		}
 
-admin = { first_name: 'Admin', is_admin: true}
+admin = {first_name: 'Admin',
+		# is_admin: true
+		}
 users = User.create!([user1, user27, admin])
 
 

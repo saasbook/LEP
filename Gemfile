@@ -30,3 +30,4 @@ gem 'jquery-rails'
 gem 'haml'
 
 gem 'rake'
+gem 'devise'
