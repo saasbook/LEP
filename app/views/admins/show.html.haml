@@ -1,8 +1,5 @@
-= render "layouts/menu"
-
-%h2= "Admin #{@user.first_name}"
+%h1= "Admin #{@user.first_name}"
 %h3= "ID #{@user.id}"
 
-
-= link_to 'Show users', admins_path
+= link_to 'Show users', admins_path 
 = link_to 'Show groups', groups_path

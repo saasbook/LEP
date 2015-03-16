@@ -13,6 +13,7 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails','~> 2.14.0'
   gem 'simplecov'
+  gem 'selenium-webdriver'
 end
 
 group :production do

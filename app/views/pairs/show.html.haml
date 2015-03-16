@@ -1,0 +1,27 @@
+%h2= "Pair #{@pair.id}!"
+
+%h4= "Pair Languages"
+= @pair.languages
+
+%h4= "Pair Members"
+
+/ %table
+/   %tr
+/			%th Member ID
+/     %th Pair Member
+/     %th Contact Info
+/     - @pair.users.each do |member|
+/       %tr
+/					%td= member.id
+/         %td= member.first_name + ' ' + member.last_name
+/         %td= member.email
+
+%table
+  %tr
+    %th Pair Member
+    %th Contact Info
+    - [{"id" => 3, "name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"id" => 4, "name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+      %tr
+      	%td= member["id"]
+        %td= member["name"]
+        %td= member["contact"]

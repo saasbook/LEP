@@ -1,0 +1,14 @@
+%h2 All Pairs
+
+%table#groups
+  %thead
+    %tr
+      %th Pair ID
+      %th Members
+      %th Languages
+  %tbody
+    - @pairs.each do |pair|
+      %tr
+        %td=pair.id
+        %td=pair.users.map(&:first_name).join(", \n")
+        %td=pair.languages

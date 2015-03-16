@@ -6,7 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = {first_name: 'Jane', 
+
+admin_pair = Pair.create({name: "Null", languages: 'Null'})
+student_pair = Pair.create({name: "eng & arabic pair", languages: 'Arabic, English'})
+
+
+shana = {pair_id: student_pair.id,
+				first_name: 'Shana',
+    		email: 'shanahu@berkeley.edu',
+    		admin: true}
+
+jane = {pair_id: student_pair.id,
+		first_name: 'Jane', 
 		last_name: 'Doe', 
 		sid: '12345678', 
 		email: 'example@gmail.com',
@@ -25,11 +36,16 @@ user1 = {first_name: 'Jane',
 		time_additional_info: '',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		# is_admin: false,
-		# application: true
+		admin: false,
 		}
 
-user27 = {first_name: 'Robyn', 
+shana = {pair_id: student_pair.id,
+		first_name: 'Shana',
+    email: 'shanahu@berkeley.edu',
+    admin: true}
+
+robyn = {pair_id: student_pair.id,
+		first_name: 'Robyn', 
 		last_name: 'Zhang', 
 		sid: '22223333', 
 		email: 'robynz@berkeley.edu',
@@ -48,13 +64,16 @@ user27 = {first_name: 'Robyn',
 		time_additional_info: '',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		# is_admin: false,
-		# application: true
 		}
 
-admin = {first_name: 'Admin',
-		# is_admin: true
-		}
-users = User.create!([user1, user27, admin])
+admin = {first_name: 'Admin',admin: true}
 
+users = User.create!([jane, robyn, admin])
+
+admin = { first_name: 'Admin', admin: true }
+admin2 = { first_name: 'adminmeister', 
+  email: 'swchoi727@berkeley.edu', 
+  admin: true }
+
+users = User.create!([user1, shana, user27, admin, admin2])
 

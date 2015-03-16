@@ -15,45 +15,92 @@
 $white: #fff;
 $black: #000;
 $blue: #00B0DA;
+$grey: #d3d3d3;
+$unit: 10px;
 
-html, body{
-  margin: 0 auto;
-  max-width: 700px;
+html,
+body {
   padding: 0;
-  background: $white;
-  color: $black ;
-  font-family: Helvetica, sans-serif;
-  font-size: 12pt;
+  margin: 0;
+  box-sizing: border-box;
+  color: $black;
+  font-family: 'Helvetica', sans-serif;
 }
 
-div#main {
-  margin: 0;
-  padding: 0 20px 20px;
+#main {
+  margin: 0 auto;
+  font-size: 1em;
+  max-width: 800px;
+
 }
 a {
   background: transparent;
-  color: $blue ;
-  text-decoration: underline;
-  font-weight: bold;
-}
-
-h1 {
-  color: $blue ;
-  font-size: 1.5em;
-  display: block;
-  width: 100%;
-}
-
-h1.title {
-  margin: 0 0 1em;
-  padding: 10px;
   color: $blue;
-  font-size: 2em;
-  font-style: normal;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-form label {
-  display: block;
-  line-height: 35px;
+nav {
+  width: 100%;
+  background-color: $blue;
+  color: $white;
+  height: 3 * $unit;
+  padding: 2 * $unit;
+
+  #header {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+
+
+  ul {
+    float: right;
+    margin-top: $unit/2;
+    margin-right: 4 * $unit;
+
+    height: 4 * $unit;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+    }
+
+    a {
+      color: $white;
+    }
+  }
+}
+
+
+form {
+
+  .question {
+    margin-bottom: 2*$unit;
+  }
+
+  label {
+    display: block;
+    font-style: bold;
+  }
+
+  input {
+    border: 1px solid $grey;
+    padding: $unit/2;
+  }
+
+
+  select {
+    border: 1px solid $grey;
+    border-radius: 0;
+    height: 3*$unit;
+    padding: $unit/2;
+    background: transparent;
+
+
+  }
+
 }
 

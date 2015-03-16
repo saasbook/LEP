@@ -1,11 +1,12 @@
 !!!
 %html
-    %head
-        %title LEP
-        = stylesheet_link_tag 'application', :media => "all"
-        = javascript_include_tag 'application'
-        -#= csrf_meta_tags
+  %head
+    %title Language Exchange Program
+    = stylesheet_link_tag 'application', :media => "all"
+    = javascript_include_tag 'application'
+    -#= csrf_meta_tags
 
-    %body
-        #main
-        = yield
+  %body
+    = render "layouts/menu"
+    #main 
+      = yield

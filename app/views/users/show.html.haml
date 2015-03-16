@@ -1,35 +1,29 @@
-= render "layouts/menu"
+%h2= "Welcome, #{@user.first_name}!"
 
-%h2= "User #{@user.id}"
-
-%br ID
-= @user.id
-
-%br First Name
-= @user.first_name
-
-%br Last Name
-= @user.last_name
-
-%br Email
-= @user.email
-
-%br Academic Title
-= @user.academic_title
-
-%br Major
-= @user.major
-
-%br Fluent Languages
+%h4= "Your Languages"
 = @user.fluent_languages
 
-%br Language Preference 1
+%h4= "Language Preference 1"
 = @user.first_lang_preference
 
-%br Language Preference 2
+%h4= "Language Preference 2"
 = @user.second_lang_preference
 
-%br GROUP NAMES HERE
-= @user.second_lang_preference
 
-            
+%h3= "Your Group Information"
+
+%h4= "Group ID: 1"
+
+%h4= "Group Languages"
+="#{@user.first_lang_preference}, #{@user.fluent_languages}"
+
+%p
+
+%table
+  %tr
+    %th Group Member
+    %th Contact Info
+    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
+      %tr
+        %td= member["name"]
+        %td= member["contact"]

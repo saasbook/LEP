@@ -1,5 +1,21 @@
 class AdminsController < ApplicationController
 
+  before_filter :check_admin
+
+  def check_admin
+    if params[:id] then
+      @user = User.find(params[:id])
+      unless session[:id] == @user.id and @user.admin
+        redirect_to user_path
+      end
+    else
+      @id = session[:id]
+      unless User.find(@id).admin
+        redirect_to user_path :id => @id
+      end
+    end
+  end
+
   def new
   end
 
@@ -11,23 +27,18 @@ class AdminsController < ApplicationController
   end
 
   def index
-    @users = User.all
-
+    @user = User.find(session[:id])
+    @users = User.where(!:admin) # want to list all non-admin users
+    @groups = Group.all
   end
 
   def show
-  	@user = User.find(params[:id])
   end
 
   def edit
-  	@user = User.find(params[:id])
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admins_path
   end
-
 
 end
