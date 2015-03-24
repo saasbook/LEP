@@ -59,7 +59,12 @@ class UsersController < ApplicationController
   end
 
   def is_admin?
+    print @user.pluck(:admin)
     return @user.pluck(:admin)[0]
+  end
+
+  def is_active?
+    return @user.pluck(:active)[0]
   end
 
   def home
@@ -72,8 +77,8 @@ class UsersController < ApplicationController
       else
         @id = @user.pluck(:id)[0]
         session[:id] = @id
-        redirect_to user_path(@id) if not is_admin?
         redirect_to admin_path(@id) if is_admin?
+        redirect_to user_path(@id) if not is_admin?
       end
     else
       flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
@@ -91,7 +96,7 @@ class UsersController < ApplicationController
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :time_additional_info, 
-                                :user_motivation, :user_plan, :admin)
+                                :user_motivation, :user_plan, :admin, :active)
   end
 
 end

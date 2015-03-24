@@ -52,6 +52,7 @@ user27 = {first_name: 'Robyn',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
+		active: true
 		}
 
 admin = { first_name: 'Admin', admin: true }

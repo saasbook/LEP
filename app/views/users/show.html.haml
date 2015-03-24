@@ -1,5 +1,14 @@
 %h2= "Welcome, #{@user.first_name}!"
 
+
+- if @user.active
+  = button_to 'Deactivate' #, user_path(@user)
+- else
+  = button_to 'Activate'
+
+%h4= "Your Languages"
+= @user.fluent_languages
+
 %h4= "Your Languages"
 = @user.fluent_languages
 
