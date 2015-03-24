@@ -10,7 +10,10 @@ LEP::Application.routes.draw do
   root :to => 'welcome#index'
   get "/auth/:provider/callback" => 'users#home'
 
-  #get "users/:id" => 'users#show'
+  #update "/user/:id/" => 'users#deactivate', 'users#activate'
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

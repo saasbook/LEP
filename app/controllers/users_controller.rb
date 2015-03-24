@@ -48,6 +48,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def activate
+    @user = User.find(params[:id])
+    @user.active = true
+    flash[:warning] = "#{@user.first_name} #{@user.last_name}'s account has been reactivated."
+  end
+
+  def deactivate
+    @user = User.find(params[:id])
+    @user.active = false
+    flash[:warning] = "#{@user.first_name} #{@user.last_name}'s account has been deactivated."
+  end
+
   def destroy
     if User.find(session[:id]).admin then
       @user = User.find(params[:id])

@@ -2,9 +2,9 @@
 
 
 - if @user.active
-  = button_to 'Deactivate' #, user_path(@user)
+  = button_to 'Deactivate', :controller => :user, :action => :deactivate, :method => :update #, :confirm => 'Are you sure you want to deactivate your account?'
 - else
-  = button_to 'Activate'
+  = button_to 'Activate', :controller => user, :action => :activate, :method => :update #, :confirm => 'Are you sure you want to reactivate your account?'
 
 %h4= "Your Languages"
 = @user.fluent_languages
