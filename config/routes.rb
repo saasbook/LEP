@@ -10,8 +10,8 @@ LEP::Application.routes.draw do
   root :to => 'welcome#index'
   get "/auth/:provider/callback" => 'users#home'
 
-  #update "/user/:id/" => 'users#deactivate', 'users#activate'
-
+  post "/user/:id/deactivate" => 'users#deactivate'
+  post "/user/:id/activate" => 'users#activate'
 
 
 

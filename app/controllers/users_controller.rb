@@ -50,14 +50,16 @@ class UsersController < ApplicationController
 
   def activate
     @user = User.find(params[:id])
-    @user.active = true
+    @user.update_attributes active: true
     flash[:warning] = "#{@user.first_name} #{@user.last_name}'s account has been reactivated."
+    redirect_to user_path(@user)
   end
 
   def deactivate
     @user = User.find(params[:id])
-    @user.active = false
+    @user.update_attributes active: false
     flash[:warning] = "#{@user.first_name} #{@user.last_name}'s account has been deactivated."
+    redirect_to user_path(@user)
   end
 
   def destroy
