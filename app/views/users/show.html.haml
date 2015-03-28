@@ -1,11 +1,17 @@
 %h2= "Welcome, #{@user.first_name}!"
 
 
+/ - if @user.active
+/   = button_to 'Deactivate', :action => :deactivate, :id => "deactivate" # :confirm => 'Are you sure you want to deactivate your account?'
+/ - else
+/   = button_to 'Activate', :action => :activate, :form => { :id => "activate" } #, :confirm => 'Are you sure you want to reactivate your account?'
+
 - if @user.active
-  = print "***********************", @user.active
-  = button_to 'Deactivate', :action => :deactivate # :confirm => 'Are you sure you want to deactivate your account?'
+  = form_tag(:action => :deactivate) do
+    = submit_tag('Deactivate', id: 'deactivate')
 - else
-  = button_to 'Activate', :action => :activate #, :confirm => 'Are you sure you want to reactivate your account?'
+  = form_tag(:action => :activate) do
+    = submit_tag('Activate', id: 'activate')
 
 
 %h4= "Your Languages"

@@ -88,6 +88,10 @@ end
 When /^I view the LEP page$/ do
 end
 
+When /^(?:|I )click "([^"]*)"$/ do |button|
+  %{I click (button)}
+end
+
 # Then step definitions
 Then /^I should be at the LEP (.*) home page$/ do |user_type|
 end
