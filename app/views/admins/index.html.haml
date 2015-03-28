@@ -13,6 +13,7 @@
         %td= user.first_name
         %td= user.last_name
  
+= link_to 'Pair students', pair_path(@user.id)
 = link_to 'Home', admin_path(@user.id)
 = link_to 'Show groups', groups_path
 

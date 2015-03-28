@@ -41,4 +41,8 @@ class AdminsController < ApplicationController
   def destroy
   end
 
+  # controller action that should call pairing algorithm
+  def pair
+  end
+
 end
