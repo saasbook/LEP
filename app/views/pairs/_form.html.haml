@@ -1,0 +1,13 @@
+= form_for :pair, url: {action: 'create'} do |f|
+
+  %div.question
+    = f.label :members, "Members"
+    = f.text_field :members
+
+  %div.question
+    = f.label :languages, "Languages"
+    = f.text_field :languages
+
+  %div.question
+    %p
+    = f.submit 'Submit'
