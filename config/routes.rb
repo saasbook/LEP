@@ -6,6 +6,7 @@ LEP::Application.routes.draw do
   resources :groups
   resources :users
   resources :admins
+  # resources :pairs
 
   root :to => 'welcome#index'
   get "/auth/:provider/callback" => 'users#home'
