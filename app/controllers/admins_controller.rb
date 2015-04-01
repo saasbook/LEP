@@ -43,6 +43,7 @@ class AdminsController < ApplicationController
 
   # controller action that should call pairing algorithm
   def pair
+    res = `python script/lep_pairing.py`
   end
 
 end
