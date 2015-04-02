@@ -8,6 +8,7 @@
 
 - if @user.active
   = form_tag(:action => :deactivate) do
+    /= submit_tag 'Activate', data: {id: 'deactivate' }
     = submit_tag('Deactivate', id: 'deactivate')
 - else
   = form_tag(:action => :activate) do
