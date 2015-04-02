@@ -22,16 +22,14 @@ user1 = {first_name: 'Jane',
 		second_lang_preference: 'Arabic', 
 		second_lang_proficiency: 'elementary',
 		time_preference: 'Monday', 
-		hours_per_week: "1",
+		hours_per_week: '1',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
 		}
-
 shana = {first_name: 'Shana',
     email: 'shanahu@berkeley.edu',
     admin: true}
-
 user27 = {first_name: 'Robyn', 
 		last_name: 'Zhang', 
 		sid: '22223333', 
@@ -54,11 +52,27 @@ user27 = {first_name: 'Robyn',
 		admin: false,
 		active: true
 		}
-
 admin = { first_name: 'Admin', admin: true }
 admin2 = { first_name: 'adminmeister', 
-  email: 'swchoi727@berkeley.edu', 
-  admin: true }
+  		sid: '223333', 
+		email: 'swchoi727@berkeley.edu',
+		academic_title: 'Undergraduate',
+		major: 'Computer Science', 
+		residency: 'Domestic', 
+		gender: 'Female', 
+		gender_preference: 'Female',
+		fluent_languages: 'English', 
+		lang_additional_info: '',
+		first_lang_preference: 'Chinese', 
+		first_lang_proficiency: 'intermediate', 
+		second_lang_preference: 'Spanish', 
+		second_lang_proficiency: 'elementary',
+		time_preference: 'Monday', 
+		hours_per_week: '2',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		active: true,
+    admin: true 
+}
 jasonadmin = { first_name: 'Jason', last_name: 'Jia', email: 'jasonjia@berkeley.edu', admin: true }
-users = User.create!([user1, shana, user27, admin, admin2])
-
+users = User.create!([user1, user27, admin2])

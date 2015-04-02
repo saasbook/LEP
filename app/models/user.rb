@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
     CSV.open('script/newsheet.csv', 'w') do |csv|
       csv << column_names
       User.all.each do |user|
-        csv << user.attributes.values_at(*column_names)
+        if not user.admin
+          csv << user.attributes.values_at(*column_names)
+        end
       end
     end
   end

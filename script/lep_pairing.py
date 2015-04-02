@@ -53,31 +53,31 @@ for line in users:
 
 # a score is a tuple of (gender, gender_preference)
 def gender_score(score1, score2):
-	if score1[1] == "Indifferent" and score2[1] == 'Indifferent':
-		return 1
-	if score1[1] == score2[0] and score2[1] == score1[0]:
-		return 5
-	if (score1[1] == score2[0] and score2[1] == 'Indifferent') or (score1[0] == score2[1] and score1[1] == 'Indifferent'):
-		return 3
-	else:
-		return 0
+  if score1[1] == "Indifferent" and score2[1] == 'Indifferent':
+    return 1
+  if score1[1] == score2[0] and score2[1] == score1[0]:
+    return 5
+  if (score1[1] == score2[0] and score2[1] == 'Indifferent') or (score1[0] == score2[1] and score1[1] == 'Indifferent'):
+    return 3
+  else:
+    return 0
 
 # languages = list of tuples: (language_preference, language_proficiency)
 def data_clean(languages):
-	cleaned = []
-	ls = []
-	for (l, p) in languages:
-		if type(l) == list:
-			for i in xrange(len(l)):
-				if l[i] != '' and l[i] not in ls:
-					cleaned.append((l[i], p[i]))
-					ls.append(l[i])
-		else:
-			if l != '' and l not in ls:
-				if p !='':
-					cleaned.append((l, p))
-					ls.append(l)
-	return cleaned
+  cleaned = []
+  ls = []
+  for (l, p) in languages:
+    if type(l) == list:
+      for i in xrange(len(l)):
+        if l[i] != '' and l[i] not in ls:
+          cleaned.append((l[i], p[i]))
+          ls.append(l[i])
+    else:
+      if l != '' and l not in ls:
+        if p !='':
+          cleaned.append((l, p))
+          ls.append(l)
+  return cleaned
 
 def get_profi(student):
     na = student[9].split(",")
@@ -122,16 +122,16 @@ def same_interest(si, pi):
     return total
 
 def one_interest(sn, si, pn, pi):
-	total = 0
-	for (s1_lang, s1_proficiency) in sn:
-		for (s2_lang, s2_proficiency) in pi:
-			if s1_lang == s2_lang:
-				total += 3 - abs(s1_proficiency-s2_proficiency)*0.5
-	for (s2_lang, s2_proficiency) in pn:
-		for (s1_lang, s1_proficiency) in si:
-			if s1_lang == s2_lang:
-				total += 3 - abs(s1_proficiency-s2_proficiency)*0.5
-	return total
+  total = 0
+  for (s1_lang, s1_proficiency) in sn:
+    for (s2_lang, s2_proficiency) in pi:
+      if s1_lang == s2_lang:
+        total += 3 - abs(s1_proficiency-s2_proficiency)*0.5
+  for (s2_lang, s2_proficiency) in pn:
+    for (s1_lang, s1_proficiency) in si:
+      if s1_lang == s2_lang:
+        total += 3 - abs(s1_proficiency-s2_proficiency)*0.5
+  return total
 
 def language_score(student, potential):
     final = 0
@@ -146,35 +146,31 @@ def language_score(student, potential):
     final += mi_score + si_score
     return final
 
-def time_score(stime, ptime, shour, phour):
-	total = 0
-	for i in xrange(5):
-		s_time = stime[i].split(",")
-		p_time = ptime[i].split(",")
-		for st in s_time:
-			for pt in p_time:
-				if st==pt:
-					total += 1
-	if total > max(shour, phour):
-		return 2
-	elif total > min(shour, phour):
-		return 1
-	return 0
+# assumes each day...fck this method.
+def time_score(s1_time, s2_time, s1_hour, s2_hour):
+  total = 0.0
+  for s1_day in s1_time:
+    for s2_day in s2_time:
+      if s1_day == s2_day:
+        total += 1
+  if s1_hour == s2_hour:
+    total += 0.5
+  return total 
 
 def meetup(s1_time, s2_time):
-	t = ''
-	week = {0:"Monday: ", 1:"Tuesday: ", 2:"Wednesday: ", 3:"Thursday: ", 4:"Friday: "}
-	for i in xrange(5):
-		check = True
+  t = ''
+  week = {0:"Monday: ", 1:"Tuesday: ", 2:"Wednesday: ", 3:"Thursday: ", 4:"Friday: "}
+  for i in xrange(5):
+    check = True
     for s1_day in s1_time:
       for s2_day in s2_time:
         if s1_day == s2_day:
           if check:
             t += s1_day
             check = False
-          else
+          else:
             t += ", " + s1_day
-	return t
+  return t
 
 def language_detection(best_pair):
     s1, s2 = best_pair
@@ -201,7 +197,6 @@ def language_detection(best_pair):
     return languages
 
 setup()
-
 pairs = open('script/final_pairs.csv', 'w')
 fields = ['partner1', 'partner2', 'languages(s)', 'possible meetup time', 'stability']
 writer = csv.DictWriter(pairs, fieldnames=fields)
@@ -216,7 +211,7 @@ while len(students) != 0:
         pairs.writerow({'partner1': student.fields['name']})
         students.remove(student)
         break
-    final = 0
+    final = 0.0
     for student1 in students:
         s1_academic = student1.fields['academic_title']
         s1_residency = student1.fields['residency']
@@ -229,10 +224,10 @@ while len(students) != 0:
               (student1.fields['second_lang_preference'], student1.fields['second_lang_proficiency'])])
         s1_time = student1.fields['time_preference']
         s1_hour = student1.fields['hours_per_week']
-        highest = 0
+        highest = 0.0
 
         for student2 in students:
-            total = 0
+            total = 0.0
             if student2 != student1:
                 s2_academic = student2.fields['residency']
                 s2_residency = student2.fields['residency']
