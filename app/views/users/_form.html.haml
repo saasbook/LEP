@@ -31,7 +31,11 @@
 
   %div.question
     = f.label :gender, "Self-Identified Gender (For matching purpose only)"
-    = f.select :gender, [["Male", "international"], ["Female", "female"], ["Both or neither", "both_or_neither"]]
+    = f.select :gender, [["Male", "male"], ["Female", "female"], ["Both or neither", "both_or_neither"]]
+
+  %div.question
+    = f.label :gender_preference, "Gender Preference (For matching purpose only)"
+    = f.select :gender, [["Male", "male"], ["Female", "female"], ["Indifferent", "indifferent"]]
 
   %div.question
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
