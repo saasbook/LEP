@@ -49,7 +49,7 @@
   %div.question
 
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
-    = f.select :first_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+    = f.select :first_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]], :multiple => true
 
   %div.question
     = f.label :first_lang_proficiency, "How proficient are you in this language?"
@@ -57,7 +57,7 @@
 
   %div.question
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
-    = f.select :second_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+    = f.select :second_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]], :multiple => true
 
   %div.question
     = f.label :second_lang_proficiency, "How proficient are you in this language?"
@@ -69,7 +69,7 @@
 
   %div.question
     = f.label :time_preference, "Times you could meet with your partner(s)"
-    = f.select :time_preference, [["Monday", "monday"],["Tuesday","tuesday"],["Wednesday", "wednesday"],["Thursday","thursday"],["Friday","friday"]]
+    = f.select :time_preference, grouped_options_for_select([['Monday',["10:00","11:00","12:00","1:00","2:00"]],['Tuesday',["10:00","11:00","12:00","1:00","2:00"]]]), {}, :multiple => true
 
   %div.question
     = f.label :hours_per_week, "How many hours per week do you wish to practice with your partner(s)?"
