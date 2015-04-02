@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20150331233002) do
   end
 
   create_table "pairs", force: true do |t|
-    t.string "members"
-    t.string "languages"
+    t.string   "members"
+    t.string   "languages"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
