@@ -110,7 +110,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:id, :first_name, :last_name, :sid, :email, :academic_title, :major, :residency,
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
-                                :second_lang_proficiency, :time_preference, :time_additional_info, 
+                                :second_lang_proficiency, :time_preference, :hours_per_week, 
                                 :user_motivation, :user_plan, :admin, :active)
   end
 
