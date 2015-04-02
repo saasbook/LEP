@@ -22,7 +22,7 @@ jane = {first_name: 'Jane',
 		second_lang_preference: 'Arabic', 
 		second_lang_proficiency: 'elementary',
 		time_preference: 'Monday', 
-		time_additional_info: '',
+		hours_per_week: '1',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
@@ -48,7 +48,7 @@ robyn = {first_name: 'Robyn',
 		second_lang_preference: 'Spanish', 
 		second_lang_proficiency: 'elementary',
 		time_preference: 'Monday', 
-		time_additional_info: '',
+		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
@@ -56,8 +56,29 @@ robyn = {first_name: 'Robyn',
 		}
 
 admin = { first_name: 'Admin', admin: true }
+
 admin2 = { first_name: 'adminmeister', 
-  email: 'swchoi727@berkeley.edu', 
-  admin: true }
-users = User.create!([jane, shana, robyn, admin, admin2])
+  		sid: '223333', 
+		email: 'swchoi727@berkeley.edu',
+		academic_title: 'Undergraduate',
+		major: 'Computer Science', 
+		residency: 'Domestic', 
+		gender: 'Female', 
+		gender_preference: 'Female',
+		fluent_languages: 'English', 
+		lang_additional_info: '',
+		first_lang_preference: 'Chinese', 
+		first_lang_proficiency: 'intermediate', 
+		second_lang_preference: 'Spanish', 
+		second_lang_proficiency: 'elementary',
+		time_preference: 'Monday', 
+		hours_per_week: '2',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		active: true,
+    admin: true 
+}
+
+jasonadmin = { first_name: 'Jason', last_name: 'Jia', email: 'jasonjia@berkeley.edu', admin: true }
+users = User.create!([jane, shana, robyn, admin2])
 

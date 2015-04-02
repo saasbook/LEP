@@ -7,7 +7,8 @@ Given /the following students exist/ do |students|
 		gender: student['gender'], 
 		fluent_languages: student['fluent_languages'], 
 		first_lang_preference: student['first_lang_preference'], 
-		admin: false)
+		admin: false,
+    active: true)
   end
 end
 
@@ -88,9 +89,9 @@ end
 When /^I view the LEP page$/ do
 end
 
-When /^(?:|I )click "([^"]*)"$/ do |button|
-  %{I click (button)}
-end
+# When /^(?:|I )click "(.*)"$/ do |button|
+#   %{I click (button)}
+# end
 
 # Then step definitions
 Then /^I should be at the LEP (.*) home page$/ do |user_type|

@@ -16,11 +16,10 @@ Background: student has a profile
 
 Scenario: student activates/deactivates
   Given I am logged in as "Billy"
-  #Then I should be on the existing user show page
   And I am on the existing user show page
-  When I click “deactivate”
+  When I press "deactivate"
   Then I should see "Billy Bob's account has been deactivated"
-  When I click “activate” 
+  When I press "activate"
   Then I should see "Billy Bob's account has been reactivated"
 
 

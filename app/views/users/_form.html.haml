@@ -1,6 +1,8 @@
 / = form_for :user, url: users_path, :class => "field_with_errors" do |f|
 = form_for :user, url: {action: 'create'}, :class => "field_with_errors" do |f|
 
+  - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
+
   %div.question
     = f.label :first_name, "First Name"
     = f.text_field :first_name
@@ -31,15 +33,22 @@
 
   %div.question
     = f.label :gender, "Self-Identified Gender (For matching purpose only)"
-    = f.select :gender, [["Male", "international"], ["Female", "female"], ["Both or neither", "both_or_neither"]]
+    = f.select :gender, [["Male", "male"], ["Female", "female"], ["Both or neither", "both_or_neither"]]
+
+  %div.question
+    = f.label :gender_preference, "Gender Preference (For matching purpose only)"
+    = f.select :gender, [["Male", "male"], ["Female", "female"], ["Indifferent", "indifferent"]]
 
   %div.question
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
-    = f.select :fluent_languages, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+    - languages.each do |language|
+      = check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
+      = language
+      %br
 
   %div.question
 
-    = f.label :first_lang_preference, "1. Language(s) you are interested in practicing"
+    = f.label :first_lang_preference, "1. Language you are interested in practicing"
     = f.select :first_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
@@ -47,7 +56,7 @@
     = f.select :first_lang_proficiency, [["Elementary proficiency", "elementary"],["Limited proficiency", "limited"], ["Intermediate proficiency","intermediate"], ["Nearly-full professional proficiency", "nearly_proficient"]]
 
   %div.question
-    = f.label :second_lang_preference, "2. Language(s) you are interested in practicing"
+    = f.label :second_lang_preference, "2. Language you are interested in practicing"
     = f.select :second_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
@@ -63,8 +72,8 @@
     = f.select :time_preference, [["Monday", "monday"],["Tuesday","tuesday"],["Wednesday", "wednesday"],["Thursday","thursday"],["Friday","friday"]]
 
   %div.question
-    = f.label :time_additional_info, "Please describe in the box below if you have any other preferences"
-    = f.text_field :time_additional_info
+    = f.label :hours_per_week, "How many hours per week do you wish to practice with your partner(s)?"
+    = f.text_field :hours_per_week
 
   %div.question
     = f.label :user_motivation, "What do you hope to gain from the SLC’s Language Exchange Program?"
