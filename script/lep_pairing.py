@@ -6,7 +6,10 @@ class Student:
 
 students = []
 pairs = []
-language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Intermediate proficiency", 4:"Nearly-full professional proficiency"}
+language_prof = {"elementary": 1, "limited": 2, "intermediate": 3, "nearly_proficient": 4}
+
+def lookup(proficiency):
+  return language_prof[proficiency]
 
 # setup function to read the user csv
 # and initialize hash table of student objects
@@ -24,9 +27,9 @@ def setup():
           'fluent_languages': row['fluent_languages'], 
           'lang_additional_info': row['lang_additional_info'],
           'first_lang_preference': row['first_lang_preference'],
-          'first_lang_proficiency': row['first_lang_proficiency'],
+          'first_lang_proficiency': lookup(row['first_lang_proficiency']),
           'second_lang_preference': row['second_lang_preference'],
-          'second_lang_proficiency': row['second_lang_proficiency'],
+          'second_lang_proficiency': lookup(row['second_lang_proficiency']),
           'time_preference': row['time_preference'],
           'hours_per_week': row['hours_per_week'],
           'sid': row['sid']
@@ -160,22 +163,26 @@ def time_score(s1_time, s2_time, s1_hour, s2_hour):
 def meetup(s1_time, s2_time):
   t = ''
   week = {0:"Monday: ", 1:"Tuesday: ", 2:"Wednesday: ", 3:"Thursday: ", 4:"Friday: "}
-  for i in xrange(5):
-    check = True
-    for s1_day in s1_time:
-      for s2_day in s2_time:
-        if s1_day == s2_day:
-          if check:
-            t += s1_day
-            check = False
-          else:
-            t += ", " + s1_day
+  #for i in xrange(5):
+  #print 's1_time: ', s1_time
+  check = True
+  for s1_day in s1_time:
+    #print 's1_time, again: ', s1_day
+    for s2_day in s2_time:
+      if s1_day == s2_day:
+        if check:
+          t += s1_day
+          check = False
+        else:
+          t += ", " + s1_day
   return t
 
 def language_detection(best_pair):
     s1, s2 = best_pair
-    sn1, si1 = s1
-    sn2, si2 = s2
+    print "s1:", s1
+    print "s2:", s2
+    sn1, si1 = s1[0]
+    sn2, si2 = s2[0]
     languages = ''
     visited = []
     for (l1, p1) in sn1:
@@ -198,7 +205,7 @@ def language_detection(best_pair):
 
 setup()
 pairs = open('script/final_pairs.csv', 'w')
-fields = ['partner1', 'partner2', 'languages(s)', 'possible meetup time', 'stability']
+fields = ['partner1', 'partner2', 'language(s)', 'possible meetup time', 'stability']
 writer = csv.DictWriter(pairs, fieldnames=fields)
 writer.writeheader()
 #pairs.write("partner1\tpartner2\tlanguage(s)\tPossible Meetup time\tstability\n")
@@ -260,10 +267,12 @@ while len(students) != 0:
     partner2 = best_pair[1]
     p1_name = partner1.fields['name']
     p2_name = partner2.fields['name']
-    language = language_detection(best_language)
+    #language = language_detection(best_language)
+    language = partner1.fields['first_lang_preference']
     hours = meetup(s1_time, s2_time)
     #line = p1_name+"("+partner1[3]+")"+"\t"+p2_name+"("+partner2[3]+")\t"+language+"\t"+hours+"\t"+str(final)+"\n"
     #pairs.write(line)
+    print language
     writer.writerow({'partner1': p1_name+'('+partner1.fields['sid']+')', 'partner2': p2_name+'('+partner2.fields['sid']+')', 'language(s)': language, 'possible meetup time': hours, 'stability': str(final)})
     students.remove(partner1)
     students.remove(partner2)
