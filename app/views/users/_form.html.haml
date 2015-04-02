@@ -43,14 +43,19 @@
   %div.question
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
     - languages.each do |language|
-      = check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
+      -#= check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
+      = f.check_box(:fluent_languages, { :multiple => true }, language.downcase!)
       = language
       %br
 
   %div.question
 
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
-    = f.select :first_lang_preference, languages, :multiple => true
+    -#= f.select :first_lang_preference, languages, :multiple => true
+    - languages.each do |language|
+      = f.check_box(:first_lang_preference, { :multiple => true }, language.downcase!)
+      = language
+      %br
 
   %div.question
     = f.label :first_lang_proficiency, "How proficient are you in this language?"
@@ -58,7 +63,11 @@
 
   %div.question
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
-    = f.select :second_lang_preference, languages, :multiple => true
+    -#= f.select :second_lang_preference, languages, :multiple => true
+    - languages.each do |language|
+      = f.check_box(:second_lang_preference, { :multiple => true }, language.downcase!)
+      = language
+      %br
 
   %div.question
     = f.label :second_lang_proficiency, "How proficient are you in this language?"
