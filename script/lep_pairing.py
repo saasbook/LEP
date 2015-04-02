@@ -16,14 +16,23 @@ def setup():
   reader = csv.DictReader(users)
 
   for row in reader:
-    fields = {'name': row['first_name'] + row['last_name'], 'gender': row['gender'], 'gender_preference': row['gender_preference'],
-        'fluent_languages': row['fluent_languages'], 'lang_additional_info': row['lang_additional_info'], 'first_lang_preference': row['first_lang_preference'], \
-        'first_lang_proficieny': row['first_lang_proficiency'], 'second_lang_preference': row['second_lang_preference'], 'time_preference': row['time_preference'],
-        'hours_per_week': row['hours_per_week']}
+    fields = {
+        'name': row['first_name'] + row['last_name'], 
+        'gender': row['gender'], 
+        'gender_preference': row['gender_preference'],
+        'fluent_languages': row['fluent_languages'], 
+        'lang_additional_info': row['lang_additional_info'],
+        'first_lang_preference': row['first_lang_preference'],
+        'first_lang_proficieny': row['first_lang_proficiency'],
+        'second_lang_preference': row['second_lang_preference'],
+        'time_preference': row['time_preference'],
+        'hours_per_week': row['hours_per_week'],
+        'sid': row['sid']
+    }
     s = Student(fields)
     students.append(s)
 
-  close(users)
+   users.close()
 
 '''
 for line in users:
