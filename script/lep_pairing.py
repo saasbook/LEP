@@ -4,8 +4,7 @@ class Student:
   def __init__(self, fields):
     self.fields = fields # hash table of user fields
 
-students = []
-pairs = []
+students = [] # a list of dicts that describe a student
 language_prof = {"elementary": 1, "limited": 2, "intermediate": 3, "nearly_proficient": 4}
 
 def lookup(proficiency):
@@ -31,7 +30,7 @@ def setup():
           'second_lang_proficiency': lookup(row['second_lang_proficiency']),
           'time_preference': row['time_preference'],
           'hours_per_week': row['hours_per_week'],
-          'sid': row['sid']
+          'id': row['id']
       }
       s = Student(fields)
       students.append(extract_student_info(s))
@@ -149,8 +148,8 @@ def meetup(s1_time, s2_time):
   for s1_day in s1_time:
     for s2_day in s2_time:
       if s1_day == s2_day:
-        if check:
-          meetup_time += s1_day + ", "
+        #if check:
+        meetup_time += s1_day + ", "
   return meetup_time[:len(meetup_time)-1]
 
 def language_detection(best_pair):
@@ -177,12 +176,10 @@ def language_detection(best_pair):
   languages = languages[:(len(languages)-2)]
   return languages
 
-
 def extract_student_info(student):
   info = {}
   info['id'] = student.fields['id']
   info['name'] = student.fields['name']
-  info['sid'] = student.fields['sid']
   info['academic'] = student.fields['academic_title']
   info['residency'] = student.fields['residency']
   info['gender'] = (student.fields['gender'], student.fields['gender_preference'])
@@ -192,7 +189,6 @@ def extract_student_info(student):
   info['time'] = student.fields['time_preference']
   info['hour'] = student.fields['hours_per_week']
   return info
-
 
 def calculate_match_score(student1, student2):
   score = 0.0
@@ -215,8 +211,6 @@ pairs = open('script/final_pairs.csv', 'w')
 fields = ['partner1', 'partner2', 'language(s)', 'possible meetup time', 'stability']
 writer = csv.DictWriter(pairs, fieldnames=fields)
 writer.writeheader()
-#pairs.write("partner1\tpartner2\tlanguage(s)\tPossible Meetup time\tstability\n")
-
 
 # attempt to pair every student with another student
 while len(students) != 0:
