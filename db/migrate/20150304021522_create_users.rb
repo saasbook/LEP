@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
 			t.string :second_lang_preference
 			t.string :second_lang_proficiency 
 			t.string :time_preference 
+      t.string :time_additional_info
 			t.string :hours_per_week
 			t.string :user_motivation 
 			t.string :user_plan
