@@ -32,6 +32,10 @@ shana = {first_name: 'Shana',
     email: 'shanahu@berkeley.edu',
     admin: true}
 
+shana = {first_name: 'Iris',
+    email: 'iriswang@berkeley.edu',
+    admin: true}
+
 user27 = {first_name: 'Robyn', 
 		last_name: 'Zhang', 
 		sid: '22223333', 
