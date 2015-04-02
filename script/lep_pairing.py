@@ -31,6 +31,7 @@ def setup():
           'time_preference': row['time_preference'],
           'hours_per_week': row['hours_per_week'],
           'id': row['id']
+          'sid': row['sid']
       }
       s = Student(fields)
       students.append(extract_student_info(s))
@@ -180,6 +181,7 @@ def extract_student_info(student):
   info = {}
   info['id'] = student.fields['id']
   info['name'] = student.fields['name']
+  info['sid'] = student.fields['sid']
   info['academic'] = student.fields['academic_title']
   info['residency'] = student.fields['residency']
   info['gender'] = (student.fields['gender'], student.fields['gender_preference'])
