@@ -18,6 +18,7 @@ def setup():
     reader = csv.DictReader(users)
     for row in reader:
       fields = {
+          'id': row['id'],
           'name': row['first_name'] + row['last_name'], 
           'gender': row['gender'], 
           'academic_title': row['academic_title'],
@@ -149,9 +150,8 @@ def meetup(s1_time, s2_time):
   for s1_day in s1_time:
     for s2_day in s2_time:
       if s1_day == s2_day:
-        if check:
-          meetup_time += s1_day + ", "
-  return meetup_time[:len(meetup_time)-1]
+        meetup_time += s1_day + ", "
+  return meetup_time[:len(meetup_time)-2]
 
 def language_detection(best_pair):
   s1, s2 = best_pair
