@@ -10,8 +10,11 @@ students = []
 pairs = []
 language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Intermediate proficiency", 4:"Nearly-full professional proficiency"}
 
-def init():
+# setup function to read the user csv
+# and initialize hash table of student objects
+def setup():
   reader = csv.DictReader(users)
+
   for row in reader:
     fields = {'name': row['first_name'] + row['last_name'], 'gender': row['gender'], 'gender_preference': row['gender_preference']\
         'fluent_languages': row['fluent_languages'], 'lang_additional_info': row['lang_additional_info'], 'first_lang_preference': row['first_lang_preference'], \
@@ -43,7 +46,7 @@ def gender_score(score1, score2):
 		return 1
 	if score1[1] == score2[0] and score2[1] == score1[0]:
 		return 5
-	if (score1[1] == score2[0] and score2[1] == 'Indifferent') or (score1[0]==score2[1] and score1[1] == 'Indifferent'):
+	if (score1[1] == score2[0] and score2[1] == 'Indifferent') or (score1[0] == score2[1] and score1[1] == 'Indifferent'):
 		return 3
 	else:
 		return 0
@@ -53,7 +56,7 @@ def data_clean(languages):
 	ls = []
 	for (l, p) in languages:
 		if type(l) == list:
-			for i in range(len(l)):
+			for i in xrange(len(l)):
 				if l[i] != '' and l[i] not in ls:
 					cleaned.append((l[i], p[i]))
 					ls.append(l[i])
@@ -108,14 +111,14 @@ def same_interest(si, pi):
 
 def one_interest(sn, si, pn, pi):
 	total = 0
-	for (sl, spro) in sn:
-		for (pl, ppro) in pi:
-			if sl == pl:
-				total += 3 - abs(spro-ppro)*0.5
-	for (pl, ppro) in pn:
-		for (sl, spro) in si:
-			if sl == pl:
-				total += 3 - abs(spro-ppro)*0.5
+	for (s1_lang, s1_proficiency) in sn:
+		for (s2_lang, s2_proficiency) in pi:
+			if s1_lang == s2_lang:
+				total += 3 - abs(s1_proficiency-s2_proficiency)*0.5
+	for (s2_lang, s2_proficiency) in pn:
+		for (s1_lang, s1_proficiency) in si:
+			if s1_lang == s2_lang:
+				total += 3 - abs(s1_proficiency-s2_proficiency)*0.5
 	return total
 
 def language_score(student, potential):
@@ -133,7 +136,7 @@ def language_score(student, potential):
 
 def time_score(stime, ptime, shour, phour):
 	total = 0
-	for i in range(5):
+	for i in xrange(5):
 		s_time = stime[i].split(",")
 		p_time = ptime[i].split(",")
 		for st in s_time:
@@ -148,10 +151,10 @@ def time_score(stime, ptime, shour, phour):
 
 def meetup(s1, s2):
 	t = ''
-	stime = s1[19:24]
-	ptime = s2[19:24]
+	s1_time = s1[19:24]
+	s2_time = s2[19:24]
 	week = {0:"Monday: ", 1:"Tuesday: ", 2:"Wednesday: ", 3:"Thursday: ", 4:"Friday: "}
-	for i in range(5):
+	for i in xrange(5):
 		check = True
 		s_time = stime[i].split(",")
 		p_time = ptime[i].split(",")
@@ -192,6 +195,8 @@ def language_detection(best_pair):
 	languages = languages[:(len(languages)-2)]
 	return languages
 
+setup()
+
 pairs = open('script/final_pairs.csv', 'w')
 fields = ['partner1', 'partner2', 'languages(s)', 'possible meetup time', 'stability']
 writer = csv.DictWriter(pairs, fieldnames=fields)
@@ -209,13 +214,14 @@ while len(students) != 0:
     pairs.writerow({'partner1': student_name})
     students.remove(student)
     break
+
 	final = 0
 	for student1 in students:
 		s1_academic = student1.fields['academic_title']
 		s1_residency = student1.fields['residency']
 		s1_gender = (student1.fields['gender'], student1.fields['gender_preference'])
-		sn = data_clean(((sl, sn), (student[14], student[15]), (student[16], student[17])))
-		si = data_clean(((student[10], student[11]), (student[12], student[13])))
+		s1_lang_to_teach = data_clean(((sl, sn), (student[14], student[15]), (student[16], student[17])))
+		s1_langs_to_learn = data_clean(((student[10], student[11]), (student[12], student[13])))
 		s1_time = student1.fields['time_preference']
 		s1_hour = student1.fields['time_additional_info']
 		highest = 0
@@ -226,12 +232,12 @@ while len(students) != 0:
 				s2_academic = student2.fields['residency']
 				s2_residency = student2.fields['residency']
 				s2_gender = (student2.fields['gender'], student2.fields['gender_preference'])
-				pn = get_profi(student2)
+
 				#pl = potential[9].split(",")
 				pn = data_clean(((pl, pn), (potential[14], potential[15]), (potential[16], potential[17])))
 				pi = data_clean(((potential[10], potential[11]), (potential[12], potential[13])))
 				s2_time = student2.fields['time_preference']
-				s2_hour = potential[24]
+				s2_hour = student2.fields['time_additional_info']
 				#if sacademic == pacademic:
 					#total += 0.5
 				if s1_residency != s2_residency:
@@ -242,12 +248,13 @@ while len(students) != 0:
 				total += abs(int(shour[0])+int(phour[0]))*0.5 - abs(int(shour[0])-int(phour[0]))*0.5 
 				if highest < total:
 					highest = total
-					best = potential
+					best = student2 
 					best_pl = (pn, pi)
 		if final < highest:
 			final = highest
 			best_pair = (student, best)
 			best_language = ((sn, si), best_pl)
+
 	partner1 = best_pair[0]
 	partner2 = best_pair[1]
 	p1_name = partner1.fields['name']
