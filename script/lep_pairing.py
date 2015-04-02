@@ -6,7 +6,10 @@ class Student:
 
 students = []
 pairs = []
-language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Intermediate proficiency", 4:"Nearly-full professional proficiency"}
+language_prof = {"elementary": 1, "limited": 2, "intermediate": 3, "nearly_proficient": 4}
+
+def lookup(proficiency):
+  return language_prof[proficiency]
 
 # setup function to read the user csv
 # and initialize hash table of student objects
@@ -23,9 +26,9 @@ def setup():
           'fluent_languages': row['fluent_languages'], 
           'lang_additional_info': row['lang_additional_info'],
           'first_lang_preference': row['first_lang_preference'],
-          'first_lang_proficiency': row['first_lang_proficiency'],
+          'first_lang_proficiency': lookup(row['first_lang_proficiency']),
           'second_lang_preference': row['second_lang_preference'],
-          'second_lang_proficiency': row['second_lang_proficiency'],
+          'second_lang_proficiency': lookup(row['second_lang_proficiency']),
           'time_preference': row['time_preference'],
           'hours_per_week': row['hours_per_week'],
           'sid': row['sid']
@@ -209,7 +212,7 @@ def calculate_match_score(student1, student2):
 
 setup()
 pairs = open('script/final_pairs.csv', 'w')
-fields = ['partner1', 'partner2', 'languages(s)', 'possible meetup time', 'stability']
+fields = ['partner1', 'partner2', 'language(s)', 'possible meetup time', 'stability']
 writer = csv.DictWriter(pairs, fieldnames=fields)
 writer.writeheader()
 #pairs.write("partner1\tpartner2\tlanguage(s)\tPossible Meetup time\tstability\n")
