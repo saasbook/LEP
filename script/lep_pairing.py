@@ -4,8 +4,7 @@ class Student:
   def __init__(self, fields):
     self.fields = fields # hash table of user fields
 
-students = []
-pairs = []
+students = [] # a list of dicts that describe a student
 language_prof = {"elementary": 1, "limited": 2, "intermediate": 3, "nearly_proficient": 4}
 
 def lookup(proficiency):
@@ -32,6 +31,7 @@ def setup():
           'second_lang_proficiency': lookup(row['second_lang_proficiency']),
           'time_preference': row['time_preference'],
           'hours_per_week': row['hours_per_week'],
+          'id': row['id'],
           'sid': row['sid']
       }
       s = Student(fields)
@@ -133,7 +133,6 @@ def language_score(student, potential):
   final += mi_score + si_score
   return final
 
-# assumes each day...fck this method.
 def time_score(s1_time, s2_time, s1_hour, s2_hour):
   total = 0.0
   for s1_day in s1_time:
@@ -153,7 +152,7 @@ def meetup(s1_time, s2_time):
         meetup_time += s1_day + ", "
   return meetup_time[:len(meetup_time)-2]
 
-def language_detection(best_pair):
+  def language_detection(best_pair):
   s1, s2 = best_pair
   sn1, si1 = s1
   sn2, si2 = s2
@@ -177,7 +176,6 @@ def language_detection(best_pair):
   languages = languages[:(len(languages)-2)]
   return languages
 
-
 def extract_student_info(student):
   info = {}
   info['id'] = student.fields['id']
@@ -192,7 +190,6 @@ def extract_student_info(student):
   info['time'] = student.fields['time_preference']
   info['hour'] = student.fields['hours_per_week']
   return info
-
 
 def calculate_match_score(student1, student2):
   score = 0.0
@@ -215,8 +212,6 @@ pairs = open('script/final_pairs.csv', 'w')
 fields = ['partner1', 'partner2', 'language(s)', 'possible meetup time', 'stability']
 writer = csv.DictWriter(pairs, fieldnames=fields)
 writer.writeheader()
-#pairs.write("partner1\tpartner2\tlanguage(s)\tPossible Meetup time\tstability\n")
-
 
 # attempt to pair every student with another student
 while len(students) != 0:
