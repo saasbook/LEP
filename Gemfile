@@ -14,6 +14,7 @@ group :development, :test do
   gem 'rspec-rails','~> 2.14.0'
   gem 'simplecov'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 end
 
 group :production do

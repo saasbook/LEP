@@ -30,7 +30,6 @@ class AdminsController < ApplicationController
     @user = User.find(session[:id])
     @users = User.where(!:admin) # want to list all non-admin users
     @groups = Group.all
-#debugger
   end
 
   def activate
