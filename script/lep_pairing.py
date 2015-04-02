@@ -1,11 +1,11 @@
+import csv
 
-files = open("newsheet.tsv", "r")
-titles = files.readline().split("\t")
+files = open("script/newsheet.csv", "r")
 students = []
 pairs = []
 language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Intermediate proficiency", 4:"Nearly-full professional proficiency"}
 for line in files:
-	newline = line.split("\t")
+	newline = line.split(",")
 	students.append(newline)
 	for word in range(len(newline)):
 		if newline[word] == "Elementary proficiency":
@@ -16,8 +16,8 @@ for line in files:
 			newline[word] = 3
 		elif newline[word] == "Nearly-full professional proficiency":
 			newline[word] = 4
-		elif newline[word] == "Native/bilingual proficiency":
-			newline[word] = 5
+		#elif newline[word] == "Native/bilingual proficiency":
+		#	newline[word] = 5
 			
 def gender_score(g1, g2):
 	if g2[1] == "Doesn\xe2\x80\x99t matter" and g1[1] == "Doesn\xe2\x80\x99t matter":
