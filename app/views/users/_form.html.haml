@@ -72,8 +72,8 @@
     = f.select :time_preference, [["Monday", "monday"],["Tuesday","tuesday"],["Wednesday", "wednesday"],["Thursday","thursday"],["Friday","friday"]]
 
   %div.question
-    = f.label :time_additional_info, "Please describe in the box below if you have any other preferences"
-    = f.text_field :time_additional_info
+    = f.label :hours_per_week, "How many hours per week do you wish to practice with your partner(s)?"
+    = f.text_field :hours_per_week
 
   %div.question
     = f.label :user_motivation, "What do you hope to gain from the SLC’s Language Exchange Program?"
