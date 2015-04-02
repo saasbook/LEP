@@ -150,26 +150,19 @@ def time_score(stime, ptime, shour, phour):
 		return 1
 	return 0
 
-def meetup(s1, s2):
+def meetup(s1_time, s2_time):
 	t = ''
-	s1_time = s1[19:24]
-	s2_time = s2[19:24]
 	week = {0:"Monday: ", 1:"Tuesday: ", 2:"Wednesday: ", 3:"Thursday: ", 4:"Friday: "}
 	for i in xrange(5):
 		check = True
-		s_time = stime[i].split(",")
-		p_time = ptime[i].split(",")
-		t += week[i]
-		for st in s_time:
-			for pt in p_time:
-				if st==pt:
-					if check:
-						t += st
-						check = False
-					else:
-						t += "," + st
-		if i!=4:
-			t += "; "
+    for s1_day in s1_time:
+      for s2_day in s2_time:
+        if s1_day == s2_day:
+          if check:
+            t += s1_day
+            check = False
+          else
+            t += ", " + s1_day
 	return t
 
 def language_detection(best_pair):
@@ -262,7 +255,7 @@ while len(students) != 0:
     p1_name = partner1.fields['name']
     p2_name = partner2.fields['name']
     language = language_detection(best_language)
-    hours = meetup(partner1, partner2)
+    hours = meetup(s1_time, s2_time)
     #line = p1_name+"("+partner1[3]+")"+"\t"+p2_name+"("+partner2[3]+")\t"+language+"\t"+hours+"\t"+str(final)+"\n"
     #pairs.write(line)
     writer.writerow({'partner1': p1_name+'('+partner1.fields['sid']+')', 'partner2': p2_name+'('+partner2.fields['sid']+')', 'language(s)': language, 'possible meetup time': hours, 'stability': str(final)})
