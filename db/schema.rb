@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324202104) do
+ActiveRecord::Schema.define(version: 20150402001706) do
 
   create_table "groups", force: true do |t|
     t.string   "members"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150324202104) do
     t.datetime "updated_at"
     t.boolean  "admin",                   default: false
     t.boolean  "active"
+    t.string   "group_leader"
   end
 
 end

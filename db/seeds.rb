@@ -59,5 +59,5 @@ admin = { first_name: 'Admin', admin: true }
 admin2 = { first_name: 'adminmeister', 
   email: 'swchoi727@berkeley.edu', 
   admin: true }
-users = User.create!([user1, shana, user27, admin, admin2])
+users = User.create!([user1, user27, admin, admin2])
 

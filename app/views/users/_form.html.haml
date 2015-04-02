@@ -55,6 +55,10 @@
     = f.select :second_lang_proficiency, [["Elementary proficiency", "elementary"],["Limited proficiency", "limited"], ["Intermediate proficiency","intermediate"], ["Nearly-full professional proficiency", "nearly_proficient"]]
 
   %div.question
+    = f.label :group_leader, "Do you want to lead a language group?"
+    = f.select :group_leader, [["Yes"], ["No"]]
+
+  %div.question
     = f.label :lang_additional_info, "Additional information you would like us to know"
     = f.text_field :lang_additional_info
 
