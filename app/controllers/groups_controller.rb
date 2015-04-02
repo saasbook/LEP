@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
     @wed_groups = Group.where(day: "Wednesday").all
     @thurs_groups = Group.where(day: "Thursday").all
     @fri_groups = Group.where(day: "Friday").all
+    print "***********************************", @tues_groups
   end
 
   def show
