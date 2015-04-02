@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
     @user.admin = false
+    @user.active = true
     @user.save
     session[:id] = @user.id
     redirect_to user_path(@user)

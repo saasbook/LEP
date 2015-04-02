@@ -8,14 +8,12 @@
 
 - if @user.active
   = form_tag(:action => :deactivate) do
+    /= submit_tag 'Activate', data: {id: 'deactivate' }
     = submit_tag('Deactivate', id: 'deactivate')
 - else
   = form_tag(:action => :activate) do
     = submit_tag('Activate', id: 'activate')
 
-
-%h4= "Your Languages"
-= @user.fluent_languages
 
 %h4= "Your Languages"
 = @user.fluent_languages
