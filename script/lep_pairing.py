@@ -1,10 +1,29 @@
 import csv
 
-files = open("script/newsheet.csv", "r")
+class Student:
+  def __init__(self, fields):
+    self.fields = fields # hash table of user fields
+
+
+users = open("script/newsheet.csv", "r")
 students = []
 pairs = []
 language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Intermediate proficiency", 4:"Nearly-full professional proficiency"}
-for line in files:
+
+def init():
+  reader = csv.DictReader(users)
+  for row in reader:
+    fields = {'name': row['first_name'] + row['last_name'], 'gender': row['gender'], 'gender_preference': row['gender_preference']\
+        'fluent_languages': row['fluent_languages'], 'lang_additional_info': row['lang_additional_info'], 'first_lang_preference': row['first_lang_preference'], \
+        'first_lang_proficieny': row['first_lang_proficiency'], 'second_lang_preference': row['second_lang_preference'], 'time_preference': row['time_preference'], 'time_additional_info': row['time_additional_info']}
+
+    s = Student(fields)
+    students.append(s)
+
+  close(users)
+
+'''
+for line in users:
 	newline = line.split(",")
 	students.append(newline)
 	for word in range(len(newline)):
@@ -16,15 +35,14 @@ for line in files:
 			newline[word] = 3
 		elif newline[word] == "Nearly-full professional proficiency":
 			newline[word] = 4
-		#elif newline[word] == "Native/bilingual proficiency":
-		#	newline[word] = 5
-			
+'''			
+
 def gender_score(g1, g2):
-	if g2[1] == "Doesn\xe2\x80\x99t matter" and g1[1] == "Doesn\xe2\x80\x99t matter":
+	if g2[1] == "Indifferent" and g1[1] == 'Indifferent':
 		return 1
 	if g1[1] == g2[0] and g2[1] == g1[0]:
 		return 5
-	if (g1[1] == g2[0] and g2[1] == "Doesn\xe2\x80\x99t matter") or (g1[0]==g2[1] and g1[1] == "Doesn\xe2\x80\x99t matter"):
+	if (g1[1] == g2[0] and g2[1] == 'Indifferent') or (g1[0]==g2[1] and g1[1] == 'Indifferent'):
 		return 3
 	else:
 		return 0
@@ -149,8 +167,6 @@ def meetup(s1, s2):
 			t += "; "
 	return t
 
-
-
 def language_detection(best_pair):
 	s1, s2 = best_pair
 	sn1, si1 = s1
@@ -175,21 +191,26 @@ def language_detection(best_pair):
 	languages = languages[:(len(languages)-2)]
 	return languages
 
-pairs = open("LEP_pairs.tsv", "w")
-pairs.write("partner1\tpartner2\tlanguage(s)\tPossible Meetup time\tstability\n")
+pairs = open('script/final_pairs.csv', 'w')
+fields = ['partner1', 'partner2', 'languages(s)', 'possible meetup time', 'stability']
+writer = csv.DictWriter(pairs, fieldnames=fields)
+writer.writeheader()
+#pairs.write("partner1\tpartner2\tlanguage(s)\tPossible Meetup time\tstability\n")
 
-
-while len(students)!=0:
+# attempt to pair every student with another student
+while len(students) != 0:
 	print(len(students))
 	if len(students) == 1:
-		single_name = students[0][1] + " " + students[0][2]+"\n"
-		pairs.write(single_name)
-		break
+		#single_name = students[0][1] + " " + students[0][2]+"\n"
+		#pairs.write(single_name)
+    student = students.keys()[0].fields['name'] + \
+    pairs.writerow({'partner1': student})
+    break
 	final = 0
-	for student in students:
-		sacademic = student[5]
-		sresidency = student[7]
-		sgender = (student[8], student[25])
+	for student1 in students:
+		s1_academic = student.fields['academic_title']
+		s1_residency = student.fields['residency']
+		s1_gender = (student[8], student[25])
 		sn = get_profi(student)
 		sl = student[9].split(",")
 		sn = data_clean(((sl, sn), (student[14], student[15]), (student[16], student[17])))
@@ -197,11 +218,12 @@ while len(students)!=0:
 		stime = student[19:24]
 		shour = student[24]
 		highest = 0
-		for potential in students:
+
+		for student2 in students:
 			total = 0
-			if potential!=student:
-				pacademic = potential[5]
-				presidency = potential[7]
+			if student2 != student1:
+				pacademic = stduent2.fields['residency']
+				presidency = student2.fields['residency']
 				pgender = (potential[8], potential[25])
 				pn = get_profi(potential)
 				pl = potential[9].split(",")
@@ -231,13 +253,11 @@ while len(students)!=0:
 	p2_name = partner2[1]+" "+partner2[2]
 	language = language_detection(best_language)
 	hours = meetup(partner1, partner2)
-	line = p1_name+"("+partner1[3]+")"+"\t"+p2_name+"("+partner2[3]+")\t"+language+"\t"+hours+"\t"+str(final)+"\n"
-	pairs.write(line)
+	#line = p1_name+"("+partner1[3]+")"+"\t"+p2_name+"("+partner2[3]+")\t"+language+"\t"+hours+"\t"+str(final)+"\n"
+	#pairs.write(line)
+  writer.writerow({'partner1': p1_name+'('+partner[3]+')', 'partner2': p2_name+'('+partner2[3]+')', 'language(s)': language, 'possible meetup time': hours, 'stability': str(final)})
 	students.remove(partner1)
 	students.remove(partner2)
-
-
-
 
 #need to check if the student put the right ID number
 
