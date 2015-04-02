@@ -1,18 +1,34 @@
-%h2 All Groups
+%h2 Language Groups
 
-%table#groups
-  %thead
-    %tr
-      %th Group ID
-      %th Members
-      %th Languages
-  %tbody
-    - @groups.each do |group|
-      %tr
-        %td=group.id
-        %td=group.members
-        %td=group.languages
-
-= link_to 'Show users', admins_path
-= link_to 'Home', admin_path(@user.id)
-
+%div#groups
+  %div.groups
+    - if @mon_groups != nil
+      %h4 Monday
+      - @mon_groups.each do |group|
+        %p=group.language
+        %p=group.time
+        %p=group.location
+    - if @tues_groups != nil
+      %h4 Tuesday
+      - @tues_groups.each do |group|
+        %p=group.language
+        %p=group.time
+        %p=group.location
+    - if @wed_groups != nil
+      %h4 Wednesday
+      - @wed_groups.each do |group|
+        %p=group.language
+        %p=group.time
+        %p=group.location
+    - if @thurs_groups != nil
+      %h4 Thursday
+      - @thurs_groups.each do |group|
+        %p=group.language
+        %p=group.time
+        %p=group.location
+    - if @fri_groups != nil
+      %h4 Friday
+      - @fri_groups.each do |group|
+        %p=group.language
+        %p=group.time
+        %p=group.location

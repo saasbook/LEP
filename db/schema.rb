@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402001706) do
+ActiveRecord::Schema.define(version: 20150402214015) do
 
   create_table "groups", force: true do |t|
     t.string   "members"
-    t.string   "languages"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time"
+    t.string   "location"
+    t.string   "language"
+    t.string   "day"
   end
 
   create_table "users", force: true do |t|
