@@ -4,8 +4,6 @@ class Student:
   def __init__(self, fields):
     self.fields = fields # hash table of user fields
 
-
-users = open("script/newsheet.csv", "r")
 students = []
 pairs = []
 language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Intermediate proficiency", 4:"Nearly-full professional proficiency"}
@@ -13,17 +11,30 @@ language_prof = {1:"Elementary proficiency", 2:"Limited proficiency", 3:"Interme
 # setup function to read the user csv
 # and initialize hash table of student objects
 def setup():
-  reader = csv.DictReader(users)
 
-  for row in reader:
-    fields = {'name': row['first_name'] + row['last_name'], 'sid': row['sid'], 'gender': row['gender'], 'gender_preference': row['gender_preference'],
-        'fluent_languages': row['fluent_languages'], 'lang_additional_info': row['lang_additional_info'], 'first_lang_preference': row['first_lang_preference'], \
-        'first_lang_proficieny': row['first_lang_proficiency'], 'second_lang_preference': row['second_lang_preference'], 'time_preference': row['time_preference'],
-        'hours_per_week': row['hours_per_week']}
-    s = Student(fields)
-    students.append(s)
+  with open("script/newsheet.csv", "r") as users:
+    reader = csv.DictReader(users)
+    for row in reader:
+      fields = {
+          'name': row['first_name'] + row['last_name'], 
+          'gender': row['gender'], 
+          'academic_title': row['academic_title'],
+          'residency': row['residency'],
+          'gender_preference': row['gender_preference'],
+          'fluent_languages': row['fluent_languages'], 
+          'lang_additional_info': row['lang_additional_info'],
+          'first_lang_preference': row['first_lang_preference'],
+          'first_lang_proficiency': row['first_lang_proficiency'],
+          'second_lang_preference': row['second_lang_preference'],
+          'second_lang_proficiency': row['second_lang_proficiency'],
+          'time_preference': row['time_preference'],
+          'hours_per_week': row['hours_per_week'],
+          'sid': row['sid']
+      }
+      s = Student(fields)
+      students.append(s)
 
-  close(users)
+    users.close()
 
 '''
 for line in users:
@@ -210,11 +221,11 @@ while len(students) != 0:
         s1_academic = student1.fields['academic_title']
         s1_residency = student1.fields['residency']
         s1_gender = (student1.fields['gender'], student1.fields['gender_preference'])
-        fluent_lang = student1.fields['fluent_langugaes'].split(',')
+        fluent_lang = student1.fields['fluent_languages'].split(',')
         s1_lang_to_teach = []
         for lang in fluent_lang:
           s1_lang_to_teach.append((lang, 4))
-        s1_lang_to_learn = data_clean([(student.fields['first_lang_preference'], student1.fields['first_lang_proficiency']),
+        s1_lang_to_learn = data_clean([(student1.fields['first_lang_preference'], student1.fields['first_lang_proficiency']),
               (student1.fields['second_lang_preference'], student1.fields['second_lang_proficiency'])])
         s1_time = student1.fields['time_preference']
         s1_hour = student1.fields['hours_per_week']
