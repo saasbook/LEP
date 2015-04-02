@@ -69,7 +69,7 @@
 
   %div.question
     = f.label :time_preference, "Times you could meet with your partner(s)"
-    = f.select :time_preference, grouped_options_for_select([['Monday',["10:00","11:00","12:00","1:00","2:00"]],['Tuesday',["10:00","11:00","12:00","1:00","2:00"]]]), {}, :multiple => true
+    = f.select :time_preference, grouped_options_for_select([['Monday',["10:00","11:00","12:00","1:00","2:00"]],['Tuesday',["10:00","11:00","12:00","1:00","2:00"]],['Wednesday',["10:00","11:00","12:00","1:00","2:00"]],['Thursday',["10:00","11:00","12:00","1:00","2:00"]], ['Friday',["10:00","11:00","12:00","1:00","2:00"]]]), {}, :multiple => true
 
   %div.question
     = f.label :hours_per_week, "How many hours per week do you wish to practice with your partner(s)?"
