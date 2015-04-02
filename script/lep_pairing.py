@@ -37,12 +37,13 @@ for line in users:
 			newline[word] = 4
 '''			
 
-def gender_score(g1, g2):
-	if g2[1] == "Indifferent" and g1[1] == 'Indifferent':
+# a score is a tuple of (gender, gender_preference)
+def gender_score(score1, score2):
+	if score1[1] == "Indifferent" and score2[1] == 'Indifferent':
 		return 1
-	if g1[1] == g2[0] and g2[1] == g1[0]:
+	if score1[1] == score2[0] and score2[1] == score1[0]:
 		return 5
-	if (g1[1] == g2[0] and g2[1] == 'Indifferent') or (g1[0]==g2[1] and g1[1] == 'Indifferent'):
+	if (score1[1] == score2[0] and score2[1] == 'Indifferent') or (score1[0]==score2[1] and score1[1] == 'Indifferent'):
 		return 3
 	else:
 		return 0
@@ -203,41 +204,41 @@ while len(students) != 0:
 	if len(students) == 1:
 		#single_name = students[0][1] + " " + students[0][2]+"\n"
 		#pairs.write(single_name)
-    student = students.keys()[0].fields['name'] + \
-    pairs.writerow({'partner1': student})
+    student = students.keys()[0]
+    student_name = student.fields['name']
+    pairs.writerow({'partner1': student_name})
+    students.remove(student)
     break
 	final = 0
 	for student1 in students:
-		s1_academic = student.fields['academic_title']
-		s1_residency = student.fields['residency']
-		s1_gender = (student[8], student[25])
-		sn = get_profi(student)
-		sl = student[9].split(",")
+		s1_academic = student1.fields['academic_title']
+		s1_residency = student1.fields['residency']
+		s1_gender = (student1.fields['gender'], student1.fields['gender_preference'])
 		sn = data_clean(((sl, sn), (student[14], student[15]), (student[16], student[17])))
 		si = data_clean(((student[10], student[11]), (student[12], student[13])))
-		stime = student[19:24]
-		shour = student[24]
+		s1_time = student1.fields['time_preference']
+		s1_hour = student1.fields['time_additional_info']
 		highest = 0
 
 		for student2 in students:
 			total = 0
 			if student2 != student1:
-				pacademic = stduent2.fields['residency']
-				presidency = student2.fields['residency']
-				pgender = (potential[8], potential[25])
-				pn = get_profi(potential)
-				pl = potential[9].split(",")
+				s2_academic = student2.fields['residency']
+				s2_residency = student2.fields['residency']
+				s2_gender = (student2.fields['gender'], student2.fields['gender_preference'])
+				pn = get_profi(student2)
+				#pl = potential[9].split(",")
 				pn = data_clean(((pl, pn), (potential[14], potential[15]), (potential[16], potential[17])))
 				pi = data_clean(((potential[10], potential[11]), (potential[12], potential[13])))
-				ptime = potential[19:24]
-				phour = potential[24]
+				s2_time = student2.fields['time_preference']
+				s2_hour = potential[24]
 				#if sacademic == pacademic:
 					#total += 0.5
-				if sresidency != presidency:
+				if s1_residency != s2_residency:
 					total += 0.5
-				total += gender_score(sgender, pgender)
+				total += gender_score(s1_gender, s2_gender)
 				total += language_score((sn, si), (pn, pi))
-				total += time_score(stime, ptime, shour, phour)
+				total += time_score(s1_time, s2_time, s1_hour, s2_hour)
 				total += abs(int(shour[0])+int(phour[0]))*0.5 - abs(int(shour[0])-int(phour[0]))*0.5 
 				if highest < total:
 					highest = total
@@ -249,8 +250,8 @@ while len(students) != 0:
 			best_language = ((sn, si), best_pl)
 	partner1 = best_pair[0]
 	partner2 = best_pair[1]
-	p1_name = partner1[1]+" "+partner1[2]
-	p2_name = partner2[1]+" "+partner2[2]
+	p1_name = partner1.fields['name']
+	p2_name = partner2.fields['name']
 	language = language_detection(best_language)
 	hours = meetup(partner1, partner2)
 	#line = p1_name+"("+partner1[3]+")"+"\t"+p2_name+"("+partner2[3]+")\t"+language+"\t"+hours+"\t"+str(final)+"\n"
@@ -260,7 +261,4 @@ while len(students) != 0:
 	students.remove(partner2)
 
 #need to check if the student put the right ID number
-
-
-
 
