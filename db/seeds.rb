@@ -54,9 +54,7 @@ user27 = {first_name: 'Robyn',
 		}
 admin = { first_name: 'Admin', admin: true }
 admin2 = { first_name: 'adminmeister', 
-  email: 'swchoi727@berkeley.edu', 
-  admin: true }
-  		sid: '223333', 
+  	sid: '223333', 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Undergraduate',
 		major: 'Computer Science', 
