@@ -16,7 +16,7 @@ def setup():
   reader = csv.DictReader(users)
 
   for row in reader:
-    fields = {'name': row['first_name'] + row['last_name'], 'gender': row['gender'], 'gender_preference': row['gender_preference'],
+    fields = {'name': row['first_name'] + row['last_name'], 'sid': row['sid'], 'gender': row['gender'], 'gender_preference': row['gender_preference'],
         'fluent_languages': row['fluent_languages'], 'lang_additional_info': row['lang_additional_info'], 'first_lang_preference': row['first_lang_preference'], \
         'first_lang_proficieny': row['first_lang_proficiency'], 'second_lang_preference': row['second_lang_preference'], 'time_preference': row['time_preference'],
         'hours_per_week': row['hours_per_week']}
@@ -217,7 +217,10 @@ while len(students) != 0:
         s1_academic = student1.fields['academic_title']
         s1_residency = student1.fields['residency']
         s1_gender = (student1.fields['gender'], student1.fields['gender_preference'])
-        s1_lang_to_teach = student1.fields['fluent_langugaes'].split(',')
+        fluent_lang = student1.fields['fluent_langugaes'].split(',')
+        s1_lang_to_teach = []
+        for lang in fluent_lang:
+          s1_lang_to_teach.append((lang, 4))
         s1_lang_to_learn = data_clean([(student.fields['first_lang_preference'], student1.fields['first_lang_proficiency']),
               (student1.fields['second_lang_preference'], student1.fields['second_lang_proficiency'])])
         s1_time = student1.fields['time_preference']
@@ -230,7 +233,10 @@ while len(students) != 0:
                 s2_academic = student2.fields['residency']
                 s2_residency = student2.fields['residency']
                 s2_gender = (student2.fields['gender'], student2.fields['gender_preference'])
-                s2_lang_to_teach = student2.fields['fluent_languages'].split(',')
+                fluent_lang = student2.fields['fluent_languages'].split(',')
+                s2_lang_to_teach = []
+                for lang in fluent_lang:
+                  s2_lang_to_teach.append((lang, 4))
                 s2_lang_to_learn = data_clean([(student2.fields['first_lang_preference'], student2.fields['first_lang_proficiency']),
                     (student2.fields['second_lang_preference'], student2.fields['second_lang_proficiency'])])
                 s2_time = student2.fields['time_preference']
@@ -240,26 +246,26 @@ while len(students) != 0:
                 if s1_residency != s2_residency:
                     total += 0.5
                 total += gender_score(s1_gender, s2_gender)
-                total += language_score((sn, si), (pn, pi))
-                total += time_score(stime, ptime, shour, phour)
-                total += abs(int(shour[0])+int(phour[0]))*0.5 - abs(int(shour[0])-int(phour[0]))*0.5 
+                total += language_score((s1_lang_to_teach, s1_lang_to_learn), (s2_lang_to_teach, s2_lang_to_learn))
+                total += time_score(s1_time, s2_time, s1_hour, s2_hour)
+                total += abs(int(s1_hour)+int(s2_hour))*0.5 - abs(int(s1_hour)-int(s2_hour))*0.5
                 if highest < total:
                     highest = total
-                    best = potential
-                    best_pl = (pn, pi)
+                    best = student2
+                    best_language = (s2_lang_to_teach, s2_lang_to_learn)
         if final < highest:
             final = highest
-            best_pair = (student, best)
-            best_language = ((sn, si), best_pl)
+            best_pair = (student1, best)
+            best_language = ((s1_lang_to_teach, s1_lang_to_learn), best_language)
     partner1 = best_pair[0]
     partner2 = best_pair[1]
-    p1_name = partner1[1]+" "+partner1[2]
-    p2_name = partner2[1]+" "+partner2[2]
+    p1_name = partner1.fields['name']
+    p2_name = partner2.fields['name']
     language = language_detection(best_language)
     hours = meetup(partner1, partner2)
     #line = p1_name+"("+partner1[3]+")"+"\t"+p2_name+"("+partner2[3]+")\t"+language+"\t"+hours+"\t"+str(final)+"\n"
     #pairs.write(line)
-    writer.writerow({'partner1': p1_name+'('+partner[3]+')', 'partner2': p2_name+'('+partner2[3]+')', 'language(s)': language, 'possible meetup time': hours, 'stability': str(final)})
+    writer.writerow({'partner1': p1_name+'('+partner1.fields['sid']+')', 'partner2': p2_name+'('+partner2.fields['sid']+')', 'language(s)': language, 'possible meetup time': hours, 'stability': str(final)})
     students.remove(partner1)
     students.remove(partner2)
 
