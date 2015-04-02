@@ -30,7 +30,7 @@ def setup():
           'second_lang_proficiency': lookup(row['second_lang_proficiency']),
           'time_preference': row['time_preference'],
           'hours_per_week': row['hours_per_week'],
-          'id': row['id']
+          'id': row['id'],
           'sid': row['sid']
       }
       s = Student(fields)
@@ -132,7 +132,6 @@ def language_score(student, potential):
   final += mi_score + si_score
   return final
 
-# assumes each day...fck this method.
 def time_score(s1_time, s2_time, s1_hour, s2_hour):
   total = 0.0
   for s1_day in s1_time:
