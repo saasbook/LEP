@@ -152,29 +152,24 @@ def meetup(s1_time, s2_time):
         meetup_time += s1_day + ", "
   return meetup_time[:len(meetup_time)-2]
 
-def language_detection(best_pair):
-  s1, s2 = best_pair
-  sn1, si1 = s1
-  sn2, si2 = s2
-  languages = ''
-  visited = []
-  for (l1, p1) in sn1:
-    for (l2, p2) in si2:
-      if l1 == l2 and l1 not in visited:
-        languages+=l1+"("+language_prof[min(p1, p2)]+"), "
-        visited.append(l1)
-  for (l1, p1) in si1:
-    for (l2, p2) in sn2:
-      if l1 == l2 and l1 not in visited:
-        languages+=l1+"("+language_prof[min(p1, p2)]+"), "
-        visited.append(l1)
-  for (l1, p1) in si1:
-    for (l2, p2) in si2:
-      if l1 == l2 and l1 not in visited:
-        languages+=l1+"("+language_prof[min(p1, p2)]+"), "
-        visited.append(l1)
-  languages = languages[:(len(languages)-2)]
-  return languages
+def language_detection(language_pair):
+  student1, student2 = language_pair
+  s1_lang_to_teach, s1_lang_to_learn = student1
+  s2_lang_to_teach, s2_lang_to_learn = student2
+  languages = []
+  for (lang1, proficiency1) in s1_lang_to_teach:
+    for (lang2, proficiency2) in s2_lang_to_learn:
+      if lang1 == lang2 and lang1 not in languages:
+        languages.append(lang1)
+  for (lang1, proficiency1) in s1_lang_to_learn:
+    for (lang2, proficiency2) in s2_lang_to_teach:
+      if lang1 == lang2 and lang1 not in languages:
+        languages.append(lang1)
+  for (lang1, proficiency1) in s1_lang_to_learn:
+    for (lang2, proficiency2) in s2_lang_to_learn:
+      if lang1 == lang2 and lang1 not in languages:
+        languages.append(lang1)
+  return str(languages).strip('[]')
 
 def extract_student_info(student):
   info = {}
@@ -232,16 +227,16 @@ while len(students) != 0:
         if highest < score:
           highest = score
           best = student2
-          best_language = (student2['lang_to_teach'], student2['lang_to_learn'])
+          languages = (student2['lang_to_teach'], student2['lang_to_learn'])
 
     if final < highest:
       final = highest
       best_pair = (student1, best)
-      best_language = ((student1['lang_to_teach'], student1['lang_to_learn']), best_language)
+      languages = ((student1['lang_to_teach'], student1['lang_to_learn']), languages)
 
     partner1 = best_pair[0]
     partner2 = best_pair[1]
-    language = language_detection(best_language)
+    language = language_detection(languages)
     meetup_days = meetup(partner1['time'], partner2['time'])
 
     writer.writerow({'partner1': partner1['id'], 'partner2': partner2['id'], 'language(s)': language, 'possible meetup time': meetup_days, 'stability': str(final)})
