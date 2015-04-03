@@ -1,34 +1,42 @@
 %h2 Language Groups
 
+-if @user.admin
+  = link_to "Add group", new_group_path
+
 %div#groups
-  %div.groups
+  %ul.groups
     - if !@mon_groups.empty?
       %h4 Monday
       - @mon_groups.each do |group|
-        %p=group.language
-        %p=group.time
-        %p=group.location
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
     - if !@tues_groups.empty?
       %h4 Tuesday
       - @tues_groups.each do |group|
-        %p=group.language
-        %p=group.time
-        %p=group.location
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
     - if !@wed_groups.empty?
       %h4 Wednesday
       - @wed_groups.each do |group|
-        %p=group.language
-        %p=group.time
-        %p=group.location
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
     - if !@thurs_groups.empty?
       %h4 Thursday
       - @thurs_groups.each do |group|
-        %p=group.language
-        %p=group.time
-        %p=group.location
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
     - if !@fri_groups.empty?
       %h4 Friday
       - @fri_groups.each do |group|
-        %p=group.language
-        %p=group.time
-        %p=group.location
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
