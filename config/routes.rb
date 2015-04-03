@@ -17,7 +17,6 @@ LEP::Application.routes.draw do
   put "admins/:id/make_admin/:user_id" => "admins#make_admin", :as => :admin_make_admin
   put "admins/:id/revoke_admin/:user_id" => "admins#revoke_admin", :as => :admin_revoke_admin
 
-#get 'admins/:id/pair' => 'admins#pair', :as => :pair
   post "/user/:id/deactivate" => 'users#deactivate'
   post "/user/:id/activate" => 'users#activate'
   get "admins/:id/pairing" => "admins#pairing", :as => :pairing
