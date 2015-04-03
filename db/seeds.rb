@@ -74,5 +74,26 @@ admin2 = { first_name: 'adminmeister',
 		active: true,
     admin: true 
 }
-jasonadmin = { first_name: 'Jason', last_name: 'Jia', email: 'jasonjia@berkeley.edu', admin: true }
-users = User.create!([user1, user27, admin2])
+jason = { first_name: 'Jason',
+    last_name: 'Jia',
+  	sid: '12345678',
+		email: 'jasonjia@berkeley.edu',
+		academic_title: 'Undergraduate',
+		major: 'Computer Science', 
+		residency: 'Domestic', 
+		gender: 'Male', 
+		gender_preference: 'Female',
+		fluent_languages: 'English, Mandarin',
+		lang_additional_info: '',
+		first_lang_preference: 'French', 
+		first_lang_proficiency: 'intermediate', 
+		second_lang_preference: 'Spanish', 
+		second_lang_proficiency: 'elementary',
+		time_preference: 'Monday', 
+		hours_per_week: '2',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		active: true,
+    admin: false
+}
+users = User.create!([user1, user27, admin2, jason])
