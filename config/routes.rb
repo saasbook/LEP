@@ -13,7 +13,7 @@ LEP::Application.routes.draw do
 
   post "/user/:id/deactivate" => 'users#deactivate'
   post "/user/:id/activate" => 'users#activate'
-  get "admins/:id/pair" => "admins#pair", :as => :pair
+  get "admins/:id/pairing" => "admins#pairing", :as => :pairing
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
