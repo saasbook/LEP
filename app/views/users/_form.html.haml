@@ -3,6 +3,7 @@
 
   - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
   - meeting_times = ["10:00","11:00","12:00","1:00","2:00"]
+  - days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
 
   %div.question
     = f.label :first_name, "First Name"
@@ -79,7 +80,14 @@
 
   %div.question
     = f.label :time_preference, "Times you could meet with your partner(s)"
-    = f.select :time_preference, grouped_options_for_select([['Monday',meeting_times],['Tuesday',meeting_times],['Wednesday',meeting_times],['Thursday',meeting_times], ['Friday',meeting_times]]), {}, :multiple => true
+    -#= f.select :time_preference, grouped_options_for_select([['Monday',meeting_times],['Tuesday',meeting_times],['Wednesday',meeting_times],['Thursday',meeting_times], ['Friday',meeting_times]]), {}, :multiple => true
+    - days_of_week.each do |day|
+      = day
+      %br
+      - meeting_times.each do |time|
+        = f.check_box(:time_preference, { :multiple => true }, day + " " + time)
+        = time
+        %br
 
   %div.question
     = f.label :hours_per_week, "How many hours per week do you wish to practice with your partner(s)?"
