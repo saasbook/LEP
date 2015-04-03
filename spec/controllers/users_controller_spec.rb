@@ -71,32 +71,27 @@ describe UsersController do
     end
   end
 
-  # describe '#activate' do
-  #   before :each do
-  #     @user = double(User, first_name: 'John', last_name: 'Smith', id: '27', active: false)
-  #     #User.should_receive(:find).with(@user.id).and_return(double('User'))
-  #     @user.stub!(:update_attributes).with(:active, true).and_return(true)
-  #   end
-  #   it 'should call User with find' do
-  #     #@user.should_receive(:update_attributes).with(active: true).and_return(true)
-  #     post :activate, id: '27'
-  #     expect(response).to render_template('show')
-  #     #response.should redirect_to user_path(session[:id])
-  #     #flash[:warning].should eq("John Smith's account has been reactivated.")
-  #   end
-  # end
+  describe '#activate' do
+    before :each do
+      @user = double(User, first_name: 'John', last_name: 'Smith', id: '27', active: false)
+    end
+    it "should deactivate an user" do
+      User.should_receive(:find).with(@user.id).and_return(@user)
+      @user.should_receive(:update_attributes).with({:active => true}).and_return(true)
+      post :activate, :id => "27"
+      flash[:warning].should eq("John Smith's account has been reactivated.")
+    end
+  end
 
   describe '#deactivate' do
     before :each do
       @user = double(User, first_name: 'John', last_name: 'Smith', id: '27', active: true)
-      # User.should_receive(:find).with(@user.id).and_return(double('User'))
-      #@user.stub(:update_attributes).with(:active, false).and_return(true)
     end
     it "should deactivate an user" do
-      User.should_receive(:find).with(@user.id).and_return(double('User'))
-      #@user.stub(:update_attributes).with(:active => false).and_return(true)
-      @user.should_receive(:update_attributes).with(:active => false)
-      put :deactivate, :id => "27"
+      User.should_receive(:find).with(@user.id).and_return(@user)
+      @user.should_receive(:update_attributes).with({:active => false}).and_return(true)
+      post :deactivate, :id => "27"
+      flash[:warning].should eq("John Smith's account has been deactivated.")
     end
   end
 
