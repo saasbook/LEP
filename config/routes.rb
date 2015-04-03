@@ -11,6 +11,12 @@ LEP::Application.routes.draw do
   root :to => "welcome#index"
   get "/auth/:provider/callback" => "users#home"
 
+  put "admins/:id/deactivate/:user_id" => "admins#deactivate", :as => :admin_deactivate_user
+  put "admins/:id/activate/:user_id" => "admins#activate", :as => :admin_activate_user
+  
+  put "admins/:id/make_admin/:user_id" => "admins#make_admin", :as => :admin_make_admin
+  put "admins/:id/revoke_admin/:user_id" => "admins#revoke_admin", :as => :admin_revoke_admin
+
   post "/user/:id/deactivate" => 'users#deactivate'
   post "/user/:id/activate" => 'users#activate'
   get "admins/:id/pairing" => "admins#pairing", :as => :pairing

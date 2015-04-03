@@ -14,6 +14,7 @@ group :development, :test do
   gem 'rspec-rails','~> 2.14.0'
   gem 'simplecov'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 end
 
 group :production do
@@ -22,7 +23,7 @@ end
 
 group :assets do
   gem 'uglifier'
-  gem 'therubyracer'
+#gem 'therubyracer'
   gem 'coffee-rails', '~> 4.1.0'
   gem 'sass-rails', '~> 5.0.1'
 end

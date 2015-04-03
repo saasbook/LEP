@@ -32,6 +32,34 @@ class AdminsController < ApplicationController
     @groups = Group.all
   end
 
+  def activate
+    @user = User.find(params[:user_id])
+    User.activate(@user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been activated"
+    redirect_to admins_path
+  end
+  
+  def deactivate
+    @user = User.find(params[:user_id])
+    User.deactivate(@user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been deactivated"
+    redirect_to admins_path
+  end
+  
+  def make_admin
+    @user = User.find(params[:user_id])
+    User.make_admin(@user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now an admin"
+    redirect_to admins_path
+  end
+  
+  def revoke_admin
+    @user = User.find(params[:user_id])
+    User.revoke_admin(@user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer an admin"
+    redirect_to admins_path
+  end
+
   def show
   end
 

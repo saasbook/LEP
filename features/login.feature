@@ -5,9 +5,9 @@ Feature: log in from the LEP website
 
 Background: Two users are in the database
   Given the following users exist:
-  | id | first_name | email                  | admin |
-  | 1  | existing   | existing@berkeley.edu  | false |
-  | 2  | admin      | admin@berkeley.edu     | true  |
+  | id | first_name | email                  | admin | first_lang_preference |
+  | 1  | existing   | existing@berkeley.edu  | false | english                   |
+  | 2  | admin      | admin@berkeley.edu     | true  |                           |
 
 Scenario: Redirects non-admin user to homepage when successfully authenticated
   Given I am an existing user
