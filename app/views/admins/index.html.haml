@@ -4,6 +4,22 @@
   %thead
     %tr
       %th ID
+      %th Member 1
+      %th Member 2
+      %th Languages
+  %tbody
+    - @pairs.each do |pair|
+      %tr
+        %td= pair.id
+        %td= pair.member1
+        %td= pair.member2
+        - if !pair.languages.empty?
+          %td= pair.languages
+
+%table
+  %thead
+    %tr
+      %th ID
       %th First Name
       %th Last Name
   %tbody
@@ -16,4 +32,3 @@
 = link_to 'Pair students', pairing_path(@user.id)
 = link_to 'Home', admin_path(@user.id)
 = link_to 'Show groups', groups_path
-

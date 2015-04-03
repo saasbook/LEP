@@ -30,6 +30,7 @@ class AdminsController < ApplicationController
     @user = User.find(session[:id])
     @users = User.where(!:admin) # want to list all non-admin users
     @groups = Group.all
+    @pairs = Pair.all
   end
 
   def show
@@ -45,7 +46,8 @@ class AdminsController < ApplicationController
   def pairing
     User.to_csv()
     res = `python script/lep_pairing.py`
-    flash[:notice] = 'Pairs have been generated'
+    flash[:notice] = 'Pairs have been generated.'
+    Pair.generate_pairs()
     redirect_to admins_path
   end
 
