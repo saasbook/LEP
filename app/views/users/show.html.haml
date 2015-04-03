@@ -30,18 +30,23 @@
 %h3= "Your Pair Information"
 
 -# Find the pair an user is associated with
+- @pair = Pair.where(:member1 => @user.id) or Pair.where(:member2 => @user.id) or Pair.where(:member3 => @user.id)
 
-%h4= "Pair ID: 1"
+- if @pair.empty?
+  = "You are not currently in a pair"
+- else
+  %h4= "Pair ID: #{@pair.id}"
 
-%h4= "Pair Languages"
-="#{@user.first_lang_preference}, #{@user.second_lang_preference if @user.second_lang_preference != ""}, #{@fluent_languages.join(", ")}"
-%p
+  %h4= "Pair Languages"
+  = @pair.languages.join(", ")
+  %p
 
-%table
-  %tr
-    %th Pair Member
-    %th Contact Info
-    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
-      %tr
-        %td= member["name"]
-        %td= member["contact"]
+  %table
+    %tr
+      %th Pair Member
+      %th Contact Info
+      - @pair.members.each do |id|
+        - user = User.find(id)
+        %tr
+          %td= user.first_name + " " + user.last_name
+          %td= user.email
