@@ -1,5 +1,5 @@
-class GroupsController < ApplicationController
-  
+class PairsController < ApplicationController
+
   def new
   end
 
@@ -8,8 +8,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:id])
-    @groups = Group.all
+    @pairs = Pair.all
   end
 
   def show
@@ -20,7 +19,8 @@ class GroupsController < ApplicationController
 
 
   #helper method for create
-  def group_params
+  def pair_params
     params.require(:user).permit(:id, :members, :languages)
   end
+
 end

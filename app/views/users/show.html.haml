@@ -16,13 +16,15 @@
 
 
 %h4= "Your Languages"
-= @user.fluent_languages
+- @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
+- @fluent_languages.each {|lang| lang.capitalize!}
+= @fluent_languages.join(", ")
 
 %h4= "Language Preference 1"
-= @user.first_lang_preference
+= @user.first_lang_preference.capitalize!
 
 %h4= "Language Preference 2"
-= @user.second_lang_preference
+= @user.second_lang_preference.capitalize!
 
 
 %h3= "Your Group Information"
@@ -30,8 +32,7 @@
 %h4= "Group ID: 1"
 
 %h4= "Group Languages"
-="#{@user.first_lang_preference}, #{@user.fluent_languages}"
-
+="#{@user.first_lang_preference}, #{@user.second_lang_preference if @user.second_lang_preference != ""}, #{@fluent_languages.join(", ")}"
 %p
 
 %table
