@@ -85,7 +85,7 @@ admin2 = { first_name: 'adminmeister',
 
 jasonadmin = { first_name: 'Jason', last_name: 'Jia', email: 'jasonjia@berkeley.edu', admin: true }
 
-users = User.create!([robyn, jane, admin2, shana])
+users = User.create!([robyn, jane, admin2, shana, iris])
 
 
 russian = {language: 'Russian',

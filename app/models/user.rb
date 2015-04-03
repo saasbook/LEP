@@ -33,6 +33,5 @@ class User < ActiveRecord::Base
     user = User.find(id)
     user.update_attributes admin: false
   end
-end
 
 end
