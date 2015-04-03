@@ -58,7 +58,7 @@ robyn = {first_name: 'Robyn',
 admin = { first_name: 'Admin', admin: true }
 
 admin2 = { first_name: 'adminmeister', 
-  		sid: '223333', 
+  	sid: '223333', 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Undergraduate',
 		major: 'Computer Science', 
@@ -80,5 +80,36 @@ admin2 = { first_name: 'adminmeister',
 }
 
 jasonadmin = { first_name: 'Jason', last_name: 'Jia', email: 'jasonjia@berkeley.edu', admin: true }
-users = User.create!([jane, shana, robyn, admin2])
 
+users = User.create!([user1, user27, robyn, jane, admin2, shana])
+
+
+russian = {language: 'Russian',
+           day: 'Monday',
+           time: '2-3PM',
+           location: 'FSM'}
+english1 = {language: 'English',
+            day: 'Wednesday',
+            time: '5-6PM',
+            location: '201B Chavez'}
+mandarin = {language: 'Mandarin',
+            day: 'Wednesday',
+            time: '6-7PM',
+            location: '2 Evans'}
+english2 = {language: 'English',
+            day: 'Thursday',
+            time: '2-3PM',
+            location: '201B Chavez'}
+korean =  {language: 'Korean',
+            day: 'Friday',
+            time: '4-5PM',
+            location: '201B Chavez'}
+swedish =  {language: 'Swedish',
+            day: 'Friday',
+            time: '4-5PM',
+            location: 'SLC Atrium'}
+german =  {language: 'German',
+            day: 'Friday',
+            time: '6-7PM',
+            location: '151 Chavez'}
+groups = Group.create!([russian, english1, mandarin, english2, korean, swedish, german])

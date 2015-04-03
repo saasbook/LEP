@@ -8,12 +8,12 @@ LEP::Application.routes.draw do
   resources :admins
   resources :pairs
 
-  root :to => 'welcome#index'
-  get "/auth/:provider/callback" => 'users#home'
+  root :to => "welcome#index"
+  get "/auth/:provider/callback" => "users#home"
 
   post "/user/:id/deactivate" => 'users#deactivate'
   post "/user/:id/activate" => 'users#activate'
-  get 'admins/:id/pairing' => 'admins#pairing', :as => :pairing
+  get "admins/:id/pair" => "admins#pair", :as => :pair
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

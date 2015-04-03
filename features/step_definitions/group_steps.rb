@@ -1,6 +1,6 @@
-Given /^the following groups exist$/ do |groups_hash|
+Given /the following groups exist/ do |groups_hash|
   groups_hash.hashes.each do |group|
-    Group.create({members: group['members'], languages: group['languages']})
+    Group.create({language: group['language'], day: group['day'], time: group['time'], location: group['location']})
   end
 end
 

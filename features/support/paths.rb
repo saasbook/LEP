@@ -30,6 +30,10 @@ module NavigationHelpers
     
     when /^the existing user show page$/ then '/users/1'
 
+    when /^the add group page$/ then '/groups/new'
+
+    when /^the groups page$/ then '/groups'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

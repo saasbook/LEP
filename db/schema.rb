@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331233002) do
+ActiveRecord::Schema.define(version: 20150402214015) do
 
   create_table "groups", force: true do |t|
     t.string   "members"
-    t.string   "languages"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time"
+    t.string   "location"
+    t.string   "language"
+    t.string   "day"
   end
 
   create_table "pairs", force: true do |t|
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150331233002) do
     t.datetime "updated_at"
     t.boolean  "admin",                   default: false
     t.boolean  "active"
+    t.string   "group_leader"
   end
 
 end
