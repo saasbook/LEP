@@ -2,6 +2,7 @@
 = form_for :user, url: {action: 'create'}, :class => "field_with_errors" do |f|
 
   - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
+  - days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
 
   %div.question
     = f.label :first_name, "First Name"
@@ -42,13 +43,14 @@
   %div.question
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
     - languages.each do |language|
-      = check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
+      -#= check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
+      = f.check_box(:fluent_languages, { :multiple => true }, language.downcase)
       = language
       %br
 
   %div.question
-
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
+    -#= f.select :first_lang_preference, languages, :multiple => true
     = f.select :first_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
@@ -57,6 +59,7 @@
 
   %div.question
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
+    -#= f.select :second_lang_preference, languages, :multiple => true
     = f.select :second_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
@@ -69,7 +72,11 @@
 
   %div.question
     = f.label :time_preference, "Times you could meet with your partner(s)"
-    = f.select :time_preference, [["Monday", "monday"],["Tuesday","tuesday"],["Wednesday", "wednesday"],["Thursday","thursday"],["Friday","friday"]]
+    -#= f.select :time_preference, grouped_options_for_select([['Monday',meeting_times],['Tuesday',meeting_times],['Wednesday',meeting_times],['Thursday',meeting_times], ['Friday',meeting_times]]), {}, :multiple => true
+    - days_of_week.each do |day|
+      = f.check_box(:time_preference, { :multiple => true }, day)
+      = day
+      %br
 
   %div.question
     = f.label :hours_per_week, "How many hours per week do you wish to practice with your partner(s)?"
