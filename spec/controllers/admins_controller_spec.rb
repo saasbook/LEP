@@ -58,6 +58,7 @@ describe AdminsController do
   describe '#pairing' do
     it 'creates a CSV file and redirects to index' do 
       User.should_receive(:to_csv)
+      Pair.should_receive(:generate_pairs)
       get :pairing, {id: @admin.id}, {id: @admin.id}
     end
     it 'should redirect to admins_path' do
