@@ -17,4 +17,11 @@ describe GroupsController do
     end
   end
 
+  describe '#delete' do
+    it 'should delete a group' do
+      @group = Group.create(language: "German", day: "Tuesday", time: "2-3PM", location: "1 Evans")
+      get(:destroy, {id: @group.id})
+    end
+  end
+
 end
