@@ -1,7 +1,6 @@
 class Pair < ActiveRecord::Base
 
-  has_many :users, dependent: :nullify
-
+  serialize :members, Array
   serialize :languages, Array
 
 end
