@@ -115,3 +115,14 @@ Then /^I should see the following pair ids:$/ do |ids|
     page.should have_content(id)
   end
 end
+
+Given /^the following applications have been submitted:$/ do |users|
+  users.hashes.each do |user|
+    User.create(id: user['id'], first_name: user['first_name'], last_name: user['last_name'], fluent_languages: user['fluent_languages'].split(','), first_lang_preference: user['first_lang_preference'], first_lang_proficiency: user['first_lang_proficiency'], second_lang_preference: user['second_lang_preference'], second_lang_proficiency: user['second_lang_proficiency'], time_preference: user['time_preference'].split(','), hours_per_week: user['hours_per_week'])
+  end
+end
+
+When /^I generate pairings$/ do
+end
+
+
