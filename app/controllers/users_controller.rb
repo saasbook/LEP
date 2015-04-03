@@ -111,7 +111,12 @@ class UsersController < ApplicationController
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :hours_per_week, 
-                                :user_motivation, :user_plan, :admin, :active)
+                                :user_motivation, :user_plan, :admin, :active).tap do |whitelisted|
+                                    whitelisted[:fluent_languages] = params[:user][:fluent_languages]
+                                    whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
+                                    whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
+                                    whitelisted[:time_preference] = params[:user][:time_preference]
+    end
   end
 
 end
