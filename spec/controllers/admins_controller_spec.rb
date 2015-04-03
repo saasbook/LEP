@@ -63,6 +63,8 @@ describe AdminsController do
     it 'should redirect to admins_path' do
       get :pairing, {id: @admin.id}, {id: @admin.id}
       expect(response).to redirect_to admins_path
+    end
+  end
 
   describe '#activate' do
     it 'should call the model method to activate a user' do
