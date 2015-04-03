@@ -32,6 +32,10 @@ shana = {first_name: 'Shana',
     email: 'shanahu@berkeley.edu',
     admin: true}
 
+iris = {first_name: 'Iris',
+    email: 'iriswang@berkeley.edu',
+    admin: true}
+
 robyn = {first_name: 'Robyn', 
 		last_name: 'Zhang', 
 		sid: '22223333', 
@@ -101,7 +105,7 @@ jason = { first_name: 'Jason',
     admin: true
 }
 
-users = User.create!([admin2, jason, robyn, jane])
+users = User.create!([robyn, jane, admin2, shana, iris, jason])
 
 russian = {language: 'Russian',
            day: 'Monday',

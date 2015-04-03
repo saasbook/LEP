@@ -63,6 +63,36 @@ describe AdminsController do
     it 'should redirect to admins_path' do
       get :pairing, {id: @admin.id}, {id: @admin.id}
       expect(response).to redirect_to admins_path
+
+  describe '#activate' do
+    it 'should call the model method to activate a user' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:activate).with(2)
+      put :activate, {:id => 1, :user_id => 2}
+    end
+  end
+
+  describe '#deactivate' do
+    it 'should call the model method to deactivate a user' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:deactivate).with(2)
+      put :deactivate, {:id => 1, :user_id => 2}
+    end
+  end
+  
+  describe '#make_admin' do
+    it 'should call the model method to activate a user' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:make_admin).with(2)
+      put :make_admin, {:id => 1, :user_id => 2}
+    end
+  end
+
+  describe '#revoke_admin' do
+    it 'should call the model method to deactivate a user' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:revoke_admin).with(2)
+      put :revoke_admin, {:id => 1, :user_id => 2}
     end
   end
 

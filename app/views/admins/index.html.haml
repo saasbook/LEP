@@ -28,6 +28,14 @@
         %td= user.id
         %td= user.first_name
         %td= user.last_name
+        - if user.admin
+          %td= link_to "Delete admin", admin_revoke_admin_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+        - else
+          - if user.active
+            %td= link_to "Deactivate", admin_deactivate_user_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+          - else
+            %td= link_to "Activate", admin_activate_user_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+          %td= link_to "Make admin", admin_make_admin_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
  
 = link_to 'Pair students', pairing_path(@user.id)
 = link_to 'Home', admin_path(@user.id)

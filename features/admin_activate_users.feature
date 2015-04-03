@@ -5,19 +5,20 @@ Feature: Activate/ Deactivate Students
 
 Background: admin has been added to database
   Given the following users exist:
-  | first_name     | admin |
-  |  aladdin       | false |
-  |   Admin        | true  |
+  | id | first_name    | admin | active | email                 |
+  | 1  | aladdin       | false | false  | active@berkeley.edu   |
+  | 2  |  admin        | true  | true   | admin@berkeley.edu    |
+  | 3  | jasmine       | false | true   | inactive@berkeley.edu |
+
   And I am an admin user
   And I sign in
-  And I am on the admin home page
 
 Scenario: Activate a user
-  Given I am on the all users page
-  When I deactivate an active student
-  Then the student should be deactivated
+  Given I am on the admin home page
+  When I activate aladdin
+  Then that student should be activated
 
 Scenario: Deactivate users
-  Given I am on the all users page
-  When I activate a deactivated student
-  Then the student should be activated
+  Given I am on the admin home page
+  When I deactivate jasmine
+  Then that student should be deactivated
