@@ -24,7 +24,10 @@
 = @user.first_lang_preference.capitalize!
 
 %h4= "Language Preference 2"
-= @user.second_lang_preference.capitalize!
+- if @user.second_lang_preference == nil
+  = "You have no second language preference"
+- else
+  = @user.second_lang_preference.capitalize!
 
 
 %h3= "Your Pair Information"
