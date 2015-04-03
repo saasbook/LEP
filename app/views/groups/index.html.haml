@@ -12,6 +12,8 @@
           %span=group.language
           %span=group.time
           %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
     - if !@tues_groups.empty?
       %h4 Tuesday
       - @tues_groups.each do |group|
@@ -19,6 +21,9 @@
           %span=group.language
           %span=group.time
           %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   
     - if !@wed_groups.empty?
       %h4 Wednesday
       - @wed_groups.each do |group|
@@ -26,6 +31,9 @@
           %span=group.language
           %span=group.time
           %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   
     - if !@thurs_groups.empty?
       %h4 Thursday
       - @thurs_groups.each do |group|
@@ -33,6 +41,9 @@
           %span=group.language
           %span=group.time
           %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   
     - if !@fri_groups.empty?
       %h4 Friday
       - @fri_groups.each do |group|
@@ -40,3 +51,6 @@
           %span=group.language
           %span=group.time
           %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   

@@ -1,30 +1,30 @@
-Feature: Viewing information about Groups
-  As an administrator
-  I want to look at information about groups
-  In order to contact people or check group pairings    
-
-Background: admin has been added to database
-  Given the following users exist:
-  | first_name     | admin |
-  |  aladdin       | false |
-  |   Admin        | true  |
-
-  Given the following groups exist:
-  |   members   |   languages   |
-  |    a,b      |    eng,esp    |
-  |    c,d      |    fra,ger    |
-
-Scenario: View all groups
-  Given I am an admin
-  When I am on the admin home page
-  When I press “Show groups”
-  Then I should see all groups
-
-Scenario: View all users
-  Given I am an admin
-  When I am on the admin home page
-  When I press "Show users"
-  Then I should see all users
+#Feature: Viewing information about Groups
+#  As an administrator
+#  I want to look at information about groups
+#  In order to contact people or check group pairings    
+#
+#Background: admin has been added to database
+#  Given the following users exist:
+#  | first_name     | admin |
+#  |  aladdin       | false |
+#  |   Admin        | true  |
+#
+#  Given the following groups exist:
+#  |   members   |   languages   |
+#  |    a,b      |    eng,esp    |
+#  |    c,d      |    fra,ger    |
+#
+#Scenario: View all groups
+#  Given I am an admin
+#  When I am on the admin home page
+#  When I press “Show groups”
+#  Then I should see all groups
+#
+#Scenario: View all users
+#  Given I am an admin
+#  When I am on the admin home page
+#  When I press "Show users"
+#  Then I should see all users
 
 #Scenario: Searching for a group
 #Given I am an admin 
