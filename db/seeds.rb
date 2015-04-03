@@ -15,13 +15,13 @@ jane = {first_name: 'Jane',
 		residency: 'Domestic', 
 		gender: 'Female', 
 		gender_preference: 'Female',
-		fluent_languages: ['English'], 
+		fluent_languages: ['English'],
 		lang_additional_info: '',
 		first_lang_preference: 'French', 
 		first_lang_proficiency: 'elementary', 
 		second_lang_preference: 'Arabic', 
 		second_lang_proficiency: 'elementary',
-		time_preference: ['Monday'], 
+		time_preference: ['Monday', 'Tuesday'], 
 		hours_per_week: '1',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
@@ -47,7 +47,7 @@ robyn = {first_name: 'Robyn',
 		first_lang_proficiency: 'intermediate', 
 		second_lang_preference: 'Spanish', 
 		second_lang_proficiency: 'elementary',
-		time_preference: ['Monday'], 
+		time_preference: ['Monday', 'Tuesday'], 
 		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
@@ -55,7 +55,7 @@ robyn = {first_name: 'Robyn',
 		active: true
 		}
 
-admin = { first_name: 'Admin', admin: true }
+admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true }
 
 admin2 = { first_name: 'adminmeister', 
   	sid: '223333', 
@@ -71,18 +71,16 @@ admin2 = { first_name: 'adminmeister',
 		first_lang_proficiency: 'intermediate', 
 		second_lang_preference: 'Spanish', 
 		second_lang_proficiency: 'elementary',
-		time_preference: ['Monday'], 
+		time_preference: ['Monday'],
 		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		active: true,
     admin: true 
 }
-
 jasonadmin = { first_name: 'Jason', last_name: 'Jia', email: 'jasonjia@berkeley.edu', admin: true }
 
-users = User.create!([robyn, jane, admin2, shana])
-
+users = User.create!([admin2, jason, robyn, jane, admin])
 
 russian = {language: 'Russian',
            day: 'Monday',
@@ -113,3 +111,26 @@ german =  {language: 'German',
             time: '6-7PM',
             location: '151 Chavez'}
 groups = Group.create!([russian, english1, mandarin, english2, korean, swedish, german])
+
+jason = { first_name: 'Jason',
+    last_name: 'Jia',
+  	sid: '12345678',
+		email: 'jasonjia@berkeley.edu',
+		academic_title: 'Undergraduate',
+		major: 'Computer Science', 
+		residency: 'Domestic', 
+		gender: 'Male', 
+		gender_preference: 'Female',
+		fluent_languages: ['English, Mandarin'],
+		lang_additional_info: '',
+		first_lang_preference: 'French', 
+		first_lang_proficiency: 'intermediate', 
+		second_lang_preference: 'Spanish', 
+		second_lang_proficiency: 'elementary',
+		time_preference: ['Monday'], 
+		hours_per_week: '2',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		active: true,
+    admin: false
+}

@@ -97,3 +97,21 @@ end
 Then /^I should be at the LEP (.*) home page$/ do |user_type|
 end
 
+When /^the following pairings have been generated:$/ do |pairs|
+  pairs.hashes.each do |pair|
+    members = pair['name'].split(',')
+    Pair.create(id: pair['id'], member1: members[0], member2: members[1], languages: pair['languages'].split(','))
+  end
+end
+
+When /^I view pairs$/ do
+  visit '/admins'
+end
+
+Then /^I should see the following pair ids:$/ do |ids|
+  _ids = ids.gsub(' ', '').split(',')
+  _ids.each do |id|
+    puts id
+    page.should have_content(id)
+  end
+end

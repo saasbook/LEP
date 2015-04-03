@@ -34,6 +34,8 @@ module NavigationHelpers
 
     when /^the groups page$/ then '/groups'
 
+    when /^I view pairs$/  then '/admins'
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
