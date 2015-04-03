@@ -30,6 +30,8 @@ module NavigationHelpers
     
     when /^the existing user show page$/ then '/users/1'
 
+    when /^I view pairs$/  then '/admins'
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

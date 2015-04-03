@@ -45,6 +45,8 @@ class AdminsController < ApplicationController
   def pairing
     User.to_csv()
     res = `python script/lep_pairing.py`
+    flash[:notice] = 'Pairs have been generated'
+    redirect_to admins_path
   end
 
 end
