@@ -27,17 +27,19 @@
 = @user.second_lang_preference.capitalize!
 
 
-%h3= "Your Group Information"
+%h3= "Your Pair Information"
 
-%h4= "Group ID: 1"
+-# Find the pair an user is associated with
 
-%h4= "Group Languages"
+%h4= "Pair ID: 1"
+
+%h4= "Pair Languages"
 ="#{@user.first_lang_preference}, #{@user.second_lang_preference if @user.second_lang_preference != ""}, #{@fluent_languages.join(", ")}"
 %p
 
 %table
   %tr
-    %th Group Member
+    %th Pair Member
     %th Contact Info
     - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
       %tr

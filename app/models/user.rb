@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  belongs_to :pairs
+
   serialize :fluent_languages, Array
   serialize :time_preference, Array
   
