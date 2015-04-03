@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  serialize :fluent_languages, Array
+  serialize :time_preference, Array
   
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
   def self.to_csv
@@ -13,6 +16,3 @@ class User < ActiveRecord::Base
   end
 
 end
-
-
-
