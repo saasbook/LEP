@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324202104) do
+ActiveRecord::Schema.define(version: 20150402214015) do
 
   create_table "groups", force: true do |t|
     t.string   "members"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "time"
+    t.string   "location"
+    t.string   "language"
+    t.string   "day"
+  end
+
+  create_table "pairs", force: true do |t|
+    t.string   "member1"
+    t.string   "member2"
+    t.string   "member3"
     t.string   "languages"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,13 +49,14 @@ ActiveRecord::Schema.define(version: 20150324202104) do
     t.string   "second_lang_preference"
     t.string   "second_lang_proficiency"
     t.string   "time_preference"
-    t.string   "time_additional_info"
+    t.string   "hours_per_week"
     t.string   "user_motivation"
     t.string   "user_plan"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                   default: false
     t.boolean  "active"
+    t.string   "group_leader"
   end
 
 end

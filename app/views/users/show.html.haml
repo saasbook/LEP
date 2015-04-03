@@ -8,6 +8,7 @@
 
 - if @user.active
   = form_tag(:action => :deactivate) do
+    /= submit_tag 'Activate', data: {id: 'deactivate' }
     = submit_tag('Deactivate', id: 'deactivate')
 - else
   = form_tag(:action => :activate) do
@@ -15,32 +16,40 @@
 
 
 %h4= "Your Languages"
-= @user.fluent_languages
-
-%h4= "Your Languages"
-= @user.fluent_languages
+- @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
+- @fluent_languages.each {|lang| lang.capitalize!}
+= @fluent_languages.join(", ")
 
 %h4= "Language Preference 1"
-= @user.first_lang_preference
+= @user.first_lang_preference.capitalize!
 
 %h4= "Language Preference 2"
-= @user.second_lang_preference
+- if @user.second_lang_preference == nil
+  = "You have no second language preference"
+- else
+  = @user.second_lang_preference.capitalize!
 
 
-%h3= "Your Group Information"
+%h3= "Your Pair Information"
 
-%h4= "Group ID: 1"
+-# Find the pair an user is associated with
+- @pair = Pair.where(:member1 => @user.id) or Pair.where(:member2 => @user.id) or Pair.where(:member3 => @user.id)
 
-%h4= "Group Languages"
-="#{@user.first_lang_preference}, #{@user.fluent_languages}"
+- if @pair.empty?
+  = "You are not currently in a pair"
+- else
+  %h4= "Pair ID: #{@pair.id}"
 
-%p
+  %h4= "Pair Languages"
+  = @pair.languages.join(", ")
+  %p
 
-%table
-  %tr
-    %th Group Member
-    %th Contact Info
-    - [{"name" => "Sally Sue", "contact" => "sally@berkeley.edu"},{"name" => "Joe Schmoe", "contact" => "bob@berkeley.edu"}].each do |member|
-      %tr
-        %td= member["name"]
-        %td= member["contact"]
+  %table
+    %tr
+      %th Pair Member
+      %th Contact Info
+      - @pair.members.each do |id|
+        - user = User.find(id)
+        %tr
+          %td= user.first_name + " " + user.last_name
+          %td= user.email

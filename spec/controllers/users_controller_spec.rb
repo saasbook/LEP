@@ -71,6 +71,31 @@ describe UsersController do
     end
   end
 
+  describe '#activate' do
+    before :each do
+      @user = double(User, first_name: 'John', last_name: 'Smith', id: '27', active: false)
+    end
+    it "should deactivate an user" do
+      User.should_receive(:find).with(@user.id).and_return(@user)
+      @user.should_receive(:update_attributes).with({:active => true}).and_return(true)
+      post :activate, :id => "27"
+      flash[:warning].should eq("John Smith's account has been reactivated.")
+    end
+  end
+
+  describe '#deactivate' do
+    before :each do
+      @user = double(User, first_name: 'John', last_name: 'Smith', id: '27', active: true)
+    end
+    it "should deactivate an user" do
+      User.should_receive(:find).with(@user.id).and_return(@user)
+      @user.should_receive(:update_attributes).with({:active => false}).and_return(true)
+      post :deactivate, :id => "27"
+      flash[:warning].should eq("John Smith's account has been deactivated.")
+    end
+  end
+
+
   # describe '#home' do
   #   # before :each do
   #   #   @user = double(User, first_name: 'John', id: '27', email: 'john@berkeley.edu')

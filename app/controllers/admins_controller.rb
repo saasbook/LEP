@@ -70,7 +70,9 @@ class AdminsController < ApplicationController
   end
 
   # controller action that should call pairing algorithm
-  def pair
+  def pairing
+    User.to_csv()
+    res = `python script/lep_pairing.py`
   end
 
 end

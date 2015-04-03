@@ -1,18 +1,56 @@
-%h2 All Groups
+%h2 Language Groups
 
-%table#groups
-  %thead
-    %tr
-      %th Group ID
-      %th Members
-      %th Languages
-  %tbody
-    - @groups.each do |group|
-      %tr
-        %td=group.id
-        %td=group.members
-        %td=group.languages
+-if @user.admin
+  = link_to "Add group", new_group_path, :id => "add group"
 
-= link_to 'Show users', admins_path
-= link_to 'Home', admin_path(@user.id)
-
+%div#groups
+  %ul.groups
+    - if !@mon_groups.empty?
+      %h4 Monday
+      - @mon_groups.each do |group|
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+    - if !@tues_groups.empty?
+      %h4 Tuesday
+      - @tues_groups.each do |group|
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   
+    - if !@wed_groups.empty?
+      %h4 Wednesday
+      - @wed_groups.each do |group|
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   
+    - if !@thurs_groups.empty?
+      %h4 Thursday
+      - @thurs_groups.each do |group|
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   
+    - if !@fri_groups.empty?
+      %h4 Friday
+      - @fri_groups.each do |group|
+        %li.group
+          %span=group.language
+          %span=group.time
+          %span=group.location
+        %div.delete-group
+          = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+   

@@ -6,9 +6,10 @@ LEP::Application.routes.draw do
   resources :groups
   resources :users
   resources :admins
+  resources :pairs
 
-  root :to => 'welcome#index'
-  get "/auth/:provider/callback" => 'users#home'
+  root :to => "welcome#index"
+  get "/auth/:provider/callback" => "users#home"
 
   put "admins/:id/deactivate/:user_id" => "admins#deactivate", :as => :admin_deactivate_user
   put "admins/:id/activate/:user_id" => "admins#activate", :as => :admin_activate_user
@@ -16,10 +17,10 @@ LEP::Application.routes.draw do
   put "admins/:id/make_admin/:user_id" => "admins#make_admin", :as => :admin_make_admin
   put "admins/:id/revoke_admin/:user_id" => "admins#revoke_admin", :as => :admin_revoke_admin
 
-  post "/users/:id/deactivate" => 'users#deactivate'
-  post "/users/:id/activate" => 'users#activate'
-
   get 'admins/:id/pair' => 'admins#pair', :as => :pair
+  post "/user/:id/deactivate" => 'users#deactivate'
+  post "/user/:id/activate" => 'users#activate'
+  get "admins/:id/pairing" => "admins#pairing", :as => :pairing
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
     @user.admin = false
+    @user.active = true
     @user.save
     session[:id] = @user.id
     redirect_to user_path(@user)
@@ -109,8 +110,13 @@ class UsersController < ApplicationController
     params.require(:user).permit(:id, :first_name, :last_name, :sid, :email, :academic_title, :major, :residency,
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
-                                :second_lang_proficiency, :time_preference, :time_additional_info, 
-                                :user_motivation, :user_plan, :admin, :active)
+                                :second_lang_proficiency, :time_preference, :hours_per_week, 
+                                :user_motivation, :user_plan, :admin, :active).tap do |whitelisted|
+                                    whitelisted[:fluent_languages] = params[:user][:fluent_languages]
+                                    whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
+                                    whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
+                                    whitelisted[:time_preference] = params[:user][:time_preference]
+    end
   end
 
 end

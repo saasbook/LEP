@@ -10,15 +10,15 @@ Background: I am an admin
 Scenario: Admin wants to create a pair
   Given that the following applications have been submitted:
   | id | first_name | fluent_languages | first_lang_preference | first_lang_proficiency | second_lang_preference | second_lang_proficiency |
-  | 1  | a          | English          | Chinese               | elementary             | nil                    | nil                     |
-  | 2  | b          | Chinese          | English               | elemenrary             | nil                    | nil                     |
+  | 1  | a          | [English]        | [Chinese]             | elementary             | nil                    | nil                     |
+  | 2  | b          | [Chinese]        | [English]             | elemenrary             | nil                    | nil                     |
   When I generate pairings
   Then there should be one pair
 
 Scenario: Admin wants to create a triple
   Given that the following applications have been submitted:
   | id | first_name | fluent_languages | first_lang_preference | first_lang_proficiency | second_lang_preference | second_lang_proficiency |
-  | 1  | a          | English          | French                | elementary             | nil                    | nil                     |
+  | 1  | a          | [English]        | French                | elementary             | nil                    | nil                     |
   | 2  | b          | Chinese          | English               | elementary             | nil                    | nil                     |
   | 3  | c          | French           | Chinese               | elementary             | nil                    | nil                     |
   When I generate pairings
