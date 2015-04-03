@@ -6,8 +6,8 @@ Feature: display language groups for admins
   
 Background: student has been added to a group
   Given the following users exist:
-  | first_name | admin |
-  | Admin      | true  |
+  | first_name | admin |  id  |
+  | Admin      | true  |  1   |
 
   Given the following groups exist:
   | language | day      | time  | location |

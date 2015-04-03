@@ -5,8 +5,9 @@ Given /the following students exist/ do |students|
 		sid: student['sid'], 
 		email: student['email'],
 		gender: student['gender'], 
-		fluent_languages: student['fluent_languages'], 
-		first_lang_preference: student['first_lang_preference'], admin: false,
+		fluent_languages: student['fluent_languages'].split(','), 
+		first_lang_preference: student['first_lang_preference'],
+    admin: false,
     active: true)
   end end
 

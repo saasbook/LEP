@@ -6,7 +6,7 @@ end
 
 Given /^the following users exist$/ do |users_hash|
   users_hash.hashes.each do |user|
-    User.create({first_name: user['first_name'], admin: user['admin']})
+    User.create({first_name: user['first_name'], admin: user['admin'], id: user['id']})
   end
 end
 
