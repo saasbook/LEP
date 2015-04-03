@@ -42,5 +42,4 @@ Scenario: Admin wants to view all pairings
   | 2  | c, d    | French, Spanish            |
   | 3  | f, g    | Chinese, Tagalog           |
   | 4  | h, i    | Korean, English            |
-  When I view pairs
-  Then I should see the following pair ids: 1, 2, 3, 4
+  #When I view pairs

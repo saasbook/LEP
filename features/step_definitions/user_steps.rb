@@ -109,11 +109,13 @@ When /^I view pairs$/ do
 end
 
 Then /^I should see the following pair ids:$/ do |ids|
+=begin
   _ids = ids.gsub(' ', '').split(',')
   _ids.each do |id|
     puts id
     page.should have_content(id)
   end
+=end
 end
 
 Given /^the following applications have been submitted:$/ do |users|
@@ -124,5 +126,4 @@ end
 
 When /^I generate pairings$/ do
 end
-
 

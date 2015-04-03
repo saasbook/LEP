@@ -6,7 +6,7 @@ class AdminsController < ApplicationController
     if params[:id] then
       @user = User.find(params[:id])
       unless session[:id] == @user.id and @user.admin
-        redirect_to user_path
+        redirect_to user_path(@user.id)
       end
     else
       @id = session[:id]
