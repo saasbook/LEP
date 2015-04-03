@@ -3,7 +3,6 @@ class Pair < ActiveRecord::Base
   serialize :languages, Array
 
   def self.generate_pairs()
-    puts "GENERATING PAIRS NOWWWWW"
     CSV.foreach('script/final_pairs.csv', headers: true) do |row|
       @member1 = row['partner1']
       @member2 = row['partner2']
