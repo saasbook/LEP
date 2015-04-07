@@ -22,7 +22,7 @@
 
   %div.question
     = f.label :academic_title, "Academic Title"
-    = f.select :academic_title, [["Undergraduate", "undergraduate"], ["Graduate", "graduate"], ["Staff", "staff"], ["scholar", "scholar"], ["Instructor", "instructor"], ["Instructor", "instructor"], ["Other", "other"]]
+    = f.select :academic_title, [["Undergraduate", "undergraduate"], ["Graduate", "graduate"], ["Staff", "staff"], ["Scholar", "scholar"], ["Instructor", "instructor"], ["Other", "other"]]
 
   %div.question
     = f.label :major, "Major(s)"
@@ -69,6 +69,11 @@
   %div.question
     = f.label :group_leader, "Do you want to lead a language group?"
     = f.select :group_leader, [["Yes"], ["No"]]
+
+  %div.question
+    = f.label :group_language, "What language would you like to lead a language group in?"
+    = f.select :group_language, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+
 
   %div.question
     = f.label :lang_additional_info, "Additional information you would like us to know"
