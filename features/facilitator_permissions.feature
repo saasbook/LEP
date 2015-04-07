@@ -18,8 +18,8 @@ Background: student has been added to a group
 Scenario: Facilitator creates language group
   Given I am a facilitator user,
   When I am on the user home page
-  When I press "create language group"
-  Then I should be on the create language group page
+  When I press "Create Language Group"
+  Then I should be on the add group page
 
 Scenario: Facilitator submits language group info
   Given I am a facilitator user
