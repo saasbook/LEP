@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.admin = false
     @user.active = true
+    @user.facilitator = false
     @user.save
     session[:id] = @user.id
     redirect_to user_path(@user)
@@ -82,6 +83,10 @@ class UsersController < ApplicationController
     return @user.pluck(:active)[0]
   end
 
+  def is_facilitator?
+    return @user.pluck(:facilitator)[0]
+  end
+
   def home
     @email = request.env['omniauth.auth']['info']['email']
     if @email =~ /.*berkeley.edu$/
@@ -111,7 +116,7 @@ class UsersController < ApplicationController
                                 :gender, :gender_preference, :fluent_languages, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :time_preference, :hours_per_week, 
-                                :user_motivation, :user_plan, :admin, :active).tap do |whitelisted|
+                                :user_motivation, :user_plan, :admin, :active, :facilitator).tap do |whitelisted|
                                     whitelisted[:fluent_languages] = params[:user][:fluent_languages]
                                     whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
                                     whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
