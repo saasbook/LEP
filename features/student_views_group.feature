@@ -7,7 +7,7 @@ Feature: display group members when student user views their group
 Background: student has been added to a group
 
   Given the following students exist:
-  | group_id | first_name | last_name |  sid  | email | gender | fluent_languages | first_lang_preference |
+  | group_id | first_name | last_name |  sid     | email               | gender | fluent_languages | first_lang_preference |
   |    1     |   Billy    |   Bob     |  1234566 |  billy@berkeley.edu | male | [arabic] | english |
   |    1     |   Joe      |   Shmoe   |  1234567 |  joe@berkeley.edu | male | [arabic] | english |
   |    1     |   Sally    |   Sue     |  1234568 |  sally@berkeley.edu | male | [arabic] | english |
