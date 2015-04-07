@@ -5,20 +5,24 @@ Feature: Adjust permissions for users
 
 Background: admin has been added to database
   Given the following users exist:
-  | id | first_name    | admin | active | email                 |
-  | 1  | aladdin       | false | false  | active@berkeley.edu   |
-  | 2  |  admin        | true  | true   | admin@berkeley.edu    |
-  | 3  | jasmine       | true  | true   | inactive@berkeley.edu |
+  | id | first_name | last_name | admin | active | facilitator | email                 |
+  | 1  | Aladdin    | A         | false | true   | false       | active@berkeley.edu   |
+  | 2  |  Admin     | Ad        | true  | true   | false       | admin@berkeley.edu    |
+  | 3  | Jasmine    | J         | false | true   | true        | inactive@berkeley.edu |
 
   And I am an admin user
   And I sign in
 
-Scenario: Make another user a facilitator
+Scenario: Make an active user a facilitator
   Given I am on the admin home page
-  When I make aladdin as a facilitator
+  #When I press "grant_f"
+  #Then I should see "Aladdin A is now a language group facilitator"
+  When I make Aladdin as a facilitator
   Then that user should be a facilitator
 
 Scenario: Set a facilitator user to a non-facilitator user
   Given I am on the admin home page
-  When I remove jasmine as a facilitator
-  Then that user should not be a facilitator
+  #When I press "revoke_f"
+  #Then I should see "Jasmine J is no longer a language group facilitator"
+  When I remove Jasmine as a facilitator
+  Then that user should not be a facilitator 
