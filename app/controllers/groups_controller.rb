@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   
   def new
+    @user = User.find(session[:id])
   end
 
   def create
