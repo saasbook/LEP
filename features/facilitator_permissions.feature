@@ -21,6 +21,8 @@ Scenario: Facilitator creates language group
   When I press "Create Language Group"
   Then I should be on the add group page
 
+#facilitator delete language group???
+
 Scenario: Facilitator submits language group info
   Given I am a facilitator user
   When I am on the create language group page
