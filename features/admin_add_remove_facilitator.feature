@@ -5,10 +5,10 @@ Feature: Adjust permissions for users
 
 Background: admin has been added to database
   Given the following users exist:
-  | id | first_name | last_name | admin | active | facilitator | email                 |
-  | 1  | Aladdin    | A         | false | true   | false       | active@berkeley.edu   |
-  | 2  |  Admin     | Ad        | true  | true   | false       | admin@berkeley.edu    |
-  | 3  | Jasmine    | J         | false | true   | true        | inactive@berkeley.edu |
+  | id | first_name | last_name | admin | active | group_leader | facilitator | email                 |
+  | 1  | Aladdin    | A         | false | true   | Yes          | false       | active@berkeley.edu   |
+  | 2  |  Admin     | Ad        | true  | true   | Yes          | false       | admin@berkeley.edu    |
+  | 3  | Jasmine    | J         | false | true   | Yes          | true        | inactive@berkeley.edu |
 
   And I am an admin user
   And I sign in

@@ -25,8 +25,9 @@ jane = {first_name: 'Jane',
 		hours_per_week: '1',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
+		group_leader: 'Yes',
 		admin: false,
-		active: false,
+		active: true,
 		facilitator: false
 		}
 
@@ -59,9 +60,9 @@ robyn = {first_name: 'Robyn',
 		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		admin: false,
+		admin: true,
 		active: true,
-		facilitator: true
+		facilitator: false
 		}
 
 admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true, facilitator: false}
