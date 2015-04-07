@@ -105,7 +105,7 @@ jason = { first_name: 'Jason',
     admin: true
 }
 
-users = User.create!([robyn, jane, admin2, shana, iris, jason])
+users = User.create!([robyn, jane, admin2, iris, jason])
 
 russian = {language: 'Russian',
            day: 'Monday',

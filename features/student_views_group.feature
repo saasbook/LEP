@@ -15,10 +15,13 @@ Background: student has been added to a group
   |    2     |   John     |   Smith   |  1234530 |  john@berkeley.edu | male | [arabic] | english |
   |    3     |   Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | [arabic] | english |
 
+  Given the following groups exist:
+  | language | day      | time  | location | members |
+  | arabic  | Tuesday  | 2-3PM | 1 Evans  |    1,2,3   |
+
 Scenario: student is in a group
   Given I am logged in as "Billy"
   Then I should see "Group Information"
-  And I should see "Group Member"
   And I should see "Joe Schmoe"
   And I should see "Sally Sue"
   And I should not see "Jane Doe"

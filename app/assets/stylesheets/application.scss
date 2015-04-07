@@ -14,9 +14,12 @@
 
 $white: #fff;
 $black: #000;
-$blue: #00B0DA;
+$berkblue: #003262;
+$calgold: #FDB515;
+$lightblue: #1F87E0;
 $grey: #d3d3d3;
 $unit: 10px;
+$width: 800px;
 
 html,
 body {
@@ -24,18 +27,18 @@ body {
   margin: 0;
   box-sizing: border-box;
   color: $black;
-  font-family: 'Helvetica', sans-serif;
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
 }
 
 #main {
   margin: 0 auto;
   font-size: 1em;
-  max-width: 800px;
+  max-width: $width;
 
 }
 a {
   background: transparent;
-  color: $blue;
+  color: $berkblue;
   text-decoration: none;
 
   &:hover {
@@ -43,29 +46,35 @@ a {
   }
 }
 
-nav {
-  width: 100%;
-  background-color: $blue;
-  color: $white;
-  height: 3 * $unit;
-  padding: 2 * $unit;
+#header {
+  font-size: 2.5em;
+  font-weight: 500;
+  font-family: serif;
+  color: $calgold;
+  padding: 20px;
+  max-width: $width;
+  margin: 0 auto;
 
-  #header {
-    font-size: 1.5em;
-    font-weight: 500;
+
+  .berkeley {
+    color: $berkblue;
   }
 
+}
+nav {
+  width: 100%;
+  background-color: $lightblue;
+  color: $white;
+  padding: $unit;
 
   ul {
-    float: right;
-    margin-top: $unit/2;
+    margin: 0;
     margin-right: 4 * $unit;
-
-    height: 4 * $unit;
     list-style-type: none;
 
     li {
       display: inline-block;
+      margin-right: 2*$unit;
     }
 
     a {
@@ -75,15 +84,20 @@ nav {
 }
 
 
-form {
+h1 {
+  font-size: 1.5em;
+  color: $berkblue;
+}
 
+form {
   .question {
     margin-bottom: 2*$unit;
   }
 
   label {
-    display: block;
     font-style: bold;
+    margin-bottom: $unit;
+    display: block;
   }
 
   input {

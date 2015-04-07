@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402214015) do
+ActiveRecord::Schema.define(version: 20150407001948) do
 
   create_table "groups", force: true do |t|
     t.string   "members"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150402214015) do
     t.string   "location"
     t.string   "language"
     t.string   "day"
+    t.string   "info"
   end
 
   create_table "pairs", force: true do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150402214015) do
     t.boolean  "admin",                   default: false
     t.boolean  "active"
     t.string   "group_leader"
+    t.string   "group_language"
   end
 
 end

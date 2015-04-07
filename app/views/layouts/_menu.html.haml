@@ -1,13 +1,15 @@
+%div#header
+  %span.berkeley
+    Berkeley
+  %span Language Exchange Program 
 %nav
-  %span#header Language Exchange Program 
-
   - if request.env['PATH_INFO'] != '/'
+
     %ul
       %li
-        = link_to "Language Groups", groups_path
-      %li
-        = link_to "Logout", "https://mail.google.com/mail/u/0/?logout&hl=en"
-
+        = link_to "LANGUAGE GROUPS", groups_path 
+      %li 
+        = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 
 
 - if flash[:notice]
   #notice.message= flash[:notice]
