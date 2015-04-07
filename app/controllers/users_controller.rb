@@ -3,14 +3,6 @@ class UsersController < ApplicationController
   before_filter :check_user
   before_filter :check_email, :except => [:home, :create, :invalid]
 
-  def check_email
-    #Check that the user is properly logged in
-    if session[:invalid_email]
-      flash[:warning] = "#{session[:invalid_email]} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
-      redirect_to users_invalid_path
-    end
-  end
-
   def check_user
     if params[:id] && session[:id]
       @user = User.where(:id => session[:id])

@@ -24,6 +24,9 @@ LEP::Application.routes.draw do
   post "/user/:id/activate" => 'users#activate'
   get "admins/:id/pairing" => "admins#pairing", :as => :pairing
 
+  get "groups/:id/join" => "groups#join", :as => :join_groups
+  get "groups/:id/leave" => "groups#leave", :as => :leave_groups
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
