@@ -26,6 +26,7 @@ jane = {first_name: 'Jane',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
+		active: false,
 		facilitator: false
 		}
 
@@ -58,7 +59,7 @@ robyn = {first_name: 'Robyn',
 		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		admin: false,
+		admin: true,
 		active: true,
 		facilitator: false
 		}

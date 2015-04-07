@@ -61,6 +61,20 @@ class AdminsController < ApplicationController
     redirect_to admins_path
   end
 
+  def make_facilitator
+    @user = User.find(params[:user_id])
+    User.make_facilitator(@user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now a language group facilitator"
+    redirect_to admins_path
+  end
+
+  def revoke_facilitator
+    @user = User.find(params[:user_id])
+    User.revoke_facilitator(@user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer a language group facilitator"
+    redirect_to admins_path
+  end
+
   def show
   end
 

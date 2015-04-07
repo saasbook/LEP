@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   def User.deactivate(id)
     user = User.find(id)
-    user.update_attributes active: false 
+    user.update_attributes active: false, facilitator: false 
   end
 
   def User.make_admin(id)
@@ -32,6 +32,16 @@ class User < ActiveRecord::Base
   def User.revoke_admin(id)
     user = User.find(id)
     user.update_attributes admin: false
+  end
+
+  def User.make_facilitator(id)
+    user = User.find(id)
+    user.update_attributes facilitator: true
+  end
+
+  def User.revoke_facilitator(id)
+    user = User.find(id)
+    user.update_attributes facilitator: false
   end
 
 end
