@@ -9,7 +9,8 @@ Given /the following students exist/ do |students|
 		first_lang_preference: student['first_lang_preference'],
     admin: false,
     active: true)
-  end end
+  end
+end
 
 Given /^I am logged in as "(.*)"$/ do |first_name|
 	@user = User.find_by_first_name(first_name)
