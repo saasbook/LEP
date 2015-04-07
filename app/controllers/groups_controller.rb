@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   before_filter :check_email
 
   def new
+    @user = User.find(session[:id])
   end
 
   def create

@@ -59,9 +59,9 @@ robyn = {first_name: 'Robyn',
 		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		admin: true,
+		admin: false,
 		active: true,
-		facilitator: false
+		facilitator: true
 		}
 
 admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true, facilitator: false}
