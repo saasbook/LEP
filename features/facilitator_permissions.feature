@@ -29,7 +29,7 @@ Scenario: Facilitator submits language group info
 
 Scenario: Facilitator views group info
   Given I am a facilitator user
-  When I press view language group
+  When I press "view language group"
   Then I should see "Student Roster"
   Then I should see "Time and Place"
   Then I should see "Language Taught"
