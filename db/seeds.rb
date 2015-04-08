@@ -114,7 +114,24 @@ jason = { first_name: 'Jason',
 	    facilitator: false
 		}
 
-users = User.create!([robyn, jane, admin2, iris, jason])
+tsion = { first_name: 'Tsion',
+   	 	last_name: 'Behailu',
+  		email: 'tsion@berkeley.edu',
+      active: true,
+	    admin: true,
+	    facilitator: false
+		}
+
+chris = { first_name: 'Chris',
+   	 	last_name: 'Hsu',
+  		sid: '12345678',
+  		email: 'chrishsu@berkeley.edu',
+      active: true,
+	    admin: true,
+	    facilitator: false
+		}
+
+users = User.create!([robyn, jane, admin2, iris, jason, tsion, chris])
 
 russian = {language: 'Russian',
            day: 'Monday',
