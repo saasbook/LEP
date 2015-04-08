@@ -1,0 +1,125 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+/* line 25, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #000;
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
+}
+
+/* line 34, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+#main {
+  margin: 0 auto;
+  font-size: 1em;
+  max-width: 800px;
+}
+
+/* line 40, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+a {
+  background: transparent;
+  color: #003262;
+  text-decoration: none;
+}
+/* line 45, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 50, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+#header {
+  font-size: 2.5em;
+  font-weight: 500;
+  font-family: serif;
+  color: #FDB515;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* line 60, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+#header .berkeley {
+  color: #003262;
+}
+
+/* line 65, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+nav {
+  width: 100%;
+  background-color: #1F87E0;
+  color: #fff;
+  padding: 10px;
+}
+/* line 71, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+nav ul {
+  margin: 0;
+  margin-right: 40px;
+  list-style-type: none;
+}
+/* line 76, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+nav ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+/* line 81, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+nav ul a {
+  color: #fff;
+}
+
+/* line 88, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+h1 {
+  font-size: 1.5em;
+  color: #003262;
+}
+
+/* line 94, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+form .question {
+  margin-bottom: 20px;
+}
+/* line 98, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+form label {
+  font-style: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+/* line 104, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+form input {
+  border: 1px solid #d3d3d3;
+  padding: 5px;
+}
+/* line 110, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+form select {
+  border: 1px solid #d3d3d3;
+  border-radius: 0;
+  height: 30px;
+  padding: 5px;
+  background: transparent;
+}
+/* line 120, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/application.scss */
+form select[multiple] {
+  height: auto;
+}
+/* line 6, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/groups.scss */
+.groups li {
+  width: 400px;
+  margin-bottom: 20px;
+  list-style-type: none;
+}
+
+/* line 12, /Users/Tsion/Desktop/cs169/LEP/app/assets/stylesheets/groups.scss */
+.delete-group {
+  position: relative;
+  top: -40px;
+  right: -500px;
+}
