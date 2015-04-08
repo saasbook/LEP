@@ -1,4 +1,4 @@
-Feature: Generate pairings based on existing applications
+Feature: Generate pairs and triples based on existing applications
   As an admin
   So that I can create pairings
   I want to be able to click a button to generate pairings
@@ -42,4 +42,7 @@ Scenario: Admin wants to view all pairings
   | 2  | c, d    | French, Spanish            |
   | 3  | f, g    | Chinese, Tagalog           |
   | 4  | h, i    | Korean, English            |
-  #When I view pairs
+  When I view pairs
+  Then I should see four pairs
+  When I add another student to a pair
+  Then I should see three pairs and one triple
