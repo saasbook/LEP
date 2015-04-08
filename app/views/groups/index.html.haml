@@ -9,6 +9,8 @@
       %h4 Monday
       - @mon_groups.each do |group|
         %li.group
+          - facilitator = User.find(group.facilitator)
+          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
@@ -23,6 +25,8 @@
       %h4 Tuesday
       - @tues_groups.each do |group|
         %li.group
+          - facilitator = User.find(group.facilitator)
+          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
@@ -38,6 +42,8 @@
       %h4 Wednesday
       - @wed_groups.each do |group|
         %li.group
+          - facilitator = User.find(group.facilitator)
+          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
@@ -53,6 +59,8 @@
       %h4 Thursday
       - @thurs_groups.each do |group|
         %li.group
+          - facilitator = User.find(group.facilitator)
+          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
@@ -68,6 +76,8 @@
       %h4 Friday
       - @fri_groups.each do |group|
         %li.group
+          - facilitator = User.find(group.facilitator)
+          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location

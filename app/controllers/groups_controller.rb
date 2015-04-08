@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.facilitator = session[:id]
     @group.save!
     redirect_to groups_path
   end
@@ -47,7 +48,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:language, :day, :time, :location, :members)
+    params.require(:group).permit(:language, :day, :time, :location, :members, :facilitator)
   end
 
 end
