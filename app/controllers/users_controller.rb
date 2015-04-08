@@ -36,6 +36,21 @@ class UsersController < ApplicationController
   def show
     @id = params[:id]
     @user = User.find(@id)
+    #groupid
+    @groupID = nil
+    Group.all.each do |group|
+      if group.facilitator == @user.id
+        @groupID = group.id
+      end
+    end
+
+    # case where leaders lead more than one group
+    # @groups = Array.new
+    # Group.all.each do |group|
+    #   if group.facilitator == @user.id
+    #     @groups.push(group)
+    #   end
+    # end
   end
 
   def edit

@@ -2,12 +2,13 @@
 
 - if @user.active
   = form_tag(:action => :deactivate) do
-    -#= submit_tag 'Activate', data: {id: 'deactivate' }
     = submit_tag('Deactivate', id: 'deactivate')
 - else
   = form_tag(:action => :activate) do
     = submit_tag('Activate', id: 'activate')
 
+- if !@groupID.nil? and @user.facilitator?
+  = link_to "My Language Group", group_path(@groupID)
 
 %h4= "Your Languages"
 - @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}

@@ -62,7 +62,7 @@ robyn = {first_name: 'Robyn',
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
 		active: true,
-		facilitator: false
+		facilitator: true
 		}
 
 admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true, facilitator: false}
