@@ -8,33 +8,31 @@
   = form_tag(:action => :activate) do
     = submit_tag('Activate', id: 'activate')
 
-- if @user.facilitator
-  = link_to "Create Language Group", new_group_path, :id => "add group"
 
 %h4= "Your Languages"
 - @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
-- puts @fluent_languages
-- @fluent_languages.each do |lang|
-  = lang
+- @fluent_languages.each {|lang| lang.capitalize!}
+= @fluent_languages.join(", ")
 
 %h4= "Language Preference 1"
-- @user.first_lang_preference.capitalize!
-= @user.first_lang_preference
+= @user.first_lang_preference.capitalize!
 
 %h4= "Language Preference 2"
 - if @user.second_lang_preference == nil
   = "You have no second language preference"
 - else
-  - @user.second_lang_preference.capitalize!
-  = @user.second_lang_preference
+  = @user.second_lang_preference.capitalize!
 
 
 %h3= "Your Pair Information"
 
 -# Find the pair an user is associated with
-- @pair = Pair.where(:member1 => @user.id) or Pair.where(:member2 => @user.id) or Pair.where(:member3 => @user.id)
+- @pair = nil
+- Pair.all.each do |pair|
+  - if pair.members.include? @user.id
+    - @pair = pair
 
-- if @pair.empty?
+- if @pair.nil?
   = "You are not currently in a pair"
 - else
   %h4= "Pair ID: #{@pair.id}"
@@ -56,29 +54,19 @@
 %h3= "Your Group Information"
 - @group = nil
 - Group.all.each do |group|
-  - if group.has_member?(@user.id)
+  = "user id = #{@user.id}, group.members = #{group.members}"
+  - if group.members.include? @user.id
     - @group = group
 
 - if @group.nil?
   = "You are not currently in a group"
 - else
+  %h4= "Group ID: #{@group.id}"
   %table
     %tr
-      %th Group ID
-      %th Language
-      %th Location
-      %th Day
-      %th Time
-      %th Additional Info
-    %tr
-      %td= @group.id
-      %td= @group.language
-      %td= @group.location
-      %td= @group.day
-      %td= @group.time
-      %td= @group.info
-
-- 10.times do
-  %br
-
+      %th Group Member
+      - @group.members.each do |id|
+        - user = User.find(id)
+        %tr
+          %td= user.first_name + " " + user.last_name
 
