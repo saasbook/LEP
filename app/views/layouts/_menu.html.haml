@@ -8,7 +8,10 @@
     %ul
       %li
         - if !@user.id.nil?
-          = link_to "HOME", user_path(@user)
+          - if @user.admin
+            = link_to "HOME", admin_path(@user)
+          - else
+            = link_to "HOME", user_path(@user)
       %li
         = link_to "LANGUAGE GROUPS", groups_path 
       %li 
