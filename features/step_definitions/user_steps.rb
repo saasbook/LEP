@@ -9,7 +9,8 @@ Given /the following students exist/ do |students|
 		first_lang_preference: student['first_lang_preference'],
     admin: false,
     active: true)
-  end end
+  end
+end
 
 Given /^I am logged in as "(.*)"$/ do |first_name|
 	@user = User.find_by_first_name(first_name)
@@ -116,6 +117,17 @@ When /^I (make)?(remove)? (.+) as an admin$/ do |make, remove, user|
     end
   end
 end
+
+When /^I (make)?(remove)? (.+) as a facilitator$/ do |make, remove, user|
+  @other_user = User.find_by_first_name(user)
+  if make
+    click_link('Grant Facilitator')
+  else
+    within find('tr', text: "#{@other_user.id}") do
+      click_link('Revoke Facilitator')
+    end
+  end
+end
   
 Then /^that user should (not )?be an admin$/ do |not_admin| 
   status = User.find(@other_user.id).admin
@@ -125,9 +137,19 @@ Then /^that user should (not )?be an admin$/ do |not_admin|
     status.should be_true
   end
 end
-# When /^(?:|I )click "(.*)"$/ do |button|
-#   %{I click (button)}
-# end
+
+Then /^that user should (not )?be a facilitator$/ do |not_facil| 
+  status = User.find(@other_user.id).facilitator
+  if not_facil
+    status.should be_false
+  else
+    status.should be_true
+  end
+end
+
+When /^(?:|I )click "(.*)"$/ do |button|
+  %{I click (button)}
+end
 
 # Then step definitions
 Then /^I should be at the LEP (.*) home page$/ do |user_type|

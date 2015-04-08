@@ -36,6 +36,7 @@ module NavigationHelpers
 
     when /^I view pairs$/  then '/admins'
     
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

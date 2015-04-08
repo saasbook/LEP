@@ -25,16 +25,21 @@ jane = {first_name: 'Jane',
 		hours_per_week: '1',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
+		group_leader: 'Yes',
 		admin: false,
+		active: true,
+		facilitator: false
 		}
 
 shana = {first_name: 'Shana',
-    email: 'shanahu@berkeley.edu',
-    admin: true}
+    	email: 'shanahu@berkeley.edu',
+    	admin: true,
+    	facilitator: false}
 
 iris = {first_name: 'Iris',
-    email: 'iriswang@berkeley.edu',
-    admin: true}
+	    email: 'iriswang@berkeley.edu',
+	    admin: true,
+		facilitator: false}
 
 robyn = {first_name: 'Robyn', 
 		last_name: 'Zhang', 
@@ -55,14 +60,15 @@ robyn = {first_name: 'Robyn',
 		hours_per_week: '2',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		admin: false,
-		active: true
+		admin: true,
+		active: true,
+		facilitator: false
 		}
 
-admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true }
+admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true, facilitator: false}
 
 admin2 = { first_name: 'adminmeister', 
-  	sid: '223333', 
+  		sid: '223333', 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Undergraduate',
 		major: 'Computer Science', 
@@ -80,30 +86,33 @@ admin2 = { first_name: 'adminmeister',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		active: true,
-    admin: true 
-}
+	    admin: true,
+	    facilitator: false
+		}
+
 jason = { first_name: 'Jason',
-    last_name: 'Jia',
-  	sid: '12345678',
-		email: 'jasonjia@berkeley.edu',
-		academic_title: 'Undergraduate',
-		major: 'Computer Science', 
-		residency: 'Domestic', 
-		gender: 'Male', 
-		gender_preference: 'Female',
-		fluent_languages: ['English, Mandarin'],
-		lang_additional_info: '',
-		first_lang_preference: 'French', 
-		first_lang_proficiency: 'intermediate', 
-		second_lang_preference: 'Spanish', 
-		second_lang_proficiency: 'elementary',
-		time_preference: ['Monday'], 
-		hours_per_week: '2',
-		user_motivation: 'I will be studying abroad.', 
-		user_plan: 'I will set a regular meeting time with them.',
-		active: true,
-    admin: true
-}
+   	 	last_name: 'Jia',
+  		sid: '12345678',
+  		email: 'jasonjia@berkeley.edu',
+  		academic_title: 'Undergraduate',
+      major: 'Computer Science', 
+      residency: 'Domestic', 
+      gender: 'Male', 
+      gender_preference: 'Female',
+      fluent_languages: ['English, Mandarin'],
+      lang_additional_info: '',
+      first_lang_preference: 'French', 
+      first_lang_proficiency: 'intermediate', 
+      second_lang_preference: 'Spanish', 
+      second_lang_proficiency: 'elementary',
+      time_preference: ['Monday'], 
+      hours_per_week: '2',
+      user_motivation: 'I will be studying abroad.', 
+      user_plan: 'I will set a regular meeting time with them.',
+      active: true,
+	    admin: false,
+	    facilitator: false
+		}
 
 users = User.create!([robyn, jane, admin2, iris, jason])
 

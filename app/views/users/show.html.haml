@@ -1,33 +1,32 @@
 %h2= "Welcome, #{@user.first_name}!"
 
-
-/ - if @user.active
-/   = button_to 'Deactivate', :action => :deactivate, :id => "deactivate" # :confirm => 'Are you sure you want to deactivate your account?'
-/ - else
-/   = button_to 'Activate', :action => :activate, :form => { :id => "activate" } #, :confirm => 'Are you sure you want to reactivate your account?'
-
 - if @user.active
   = form_tag(:action => :deactivate) do
-    /= submit_tag 'Activate', data: {id: 'deactivate' }
+    -#= submit_tag 'Activate', data: {id: 'deactivate' }
     = submit_tag('Deactivate', id: 'deactivate')
 - else
   = form_tag(:action => :activate) do
     = submit_tag('Activate', id: 'activate')
 
+- if @user.facilitator
+  = link_to "Create Language Group", new_group_path, :id => "add group"
 
 %h4= "Your Languages"
 - @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
-- @fluent_languages.each {|lang| lang.capitalize!}
-= @fluent_languages.join(", ")
+- puts @fluent_languages
+- @fluent_languages.each do |lang|
+  = lang
 
 %h4= "Language Preference 1"
-= @user.first_lang_preference.capitalize!
+- @user.first_lang_preference.capitalize!
+= @user.first_lang_preference
 
 %h4= "Language Preference 2"
 - if @user.second_lang_preference == nil
   = "You have no second language preference"
 - else
-  = @user.second_lang_preference.capitalize!
+  - @user.second_lang_preference.capitalize!
+  = @user.second_lang_preference
 
 
 %h3= "Your Pair Information"
@@ -57,21 +56,29 @@
 %h3= "Your Group Information"
 - @group = nil
 - Group.all.each do |group|
-  = "user id = #{@user.id}, group.members = #{group.members}"
-  - if group.members.include? @user.id
+  - if group.has_member?(@user.id)
     - @group = group
 
 - if @group.nil?
   = "You are not currently in a group"
 - else
-  %h4= "Group ID: #{@group.id}"
   %table
     %tr
-      %th Group Member
-      - @group.members.each do |id|
-        - user = User.find(id)
-        %tr
-          %td= user.first_name + " " + user.last_name
+      %th Group ID
+      %th Language
+      %th Location
+      %th Day
+      %th Time
+      %th Additional Info
+    %tr
+      %td= @group.id
+      %td= @group.language
+      %td= @group.location
+      %td= @group.day
+      %td= @group.time
+      %td= @group.info
 
+- 10.times do
+  %br
 
 

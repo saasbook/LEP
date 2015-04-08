@@ -17,9 +17,15 @@ LEP::Application.routes.draw do
   put "admins/:id/make_admin/:user_id" => "admins#make_admin", :as => :admin_make_admin
   put "admins/:id/revoke_admin/:user_id" => "admins#revoke_admin", :as => :admin_revoke_admin
 
+  put "admins/:id/make_facilitator/:user_id" => "admins#make_facilitator", :as => :admin_make_facilitator
+  put "admins/:id/revoke_facilitator/:user_id" => "admins#revoke_facilitator", :as => :admin_revoke_facilitator
+
   post "/user/:id/deactivate" => 'users#deactivate'
   post "/user/:id/activate" => 'users#activate'
   get "admins/:id/pairing" => "admins#pairing", :as => :pairing
+
+  get "groups/:id/join" => "groups#join", :as => :join_groups
+  get "groups/:id/leave" => "groups#leave", :as => :leave_groups
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

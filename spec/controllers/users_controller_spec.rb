@@ -32,7 +32,7 @@ describe UsersController do
       User.should_receive(:find).with(@user.id).and_return(double('User'))
       get :show, id: '10'
     end
-    it 'should call check_email and redirect when the email is invalid' do
+    it "Should verify that the user has a valid email" do
       get :show, {:id => "10"}, {:invalid_email => "lep@gmail.com"}
       response.should redirect_to users_invalid_path
       flash[:warning].should eq("lep@gmail.com is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address.")

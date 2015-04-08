@@ -14,7 +14,11 @@
           %span=group.location
         - if @user.admin
           %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"
+        - if !group.has_member?(session[:id])
+          = link_to "Join Group", join_groups_path(id: group.id)
+        - else
+          = link_to "Leave Group", leave_groups_path(id: group.id)
     - if !@tues_groups.empty?
       %h4 Tuesday
       - @tues_groups.each do |group|
@@ -25,7 +29,11 @@
         - if @user.admin
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
-   
+        - if !group.has_member?(session[:id])
+          = link_to "Join Group", join_groups_path(id: group.id)
+        - else
+          = link_to "Leave Group", leave_groups_path(id: group.id)
+
     - if !@wed_groups.empty?
       %h4 Wednesday
       - @wed_groups.each do |group|
@@ -36,7 +44,11 @@
         - if @user.admin
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
-   
+        - if !group.has_member?(session[:id])
+          = link_to "Join Group", join_groups_path(id: group.id)
+        - else
+          = link_to "Leave Group", leave_groups_path(id: group.id)
+
     - if !@thurs_groups.empty?
       %h4 Thursday
       - @thurs_groups.each do |group|
@@ -47,7 +59,11 @@
         - if @user.admin
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
-   
+        - if !group.has_member?(session[:id])
+          = link_to "Join Group", join_groups_path(id: group.id)
+        - else
+          = link_to "Leave Group", leave_groups_path(id: group.id)
+
     - if !@fri_groups.empty?
       %h4 Friday
       - @fri_groups.each do |group|
@@ -58,4 +74,7 @@
         - if @user.admin
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
-   
+        - if !group.has_member?(session[:id])
+          = link_to "Join Group", join_groups_path(id: group.id)
+        - else
+          = link_to "Leave Group", leave_groups_path(id: group.id)

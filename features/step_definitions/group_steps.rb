@@ -28,3 +28,24 @@ Then /^I should see all groups$/ do
     assert page.has_content?(group['title'])
   end
 end
+
+When /^User "(.*)" joins group "(.*)"$/ do |user_id, group_id|
+  group = Group.find(group_id)
+  group.add_member(user_id)
+  group.save!
+end
+
+When /^User "(.*)" should (not )?belong to group "(.*)"$/ do |user_id, not_belong, group_id|
+  group = Group.find(group_id)
+  if not_belong
+    group.has_member?(user_id).should be_false
+  else
+    group.has_member?(user_id).should be_true
+  end
+end
+
+When /^User "(.*)" leaves group "(.*)"$/ do |user_id, group_id|
+  group = Group.find(group_id)
+  group.remove_member(user_id)
+  group.save!
+end
