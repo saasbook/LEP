@@ -9,10 +9,22 @@
     - @groups.each do |group|
       - if @user.id == group.facilitator
         %li.group
-          %span= "#{@user.first_name} #{@user.last_name}"
-          %span=group.language
-          %span=group.time
-          %span=group.location
+          %span= "Leader: #{@user.first_name} #{@user.last_name}"
+          %br
+          %span="Language: #{group.language}"
+          %br
+          %span="Time: #{group.time}"
+          %br
+          %span="Where: #{group.location}"
+          %br
+          %br
+          %span= "Members"
+          %br
+          - group.members.each do |id|
+            - user = User.find(id)
+            = "#{user.first_name} #{user.last_name}"
+            %br
+          %br
         - if @user.admin
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"

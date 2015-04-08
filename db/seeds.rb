@@ -137,7 +137,10 @@ russian = {language: 'Russian',
            day: 'Monday',
            time: '2-3PM',
            location: 'FSM',
-           facilitator: 1}
+           facilitator: 1,
+           members: [2, 3, 4],
+       		}
+
 english1 = {language: 'English',
             day: 'Wednesday',
             time: '5-6PM',
