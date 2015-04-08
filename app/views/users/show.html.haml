@@ -1,14 +1,8 @@
 %h2= "Welcome, #{@user.first_name}!"
 
-
-/ - if @user.active
-/   = button_to 'Deactivate', :action => :deactivate, :id => "deactivate" # :confirm => 'Are you sure you want to deactivate your account?'
-/ - else
-/   = button_to 'Activate', :action => :activate, :form => { :id => "activate" } #, :confirm => 'Are you sure you want to reactivate your account?'
-
 - if @user.active
   = form_tag(:action => :deactivate) do
-    /= submit_tag 'Activate', data: {id: 'deactivate' }
+    -#= submit_tag 'Activate', data: {id: 'deactivate' }
     = submit_tag('Deactivate', id: 'deactivate')
 - else
   = form_tag(:action => :activate) do
@@ -33,9 +27,12 @@
 %h3= "Your Pair Information"
 
 -# Find the pair an user is associated with
-- @pair = Pair.where(:member1 => @user.id) or Pair.where(:member2 => @user.id) or Pair.where(:member3 => @user.id)
+- @pair = nil
+- Pair.all.each do |pair|
+  - if pair.members.include? @user.id
+    - @pair = pair
 
-- if @pair.empty?
+- if @pair.nil?
   = "You are not currently in a pair"
 - else
   %h4= "Pair ID: #{@pair.id}"
@@ -72,6 +69,4 @@
         - user = User.find(id)
         %tr
           %td= user.first_name + " " + user.last_name
-
-
 

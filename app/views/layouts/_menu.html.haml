@@ -7,6 +7,12 @@
 
     %ul
       %li
+        - if !@user.id.nil?
+          - if @user.admin
+            = link_to "HOME", admin_path(@user)
+          - else
+            = link_to "HOME", user_path(@user)
+      %li
         = link_to "LANGUAGE GROUPS", groups_path 
       %li 
         = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 

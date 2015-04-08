@@ -1,6 +1,10 @@
 class GroupsController < ApplicationController
   
+
+  before_filter :check_email
+
   def new
+    @user = User.find(session[:id])
   end
 
   def create
@@ -24,6 +28,20 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
+    redirect_to groups_path
+  end
+  
+  def join
+    @group = Group.find(params[:id])
+    @group.add_member(session[:id])
+    @group.save!
+    redirect_to groups_path
+  end
+
+  def leave
+    @group = Group.find(params[:id])
+    @group.remove_member(session[:id])
+    @group.save!
     redirect_to groups_path
   end
 

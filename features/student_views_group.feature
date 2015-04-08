@@ -7,13 +7,13 @@ Feature: display group members when student user views their group
 Background: student has been added to a group
 
   Given the following students exist:
-  | first_name | last_name |  sid  | email | gender | fluent_languages | first_lang_preference |
-  | Billy    |   Bob     |  1234566 |  billy@berkeley.edu | male | [arabic] | english |
-  | Joe      |   Schmoe   |  1234567 |  joe@berkeley.edu | male | [arabic] | english |
-  | Sally    |   Sue     |  1234568 |  sally@berkeley.edu | male | [arabic] | english |
-  | Jane     |   Doe     |  1234570 |  jane@berkeley.edu | male | [arabic] | english |
-  | John     |   Smith   |  1234530 |  john@berkeley.edu | male | [arabic] | english |
-  | Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | [arabic] | english |
+  | group_id | first_name | last_name |  sid     | email               | gender | fluent_languages | first_lang_preference |
+  |    1     |   Billy    |   Bob     |  1234566 |  billy@berkeley.edu | male | [arabic] | english |
+  |    1     |   Joe      |   Shmoe   |  1234567 |  joe@berkeley.edu | male | [arabic] | english |
+  |    1     |   Sally    |   Sue     |  1234568 |  sally@berkeley.edu | male | [arabic] | english |
+  |    2     |   Jane     |   Doe     |  1234570 |  jane@berkeley.edu | male | [arabic] | english |
+  |    2     |   John     |   Smith   |  1234530 |  john@berkeley.edu | male | [arabic] | english |
+  |    3     |   Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | [arabic] | english |
 
   Given the following groups exist:
   | language | day      | time  | location | members |
