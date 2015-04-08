@@ -54,14 +54,14 @@
 %h3= "Your Group Information"
 - @group = nil
 - Group.all.each do |group|
-  = "user id = #{@user.id}, group.members = #{group.members}"
+  - "user id = #{@user.id}, group.members = #{group.members}"
   - if group.members.include? @user.id
     - @group = group
 
 - if @group.nil?
   = "You are not currently in a group"
 - else
-  %h4= "Group ID: #{@group.id}"
+  %h4= #"Group ID: #{@group.id}"
   %table
     %tr
       %th Group Member
@@ -70,3 +70,6 @@
         %tr
           %td= user.first_name + " " + user.last_name
 
+
+- 10.times do
+  %br
