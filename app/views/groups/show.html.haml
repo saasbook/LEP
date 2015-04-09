@@ -25,7 +25,7 @@
             = "#{user.first_name} #{user.last_name}"
             %br
           %br
-        - if @user.admin
+        - if @user.admin or @user.facilitator
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"
 
