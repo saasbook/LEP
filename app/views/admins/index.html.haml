@@ -3,23 +3,24 @@
 %table
   %thead
     %tr
-      %th ID
+      %th Group ID
       %th Member 1
       %th Member 2
       %th Languages
+      %th Edit
   %tbody
     - @pairs.each do |pair|
       %tr
         %td= pair.id
         %td= pair.member1
         %td= pair.member2
-        - if !pair.languages.empty?
-          %td= pair.languages
+        %td= (!pair.languages.empty?) ? pair.languages : 'N/A'
+        %td= link_to "Edit pair", :method => :put
 
 %table
   %thead
     %tr
-      %th ID
+      %th User ID
       %th First Name
       %th Last Name
   %tbody
