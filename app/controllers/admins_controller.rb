@@ -76,7 +76,7 @@ class AdminsController < ApplicationController
   end
 
   def edit_group
-    @pair = Group.find(params[:pair_id])
+    @pair = Pair.find(params[:pair_id])
 
   end
 

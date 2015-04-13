@@ -3,19 +3,17 @@
 %table
   %thead
     %tr
-      %th Group ID
+      %th Pair No. 
       %th Member 1
       %th Member 2
       %th Languages
-      %th Edit
   %tbody
     - @pairs.each do |pair|
       %tr
-        %td= pair.id
+        %td= link_to "Pair #{pair.id}", pair_path(:id => @user.id, :pair_id => pair.id)
         %td= pair.member1
         %td= pair.member2
         %td= (!pair.languages.empty?) ? pair.languages : 'N/A'
-        %td= link_to "Edit pair", :method => :put
 
 %table
   %thead
