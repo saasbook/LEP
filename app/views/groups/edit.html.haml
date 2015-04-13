@@ -1,10 +1,55 @@
 %h2 Edit Language Group
 
--#if @user.admin
-  =# link_to "Add group", new_group_path, :id => "add group"
+%div#groups
+  %ul.groups
+    %h4 Your Group
+    - @groups.each do |group|
+      - if @user.id == group.facilitator
+        %li.group
+          %span= "Leader: #{@user.first_name} #{@user.last_name}"
+          %br
+          %span="Language: #{group.language}"
+          %br
+          %span="Day: #{group.day}"
+          %br
+          %span="Time: #{group.time}"
+          %br
+          %span="Where: #{group.location}"
+          %br
+          %br
+          %span= "Members"
+          %br
+          - group.members.each do |id|
+            - user = User.find(id)
+            = "#{user.first_name} #{user.last_name}"
+            %br
+          %br
 
 
+= form_for :group, url: {action: 'update'}, method: :put do |f| 
 
+  %div.question
+    = f.label :language, "Language"
+    = f.text_field :language
 
+  %div.question
+    = f.label :day, "Day of the week"
+    = f.select :day, [["Monday", "Monday"], ["Tuesday", "Tuesday"], ["Wednesday", "Wednesday"], ["Thursday", "Thursday"], ["Friday", "Friday"]]
+
+  %div.question
+    = f.label :time, "Time"
+    = f.text_field :time
+
+  %div.question
+    = f.label :location, "Location"
+    = f.text_field :location
+
+  %div.question
+    = f.label :info, "Additional information"
+    = f.text_area :info
+
+  %div.question
+    %p
+    = f.submit 'Update Group'
 
 
