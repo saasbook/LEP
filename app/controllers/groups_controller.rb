@@ -29,6 +29,11 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    @user = User.find(session[:id])
+  end
+
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
