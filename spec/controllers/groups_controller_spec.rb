@@ -34,6 +34,25 @@ describe GroupsController do
     end
   end
 
+  describe '#show' do
+    it 'should show a group' do
+      get(:show, {:id => @group.id}, {:id => @user.id})
+    end
+  end
+
+  describe '#edit' do
+    it 'should edit a group' do
+      get(:edit, {:id => @group.id}, {:id => @user.id})
+    end
+  end
+
+  describe '#update' do
+    it 'should update a group' do
+      get(:update, {id: @group.id, group: {language: 'Italian'} })
+      response.should redirect_to(group_path(@group.id))
+    end
+  end
+
   describe '#join' do
     it "should allow a student to join a group" do
       get(:join, {:id => @group.id}, {:id => @user.id})
