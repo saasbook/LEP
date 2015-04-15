@@ -46,12 +46,12 @@
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
     - languages.each do |language|
       - if language == "Other"
-        = f.check_box :fluent_languages, { :multiple => true, :id => "fluent_language", :class => "fluent_language"}, language.downcase
+        = f.check_box :fluent_languages, { :multiple => true, :id => "fluent_languages", :class => "fluent_languages"}, language.downcase
       - else
         = f.check_box :fluent_languages, { :multiple => true}, language.downcase
       = language
       %br
-    = f.text_field :fluent_languages, {:id => "fluent_language_other", :name => "fluent_language_other[]"}
+    = f.text_field :fluent_languages_other, {:id => "fluent_languages_other", :class => "fluent_languages_other"}
     %br
     
 
@@ -111,4 +111,4 @@
 
   %div.question
     %p
-    = f.submit 'Submit' #, user_path(@user)
+    = f.submit 'Submit'
