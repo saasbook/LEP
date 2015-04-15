@@ -86,13 +86,13 @@ class UsersController < ApplicationController
     return @user.pluck(:admin)[0]
   end
 
-  def is_active?
-    return @user.pluck(:active)[0]
-  end
+  # def is_active?
+  #   return @user.pluck(:active)[0]
+  # end
 
-  def is_facilitator?
-    return @user.pluck(:facilitator)[0]
-  end
+  # def is_facilitator?
+  #   return @user.pluck(:facilitator)[0]
+  # end
 
   def home
     @email = request.env['omniauth.auth']['info']['email']
