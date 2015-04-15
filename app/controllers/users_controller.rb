@@ -120,11 +120,12 @@ class UsersController < ApplicationController
   #rails 4 idiosyncracy; helper method for create
   def user_params
     params.require(:user).permit(:id, :first_name, :last_name, :sid, :email, :academic_title, :major, :residency,
-                                :gender, :gender_preference, :fluent_languages, :lang_additional_info,
+                                :gender, :gender_preference, :fluent_languages, :fluent_languages_other, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :group_leader, :time_preference, :hours_per_week, 
                                 :user_motivation, :user_plan, :admin, :active, :facilitator).tap do |whitelisted|
-                                    whitelisted[:fluent_languages] = params[:user][:fluent_languages]
+                                    params[:user][:fluent_languages].pop # remove the "other" element from the list
+                                    whitelisted[:fluent_languages] = params[:user][:fluent_languages] + [params[:user][:fluent_languages_other]] # add the user's entry for "other" to our fluent_languages list
                                     whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
                                     whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
                                     whitelisted[:time_preference] = params[:user][:time_preference]
