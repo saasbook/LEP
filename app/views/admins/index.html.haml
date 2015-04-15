@@ -3,23 +3,22 @@
 %table
   %thead
     %tr
-      %th ID
+      %th Pair No. 
       %th Member 1
       %th Member 2
       %th Languages
   %tbody
     - @pairs.each do |pair|
       %tr
-        %td= pair.id
+        %td= link_to "Pair #{pair.id}", pair_path(:id => @user.id, :pair_id => pair.id)
         %td= pair.member1
         %td= pair.member2
-        - if !pair.languages.empty?
-          %td= pair.languages
+        %td= (!pair.languages.empty?) ? pair.languages : 'N/A'
 
 %table
   %thead
     %tr
-      %th ID
+      %th User ID
       %th First Name
       %th Last Name
   %tbody

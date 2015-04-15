@@ -75,6 +75,11 @@ class AdminsController < ApplicationController
     redirect_to admins_path
   end
 
+  def edit_group
+    @pair = Pair.find(params[:pair_id])
+
+  end
+
   def show
   end
 

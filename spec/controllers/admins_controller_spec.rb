@@ -99,4 +99,20 @@ describe AdminsController do
     end
   end
 
+  describe '#make_facilitator' do
+    it 'should call the model method to make a user a facilitator' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:make_facilitator).with(2)
+      put :make_facilitator, {:id => 1, :user_id => 2}
+    end
+  end
+
+  describe '#revoke_admin' do
+    it 'should call the model method to deactivate a user' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:revoke_facilitator).with(2)
+      put :revoke_facilitator, {:id => 1, :user_id => 2}
+    end
+  end
+
 end

@@ -1,0 +1,36 @@
+%h2 Language Groups
+
+-#if @user.admin
+  =# link_to "Add group", new_group_path, :id => "add group"
+
+%div#groups
+  %ul.groups
+    %h4 Your Group
+    - @groups.each do |group|
+      - if @user.id == group.facilitator
+        %li.group
+          %span= "Leader: #{@user.first_name} #{@user.last_name}"
+          %br
+          %span="Language: #{group.language}"
+          %br
+          %span="Time: #{group.time}"
+          %br
+          %span="Where: #{group.location}"
+          %br
+          %br
+          %span= "Members"
+          %br
+          - group.members.each do |id|
+            - user = User.find(id)
+            = "#{user.first_name} #{user.last_name}"
+            %br
+          %br
+        - if @user.admin or @user.facilitator
+          %div.edit-group
+            = link_to "Edit group", edit_group_path(@group)
+          %div.delete-group
+            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"
+
+
+
+

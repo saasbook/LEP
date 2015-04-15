@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.facilitator = session[:id]
     @group.save!
     redirect_to groups_path
   end
@@ -26,6 +27,22 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:id])
+    @user = User.find(session[:id])
+    @groups = Group.all
+  end
+
+  def edit
+    @group = Group.find(params[:id])
+    @user = User.find(session[:id])
+    @groups = Group.all
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    @group.update_attributes(group_params)
+    @group.save!
+    redirect_to group_path(@group)
   end
 
   def destroy
@@ -50,7 +67,7 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:language, :day, :time, :location, :members)
+    params.require(:group).permit(:language, :day, :time, :location, :members, :facilitator, :info)
   end
 
 end

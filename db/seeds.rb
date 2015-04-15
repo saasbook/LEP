@@ -62,7 +62,7 @@ robyn = {first_name: 'Robyn',
 		user_plan: 'I will set a regular meeting time with them.',
 		admin: false,
 		active: true,
-		facilitator: false
+		facilitator: true
 		}
 
 admin = { first_name: 'Admin', email: 'admin@berkeley.edu', admin: true, facilitator: false}
@@ -136,30 +136,40 @@ users = User.create!([shana, robyn, jane, admin2, iris, jason, tsion, chris])
 russian = {language: 'Russian',
            day: 'Monday',
            time: '2-3PM',
-           location: 'FSM'}
+           location: 'FSM',
+           facilitator: 1,
+           members: [2, 3, 4],
+       		}
+
 english1 = {language: 'English',
             day: 'Wednesday',
             time: '5-6PM',
-            location: '201B Chavez'}
+            location: '201B Chavez',
+            facilitator: 2}
 mandarin = {language: 'Mandarin',
             day: 'Wednesday',
             time: '6-7PM',
-            location: '2 Evans'}
+            location: '2 Evans',
+            facilitator: 3}
 english2 = {language: 'English',
             day: 'Thursday',
             time: '2-3PM',
-            location: '201B Chavez'}
+            location: '201B Chavez',
+        	facilitator: 4}
 korean =  {language: 'Korean',
             day: 'Friday',
             time: '4-5PM',
-            location: '201B Chavez'}
+            location: '201B Chavez',
+        	facilitator: 5}
 swedish =  {language: 'Swedish',
             day: 'Friday',
             time: '4-5PM',
-            location: 'SLC Atrium'}
+            location: 'SLC Atrium',
+        	facilitator: 6}
 german =  {language: 'German',
             day: 'Friday',
             time: '6-7PM',
-            location: '151 Chavez'}
+            location: '151 Chavez',
+        	facilitator: 7}
 groups = Group.create!([russian, english1, mandarin, english2, korean, swedish, german])
 
