@@ -16,14 +16,23 @@
 
 
 $(function(){
-    // $('select[name="group_language"]').change(function() {
-      // $('input[name="group_language_other"]').toggle(  $(this).val()=="Other" );
-      // if ($("#group_language").val()=="Other")
 
-    //Hide div w/id extra
+    //Hide div with the following ids
+    $("#fluent_languages_other").hide("fast");
 		$("#group_language_other").hide();
 		$("#first_lang_preference_other").hide();
 		$("#second_lang_preference_other").hide();
+
+    $('#fluent_language').click (function(){
+      console.log($(this).val());
+      if ($(this).val()=="other") {
+      	console.log("showing fluent_language_other");
+      	$("#fluent_language_other").show("fast");
+      } else {
+      	console.log("hiding fluent_language_other");
+        $("#fluent_language_other").hide("fast");
+      }
+    });
 
     $('#group_language').click(function(){
       console.log($(this).val());

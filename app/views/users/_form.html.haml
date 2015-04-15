@@ -45,10 +45,15 @@
   %div.question
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
     - languages.each do |language|
-      -#= check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
-      = f.check_box(:fluent_languages, { :multiple => true }, language.downcase)
+      - if language == "Other"
+        = f.check_box :fluent_languages, { :multiple => true, :id => "fluent_language", :class => "fluent_language", :type => "text"}, language.downcase
+      - else
+        = f.check_box :fluent_languages, { :multiple => true}, language.downcase
       = language
       %br
+    = f.text_field :fluent_languages, {:id => "fluent_language_other", :name => "fluent_language_other[]"}
+    %br
+    
 
   %div.question
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
