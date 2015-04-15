@@ -46,7 +46,7 @@
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
     - languages.each do |language|
       - if language == "Other"
-        = f.check_box :fluent_languages, { :multiple => true, :id => "fluent_language", :class => "fluent_language", :type => "text"}, language.downcase
+        = f.check_box :fluent_languages, { :multiple => true, :id => "fluent_language", :class => "fluent_language"}, language.downcase
       - else
         = f.check_box :fluent_languages, { :multiple => true}, language.downcase
       = language

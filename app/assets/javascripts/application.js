@@ -18,14 +18,15 @@
 $(function(){
 
     //Hide div with the following ids
-    $("#fluent_languages_other").hide("fast");
+    $("#fluent_language_other").hide("fast");
 		$("#group_language_other").hide();
 		$("#first_lang_preference_other").hide();
 		$("#second_lang_preference_other").hide();
 
     $('#fluent_language').click (function(){
       console.log($(this).val());
-      if ($(this).val()=="other") {
+      console.log($(this).is(":checked"));
+      if ($(this).is(":checked")) {
       	console.log("showing fluent_language_other");
       	$("#fluent_language_other").show("fast");
       } else {
