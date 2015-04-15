@@ -1,0 +1,27 @@
+%h2 Edit language group
+
+= form_tag groups_path, :method => :post do
+
+  %div.question
+    = label :group, :language, "Language"
+    = text_field :group, "language"
+
+  %div.question
+    = label :group, :day, "Day of the week"
+    = select :group, :day, ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+
+  %div.question
+    = label :group, :time, "Time"
+    = text_field :group, "time"
+
+  %div.question
+    = label :group, :location, "Location"
+    = text_field :group, "location"
+
+  %div.question
+    = label :group, :info, "Additional information"
+    = text_area :group, "info"
+
+  %div.question
+    %p
+    = submit_tag 'Edit group'
