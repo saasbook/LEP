@@ -139,6 +139,7 @@ russian = {language: 'Russian',
            location: 'FSM',
            facilitator: 1,
            members: [2, 3, 4],
+           info: ""
        		}
 
 english1 = {language: 'English',

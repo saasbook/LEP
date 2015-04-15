@@ -4,7 +4,14 @@ Given /the following groups exist/ do |groups_hash|
     if members
       members = members.split(',').map { |s| s.to_i }
     end
-    Group.create({language: group['language'], day: group['day'], time: group['time'], location: group['location'], members: members})
+    Group.create({language: group['language'], 
+                  day: group['day'], 
+                  time: group['time'], 
+                  location: group['location'],
+                  facilitator: group['facilitator'], 
+                  id: group['id'],
+                  members: members
+                  })
   end
 end
 

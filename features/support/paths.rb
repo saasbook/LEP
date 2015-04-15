@@ -35,6 +35,10 @@ module NavigationHelpers
     when /^the groups page$/ then '/groups'
 
     when /^I view pairs$/  then '/admins'
+
+    when /^the language group page$/ then '/groups/4'
+
+    when /^the edit group page$/ then '/groups/4/edit'
     
 
     # Add more mappings here.
