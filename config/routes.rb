@@ -29,6 +29,9 @@ LEP::Application.routes.draw do
   get "groups/:id/join" => "groups#join", :as => :join_groups
   get "groups/:id/leave" => "groups#leave", :as => :leave_groups
 
+  #put "pairs/:id/add" => "pairs#add", :as => :pair_add
+  #put "pairs/:id/remove" => "pairs#remove", :as => :pair_remove
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
