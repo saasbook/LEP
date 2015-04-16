@@ -34,4 +34,7 @@ LEP::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  #rack session access
+  #config.middleware.use RackSessionAccess::Middleware
 end

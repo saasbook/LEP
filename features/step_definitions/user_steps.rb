@@ -14,15 +14,29 @@ end
 
 Given /the following facilitators exist/ do |facilitators|
   facilitators.hashes.each do |f|
-    User.create(first_name: f['first_name'],  
-    sid: f['sid'], 
-    email: f['email'],
-    fluent_languages: f['fluent_languages'].split(','), 
-    first_lang_preference: f['first_lang_preference'],
-    admin: false,
-    active: true,
-    facilitator: true)
+
+    @user = User.create(first_name: f['first_name'],  
+                sid: f['sid'], 
+                email: f['email'],
+                fluent_languages: f['fluent_languages'].split(','), 
+                first_lang_preference: f['first_lang_preference'],
+                admin: false,
+                active: true,
+                facilitator: true,
+                id: 1)
+    #page.set_rack_session(id: 1)
+    # print '***********************USER ID', @user.id
+    # cookies[:stub_user_id] = @user.id
+    # print  "*******************COOKIES IN STEPS", cookies[:stub_user_id]
   end
+end
+
+Given /^I have a "([^\"]+)" cookie set to "([^\"]+)"$/ do |key, value|
+  headers = {}
+  Rack::Utils.set_cookie_header!(headers, key, value)
+  cookie_string = headers['Set-Cookie']
+
+  Capybara.current_session.driver.browser.set_cookie(cookie_string)
 end
 
 Given /^I am logged in as "(.*)"$/ do |first_name|

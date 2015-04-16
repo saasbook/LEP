@@ -16,39 +16,23 @@ Background: student has been added to a group
   | German   | Friday   | 3-4PM | 10 Chavez | 3           | 6  |
 
 
-Scenario: Facilitator creates language group
-  Given I am logged in as "Billy"
-  And I am on the existing user show page
-  When I click "LANGUAGE GROUPS"
-# Then I should be on the groups page
-# When I click "Add Group"
-#  Then I should be on the add group page
-#  When I press "Submit"
-#  Then I should be on the groups page
-
-Scenario: Facilitator deletes language group
-  Given I am logged in as "Billy"
-  And I am on the existing user show page
-  When I click "My Language Group"
-#  Then I should be on the language group page
-#  When I press "Delete group"
-#  Then I should be on the groups page
-
-Scenario: Facilitator edits language group
-  Given I am logged in as "Billy"
-  And I am on the existing user show page
-  When I click "My Language Group"
-#  Then I should be on the language group page
-#  When I press "Edit group"
-#  Then I should be on the edit group page
-
 Scenario: Facilitator views group info
   Given I am logged in as "Billy"
+  #Given I have a "id" cookie set to "1"
   And I am on the existing user show page
-  When I click "My Language Group"
-#  Then I should be on the language group page
-#  Then I should see "Spanish"
-#  Then I should see "1 Evans"
+  When I follow "My Language Group"
+  Then I should be on the language group page
+  Then I should see "Spanish"
+  Then I should see "1 Evans"
+
+
+
+
+
+
+
+
+
 
 
 

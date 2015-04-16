@@ -1,5 +1,18 @@
 class GroupsController < ApplicationController
-  
+
+  if Rails.env.test?
+    prepend_before_filter :stub_current_user
+    def stub_current_user
+      #print "*******************COOKIES BEFOR IF", cookies[:stub_user_id]
+      session[:id] = 1
+      # if cookies[:stub_user_id]
+      #   print "*******************", 'called'
+      #   print "*******************COOKIES", cookies[:stub_user_id]
+      #   session[:id] = cookies[:stub_user_id] 
+      # end
+      # print "*************************SESSIONID", session[:id]
+    end
+  end
 
   before_filter :check_email
 
@@ -24,6 +37,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    #puts '*' * 50, params[:id]
     @group = Group.find(params[:id])
     @user = User.find(session[:id])
     @groups = Group.all
