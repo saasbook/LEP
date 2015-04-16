@@ -1,31 +1,5 @@
 %h2 Edit Language Group
 
-%div#groups
-  %ul.groups
-    %h4 Your Group
-    - @groups.each do |group|
-      - if @user.id == group.facilitator
-        %li.group
-          %span= "Leader: #{@user.first_name} #{@user.last_name}"
-          %br
-          %span="Language: #{group.language}"
-          %br
-          %span="Day: #{group.day}"
-          %br
-          %span="Time: #{group.time}"
-          %br
-          %span="Where: #{group.location}"
-          %br
-          %br
-          %span= "Members"
-          %br
-          - group.members.each do |id|
-            - user = User.find(id)
-            = "#{user.first_name} #{user.last_name}"
-            %br
-          %br
-
-
 = form_for :group, url: {action: 'update'}, method: :put do |f| 
 
   %div.question
