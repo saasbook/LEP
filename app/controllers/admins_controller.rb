@@ -77,7 +77,6 @@ class AdminsController < ApplicationController
 
   def edit_group
     @pair = Pair.find(params[:pair_id])
-
   end
 
   def show
@@ -87,6 +86,20 @@ class AdminsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def show_pair
+    @user = User.find(params[:id])
+    @pair = Pair.find(params[:pair_id])
+    ids = [@pair.member1, @pair.member2, @pair.member3]
+    @members = {}
+    ids.each do |id|
+      if id.nil? || id.empty?
+        @members[id] = 'None'
+      else
+        @members[id] = User.find_name_by_id(id.to_i)
+      end
+    end
   end
 
   # controller action that should call pairing algorithm

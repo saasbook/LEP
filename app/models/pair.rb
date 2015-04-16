@@ -11,6 +11,7 @@ class Pair < ActiveRecord::Base
       if Pair.verify_pair()
         Pair.create(:member1 => row['partner1'],
             :member2 => row['partner2'],
+            :member3 => '',
             :languages => @languages
         )
       end

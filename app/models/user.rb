@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def User.find_name_by_id(id)
+    user = User.find(id)
+    return user.first_name + ' ' + user.last_name
+  end
+
   def User.activate(id)
     user = User.find(id)
     user.update_attributes active: true 

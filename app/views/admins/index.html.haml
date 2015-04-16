@@ -10,7 +10,7 @@
   %tbody
     - @pairs.each do |pair|
       %tr
-        %td= link_to "Pair #{pair.id}", pair_path(:id => @user.id, :pair_id => pair.id)
+        %td= link_to "Pair #{pair.id}", admin_show_pair_path(:id => @user.id, :pair_id => pair.id)
         %td= pair.member1
         %td= pair.member2
         %td= (!pair.languages.empty?) ? pair.languages : 'N/A'

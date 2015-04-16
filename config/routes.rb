@@ -29,6 +29,8 @@ LEP::Application.routes.draw do
   get "groups/:id/join" => "groups#join", :as => :join_groups
   get "groups/:id/leave" => "groups#leave", :as => :leave_groups
 
+  get "admins/:id/show_pair/:pair_id" => "admins#show_pair", :as => :admin_show_pair
+
   #put "pairs/:id/add" => "pairs#add", :as => :pair_add
   #put "pairs/:id/remove" => "pairs#remove", :as => :pair_remove
 

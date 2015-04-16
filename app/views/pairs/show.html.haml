@@ -4,18 +4,14 @@
   %thead
     %tr
       %th User ID
-      %th Add/Remove
   %tbody
     %tr
       %td= @pair.member1
-      %td= link_to 'Remove'
     %tr
       - if !@pair.member2.nil?
         %td= @pair.member2
-        %td= link_to 'Remove'
       - else 
         %td= 'None'
-        %td= link_to 'Add'
 
 %h4= "Pair Languages"
 = @pair.languages.empty? ? 'N/A' : @pair.languages.join(',')
