@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+
   before_filter :check_email
 
   def new
@@ -27,6 +28,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    #puts '*' * 50, params[:id]
     @group = Group.find(params[:id])
     @user = User.find(session[:id])
     @groups = Group.all

@@ -12,13 +12,39 @@ Given /the following students exist/ do |students|
   end
 end
 
+Given /the following facilitators exist/ do |facilitators|
+  facilitators.hashes.each do |f|
+
+    @user = User.create(first_name: f['first_name'],  
+                sid: f['sid'], 
+                email: f['email'],
+                fluent_languages: f['fluent_languages'].split(','), 
+                first_lang_preference: f['first_lang_preference'],
+                admin: false,
+                active: true,
+                facilitator: true,
+                id: 1)
+    #page.set_rack_session(id: 1)
+    # print '***********************USER ID', @user.id
+    # cookies[:stub_user_id] = @user.id
+    # print  "*******************COOKIES IN STEPS", cookies[:stub_user_id]
+  end
+end
+
+Given /^I have a "([^\"]+)" cookie set to "([^\"]+)"$/ do |key, value|
+  headers = {}
+  Rack::Utils.set_cookie_header!(headers, key, value)
+  cookie_string = headers['Set-Cookie']
+
+  Capybara.current_session.driver.browser.set_cookie(cookie_string)
+end
+
 Given /^I am logged in as "(.*)"$/ do |first_name|
 	@user = User.find_by_first_name(first_name)
 	# "/users/#{@user.id}"
 	# puts page.current_path
 	visit path_to("/users/#{@user.id}")
 end
-
 
 # given step definitions
 Given /the following users exist/ do |users_table|
@@ -35,6 +61,15 @@ Given /^I am an? (.*) user$/ do |user_type|
         :info => {
           :name => 'existing',
           :email => 'existing@berkeley.edu'
+        }
+      })
+  elsif user_type == "facilitator"
+    OmniAuth.config.mock_auth[:google_oauth2] = 
+      OmniAuth::AuthHash.new({:provider => 'google_oauth2',
+        :uid => '27',
+        :info => {
+          :name => 'facilitator',
+          :email => 'facilitator@berkeley.edu'
         }
       })
   elsif user_type == "admin"
