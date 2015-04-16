@@ -3,6 +3,8 @@
 
   - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
   - days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
+  - group_language_options = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+  - language_preferences = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
     = f.label :first_name, "First Name"
@@ -43,15 +45,21 @@
   %div.question
     = f.label :fluent_languages, "Language(s) you speak with native fluency"
     - languages.each do |language|
-      -#= check_box_tag "#{language.downcase!}", "#{language.downcase!}", false
-      = f.check_box(:fluent_languages, { :multiple => true }, language.downcase)
+      - if language == "Other"
+        = f.check_box :fluent_languages, { :multiple => true, :id => "fluent_languages", :class => "fluent_languages"}, language.downcase
+      - else
+        = f.check_box :fluent_languages, { :multiple => true}, language.downcase
       = language
       %br
+    = f.text_field :fluent_languages_other, {:id => "fluent_languages_other", :class => "fluent_languages_other"}
+    %br
+    
 
   %div.question
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
     -#= f.select :first_lang_preference, languages, :multiple => true
-    = f.select :first_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+    = f.select :first_lang_preference, language_preferences, {:class => "first_lang_preference"}, :id => "first_lang_preference"
+    = f.text_field :first_lang_preference, :id => "first_lang_preference_other"
 
   %div.question
     = f.label :first_lang_proficiency, "How proficient are you in this language?"
@@ -60,7 +68,8 @@
   %div.question
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
     -#= f.select :second_lang_preference, languages, :multiple => true
-    = f.select :second_lang_preference, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+    = f.select :second_lang_preference, language_preferences, {:class => "second_lang_preference"}, :id => "second_lang_preference"
+    = f.text_field :second_lang_preference, :id => "second_lang_preference_other"
 
   %div.question
     = f.label :second_lang_proficiency, "How proficient are you in this language?"
@@ -72,7 +81,8 @@
 
   %div.question
     = f.label :group_language, "What language would you like to lead a language group in?"
-    = f.select :group_language, [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+    = f.select :group_language, group_language_options, {:class => "group_language"}, :id => "group_language"
+    = f.text_field :group_language, :id => "group_language_other"
 
 
   %div.question
@@ -101,4 +111,4 @@
 
   %div.question
     %p
-    = f.submit 'Submit' #, user_path(@user)
+    = f.submit 'Submit'

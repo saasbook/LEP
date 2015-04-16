@@ -1,40 +1,40 @@
 %h2 Language Groups
 
 -if @user.admin
-  = link_to "Add group", new_group_path, :id => "add group"
+  = link_to "Add group", new_group_path, :id => "add-group"
 
 %div#groups
   %ul.groups
     - if !@mon_groups.empty?
-      %h4 Monday
       - @mon_groups.each do |group|
         %li.group
-          - facilitator = User.find(group.facilitator)
-          %span= "#{facilitator.first_name} #{facilitator.last_name}"
-          %span=group.language
+          %span.language=group.language
           %span=group.time
+          %span="in"
           %span=group.location
         - if @user.admin
-          %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"
+          %div.group-options
+            = link_to "Edit", edit_group_path(group)
+            = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
-          = link_to "Join Group", join_groups_path(id: group.id)
+          %div.group-options
+            = link_to "Join Group", join_groups_path(id: group.id)
         - else
           = link_to "Leave Group", leave_groups_path(id: group.id)
     - if !@tues_groups.empty?
       %h4 Tuesday
       - @tues_groups.each do |group|
         %li.group
-          - facilitator = User.find(group.facilitator)
-          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
         - if @user.admin
-          %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+          %div.group-options
+            = link_to "Edit", edit_group_path(group)
+            = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
-          = link_to "Join Group", join_groups_path(id: group.id)
+          %div.group-options
+            = link_to "Join Group", join_groups_path(id: group.id)
         - else
           = link_to "Leave Group", leave_groups_path(id: group.id)
 
@@ -42,16 +42,16 @@
       %h4 Wednesday
       - @wed_groups.each do |group|
         %li.group
-          - facilitator = User.find(group.facilitator)
-          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
         - if @user.admin
-          %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+          %div.group-options
+            = link_to "Edit", edit_group_path(group)
+            = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
-          = link_to "Join Group", join_groups_path(id: group.id)
+          %div.group-options
+            = link_to "Join Group", join_groups_path(id: group.id)
         - else
           = link_to "Leave Group", leave_groups_path(id: group.id)
 
@@ -59,16 +59,16 @@
       %h4 Thursday
       - @thurs_groups.each do |group|
         %li.group
-          - facilitator = User.find(group.facilitator)
-          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
         - if @user.admin
-          %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+          %div.group-options
+            = link_to "Edit", edit_group_path(group)
+            = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
-          = link_to "Join Group", join_groups_path(id: group.id)
+          %div.group-options
+            = link_to "Join Group", join_groups_path(id: group.id)
         - else
           = link_to "Leave Group", leave_groups_path(id: group.id)
 
@@ -76,15 +76,15 @@
       %h4 Friday
       - @fri_groups.each do |group|
         %li.group
-          - facilitator = User.find(group.facilitator)
-          %span= "#{facilitator.first_name} #{facilitator.last_name}"
           %span=group.language
           %span=group.time
           %span=group.location
         - if @user.admin
-          %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?" 
+          %div.group-options
+            = link_to "Edit", edit_group_path(group)
+            = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
-          = link_to "Join Group", join_groups_path(id: group.id)
+          %div.group-options
+            = link_to "Join Group", join_groups_path(id: group.id)
         - else
           = link_to "Leave Group", leave_groups_path(id: group.id)

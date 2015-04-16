@@ -26,6 +26,8 @@
             %br
           %br
         - if @user.admin or @user.facilitator
+          %div.edit-group
+            = link_to "Edit group", edit_group_path(@group)
           %div.delete-group
             = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"
 
