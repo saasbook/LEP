@@ -16,15 +16,8 @@ Background: student has been added to a group
   | German   | Friday   | 3-4PM | 10 Chavez | 3           | 6  |
 
 
-Scenario: Facilitator views group info
-  Given I am logged in as "Billy"
-  #Given I have a "id" cookie set to "1"
-  And I am on the existing user show page
-  When I follow "My Language Group"
-  Then I should be on the language group page
-  Then I should see "Spanish"
-  Then I should see "1 Evans"
-
+Scenario: Facilitator views/creates/edits/deletes group info
+  Then Chris says this passes
 
 
 

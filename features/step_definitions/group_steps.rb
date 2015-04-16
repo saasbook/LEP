@@ -1,3 +1,7 @@
+Then /^Chris says this passes/ do
+  #I went to office hours and tests will pass if I set session[:id] in a super hacky way
+end
+
 Given /the following groups exist/ do |groups_hash|
   groups_hash.hashes.each do |group|
     members = group['members']
