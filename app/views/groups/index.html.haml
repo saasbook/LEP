@@ -1,7 +1,7 @@
 %h2 Language Groups
 
--if @user.admin
-  = link_to "Add group", new_group_path, :id => "add-group"
+-if @user.admin or @user.facilitator
+  = link_to "Add group", new_group_path, :id => "add group"
 
 %div#groups
   %ul.groups
