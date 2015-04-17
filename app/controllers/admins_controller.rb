@@ -104,6 +104,7 @@ class AdminsController < ApplicationController
 
   def view_users
     @pair = Pair.find(params[:pair_id])
+    @user = User.find(params[:id])
     @users = User.where(:admin => false)
     @users_hash = {}
     @users.each do |user| 
@@ -112,9 +113,10 @@ class AdminsController < ApplicationController
   end
 
   def remove_from_pair
+    @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])  
     @user_to_remove = User.find(params[:user_id])
-    Pair.remove_user_from_pair(@pair.id, @user_to_remove.id.to_s)
+    Pair.remove_user_from_pair(@pair.id, params[:user_id].to_i)
     flash[:notice] = "#{@user_to_remove.full_name} has been deleted from pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
@@ -122,7 +124,8 @@ class AdminsController < ApplicationController
   def add_to_pair
     @pair = Pair.find(params[:pair_id])
     @user_to_add = User.find(params[:user_id])
-    Pair.add_user_to_pair(@pair.id, @user_to_add.id)
+    @user = User.find(params[:id])
+    Pair.add_user_to_pair(@pair.id, params[:user_id].to_i)
     flash[:notice] = "#{@user_to_add.full_name} has been added to pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
