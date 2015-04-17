@@ -36,7 +36,6 @@ class GroupsController < ApplicationController
   def show
     #puts '*' * 50, params[:id]
     @group = Group.find(params[:id])
-    debugger
     @facilitator = @group.get_facilitator
     @user = User.find(session[:id])
   end
