@@ -1,0 +1,6 @@
+= form_tag :admin_set_deadline, action: 'set_application_deadline', :class => "field_with_errors" do |f|
+
+  %div.question
+    -#= label_tag "New Deadline:"
+    = text_field_tag "deadline", nil, {:class => 'datepicker', :id => 'datepicker'}
+    = submit_tag 'Submit'

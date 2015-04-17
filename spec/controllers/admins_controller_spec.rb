@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe AdminsController do
+
   before :each do
-    @admin = User.create(id: 1, first_name: 'admin', email: 'sample@berkeley.edu', admin: true)
-    @user = User.create({first_name: 'Robyn', 
+
+    @admin = User.create({id: 1, first_name: 'admin', email: 'sample@berkeley.edu', admin: true})
+
+    @user = User.create({id: 2, first_name: 'Robyn', 
       last_name: 'Zhang', 
       sid: '22223333', 
       email: 'robynz@berkeley.edu',
@@ -25,6 +28,55 @@ describe AdminsController do
       admin: false,
       active: true
     })
+
+    @user2 = User.create({id: 3, first_name: 'Rob', 
+      last_name: 'Zheng', 
+      sid: '22223443', 
+      email: 'rob@berkeley.edu',
+      academic_title: 'Undergraduate',
+      major: 'Computer Science', 
+      residency: 'Domestic', 
+      gender: 'Male', 
+      gender_preference: 'Female',
+      fluent_languages: ['English'], 
+      lang_additional_info: '',
+      first_lang_preference: 'Chinese', 
+      first_lang_proficiency: 'intermediate', 
+      second_lang_preference: 'Spanish', 
+      second_lang_proficiency: 'elementary',
+      time_preference: ['Monday'], 
+      hours_per_week: '2',
+      user_motivation: 'I will be studying abroad.', 
+      user_plan: 'I will set a regular meeting time with them.',
+      admin: false,
+      active: true
+    })
+
+    @user3 = User.create({id: 4, first_name: 'Robin', 
+      last_name: 'Zhong', 
+      sid: '22223443', 
+      email: 'robin@berkeley.edu',
+      academic_title: 'Undergraduate',
+      major: 'Computer Science', 
+      residency: 'Domestic', 
+      gender: 'Male', 
+      gender_preference: 'Female',
+      fluent_languages: ['English'], 
+      lang_additional_info: '',
+      first_lang_preference: 'Chinese', 
+      first_lang_proficiency: 'intermediate', 
+      second_lang_preference: 'Spanish', 
+      second_lang_proficiency: 'elementary',
+      time_preference: ['Monday'], 
+      hours_per_week: '2',
+      user_motivation: 'I will be studying abroad.', 
+      user_plan: 'I will set a regular meeting time with them.',
+      admin: false,
+      active: true
+    })
+
+    @pair = Pair.create({:id => 1, :member1 => '2', :member2 => '3', :member3 => ''})
+
   end
 
   describe '#index' do
@@ -112,6 +164,38 @@ describe AdminsController do
       AdminsController.any_instance.stub(:check_admin)
       User.should_receive(:revoke_facilitator).with(2)
       put :revoke_facilitator, {:id => 1, :user_id => 2}
+    end
+  end
+
+  describe '#view_users' do
+    it 'should call the model method to find nonadmin users in the db' do
+      AdminsController.any_instance.stub(:check_admin)
+      get :view_users, {:id => @admin.id, :pair_id => @pair.id}
+    end
+  end
+
+  describe '#show_pair' do
+    it 'should show a specific pair' do
+      AdminsController.any_instance.stub(:check_admin)
+      get :show_pair, {:id => @admin.id, :pair_id => @pair.id}
+    end
+  end
+
+  describe '#remove_from_pair' do
+    it 'should remove a user from a pair' do
+      AdminsController.any_instance.stub(:check_admin)
+      Pair.should_receive(:remove_user_from_pair).with(@pair.id, 2)
+      get :remove_from_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 2}
+      expect(response).to redirect_to(admin_show_pair_path)
+    end
+  end
+
+  describe '#add_to_pair' do
+    it 'should add a user to a pair' do
+      AdminsController.any_instance.stub(:check_admin)
+      Pair.should_receive(:add_user_to_pair).with(@pair.id, 4)
+      get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 4}
+      expect(response).to redirect_to(admin_show_pair_path)
     end
   end
 

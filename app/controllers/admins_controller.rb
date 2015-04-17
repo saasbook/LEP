@@ -16,6 +16,12 @@ class AdminsController < ApplicationController
     end
   end
 
+  def set_application_deadline
+    deadline = params["deadline"]
+    User.set_application_deadline(deadline) # set the application deadline
+    redirect_to admin_path
+  end
+
   def new
   end
 
@@ -77,7 +83,6 @@ class AdminsController < ApplicationController
 
   def edit_group
     @pair = Pair.find(params[:pair_id])
-
   end
 
   def show
@@ -87,6 +92,48 @@ class AdminsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def show_pair
+    @user = User.find(params[:id])
+    @pair = Pair.find(params[:pair_id])
+    ids = [@pair.member1, @pair.member2, @pair.member3]
+    @members = {}
+    ids.each do |id|
+      if id.nil? || id.empty?
+        @members[id] = 'None'
+      else
+        @members[id] = User.find(id).full_name
+      end
+    end
+  end
+
+  def view_users
+    @pair = Pair.find(params[:pair_id])
+    @user = User.find(params[:id])
+    @users = User.where(:admin => false)
+    @users_hash = {}
+    @users.each do |user| 
+      @users_hash[user.id] = user.full_name
+    end
+  end
+
+  def remove_from_pair
+    @user = User.find(params[:id])
+    @pair = Pair.find(params[:pair_id])  
+    @user_to_remove = User.find(params[:user_id])
+    Pair.remove_user_from_pair(@pair.id, params[:user_id].to_i)
+    flash[:notice] = "#{@user_to_remove.full_name} has been deleted from pair #{@pair.id}"
+    redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
+  end
+
+  def add_to_pair
+    @pair = Pair.find(params[:pair_id])
+    @user_to_add = User.find(params[:user_id])
+    @user = User.find(params[:id])
+    Pair.add_user_to_pair(@pair.id, params[:user_id].to_i)
+    flash[:notice] = "#{@user_to_add.full_name} has been added to pair #{@pair.id}"
+    redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
 
   # controller action that should call pairing algorithm

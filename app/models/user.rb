@@ -2,7 +2,15 @@ class User < ActiveRecord::Base
 
   serialize :fluent_languages, Array
   serialize :time_preference, Array
+
+
+  APPLICATION_DEADLINE = Date.tomorrow.strftime("%m/%d/%Y").to_s # by default, the application is due tomorrow
   
+
+  def self.set_application_deadline(deadline)
+    APPLICATION_DEADLINE.replace deadline.strftime("%m/%d/%Y").to_s # set the application deadline
+  end
+
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
   def self.to_csv
     CSV.open('script/newsheet.csv', 'w') do |csv|
@@ -14,6 +22,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def full_name
+    return first_name + " " + last_name
+  end
+
   def User.activate(id)
     user = User.find(id)
     user.update_attributes active: true 

@@ -2,3 +2,8 @@
 
 = link_to 'Show users', admins_path 
 = link_to 'Show groups', groups_path, :id => 'show groups'
+
+%h5= "Current Application Deadline: #{User::APPLICATION_DEADLINE}"
+
+%h4= "Set Application Deadline"
+= render 'set_app_deadline'
