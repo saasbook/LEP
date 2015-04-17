@@ -6,6 +6,8 @@ gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
 gem 'json'
 
+#gem 'rack_session_access'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'

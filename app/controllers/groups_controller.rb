@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-  
 
   before_filter :check_email
 
@@ -14,16 +13,22 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def edit
+    @user = User.find(session[:id])
+    @group = Group.find(params[:id]) 
+  end
+
   def index
     @user = User.find(session[:id])
-    @mon_groups = Group.where(day: "Monday").all
-    @tues_groups = Group.where(day: "Tuesday").all
-    @wed_groups = Group.where(day: "Wednesday").all
-    @thurs_groups = Group.where(day: "Thursday").all
-    @fri_groups = Group.where(day: "Friday").all
+    @mon_groups = Group.where(:day => 'Monday').all
+    @tues_groups = Group.where(:day => 'Tuesday').all
+    @wed_groups = Group.where(:day => 'Wednesday').all
+    @thurs_groups = Group.where(:day => 'Thursday').all
+    @fri_groups = Group.where(:day => 'Friday').all
   end
 
   def show
+    #puts '*' * 50, params[:id]
     @group = Group.find(params[:id])
     @user = User.find(session[:id])
     @groups = Group.all

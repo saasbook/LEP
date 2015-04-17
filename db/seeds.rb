@@ -131,7 +131,7 @@ chris = { first_name: 'Chris',
 	    facilitator: false
 		}
 
-users = User.create!([robyn, jane, admin2, iris, jason, tsion, chris])
+users = User.create!([shana, robyn, jane, admin2, iris, jason, tsion, chris])
 
 russian = {language: 'Russian',
            day: 'Monday',
@@ -139,6 +139,7 @@ russian = {language: 'Russian',
            location: 'FSM',
            facilitator: 1,
            members: [2, 3, 4],
+           info: ""
        		}
 
 english1 = {language: 'English',
