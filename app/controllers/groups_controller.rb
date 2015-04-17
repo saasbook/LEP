@@ -30,7 +30,6 @@ class GroupsController < ApplicationController
   def manage
     #puts '*' * 50, params[:id]
     @user = User.find(session[:id])
-    @groups = Group.all
   end
   
   def show
@@ -43,7 +42,6 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
     @user = User.find(session[:id])
-    @groups = Group.all
   end
 
   def update

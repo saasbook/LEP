@@ -7,7 +7,7 @@
   = form_tag(:action => :activate) do
     = submit_tag('Activate', id: 'activate')
 
-- if !@groupID.nil? and @user.facilitator?
+- if !@groups.empty? and @user.facilitator?
   = link_to "My Language Group", manage_group_path
 
 %h4= "Your Languages"
