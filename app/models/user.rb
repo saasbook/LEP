@@ -2,7 +2,15 @@ class User < ActiveRecord::Base
 
   serialize :fluent_languages, Array
   serialize :time_preference, Array
+
+
+  APPLICATION_DEADLINE = Date.tomorrow.to_s
   
+
+  def self.set_application_deadline(deadline)
+    APPLICATION_DEADLINE.replace deadline.to_s # set the application deadline
+  end
+
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
   def self.to_csv
     CSV.open('script/newsheet.csv', 'w') do |csv|
