@@ -10,6 +10,7 @@ class Pair < ActiveRecord::Base
 
   def self.remove_user_from_pair(pair_id, user_id)
     pair = Pair.find(pair_id)
+    user_id = user_id.to_s
     if pair.member1 == user_id
       pair.member1 = ''
     elsif pair.member2 == user_id
@@ -23,11 +24,11 @@ class Pair < ActiveRecord::Base
   def self.add_user_to_pair(pair_id, user_id)
     pair = Pair.find(pair_id)
     if Pair.check_nil_or_empty(pair.member1)
-      pair.member1 = user_id
+      pair.member1 = user_id.to_s
     elsif Pair.check_nil_or_empty(pair.member2)
-      pair.member2 = user_id
+      pair.member2 = user_id.to_s
     elsif Pair.check_nil_or_empty(pair.member3)
-      pair.member3 = user_id
+      pair.member3 = user_id.to_s
     end
     pair.save
   end
