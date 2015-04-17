@@ -15,4 +15,9 @@ class Group < ActiveRecord::Base
     members.delete(id)
   end
 
+  def get_facilitator()
+    return User.find(facilitator)
+  end
+  
+
 end

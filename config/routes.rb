@@ -3,6 +3,7 @@ LEP::Application.routes.draw do
   get 'welcome/index'
   get 'users/invalid', to: 'users#invalid'
 
+  get "groups/manage" => "groups#manage", :as => :manage_groups
   resources :groups
   resources :users
   resources :admins
