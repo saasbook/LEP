@@ -54,7 +54,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if before_deadline
+      @user = User.find(params[:id])
+    else
+      flash[:warning] = "The deadline has passed to edit applications."
+      redirect_to user_path(@user)
+    end
   end
 
   def activate
@@ -112,6 +117,11 @@ class UsersController < ApplicationController
       session[:invalid_email] = @email
       redirect_to users_invalid_path
     end
+  end
+
+  # check that the application is not being created after the deadline
+  def before_deadline
+    return Date.today < Date.strptime(User::APPLICATION_DEADLINE, "%m/%d/%Y")
   end
 
 

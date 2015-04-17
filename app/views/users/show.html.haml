@@ -8,7 +8,7 @@
     = submit_tag('Activate', id: 'activate')
 
 - if !@groupID.nil? and @user.facilitator?
-  = link_to "My Language Group", group_path(@groupID)
+  = link_to "My Language Group", manage_group_path
 
 %h4= "Your Languages"
 - @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
@@ -71,6 +71,8 @@
         %tr
           %td= user.first_name + " " + user.last_name
 
-
+%br
+%h4= link_to "Edit My Profile", edit_user_path(@user)
+%h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"
 - 10.times do
   %br
