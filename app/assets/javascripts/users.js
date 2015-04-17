@@ -1,5 +1,10 @@
 $(function(){
 
+    // Date picker for admin deadline setter
+    $(function() {
+      $(".datepicker").datepicker();
+    });
+
     //Hide div with the following ids
     $("#fluent_languages_other").hide("fast");
 		$("#group_language_other").hide();
