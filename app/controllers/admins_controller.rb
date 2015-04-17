@@ -97,9 +97,34 @@ class AdminsController < ApplicationController
       if id.nil? || id.empty?
         @members[id] = 'None'
       else
-        @members[id] = User.find_name_by_id(id.to_i)
+        @members[id] = User.find(id).full_name
       end
     end
+  end
+
+  def view_users
+    @pair = Pair.find(params[:pair_id])
+    @users = User.where(:admin => false)
+    @users_hash = {}
+    @users.each do |user| 
+      @users_hash[user.id] = user.full_name
+    end
+  end
+
+  def remove_from_pair
+    @pair = Pair.find(params[:pair_id])  
+    @user_to_remove = User.find(params[:user_id])
+    Pair.remove_user_from_pair(@pair.id, @user_to_remove.id.to_s)
+    flash[:notice] = "#{@user_to_remove.full_name} has been deleted from pair #{@pair.id}"
+    redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
+  end
+
+  def add_to_pair
+    @pair = Pair.find(params[:pair_id])
+    @user_to_add = User.find(params[:user_id])
+    Pair.add_user_to_pair(@pair.id, @user_to_add.id)
+    flash[:notice] = "#{@user_to_add.full_name} has been added to pair #{@pair.id}"
+    redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
 
   # controller action that should call pairing algorithm

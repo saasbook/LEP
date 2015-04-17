@@ -1,0 +1,15 @@
+%h2 All Nonadmin Users
+
+%table
+  %thead
+    %tr
+      %th User ID
+      %th Name
+      %th Select
+  %tbody
+    - @users_hash.each do |user_id, name|
+      %tr
+        %td= user_id
+        %td= name
+        %td= link_to "Select", admin_add_to_pair_path(:id => @user.id, :user_id => user_id, :pair_id => @pair.id) 
+

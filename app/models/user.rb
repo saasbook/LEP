@@ -15,9 +15,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def User.find_name_by_id(id)
-    user = User.find(id)
-    return user.first_name + ' ' + user.last_name
+  def full_name
+    return first_name + " " + last_name
   end
 
   def User.activate(id)
