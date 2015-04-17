@@ -134,7 +134,7 @@ class UsersController < ApplicationController
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :group_leader, :time_preference, :hours_per_week, 
                                 :user_motivation, :user_plan, :admin, :active, :facilitator).tap do |whitelisted|          
-                                    if params[:user][:fluent_languages_other] != ""
+                                    if not params[:user][:fluent_languages_other].nil? and params[:user][:fluent_languages_other] != ""
                                       params[:user][:fluent_languages][-1] = params[:user][:fluent_languages_other].downcase # add the user's entry for "other" to our fluent_languages list
                                     end
                                     whitelisted[:fluent_languages] = params[:user][:fluent_languages]
