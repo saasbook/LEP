@@ -4,11 +4,11 @@ class User < ActiveRecord::Base
   serialize :time_preference, Array
 
 
-  APPLICATION_DEADLINE = Date.tomorrow.to_s
+  APPLICATION_DEADLINE = Date.tomorrow.strftime("%m/%d/%Y").to_s # by default, the application is due tomorrow
   
 
   def self.set_application_deadline(deadline)
-    APPLICATION_DEADLINE.replace deadline.to_s # set the application deadline
+    APPLICATION_DEADLINE.replace deadline.strftime("%m/%d/%Y").to_s # set the application deadline
   end
 
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast

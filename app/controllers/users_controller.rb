@@ -121,7 +121,7 @@ class UsersController < ApplicationController
 
   # check that the application is not being created after the deadline
   def before_deadline
-    return Date.today < Date.strptime(User::APPLICATION_DEADLINE)
+    return Date.today < Date.strptime(User::APPLICATION_DEADLINE, "%m/%d/%Y")
   end
 
 
