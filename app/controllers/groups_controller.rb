@@ -27,11 +27,17 @@ class GroupsController < ApplicationController
     @fri_groups = Group.where(:day => 'Friday').all
   end
 
+  def manage
+    #puts '*' * 50, params[:id]
+    @user = User.find(session[:id])
+    @groups = Group.all
+  end
+  
   def show
     #puts '*' * 50, params[:id]
     @group = Group.find(params[:id])
+    @facilitator = @group.get_facilitator
     @user = User.find(session[:id])
-    @groups = Group.all
   end
 
   def edit
@@ -44,7 +50,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.update_attributes(group_params)
     @group.save!
-    redirect_to group_path(@group)
+    redirect_to manage_groups_path
   end
 
   def destroy

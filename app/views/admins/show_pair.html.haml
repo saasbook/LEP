@@ -12,11 +12,11 @@
       - if !id.nil? and !id.empty?
         %td= id
         %td= name
-        %td= link_to 'Remove'
+        %td= link_to 'Remove User', admin_remove_from_pair_path(:pair_id => @pair.id, :id => @user.id, :user_id => id.to_i)
       - else 
         %td= 'None'
         %td= 'None'
-        %td= link_to 'Add'
+        %td= link_to 'Add User', admin_view_users_path(:pair_id => @pair.id, :id => @user.id)
 
 %h4= "Pair Languages"
 = @pair.languages.empty? ? 'N/A' : @pair.languages.join(',')

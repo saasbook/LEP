@@ -3,6 +3,7 @@ LEP::Application.routes.draw do
   get 'welcome/index'
   get 'users/invalid', to: 'users#invalid'
 
+  get "groups/manage" => "groups#manage", :as => :manage_groups
   resources :groups
   resources :users
   resources :admins
@@ -30,6 +31,9 @@ LEP::Application.routes.draw do
   get "groups/:id/leave" => "groups#leave", :as => :leave_groups
 
   get "admins/:id/show_pair/:pair_id" => "admins#show_pair", :as => :admin_show_pair
+  get "admins/:id/view_users" => "admins#view_users", :as => :admin_view_users
+  get "admins/:id/remove_from_pair/:pair_id" => "admins#remove_from_pair", :as => :admin_remove_from_pair
+  get "admins/:id/add_to_pair/:pair_id" => "admins#add_to_pair", :as => :admin_add_to_pair
 
   post "admins/:id/set_deadline" => 'admins#set_application_deadline', :as => :admin_set_deadline
 

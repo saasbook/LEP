@@ -14,6 +14,7 @@
           %span=group.location
         - if @user.admin
           %div.group-options
+            = link_to "View info", group_path(group)
             = link_to "Edit", edit_group_path(group)
             = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
@@ -30,6 +31,7 @@
           %span=group.location
         - if @user.admin
           %div.group-options
+            = link_to "View info", group_path(group)
             = link_to "Edit", edit_group_path(group)
             = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
@@ -47,6 +49,7 @@
           %span=group.location
         - if @user.admin
           %div.group-options
+            = link_to "View info", group_path(group)
             = link_to "Edit", edit_group_path(group)
             = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
@@ -64,6 +67,7 @@
           %span=group.location
         - if @user.admin
           %div.group-options
+            = link_to "View info", group_path(group)
             = link_to "Edit", edit_group_path(group)
             = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])
@@ -81,6 +85,7 @@
           %span=group.location
         - if @user.admin
           %div.group-options
+            = link_to "View info", group_path(group)
             = link_to "Edit", edit_group_path(group)
             = link_to "Delete", group, :method => :delete, :confirm => "Are you sure?"
         - if !group.has_member?(session[:id])

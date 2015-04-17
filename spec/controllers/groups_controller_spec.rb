@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe GroupsController do
   before :each do
-    @group = Group.create!(language: "German", day: "Tuesday", time: "2-3PM", location: "1 Evans")
     @user = User.create!(first_name: 'Blah', admin: false)
+    @group = Group.create!(language: "German", day: "Tuesday", time: "2-3PM", location: "1 Evans", facilitator: @user.id)
   end
 
   describe '#index' do
@@ -36,7 +36,7 @@ describe GroupsController do
 
   describe '#show' do
     it 'should show a group' do
-      get(:show, {:id => @group.id}, {:id => @user.id})
+      get(:show, {:id => @user.id} , {:id => @user.id})
     end
   end
 
@@ -49,7 +49,7 @@ describe GroupsController do
   describe '#update' do
     it 'should update a group' do
       get(:update, {id: @group.id, group: {language: 'Italian'} })
-      response.should redirect_to(group_path(@group.id))
+      response.should redirect_to(manage_groups_path)
     end
   end
 
