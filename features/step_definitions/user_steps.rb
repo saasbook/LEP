@@ -201,7 +201,11 @@ When /^I view pairs$/ do
 end
 
 Then /^I should see three pairs$/ do
-  
+  page.all('table#pairs tr').count.should == 3
+end
+
+Then /^there should be one pair$/ do
+  page.all('table#pairs tr').count.should == 1
 end
 
 Then /^I should see the following pair ids:$/ do |ids|
