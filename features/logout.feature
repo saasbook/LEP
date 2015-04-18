@@ -7,13 +7,13 @@ Feature: log out from the LEP website
 Scenario: log out as a normal user
   Given I am an existing user
   And I sign in
-  Then I should see "Logout"
-  When I follow "Logout"
+  Then I should see "LOGOUT"
+  When I follow "LOGOUT"
   Then I should not see "Language Exchange Program"
 
 Scenario: log out as an admin
   Given I am an admin user
   And I sign in
-  Then I should see "Logout"
-  When I follow "Logout"
+  Then I should see "LOGOUT"
+  When I follow "LOGOUT"
   Then I should not see "Language Exchange Program"
