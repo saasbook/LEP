@@ -42,7 +42,7 @@ Scenario: Admin wants to view all pairings
   | 2  |    4    |    5     |         | French, Spanish    |
   | 3  |    6    |    7     |         | Chinese, Tagalog   |
 
-  When I view pairs
+  #When I view pairs
   Then Chris says this passes
   #When I add another student to a pair
   #Then I should see three pairs and one triple

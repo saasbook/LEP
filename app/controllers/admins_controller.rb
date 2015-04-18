@@ -127,7 +127,7 @@ class AdminsController < ApplicationController
     @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])  
     @user_to_remove = User.find(params[:user_id])
-    Pair.remove_user_from_pair(@pair.id, params[:user_id].to_i)
+    Pair.remove_user_from_pair(@pair.id, @user_to_remove.id)
     flash[:notice] = "#{@user_to_remove.full_name} has been deleted from pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
@@ -136,7 +136,7 @@ class AdminsController < ApplicationController
     @pair = Pair.find(params[:pair_id])
     @user_to_add = User.find(params[:user_id])
     @user = User.find(params[:id])
-    Pair.add_user_to_pair(@pair.id, params[:user_id].to_i)
+    Pair.add_user_to_pair(@pair.id, @user_to_add.id)
     flash[:notice] = "#{@user_to_add.full_name} has been added to pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
