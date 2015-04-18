@@ -147,7 +147,7 @@ When /^I (make)?(remove)? (.+) as an admin$/ do |make, remove, user|
   if make
     click_link('Make admin')
   else
-    within find('tr', text: "#{@other_user.id}") do
+    within find('tr', text: "#{@other_user.first_name}") do
       click_link('Delete admin')
     end
   end
@@ -158,7 +158,7 @@ When /^I (make)?(remove)? (.+) as a facilitator$/ do |make, remove, user|
   if make
     click_link('Grant Facilitator')
   else
-    within find('tr', text: "#{@other_user.id}") do
+    within find('tr', text: "#{@other_user.first_name}") do
       click_link('Revoke Facilitator')
     end
   end
