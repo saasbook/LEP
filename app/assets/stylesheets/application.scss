@@ -122,3 +122,20 @@ form {
 
 }
 
+.info {
+  width: 50%;
+  float: left;
+}
+
+.btn {
+  padding: $unit $unit*2;
+  color: $white;
+  border-radius: 10px;
+  background-color: $berkblue;
+}
+
+.edit-prof {
+  display: block;
+  float: right;
+  margin-top: 50px;
+}
