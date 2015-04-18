@@ -16,13 +16,15 @@
 = @fluent_languages.join(", ")
 
 %h4= "Language Preference 1"
-= @user.first_lang_preference.capitalize!
+- @user.first_lang_preference.capitalize!
+= @user.first_lang_preference
 
 %h4= "Language Preference 2"
 - if @user.second_lang_preference == nil
   = "You have no second language preference"
 - else
-  = @user.second_lang_preference.capitalize!
+  - @user.second_lang_preference.capitalize!
+  = @user.second_lang_preference
 
 
 %h3= "Your Pair Information"
