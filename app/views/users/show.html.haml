@@ -1,11 +1,11 @@
 %h2= "Welcome, #{@user.first_name}!"
 
--# - if @user.active
-  = form_tag(:action => :deactivate) do
-    = submit_tag('Deactivate', id: 'deactivate')
--# - else
-  = form_tag(:action => :activate) do
-    = submit_tag('Activate', id: 'activate')
+-# if @user.active
+  =# form_tag(:action => :deactivate) do
+    =# submit_tag('Deactivate', id: 'deactivate')
+-# else
+  =# form_tag(:action => :activate) do
+    =# submit_tag('Activate', id: 'activate')
 
 = link_to "Edit My Profile", edit_user_path(@user), class: "btn edit-prof"
 %h4= "Email"
@@ -25,7 +25,6 @@
   - if @user.second_lang_preference == nil
     %p= "You have no second language preference"
   - else
-    %p= @user.second_lang_preference.capitalize!
 
 %div.info
   %h3= "Your Pair Information"
@@ -78,6 +77,24 @@
     %h3= "Language groups you are leading"
     = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
 
+<<<<<<< HEAD
+=======
+- if @group.nil?
+  = "You are not currently in a group"
+- else
+  %h4= #"Group ID: #{@group.id}"
+  %table
+    %tr
+      %th Group Memberss
+      - if !@group.members.empty?
+        - @group.members.each do |id|
+          - user = User.find(id)
+          %tr
+            - if !user.first_name.nil? and !user.last_name.nil?
+              %td= user.first_name + " " + user.last_name
+            - if !user.first_name.nil? and user.last_name.nil?
+              %td= user.first_name
+>>>>>>> c51d39ebe6268e4a09ddab7f44cc66a7a73f71a0
 
 %br
 %h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"
