@@ -122,3 +122,37 @@ form {
 
 }
 
+
+.row {
+  clear: both;
+}
+
+.info {
+  width: 50%;
+  float: left;
+  margin-bottom: $unit*4;
+  h3 {
+    margin-bottom: $unit;
+  }
+}
+
+.btn {
+  padding: $unit $unit*2;
+  color: $white;
+  border-radius: 10px;
+  background-color: $berkblue;
+}
+
+.edit-prof {
+  display: block;
+  float: right;
+  margin-top: 20px;
+}
+
+h4 {
+  margin-bottom: $unit;
+}
+
+p {
+  margin-top: 0;
+}
