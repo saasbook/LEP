@@ -77,8 +77,6 @@
     %h3= "Language groups you are leading"
     = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
 
-<<<<<<< HEAD
-=======
 - if @group.nil?
   = "You are not currently in a group"
 - else
@@ -94,7 +92,6 @@
               %td= user.first_name + " " + user.last_name
             - if !user.first_name.nil? and user.last_name.nil?
               %td= user.first_name
->>>>>>> c51d39ebe6268e4a09ddab7f44cc66a7a73f71a0
 
 %br
 %h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"
