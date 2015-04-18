@@ -3,22 +3,23 @@ class AdminsController < ApplicationController
   before_filter :check_admin
 
   def check_admin
-#    if params[:id] then
-#      @user = User.find(params[:id])
-#      unless session[:id] == @user.id and @user.admin
-#        redirect_to user_path(@user.id)
-#      end
-#    else
-    @id = session[:id]
-    if !@id.nil?
-      unless User.find(@id).admin
-        redirect_to user_path :id => @id
+    if params[:id] then
+      @user = User.find(params[:id])
+      unless session[:id] == @user.id and @user.admin
+        redirect_to user_path(@user.id)
+      end
+    else
+      @id = session[:id]
+      if !@id.nil?
+        unless User.find(@id).admin
+          redirect_to user_path :id => @id
+        end
       end
     end
   end
 
   def set_application_deadline
-    deadline = params["deadline"]
+    deadline =params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
     # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
