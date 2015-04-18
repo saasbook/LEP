@@ -220,3 +220,27 @@ end
 When /^I generate pairings$/ do
 end
 
+
+# Given(/^I am logged in as admin (\d+)$/) do |arg1|
+#   @user = User.find_by_id(1)
+#   puts @user
+#   visit path_to("/admins/#{@user.id}")
+#   puts page.current_path
+# end
+
+When(/^I set the deadline to "(.*)"$/) do |new_deadline|
+  puts page.current_path
+  page.execute_script("$('#datepicker').datepicker('setDate', '#{new_deadline}');")
+end
+
+When(/^I edit the application as "(.*)"$/) do |first_name|
+  @user = User.find_by_first_name(first_name)
+  puts @user.id
+  visit path_to("/users/#{@user.id}/edit")
+  puts page.current_path
+end
+
+When(/^I update email to "(.*?)"$/) do |new_email|
+  fill_in 'Berkeley Email', with: new_email
+end
+

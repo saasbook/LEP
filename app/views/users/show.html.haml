@@ -10,6 +10,8 @@
 - if !@groupID.nil? and @user.facilitator?
   = link_to "My Language Group", manage_groups_path
 
+%h4= "Your Contact Info: #{@user.email}"
+
 %h4= "Your Languages"
 - @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
 - @fluent_languages.each {|lang| lang.capitalize!}
