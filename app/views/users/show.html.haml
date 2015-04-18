@@ -65,11 +65,15 @@
   %h4= #"Group ID: #{@group.id}"
   %table
     %tr
-      %th Group Member
-      - @group.members.each do |id|
-        - user = User.find(id)
-        %tr
-          %td= user.first_name + " " + user.last_name
+      %th Group Memberss
+      - if !@group.members.empty?
+        - @group.members.each do |id|
+          - user = User.find(id)
+          %tr
+            - if !user.first_name.nil? and !user.last_name.nil?
+              %td= user.first_name + " " + user.last_name
+            - if !user.first_name.nil? and user.last_name.nil?
+              %td= user.first_name
 
 %br
 %h4= link_to "Edit My Profile", edit_user_path(@user)
