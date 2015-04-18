@@ -39,6 +39,8 @@ module NavigationHelpers
     when /^the language group page$/ then '/groups/4'
 
     when /^the edit group page$/ then '/groups/4/edit'
+
+    when /^\/users\/(.*)\/edit$/ then "/users/#{$1}/edit"
     
 
     # Add more mappings here.

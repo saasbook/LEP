@@ -19,6 +19,7 @@ class AdminsController < ApplicationController
   def set_application_deadline
     deadline = params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
+    # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
   end
 
