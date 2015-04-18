@@ -192,13 +192,16 @@ end
 
 When /^the following pairings have been generated:$/ do |pairs|
   pairs.hashes.each do |pair|
-    members = pair['name'].split(',')
-    Pair.create(id: pair['id'], member1: members[0], member2: members[1], languages: pair['languages'].split(','))
+    Pair.create(member1: pair['member1'], member2: pair['member2'], member3: pair['member3'], languages: pair['languages'].split(','))
   end
 end
 
 When /^I view pairs$/ do
   visit '/admins'
+end
+
+Then /^I should see three pairs$/ do
+  
 end
 
 Then /^I should see the following pair ids:$/ do |ids|

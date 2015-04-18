@@ -37,7 +37,7 @@ class AdminsController < ApplicationController
 
   def index
     puts "why do i fail"
-    @user = User.find(session[:id]) if session[:id] != nil
+    @user = User.find(session[:id]) if !(session[:id].nil?)
     puts "is that even the line where i fail"
     @users = User.where(!:admin) # want to list all non-admin users
     @groups = Group.all
