@@ -3,13 +3,14 @@ class AdminsController < ApplicationController
   before_filter :check_admin
 
   def check_admin
-    if params[:id] then
-      @user = User.find(params[:id])
-      unless session[:id] == @user.id and @user.admin
-        redirect_to user_path(@user.id)
-      end
-    else
-      @id = session[:id]
+#    if params[:id] then
+#      @user = User.find(params[:id])
+#      unless session[:id] == @user.id and @user.admin
+#        redirect_to user_path(@user.id)
+#      end
+#    else
+    @id = session[:id]
+    if !@id.nil?
       unless User.find(@id).admin
         redirect_to user_path :id => @id
       end
@@ -34,7 +35,9 @@ class AdminsController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:id])
+    puts "why do i fail"
+    @user = User.find(session[:id]) if session[:id] != nil
+    puts "is that even the line where i fail"
     @users = User.where(!:admin) # want to list all non-admin users
     @groups = Group.all
     @pairs = Pair.all
