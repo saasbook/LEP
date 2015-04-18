@@ -33,7 +33,6 @@ jane = {first_name: 'Jane',
 
 shana = {first_name: 'Shana',
     	email: 'shanahu@berkeley.edu',
-    	admin: false,
       academic_title: 'Undergraduate',
       major: 'Computer Science', 
       residency: 'Domestic', 
@@ -49,7 +48,7 @@ shana = {first_name: 'Shana',
       hours_per_week: '2',
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
-      admin: false,
+      admin: true,
       active: true,
       facilitator: true}
 
