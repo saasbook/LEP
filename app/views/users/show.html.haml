@@ -8,72 +8,76 @@
     = submit_tag('Activate', id: 'activate')
 
 = link_to "Edit My Profile", edit_user_path(@user), class: "btn edit-prof"
-
-- if !@groupID.nil? and @user.facilitator?
-  = link_to "My Language Group", manage_groups_path
-
-%h4= "Your Contact Info: #{@user.email}"
+%h4= "Email"
+%p #{@user.email}
 
 %h4= "Your Languages"
 - @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
 - @fluent_languages.each {|lang| lang.capitalize!}
-= @fluent_languages.join(", ")
+%p= @fluent_languages.join(", ")
 
-%h4= "Language Preference 1"
-= @user.first_lang_preference.capitalize!
+%div.info
+  %h4= "Language Preference 1"
+  %p= @user.first_lang_preference.capitalize!
 
-%h4= "Language Preference 2"
-- if @user.second_lang_preference == nil
-  = "You have no second language preference"
-- else
-  = @user.second_lang_preference.capitalize!
+%div.info
+  %h4= "Language Preference 2"
+  - if @user.second_lang_preference == nil
+    %p= "You have no second language preference"
+  - else
+    %p= @user.second_lang_preference.capitalize!
 
+%div.info
+  %h3= "Your Pair Information"
 
+  -# Find the pair an user is associated with
+  - @pair = nil
+  - Pair.all.each do |pair|
+    - if pair.members.include? @user.id
+      - @pair = pair
+  - if @pair.nil?
+    = "You are not currently in a pair"
+  - else
+    %h4= "Pair ID: #{@pair.id}"
+
+    %h4= "Pair Languages"
+    = @pair.languages.join(", ")
+    %p
+
+    %table
+      %tr
+        %th Pair Member
+        %th Contact Info
+        - @pair.members.each do |id|
+          - user = User.find(id)
+          %tr
+            %td= user.first_name + " " + user.last_name
+            %td= user.email
+%div.info
+  %h3= "Your Group Information"
+  - @group = nil
+  - Group.all.each do |group|
+    - "user id = #{@user.id}, group.members = #{group.members}"
+    - if group.members.include? @user.id
+      - @group = group
+
+  - if @group.nil?
+    = "You are not currently in a group"
+  - else
+    %h4= #"Group ID: #{@group.id}"
+    %table
+      %tr
+        %th Group Member
+        - @group.members.each do |id|
+          - user = User.find(id)
+          %tr
+            %td= user.first_name + " " + user.last_name
+
+- if !@groupID.nil? and @user.facilitator?
   %div.info
-    %h3= "Your Pair Information"
+    %h3= "Language groups you are leading"
+    = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
 
-    -# Find the pair an user is associated with
-    - @pair = nil
-    - Pair.all.each do |pair|
-      - if pair.members.include? @user.id
-        - @pair = pair
-    - if @pair.nil?
-      = "You are not currently in a pair"
-    - else
-      %h4= "Pair ID: #{@pair.id}"
-
-      %h4= "Pair Languages"
-      = @pair.languages.join(", ")
-      %p
-
-      %table
-        %tr
-          %th Pair Member
-          %th Contact Info
-          - @pair.members.each do |id|
-            - user = User.find(id)
-            %tr
-              %td= user.first_name + " " + user.last_name
-              %td= user.email
-  %div.info
-    %h3= "Your Group Information"
-    - @group = nil
-    - Group.all.each do |group|
-      - "user id = #{@user.id}, group.members = #{group.members}"
-      - if group.members.include? @user.id
-        - @group = group
-
-    - if @group.nil?
-      = "You are not currently in a group"
-    - else
-      %h4= #"Group ID: #{@group.id}"
-      %table
-        %tr
-          %th Group Member
-          - @group.members.each do |id|
-            - user = User.find(id)
-            %tr
-              %td= user.first_name + " " + user.last_name
 
 %br
 %h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"

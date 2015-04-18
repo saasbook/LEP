@@ -38,8 +38,10 @@ class UsersController < ApplicationController
     @user = User.find(@id)
     #groupid
     @groupID = nil
+    @myGroup = nil
     Group.all.each do |group|
       if group.facilitator == @user.id
+        @myGroup = group
         @groupID = group.id
       end
     end
