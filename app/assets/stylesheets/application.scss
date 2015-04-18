@@ -122,10 +122,15 @@ form {
 
 }
 
+
+.row {
+  clear: both;
+}
+
 .info {
   width: 50%;
   float: left;
-  margin-bottom: $unit*2;
+  margin-bottom: $unit*4;
   h3 {
     margin-bottom: $unit;
   }

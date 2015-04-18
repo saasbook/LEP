@@ -26,6 +26,8 @@
     %p= "You have no second language preference"
   - else
 
+
+%div.row
 %div.info
   %h3= "Your Pair Information"
 
@@ -67,32 +69,19 @@
     %table
       %tr
         %th Group Member
-        - @group.members.each do |id|
-          - user = User.find(id)
-          %tr
-            %td= user.first_name + " " + user.last_name
+        - if !@group.members.empty?
+          - @group.members.each do |id|
+            - user = User.find(id)
+            %tr
+              - if !user.first_name.nil? and !user.last_name.nil?
+                %td= user.first_name + " " + user.last_name
+              - if !user.first_name.nil? and user.last_name.nil?
+                %td= user.first_name
 
 - if !@groupID.nil? and @user.facilitator?
   %div.info
     %h3= "Language groups you are leading"
     = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
-
-- if @group.nil?
-  = "You are not currently in a group"
-- else
-  %h4= #"Group ID: #{@group.id}"
-  %table
-    %tr
-      %th Group Memberss
-      - if !@group.members.empty?
-        - @group.members.each do |id|
-          - user = User.find(id)
-          %tr
-            - if !user.first_name.nil? and !user.last_name.nil?
-              %td= user.first_name + " " + user.last_name
-            - if !user.first_name.nil? and user.last_name.nil?
-              %td= user.first_name
-
 %br
 %h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"
 - 10.times do
