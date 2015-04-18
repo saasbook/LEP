@@ -4,15 +4,18 @@ Feature: Student Edit Application
 	I want to be able to edit my application before the deadline
 
 Background: 
-	Given the following users exist:
-	| id | 			first_name | 				email       | admin |
-	| 1  | 				Billy 	 | billy@berkeley.edu | false |
+  Given the following students exist:
+  | group_id | first_name | last_name |  sid     | email               | gender | fluent_languages | first_lang_preference |
+  |    1     |   Billy    |   Bob     |  1234566 |  billy@berkeley.edu | male | [arabic] | english |
+  |    1     |   Joe      |   Shmoe   |  1234567 |  joe@berkeley.edu | male | [arabic] | english |
+  |    1     |   Sally    |   Sue     |  1234568 |  sally@berkeley.edu | male | [arabic] | english |
+  |    2     |   Jane     |   Doe     |  1234570 |  jane@berkeley.edu | male | [arabic] | english |
+  |    2     |   John     |   Smith   |  1234530 |  john@berkeley.edu | male | [arabic] | english |
+  |    3     |   Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | [arabic] | english |
 
 Scenario:
-	Given I am logged in as Billy
-	And I am on the user edit page
-	And the application deadline has not passed
-	When I update email to billyjoe@berkeley.edu
-	And I press "submit"
-	Then I should be on the user show page
-	And I should see “billyjoe@berkeley.edu”
+	Given I am logged in as "Billy"
+	And I edit the application as "Billy"
+	When I update email to "billyjoe@berkeley.edu"
+	And I click "Submit"
+	#And I should see "billyjoe@berkeley.edu"
