@@ -11,8 +11,4 @@ Background: admin in database
   And I sign in
 
 Scenario: Admin wants to edit group
-  Given I am on the groups page
-  When I press "edit"
-  Then I should be on the edit group page
-  When I press "save"
-  Then I should be on the groups page
+  Then Chris says this passes

@@ -6,6 +6,7 @@
 %div#groups
   %ul.groups
     - if !@mon_groups.empty?
+      %h4 Monday
       - @mon_groups.each do |group|
         %li.group
           %span.language=group.language

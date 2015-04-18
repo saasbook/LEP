@@ -22,7 +22,7 @@ Background: student has been added to a group
 Scenario: student is in a group
   Given I am logged in as "Billy"
   Then I should see "Group Information"
-  And I should see "Joe Schmoe"
+  And I should see "Joe Shmoe"
   And I should see "Sally Sue"
   And I should not see "Jane Doe"
   And I should not see "John Smith"
