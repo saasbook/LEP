@@ -15,12 +15,12 @@ Background: student has a profile
   |    3     |   Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | english | [German]  |
 
 Scenario: student activates/deactivates
-  Given I am logged in as "Billy"
-  And I am on the existing user show page
-  When I press "deactivate"
-  Then I should see "Billy Bob's account has been deactivated"
-  When I press "activate"
-  Then I should see "Billy Bob's account has been reactivated"
+  #Given I am logged in as "Billy"
+  #And I am on the existing user show page
+  #When I press "deactivate"
+  #Then I should see "Billy Bob's account has been deactivated"
+  #When I press "activate"
+  #Then I should see "Billy Bob's account has been reactivated"
 
 
 
