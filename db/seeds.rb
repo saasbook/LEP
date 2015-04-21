@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+khuyen = { first_name: 'Khuyen', email: 'kvn@berkeley.edu', admin: true, facilitator: false}
+
 jane = {first_name: 'Jane', 
 		last_name: 'Doe', 
 		sid: '12345678', 
@@ -188,5 +191,5 @@ german =  {language: 'German',
             time: '6-7PM',
             location: '151 Chavez',
         	facilitator: 7}
-groups = Group.create!([russian, english1, mandarin, english2, korean, swedish, german])
+groups = Group.create!([khuyen, russian, english1, mandarin, english2, korean, swedish, german])
 
