@@ -3,8 +3,9 @@ class Group < ActiveRecord::Base
 	serialize :members, Array
 
   def has_member?(id)
-    return true if members.include?(id)
-    else return false
+    #return true if members.include?(id)
+    #else return false
+    (members.include?(id)) ? true : false
   end
 
   def add_member(id)
