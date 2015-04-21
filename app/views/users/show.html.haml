@@ -18,13 +18,16 @@
 
 %div.info
   %h4= "Language Preference 1"
-  %p= @user.first_lang_preference.capitalize!
+  - @user.first_lang_preference.capitalize!
+  %p= @user.first_lang_preference
 
 %div.info
   %h4= "Language Preference 2"
   - if @user.second_lang_preference == nil
     %p= "You have no second language preference"
   - else
+    - @user.first_lang_preference.capitalize!
+    %p= @user.second_lang_preference
 
 
 %div.row
