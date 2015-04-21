@@ -15,6 +15,6 @@ Background: admin in database
 
 Scenario: Admin wants to set deadline
 	Given I am on the admin show page
-	When I set the deadline to "05/15/2015"
-	And I click "Submit"
-	#And I should see "Application Deadline: 05/15/2015"
+	And I set the deadline to "05/15/2015"
+	When I press "Submit"
+	And I should see "Application Deadline: 05/15/2015"

@@ -16,6 +16,6 @@ Background:
 Scenario:
 	Given I am logged in as "Billy"
 	And I edit the application as "Billy"
-	When I update email to "billyjoe@berkeley.edu"
-	And I click "Submit"
-	#And I should see "billyjoe@berkeley.edu"
+	And I update email to "billyjoe@berkeley.edu"
+	When I press "Submit"
+	And I should see "billyjoe@berkeley.edu"

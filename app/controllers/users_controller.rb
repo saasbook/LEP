@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    redirect_to admins_path
   end
 
   def show

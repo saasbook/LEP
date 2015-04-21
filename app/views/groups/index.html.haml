@@ -23,7 +23,8 @@
             %div.group-options
               = link_to "Join Group", join_groups_path(id: group.id)
           - else
-            = link_to "Leave Group", leave_groups_path(id: group.id)
+            %div.group-options
+              = link_to "Leave Group", leave_groups_path(id: group.id)
     - if !@tues_groups.empty?
       %h4 Tuesday
       - @tues_groups.each do |group|
@@ -42,7 +43,8 @@
             %div.group-options
               = link_to "Join Group", join_groups_path(id: group.id)
           - else
-            = link_to "Leave Group", leave_groups_path(id: group.id)
+            %div.group-options
+              = link_to "Leave Group", leave_groups_path(id: group.id)
 
     - if !@wed_groups.empty?
       %h4 Wednesday
@@ -62,7 +64,8 @@
             %div.group-options
               = link_to "Join Group", join_groups_path(id: group.id)
           - else
-            = link_to "Leave Group", leave_groups_path(id: group.id)
+            %div.group-options
+              = link_to "Leave Group", leave_groups_path(id: group.id)
 
     - if !@thurs_groups.empty?
       %h4 Thursday
@@ -82,7 +85,8 @@
             %div.group-options
               = link_to "Join Group", join_groups_path(id: group.id)
           - else
-            = link_to "Leave Group", leave_groups_path(id: group.id)
+            %div.group-options
+              = link_to "Leave Group", leave_groups_path(id: group.id)
 
     - if !@fri_groups.empty?
       %h4 Friday
@@ -102,4 +106,5 @@
             %div.group-options
               = link_to "Join Group", join_groups_path(id: group.id)
           - else
-            = link_to "Leave Group", leave_groups_path(id: group.id)
+            %div.group-options
+              = link_to "Leave Group", leave_groups_path(id: group.id)
