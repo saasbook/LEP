@@ -20,5 +20,13 @@ class Group < ActiveRecord::Base
     return User.find(facilitator)
   end
   
+  def self.to_csv
+    CSV.open('script/groups.csv', 'w') do |csv|
+      csv << column_names
+      Group.all.each do |item|
+        csv << item.attributes.values_at(*column_names)
+      end
+    end
+  end
 
 end
