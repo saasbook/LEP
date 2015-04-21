@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   
 
   def self.set_application_deadline(deadline)
-    APPLICATION_DEADLINE.replace deadline.strftime("%m/%d/%Y").to_s # set the application deadline
+    APPLICATION_DEADLINE.replace deadline # set the application deadline
   end
 
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
