@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-khuyen = { first_name: 'Khuyen', email: 'kvn@berkeley.edu', admin: true, facilitator: false}
+khuyen = {first_name: 'Khuyen', email: 'kvn@berkeley.edu', admin: true, facilitator: false}
 
 jane = {first_name: 'Jane', 
 		last_name: 'Doe', 
@@ -150,7 +150,7 @@ chris = { first_name: 'Chris',
 	    facilitator: false
 		}
 
-users = User.create!([shana, robyn, jane, admin2, iris, jason, tsion, chris])
+users = User.create!([khuyen, shana, robyn, jane, admin2, iris, jason, tsion, chris])
 
 russian = {language: 'Russian',
            day: 'Monday',
@@ -191,5 +191,5 @@ german =  {language: 'German',
             time: '6-7PM',
             location: '151 Chavez',
         	facilitator: 7}
-groups = Group.create!([khuyen, russian, english1, mandarin, english2, korean, swedish, german])
+groups = Group.create!([russian, english1, mandarin, english2, korean, swedish, german])
 
