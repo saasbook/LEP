@@ -1,5 +1,4 @@
-Form Validations 
-	Feature:
+Feature:
 	As a student
 	I should not be able to submit blank form entries
 	So that the application is always accurate
