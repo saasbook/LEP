@@ -59,4 +59,8 @@ class Pair < ActiveRecord::Base
     end
   end
 
+  def Pair.total_pairs
+    return Pair.count
+  end
+
 end
