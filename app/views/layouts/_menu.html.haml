@@ -14,6 +14,9 @@
               = link_to "HOME", user_path(@user)
         %li
           = link_to "LANGUAGE GROUPS", groups_path 
+        %li
+          - if @user.admin
+            = link_to "ANALYTICS", admin_analytics_path(@user)
         %li 
           = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 
 

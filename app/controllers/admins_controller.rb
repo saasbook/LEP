@@ -18,6 +18,9 @@ class AdminsController < ApplicationController
     end
   end
 
+  def analytics
+  end
+
   def set_application_deadline
     deadline =params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline

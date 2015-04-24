@@ -57,4 +57,8 @@ class User < ActiveRecord::Base
     user.update_attributes facilitator: false
   end
 
+  def User.total_users
+    return User.count
+  end
+
 end
