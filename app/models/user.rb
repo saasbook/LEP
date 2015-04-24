@@ -3,9 +3,7 @@ class User < ActiveRecord::Base
   serialize :fluent_languages, Array
   serialize :time_preference, Array
 
-
   APPLICATION_DEADLINE = Date.tomorrow.strftime("%m/%d/%Y").to_s # by default, the application is due tomorrow
-  
 
   def self.set_application_deadline(deadline)
     APPLICATION_DEADLINE.replace deadline # set the application deadline
@@ -23,8 +21,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  # set user's pair_id attr to a pair id
+  def User.set_pair_id(user_id, pair_id)
+    user = User.find(user_id) 
+    user.update_attributes pair_id: pair_id
+  end
+
   def full_name
-    return first_name + " " + last_name
+    return self.first_name + " " + self.last_name
   end
 
   def User.activate(id)
