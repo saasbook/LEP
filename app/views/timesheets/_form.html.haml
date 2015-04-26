@@ -3,17 +3,17 @@
   - language_options = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
-    = f.label :practiced_language, "What language did you practice?"
-    = f.select :practiced_language , language_options, {:class => "practiced_language"}, :id => "practiced_language"
-    = f.text_field :practiced_language, :id => "practiced_language_other"
+    = f.label :language , "What language did you practice?"
+    = f.select :language, language_options, {:class => "language"}, :id => "language"
+    = f.text_field :language, :id => "language_other"
 
   %div.question
-    = f.label :date_practiced, "When did you practice?"
-    = f.text_field :date_practiced, {:class => 'datepicker', :id => 'datepicker'}
+    = f.label :date, "When did you practice?"
+    = f.text_field :date, {:class => 'datepicker', :id => 'datepicker'}
 
   %div.question
-    = f.label :hours_per_week, "How many hours per week did you practice on this day?"
-    = f.text_field :hours_per_week
+    = f.label :hours, "How many hours per week did you practice on this day?"
+    = f.text_field :hours
 
   %div.question
     %p

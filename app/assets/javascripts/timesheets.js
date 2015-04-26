@@ -6,14 +6,14 @@ $(function(){
     });
 
     //Hide div with the following ids
-		$("#practiced_language_other").hide();
+		$("#language_other").hide();
 
-    $('#practiced_language').click(function(){
+    $('#language').click(function(){
       console.log($(this).val());
       if ($(this).val()=="other") {
-      	$("#practiced_language_other").show("fast");
+      	$("#language_other").show("fast");
       } else {
-        $("#practiced_language_other").hide("fast");
+        $("#language_other").hide("fast");
       }
     });
 });
