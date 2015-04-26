@@ -5,7 +5,9 @@ LEP::Application.routes.draw do
 
   get "groups/manage" => "groups#manage", :as => :manage_groups
   resources :groups
-  resources :users
+  resources :users do
+    resources :timesheets
+  end
   resources :admins
   resources :pairs
 
