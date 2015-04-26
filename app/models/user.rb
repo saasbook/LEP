@@ -65,4 +65,8 @@ class User < ActiveRecord::Base
     return User.count
   end
 
+  def User.total_admins
+    return User.where(admin: true).count
+  end
+
 end
