@@ -96,6 +96,10 @@ class AdminsController < ApplicationController
   def show
   end
 
+  def show_user
+    @user = User.find(params[:user_id])
+  end
+
   def edit
   end
 
