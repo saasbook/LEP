@@ -63,6 +63,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.add_member(session[:id])
     @group.save!
+    flash[:warning] = "You have joined a language group!"
     redirect_to groups_path
   end
 
