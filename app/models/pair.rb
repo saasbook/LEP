@@ -8,6 +8,14 @@ class Pair < ActiveRecord::Base
     return (s.nil? || s.empty?) ? true : false
   end
 
+  def get_languages
+    list = "#{self.languages[0].delete! "'"}"
+    for i in 1..self.languages.length-1
+      list += ", " + "#{self.languages[i].delete! "'"}"
+    end
+    return list
+  end
+
   def self.remove_user_from_pair(pair_id, user_id)
     @pair = Pair.find(pair_id)
     @user = User.find(user_id)

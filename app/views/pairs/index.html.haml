@@ -1,14 +1,19 @@
-%h2 All Pairs
+- if @user.admin
+  %h2 All Pairs
 
-%table#groups
-  %thead
-    %tr
-      %th Pair ID
-      %th Members
-      %th Languages
-  %tbody
-    - @pairs.each do |pair|
+  %table#pairs
+    %thead
       %tr
-        %td=pair.id
-        %td=pair.members
-        %td=pair.languages
+        %th Pair No. 
+        %th Member 1
+        %th Member 2
+        %th Languages
+    %tbody
+      - @pairs.each do |pair|
+        %tr
+          %td= link_to "Pair #{pair.id}", admin_show_pair_path(:id => @user.id, :pair_id => pair.id)
+          %td= pair.member1
+          %td= pair.member2
+          %td= (!pair.languages.empty?) ? pair.languages : 'N/A'
+- else
+  - redirect_to show_user_path

@@ -143,8 +143,9 @@ admin = { first_name: 'Admin',
 		facilitator: false
 }
 
-admin2 = { first_name: 'adminmeister', 
-  		sid: '223333', 
+admin2 = { first_name: 'Seungwoo', 
+    last_name: 'Choi',
+  	sid: '223333', 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Graduate',
 		major: 'Business',
