@@ -118,7 +118,7 @@ class AdminsController < ApplicationController
   def view_users
     @pair = Pair.find(params[:pair_id])
     @user = User.find(params[:id])
-    @users = User.where(:admin => false)
+    @users = User.where(:admin => false, :pair_id => 0)
     @users_hash = {}
     @users.each do |user| 
       @users_hash[user.id] = "#{user.first_name} #{user.last_name}"
