@@ -147,11 +147,29 @@ class AdminsController < ApplicationController
 
   # controller action that should call pairing algorithm
   def pairing
-    User.to_csv()
+    User.pairing_csv()
     res = `python script/lep_pairing.py`
     flash[:notice] = 'Pairs have been generated.'
     Pair.generate_pairs()
     redirect_to admins_path
+  end
+
+  def download_users
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv, :filename => 'users.csv'
+    }
+    end
+    
+  end
+
+  def download_pairs
+    @pairs = Pair.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data Pair.to_csv, :filename => 'pairs.csv' 
+    }
+    end
   end
 
 end

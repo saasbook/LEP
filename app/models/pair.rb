@@ -72,4 +72,13 @@ class Pair < ActiveRecord::Base
     return Pair.count
   end
 
+  def Pair.to_csv
+    CSV.generate do |csv|
+      csv << Pair.column_names
+      all.each do |pair|
+        csv << pair.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end

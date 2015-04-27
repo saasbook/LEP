@@ -1,4 +1,10 @@
-%h1= "Data Statistics"
+%h1= "Program Statistics"
+
+%div.info
+  %p= link_to "Download users", admin_dl_users_path(format: 'csv')
+
+%div.info
+  %p= link_to "Download pairs", admin_dl_pairs_path(format: 'csv')
 
 %div.info
   %h4= "Number of Applicants"
