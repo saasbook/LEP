@@ -1,6 +1,6 @@
 %h2= "Pair #{@pair.id}"
 
-%table
+%table.table
   %thead
     %tr
       %th User ID
@@ -19,4 +19,4 @@
         %td= link_to 'Add User', admin_view_users_path(:pair_id => @pair.id, :id => @user.id)
 
 %h4= "Pair Languages"
-= @pair.languages.empty? ? 'N/A' : @pair.languages.join(',')
+= @pair.languages.empty? ? 'N/A' : @pair.get_languages
