@@ -1,0 +1,33 @@
+%h1= "Data Statistics"
+
+%div.info
+  %h4= "Number of Applicants"
+  %p= User.total_users
+%div.info
+  %h4= "Number of Pairs"
+  %p= Pair.total_pairs
+%div.row
+
+%div.info
+  %h4= "Number of Groups"
+  %p= Group.total_groups
+%div.info
+  %h4= "Number of Admins"
+  %p= User.total_admins
+%div.row
+
+%div.info
+  %h4= "Academic Title"
+  = pie_chart User.group(:academic_title).count
+%div.info
+  %h4= "Gender"
+  = pie_chart User.group(:gender).count
+%div.row
+
+%div.info
+  %h4= "Residency"
+  = pie_chart User.group(:residency).count
+%div.info
+  %h4= "Major"
+  = pie_chart User.group(:major).count
+%div.row

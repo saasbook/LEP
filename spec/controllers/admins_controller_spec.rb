@@ -4,6 +4,8 @@ describe AdminsController do
 
   before :each do
 
+    @test = User.create({id: 0, first_name: 'test', email: 'test@berkeley.edu', admin: false})
+
     @admin = User.create({id: 1, first_name: 'admin', email: 'sample@berkeley.edu', admin: true})
 
     @user = User.create({id: 2, first_name: 'Robyn', 
@@ -114,6 +116,7 @@ describe AdminsController do
       get :pairing, {id: @admin.id}, {id: @admin.id}
     end
     it 'should redirect to admins_path' do
+      puts @admin.id
       get :pairing, {id: @admin.id}, {id: @admin.id}
       expect(response).to redirect_to admins_path
     end
@@ -196,6 +199,13 @@ describe AdminsController do
       Pair.should_receive(:add_user_to_pair).with(@pair.id, 4)
       get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 4}
       expect(response).to redirect_to(admin_show_pair_path)
+    end
+  end
+
+  describe '#analyticcs' do
+    it 'should bring up analytics' do
+      get :analytics, {id: @admin.id}, {id: @admin.id}
+      expect(response.status).to eq(200)
     end
   end
 

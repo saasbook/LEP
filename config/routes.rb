@@ -37,6 +37,8 @@ LEP::Application.routes.draw do
 
   post "admins/:id/set_deadline" => 'admins#set_application_deadline', :as => :admin_set_deadline
 
+  get "admins/:id/analytics" => "admins#analytics", :as => :admin_analytics
+
   #put "pairs/:id/add" => "pairs#add", :as => :pair_add
   #put "pairs/:id/remove" => "pairs#remove", :as => :pair_remove
 

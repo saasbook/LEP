@@ -27,6 +27,8 @@ module NavigationHelpers
     when /^the new user page$/ then '/users/new'
     
     when /^the admin show page$/ then '/admins/2'
+
+    when /^the admin analytics page$/ then '/admins/1/analytics'
     
     when /^the existing user show page$/ then '/users/1'
 

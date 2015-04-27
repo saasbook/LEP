@@ -18,8 +18,11 @@ class AdminsController < ApplicationController
     end
   end
 
+  def analytics
+  end
+
   def set_application_deadline
-    deadline =params["deadline"]
+    deadline = params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
     # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
@@ -108,7 +111,8 @@ class AdminsController < ApplicationController
       if id.nil? || id.empty?
         @members[id] = 'None'
       else
-        @members[id] = User.find(id).full_name
+        user = User.find(id)
+        @members[id] = "#{user.first_name} #{user.last_name}"
       end
     end
   end
@@ -119,25 +123,25 @@ class AdminsController < ApplicationController
     @users = User.where(:admin => false)
     @users_hash = {}
     @users.each do |user| 
-      @users_hash[user.id] = user.full_name
+      @users_hash[user.id] = "#{user.first_name} #{user.last_name}"
     end
   end
 
   def remove_from_pair
     @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])  
-    @user_to_remove = User.find(params[:user_id])
-    Pair.remove_user_from_pair(@pair.id, @user_to_remove.id)
-    flash[:notice] = "#{@user_to_remove.full_name} has been deleted from pair #{@pair.id}"
+    user = User.find(params[:user_id])
+    Pair.remove_user_from_pair(@pair.id, user.id)
+    flash[:notice] = "#{user.first_name} #{user.last_name}  has been deleted from pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
 
   def add_to_pair
     @pair = Pair.find(params[:pair_id])
-    @user_to_add = User.find(params[:user_id])
+    user = User.find(params[:user_id])
     @user = User.find(params[:id])
-    Pair.add_user_to_pair(@pair.id, @user_to_add.id)
-    flash[:notice] = "#{@user_to_add.full_name} has been added to pair #{@pair.id}"
+    Pair.add_user_to_pair(@pair.id, user.id)
+    flash[:notice] = "#{user.first_name} #{user.last_name} has been added to pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
 
