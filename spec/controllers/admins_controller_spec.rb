@@ -207,9 +207,8 @@ describe AdminsController do
       Pair.should_receive(:add_user_to_pair).with(@pair.id, 3)
       get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 3}
       expect(response).to redirect_to(admin_show_pair_path)
-=end
-
     end
+=end
   end
 
   describe '#analyticcs' do
