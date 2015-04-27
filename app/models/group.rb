@@ -19,7 +19,11 @@ class Group < ActiveRecord::Base
   def get_facilitator()
     return User.find(facilitator)
   end
-  
+
+  def Group.total_groups
+    return Group.count
+  end
+
   def self.to_csv
     CSV.open('script/groups.csv', 'w') do |csv|
       csv << column_names
