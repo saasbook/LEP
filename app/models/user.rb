@@ -71,7 +71,11 @@ class User < ActiveRecord::Base
   end
 
   def User.total_users
-    return User.count
+    return User.where(admin: false).count
+  end
+
+  def User.get_users
+    return User.where(admin: false)
   end
 
   def User.total_admins
