@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415225609) do
+ActiveRecord::Schema.define(version: 20150424213612) do
 
   create_table "groups", force: true do |t|
     t.string   "members"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150415225609) do
     t.string   "group_language"
     t.boolean  "facilitator"
     t.string   "fluent_languages_other"
+    t.integer  "pair_id",                 default: 0
   end
 
 end

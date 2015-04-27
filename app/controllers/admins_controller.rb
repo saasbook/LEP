@@ -10,10 +10,8 @@ class AdminsController < ApplicationController
       end
     else
       @id = session[:id]
-      if !@id.nil?
-        unless User.find(@id).admin
-          redirect_to user_path :id => @id
-        end
+      unless User.find(@id).admin
+        redirect_to user_path :id => @id
       end
     end
   end
@@ -22,7 +20,7 @@ class AdminsController < ApplicationController
   end
 
   def set_application_deadline
-    deadline =params["deadline"]
+    deadline = params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
     # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
@@ -147,11 +145,29 @@ class AdminsController < ApplicationController
 
   # controller action that should call pairing algorithm
   def pairing
-    User.to_csv()
+    User.pairing_csv()
     res = `python script/lep_pairing.py`
     flash[:notice] = 'Pairs have been generated.'
     Pair.generate_pairs()
     redirect_to admins_path
+  end
+
+  def download_users
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv, :filename => 'users.csv'
+    }
+    end
+    
+  end
+
+  def download_pairs
+    @pairs = Pair.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data Pair.to_csv, :filename => 'pairs.csv' 
+    }
+    end
   end
 
 end

@@ -62,6 +62,10 @@ describe GroupsController do
       get(:join, {:id => @group.id}, {:id => @user.id})
       response.should redirect_to(groups_path)
     end
+    it "should notify student has successfully joined a group" do
+      get(:join, {:id => @group.id}, {:id => @user.id})
+      flash[:warning].should eq("You have joined a language group!")
+    end
   end
 
   describe '#leave' do
