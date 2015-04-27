@@ -15,7 +15,7 @@
         %li
           = link_to "LANGUAGE GROUPS", groups_path 
         %li
-          = link_to "TIMESHEETS", new_user_timesheet_path(@user)
+          = link_to "TIMESHEETS", user_timesheets_path(@user)
         %li
           - if @user.admin
             = link_to "ANALYTICS", admin_analytics_path(@user)
