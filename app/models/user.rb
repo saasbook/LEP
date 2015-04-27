@@ -10,13 +10,22 @@ class User < ActiveRecord::Base
   end
 
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
-  def self.to_csv
+  def self.pairing_csv
     CSV.open('script/newsheet.csv', 'w') do |csv|
       csv << column_names
       User.all.each do |user|
         if not user.admin
           csv << user.attributes.values_at(*column_names)
         end
+      end
+    end
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << User.column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
       end
     end
   end
@@ -62,7 +71,11 @@ class User < ActiveRecord::Base
   end
 
   def User.total_users
-    return User.count
+    return User.where(admin: false).count
+  end
+
+  def User.get_users
+    return User.where(admin: false)
   end
 
   def User.total_admins

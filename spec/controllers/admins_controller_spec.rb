@@ -200,6 +200,15 @@ describe AdminsController do
       get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 4}
       expect(response).to redirect_to(admin_show_pair_path)
     end
+     
+=begin
+    it 'should not add in an existing user in a pair' do
+      AdminsController.any_instance.stub(:check_admin)
+      Pair.should_receive(:add_user_to_pair).with(@pair.id, 3)
+      get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 3}
+      expect(response).to redirect_to(admin_show_pair_path)
+    end
+=end
   end
 
   describe '#analyticcs' do

@@ -10,10 +10,8 @@ class AdminsController < ApplicationController
       end
     else
       @id = session[:id]
-      if !@id.nil?
-        unless User.find(@id).admin
-          redirect_to user_path :id => @id
-        end
+      unless User.find(@id).admin
+        redirect_to user_path :id => @id
       end
     end
   end
@@ -120,7 +118,7 @@ class AdminsController < ApplicationController
   def view_users
     @pair = Pair.find(params[:pair_id])
     @user = User.find(params[:id])
-    @users = User.where(:admin => false)
+    @users = User.where(:admin => false, :pair_id => 0)
     @users_hash = {}
     @users.each do |user| 
       @users_hash[user.id] = "#{user.first_name} #{user.last_name}"
@@ -147,11 +145,29 @@ class AdminsController < ApplicationController
 
   # controller action that should call pairing algorithm
   def pairing
-    User.to_csv()
+    User.pairing_csv()
     res = `python script/lep_pairing.py`
     flash[:notice] = 'Pairs have been generated.'
     Pair.generate_pairs()
     redirect_to admins_path
+  end
+
+  def download_users
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv, :filename => 'users.csv'
+    }
+    end
+    
+  end
+
+  def download_pairs
+    @pairs = Pair.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data Pair.to_csv, :filename => 'pairs.csv' 
+    }
+    end
   end
 
 end
