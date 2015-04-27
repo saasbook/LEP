@@ -1,8 +1,10 @@
 %h1= "Data Statistics"
 
+- @users = User.get_users
+
 %div.info
   %h4= "Number of Applicants"
-  %p= User.total_users
+  %p= @users.count
 %div.info
   %h4= "Number of Pairs"
   %p= Pair.total_pairs
@@ -18,16 +20,16 @@
 
 %div.info
   %h4= "Academic Title"
-  = pie_chart User.group(:academic_title).count
+  = pie_chart @users.group(:academic_title).count
 %div.info
   %h4= "Gender"
-  = pie_chart User.group(:gender).count
+  = pie_chart @users.group(:gender).count
 %div.row
 
 %div.info
   %h4= "Residency"
-  = pie_chart User.group(:residency).count
+  = pie_chart @users.group(:residency).count
 %div.info
   %h4= "Major"
-  = pie_chart User.group(:major).count
+  = pie_chart @users.group(:major).count
 %div.row

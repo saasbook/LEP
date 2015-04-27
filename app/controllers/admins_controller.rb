@@ -10,10 +10,8 @@ class AdminsController < ApplicationController
       end
     else
       @id = session[:id]
-      if !@id.nil?
-        unless User.find(@id).admin
-          redirect_to user_path :id => @id
-        end
+      unless User.find(@id).admin
+        redirect_to user_path :id => @id
       end
     end
   end
