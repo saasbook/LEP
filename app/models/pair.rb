@@ -47,13 +47,13 @@ class Pair < ActiveRecord::Base
       @languages = nil
       @languages = row['language(s)'].split(",") if row['language(s)'] != nil
       if Pair.verify_pair()
-        pair = Pair.create(:member1 => @member1,
+        @pair = Pair.create(:member1 => @member1,
             :member2 => @member2,
             :member3 => '',
             :languages => @languages
         )
-        member1 = User.set_pair_id(@member1.to_i, pair.id)
-        member2 = User.set_pair_id(@member2.to_i, pair.id)
+        member1 = User.set_pair_id(@member1, @pair.id) if @member1
+        member2 = User.set_pair_id(@member2, @pair.id) if @member2
       end
     end
   end
