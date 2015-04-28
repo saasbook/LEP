@@ -26,7 +26,7 @@
         %li
           - if @user.admin
             = link_to "ANALYTICS", admin_analytics_path(@user)
-        %li 
+        %li.logout 
           = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 
 
 - if flash[:notice]

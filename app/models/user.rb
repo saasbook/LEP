@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    return self.first_name + " " + self.last_name
+    return "#{self.first_name}" + " " + "#{self.last_name}"
   end
 
   def User.activate(id)
