@@ -18,10 +18,9 @@ describe Pair do
 
   describe 'remove_user_from_pair' do
     it 'should remove a specified user from a pair' do
-      Pair.remove_user_from_pair(1, @user2.id)
-      expect(Pair.find(1).member2).to eq('')
-      Pair.add_user_to_pair(@pair1.id, @user3.id)
-      expect(Pair.find(1).member2).to eq(@user3.id.to_s)
+      expect(@pair1.member1).to eq('2')
+      Pair.remove_user_from_pair(1, @user1.id)
+      expect(Pair.find(1).member1).eql?('')
     end
   end
 
