@@ -104,6 +104,18 @@ class AdminsController < ApplicationController
   def show
   end
 
+  def show_user
+    @admin = User.find(params[:id])
+    @user = User.find(params[:user_id])
+  end
+
+  def delete_user
+    @admin = User.find(params[:id])
+    @user = User.find(params[:user_id])
+    @user.destroy!
+    redirect_to admins_path
+  end
+
   def edit
   end
 
