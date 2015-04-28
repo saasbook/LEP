@@ -1,35 +1,13 @@
 class Timesheet < ActiveRecord::Base
+  validates :user_id, :presence => true
+  validates :language, :presence => true, :format => /\A^[A-Z][a-z]+$\Z/
+  validates :hours, :presence => true, :format => /\A^([01]?[0-9]|2[0-3])\Z/
+  validates :date, :presence => true
+  validate :date_cannot_be_in_future
 
-	serialize :members, Array
-
-  def has_member?(id)
-    #return true if members.include?(id)
-    #else return false
-    (members.include?(id)) ? true : false
-  end
-
-  def add_member(id)
-    members.append(id)
-  end
-
-  def remove_member(id)
-    members.delete(id)
-  end
-
-  def get_facilitator()
-    return User.find(facilitator)
-  end
-
-  def Group.total_groups
-    return Group.count
-  end
-
-  def self.to_csv
-    CSV.open('script/groups.csv', 'w') do |csv|
-      csv << column_names
-      Group.all.each do |item|
-        csv << item.attributes.values_at(*column_names)
-      end
+  def date_cannot_be_in_future
+    if date > Date.today
+      errors[:date] << "Date cannot be in the future."
     end
   end
 

@@ -2,7 +2,7 @@ $(function(){
 
     // Date picker for admin deadline setter
     $(function() {
-      $(".datepicker").datepicker();
+      $("#deadline-datepicker").datepicker();
     });
 
     //Hide div with the following ids

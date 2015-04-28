@@ -18,8 +18,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    #@auth = request.env['omniauth.auth']['credentials']
-    #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
     @user.admin = false
     @user.active = true
@@ -136,7 +134,7 @@ class UsersController < ApplicationController
                                 :gender, :gender_preference, :fluent_languages, :fluent_languages_other, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :group_leader, :time_preference, :hours_per_week, 
-                                :user_motivation, :user_plan, :admin, :active, :facilitator).tap do |whitelisted|          
+                                :user_motivation, :user_plan, :admin, :active, :facilitator).tap do |whitelisted|
                                     if not params[:user][:fluent_languages_other].nil? and params[:user][:fluent_languages_other] != ""
                                       params[:user][:fluent_languages][-1] = params[:user][:fluent_languages_other].downcase # add the user's entry for "other" to our fluent_languages list
                                     end
