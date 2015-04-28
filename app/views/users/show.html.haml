@@ -29,7 +29,7 @@
   - if @user.second_lang_preference == nil
     %p= "You have no second language preference"
   - else
-    - @user.first_lang_preference.capitalize!
+    - @user.second_lang_preference.capitalize!
     %p= @user.second_lang_preference
 
 
