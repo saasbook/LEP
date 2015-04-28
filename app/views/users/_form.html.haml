@@ -59,7 +59,7 @@
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
     -#= f.select :first_lang_preference, languages, :multiple => true
     = f.select :first_lang_preference, language_preferences, {:class => "first_lang_preference"}, :id => "first_lang_preference"
-    = f.text_field :first_lang_preference, :id => "first_lang_preference_other"
+    = text_field_tag "first_lang_preference_other", nil, {:id => "first_lang_preference_other"}
 
   %div.question
     = f.label :first_lang_proficiency, "How proficient are you in this language?"
@@ -69,7 +69,7 @@
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
     -#= f.select :second_lang_preference, languages, :multiple => true
     = f.select :second_lang_preference, language_preferences, {:class => "second_lang_preference"}, :id => "second_lang_preference"
-    = f.text_field :second_lang_preference, :id => "second_lang_preference_other"
+    = text_field_tag "second_lang_preference_other", nil, {:id => "second_lang_preference_other"}
 
   %div.question
     = f.label :second_lang_proficiency, "How proficient are you in this language?"
