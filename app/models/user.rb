@@ -36,8 +36,9 @@ class User < ActiveRecord::Base
     user.update_attributes pair_id: pair_id
   end
 
-  def full_name
-    return self.first_name + " " + self.last_name
+  def User.full_name(id)
+    user = User.find(id) if !id.empty?
+    return "#{user.first_name} #{user.last_name}" if !(user.nil?)
   end
 
   def User.activate(id)

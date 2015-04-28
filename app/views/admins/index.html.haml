@@ -1,6 +1,6 @@
 %h2 All Users
 
-%table#pairs
+%table#pairs.table
   %thead
     %tr
       %th Pair No. 
@@ -11,24 +11,38 @@
     - @pairs.each do |pair|
       %tr
         %td= link_to "Pair #{pair.id}", admin_show_pair_path(:id => @user.id, :pair_id => pair.id)
-        %td= pair.member1
-        %td= pair.member2
-        %td= (!pair.languages.empty?) ? pair.languages : 'N/A'
+        %td= User.full_name(pair.member1)
+        %td= User.full_name(pair.member2)
+        %td= (!pair.languages.empty?) ? pair.get_languages : 'N/A'
 
-%table
-  %thead
-    %tr
-      %th User ID
-      %th First Name
-      %th Last Name
+%h3 Admins
+%table.table
   %tbody
     - @users.each do |user|
       %tr
         %td= user.id
         %td= link_to "#{user.first_name} #{user.last_name}", admin_show_user_path(:id => @user.id, :user_id => user.id), :method => :get
-
-       
-       
+ 
+%h3 Students
+%table.table
+  %tbody
+    - @users.each do |user|
+      - if !user.admin
+        %tr
+          %td= user.first_name
+          %td= user.last_name
+          - if user.active
+            %td= link_to "Deactivate", admin_deactivate_user_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+            %td= link_to "Grant Admin", admin_make_admin_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+            - if user.group_leader == 'Yes'
+              - if user.facilitator
+                %td= link_to "Revoke Facilitator", admin_revoke_facilitator_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+              - if !user.facilitator
+                %td= link_to "Grant Facilitator", admin_make_facilitator_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+          - else
+            %td= link_to "Activate", admin_activate_user_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
+ 
+>>>>>>> 71d2b68aa64fd3faa5683ce430cb0163913b0377
 = link_to 'Pair students', pairing_path(@user.id)
 
 
