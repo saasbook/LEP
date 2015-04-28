@@ -12,7 +12,7 @@ class Pair < ActiveRecord::Base
     @pair = Pair.find(pair_id)
     @user = User.find(user_id)
     user_id = user_id.to_s
-    if (@user.pair_id == pair_id)
+    if (@user.pair_id == pair_id.to_i)
       if @pair.member1 == user_id
         @pair.update_attributes(:member1 => '')
       elsif @pair.member2 == user_id
@@ -20,6 +20,7 @@ class Pair < ActiveRecord::Base
       elsif @pair.member3 == user_id
         @pair.update_attributes(:member3 => '')
       end
+      #@pair.save
       User.set_pair_id(user_id, 0)
     end
   end
@@ -36,6 +37,7 @@ class Pair < ActiveRecord::Base
       elsif Pair.check_nil_or_empty(@pair.member3)
         @pair.update_attributes(:member3 => user_id.to_s)
       end
+      #@pair.save
       User.set_pair_id(user_id, pair_id)
     end
   end

@@ -111,15 +111,18 @@ describe AdminsController do
 
   describe '#pairing' do
     it 'creates a CSV file and redirects to index' do 
-      User.should_receive(:to_csv)
+      User.should_receive(:pairing_csv)
       Pair.should_receive(:generate_pairs)
       get :pairing, {id: @admin.id}, {id: @admin.id}
+      expect(response).to redirect_to admins_path
     end
+=begin
     it 'should redirect to admins_path' do
       puts @admin.id
       get :pairing, {id: @admin.id}, {id: @admin.id}
       expect(response).to redirect_to admins_path
     end
+=end
   end
 
   describe '#activate' do
