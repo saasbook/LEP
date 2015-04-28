@@ -141,8 +141,16 @@ class UsersController < ApplicationController
                                       params[:user][:fluent_languages][-1] = params[:user][:fluent_languages_other].downcase # add the user's entry for "other" to our fluent_languages list
                                     end
                                     whitelisted[:fluent_languages] = params[:user][:fluent_languages]
-                                    whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
-                                    whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
+                                    if params[:user][:first_lang_preference] == "other"
+                                      whitelisted[:first_lang_preference] = params[:first_lang_preference_other].downcase
+                                    else
+                                      whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
+                                    end
+                                    if params[:user][:second_lang_preference] == "other"
+                                      whitelisted[:second_lang_preference] = params[:second_lang_preference_other].downcase
+                                    else
+                                      whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
+                                    end
                                     whitelisted[:time_preference] = params[:user][:time_preference]
     end
   end
