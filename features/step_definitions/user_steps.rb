@@ -145,7 +145,7 @@ end
 When /^I (make)?(remove)? (.+) as an admin$/ do |make, remove, user|
   @other_user = User.find_by_first_name(user)
   if make
-    click_link('Make admin')
+    click_link('Grant admin')
   else
     within find('tr', text: "#{@other_user.first_name}") do
       click_link('Delete admin')
