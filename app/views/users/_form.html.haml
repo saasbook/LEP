@@ -8,7 +8,7 @@
 
   %div.question
     = f.label :first_name, "First Name"
-    = f.text_field :first_name
+    = f.text_field :first_name, :required => true
 
   %div.question
     = f.label :last_name, "Last Name"
@@ -77,12 +77,12 @@
 
   %div.question
     = f.label :group_leader, "Do you want to lead a language group?"
-    = f.select :group_leader, [["Yes"], ["No"]]
+    = f.select :group_leader, [["No"],["Yes"]]
 
   %div.question
-    = f.label :group_language, "What language would you like to lead a language group in?"
+    = f.label :group_language, "If you answered yes to the previous question, what language would you like to lead a language group in?"
     = f.select :group_language, group_language_options, {:class => "group_language"}, :id => "group_language"
-    = f.text_field :group_language, :id => "group_language_other"
+    = text_field_tag "group_language_other", nil, {:id => "group_language_other"}
 
 
   %div.question
@@ -93,7 +93,7 @@
     = f.label :time_preference, "Times you could meet with your partner(s)"
     -#= f.select :time_preference, grouped_options_for_select([['Monday',meeting_times],['Tuesday',meeting_times],['Wednesday',meeting_times],['Thursday',meeting_times], ['Friday',meeting_times]]), {}, :multiple => true
     - days_of_week.each do |day|
-      = f.check_box(:time_preference, { :multiple => true }, day)
+      = f.check_box(:time_preference, {:multiple => true }, day)
       = day
       %br
 
