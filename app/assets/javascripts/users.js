@@ -11,6 +11,7 @@ $(function(){
 		$("#first_lang_preference_other").hide();
 		$("#second_lang_preference_other").hide();
 
+    // check divs with the following ids
     $('#fluent_languages').click (function(){
       console.log($(this).val());
       console.log($(this).is(":checked"));
