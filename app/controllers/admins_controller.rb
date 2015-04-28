@@ -97,6 +97,7 @@ class AdminsController < ApplicationController
   end
 
   def show_user
+    @admin = User.find(params[:id])
     @user = User.find(params[:user_id])
   end
 
