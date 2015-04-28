@@ -18,7 +18,7 @@
 %h3 Admins
 %table.table
   %tbody
-    - @users.each do |user|
+    - @admins.each do |user|
       %tr
         %td= user.id
         %td= link_to "#{user.first_name} #{user.last_name}", admin_show_user_path(:id => @user.id, :user_id => user.id), :method => :get

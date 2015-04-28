@@ -47,10 +47,9 @@ class AdminsController < ApplicationController
   end
 
   def index
-    #puts "why do i fail"
+    @admins = User.where(:admin => true)
     @user = User.find(session[:id]) if !(session[:id].nil?)
-    #puts "is that even the line where i fail"
-    @users = User.where(!:admin) # want to list all non-admin users
+    @users = User.where(:admin => false) # want to list all non-admin users
     @groups = Group.all
     @pairs = Pair.all
   end
@@ -102,18 +101,6 @@ class AdminsController < ApplicationController
   end
 
   def show
-  end
-
-  def show_user
-    @admin = User.find(params[:id])
-    @user = User.find(params[:user_id])
-  end
-
-  def delete_user
-    @admin = User.find(params[:id])
-    @user = User.find(params[:user_id])
-    @user.destroy!
-    redirect_to admins_path
   end
 
   def edit
