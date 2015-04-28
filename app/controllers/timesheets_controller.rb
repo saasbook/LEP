@@ -37,7 +37,9 @@ class TimesheetsController < ApplicationController
   end
 
   def edit
+    @user = User.find(session[:id])
     @timesheet = Timesheet.find(params[:id]) 
+    debugger
   end
 
   def index
@@ -75,23 +77,18 @@ class TimesheetsController < ApplicationController
     date = params[:timesheet][:date]
     if date.nil? or date.empty?
       flash[:warning] = "Date should be in MM/DD/YYYY format."
-      false
-    else
-      true
+      return false
     end
+    if params[:timesheet][:language].downcase == "select one"
+      flash[:warning] = "Please select a language."
+      return false
+    end
+    return true
   end
 
   def timesheet_params
-    reformat_timesheet_params
-    params.require(:timesheet).permit(:hours, :language, :date)
-  end
-
-  def reformat_timesheet_params
-    if params[:timesheet][:language].downcase == "other"
-      params[:timesheet][:language] = params[:timesheet][:language_other]
-    end
-    params[:timesheet].delete(:language_other)
     params[:timesheet][:language].capitalize!
+    params.require(:timesheet).permit(:hours, :language, :date)
   end
 
 end
