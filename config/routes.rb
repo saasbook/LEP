@@ -35,6 +35,7 @@ LEP::Application.routes.draw do
   get "admins/:id/remove_from_pair/:pair_id" => "admins#remove_from_pair", :as => :admin_remove_from_pair
   get "admins/:id/add_to_pair/:pair_id" => "admins#add_to_pair", :as => :admin_add_to_pair
   get "admins/:id/show_user/:user_id" => "admins#show_user", :as => :admin_show_user
+  post "admins/:id/delete_user/:user_id" => 'admins#delete_user', :as => :admin_delete_user
 
   post "admins/:id/set_deadline" => 'admins#set_application_deadline', :as => :admin_set_deadline
 
