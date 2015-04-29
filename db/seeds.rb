@@ -72,7 +72,7 @@ shana = {first_name: 'Shana',
       hours_per_week: '2',
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
-      admin: false,
+      admin: true,
       active: true,
       facilitator: true}
 
@@ -143,8 +143,9 @@ admin = { first_name: 'Admin',
 		facilitator: false
 }
 
-admin2 = { first_name: 'adminmeister', 
-  		sid: '223333', 
+admin2 = { first_name: 'Seungwoo', 
+    last_name: 'Choi',
+  	sid: '223333', 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Graduate',
 		major: 'Business',

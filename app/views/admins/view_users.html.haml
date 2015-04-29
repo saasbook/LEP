@@ -1,15 +1,15 @@
 %h2 All Nonadmin Users
 
-%table
+%table.table
   %thead
     %tr
-      %th User ID
       %th Name
+      %th Language
       %th Select
   %tbody
-    - @users_hash.each do |user_id, name|
+    - @users_hash.each do |user_id, name, first_lang_preference|
       %tr
-        %td= user_id
         %td= name
+        %td= first_lang_preference
         %td= link_to "Select", admin_add_to_pair_path(:id => @user.id, :user_id => user_id, :pair_id => @pair.id) 
 

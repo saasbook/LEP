@@ -4,16 +4,24 @@ class AdminsController < ApplicationController
 
   def check_admin
     if params[:id] then
-      @user = User.find(params[:id])
-      unless session[:id] == @user.id and @user.admin
-        redirect_to user_path(@user.id)
-      end
+      check_params
     else
-      @id = session[:id]
-      if !@id.nil?
-        unless User.find(@id).admin
-          redirect_to user_path :id => @id
-        end
+      check_session
+    end
+  end
+
+  def check_params
+    @user = User.find(params[:id])
+    unless session[:id] == @user.id and @user.admin
+      redirect_to user_path(@user.id)
+    end
+  end
+
+  def check_session
+    @id = session[:id]
+    if !@id.nil?
+      unless User.find(@id).admin
+        redirect_to user_path :id => @id
       end
     end
   end
@@ -39,10 +47,9 @@ class AdminsController < ApplicationController
   end
 
   def index
-    puts "why do i fail"
+    @admins = User.where(:admin => true)
     @user = User.find(session[:id]) if !(session[:id].nil?)
-    puts "is that even the line where i fail"
-    @users = User.where(!:admin) # want to list all non-admin users
+    @users = User.where(:admin => false) # want to list all non-admin users
     @groups = Group.all
     @pairs = Pair.all
   end
@@ -120,7 +127,7 @@ class AdminsController < ApplicationController
   def view_users
     @pair = Pair.find(params[:pair_id])
     @user = User.find(params[:id])
-    @users = User.where(:admin => false)
+    @users = User.where(:admin => false, :pair_id => 0)
     @users_hash = {}
     @users.each do |user| 
       @users_hash[user.id] = "#{user.first_name} #{user.last_name}"
@@ -147,11 +154,29 @@ class AdminsController < ApplicationController
 
   # controller action that should call pairing algorithm
   def pairing
-    User.to_csv()
+    User.pairing_csv()
     res = `python script/lep_pairing.py`
     flash[:notice] = 'Pairs have been generated.'
     Pair.generate_pairs()
     redirect_to admins_path
+  end
+
+  def download_users
+    respond_to do |format|
+      format.html
+      format.csv { send_data User.to_csv, :filename => 'users.csv'
+    }
+    end
+    
+  end
+
+  def download_pairs
+    @pairs = Pair.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data Pair.to_csv, :filename => 'pairs.csv' 
+    }
+    end
   end
 
 end

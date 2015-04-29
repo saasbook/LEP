@@ -7,7 +7,10 @@
   =# form_tag(:action => :activate) do
     =# submit_tag('Activate', id: 'activate')
 
-= link_to "Edit My Profile", edit_user_path(@user), class: "btn edit-prof"
+%div.deadline
+  = link_to "Edit My Profile", edit_user_path(@user), class: "btn edit-prof"
+  %h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"
+
 %h4= "Email"
 %p #{@user.email}
 
@@ -26,7 +29,7 @@
   - if @user.second_lang_preference == nil
     %p= "You have no second language preference"
   - else
-    - @user.first_lang_preference.capitalize!
+    - @user.second_lang_preference.capitalize!
     %p= @user.second_lang_preference
 
 
@@ -37,7 +40,7 @@
   -# Find the pair an user is associated with
   - @pair = nil
   - Pair.all.each do |pair|
-    - if pair.members.include? @user.id
+    - if pair.has_member?(@user.id)
       - @pair = pair
   - if @pair.nil?
     = "You are not currently in a pair"
@@ -85,7 +88,3 @@
   %div.info
     %h3= "Language groups you are leading"
     = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
-%br
-%h5= "Deadline to Edit Applications: #{User::APPLICATION_DEADLINE}"
-- 10.times do
-  %br

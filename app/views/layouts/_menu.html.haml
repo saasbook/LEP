@@ -2,9 +2,18 @@
   %span.berkeley Berkeley
   %span Language Exchange Program 
 %nav
+
+  - if current_page?(root_path) 
+    %ul
+      %li 
+
+  - if current_page?(users_invalid_path)
+    %ul
+      %li 
+        = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 
+
   - if !@user.nil?
     - if request.env['PATH_INFO'] != '/'
-
       %ul
         %li
           - if !@user.id.nil?
@@ -19,7 +28,7 @@
         %li
           - if @user.admin
             = link_to "ANALYTICS", admin_analytics_path(@user)
-        %li 
+        %li.logout 
           = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 
 
 - if flash[:notice]

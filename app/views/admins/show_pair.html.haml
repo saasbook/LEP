@@ -1,22 +1,23 @@
 %h2= "Pair #{@pair.id}"
 
-%table
+- if !@users.nil?
+  = link_to 'Add User', admin_view_users_path(:pair_id => @pair.id, :id => @user.id, :class => "btn edit-prof")
+
+%table.table
   %thead
     %tr
-      %th User ID
       %th Name
-      %th Add/Remove
+      %th Language preference
   %tbody
     - @members.each do |id, name|
       %tr
       - if !id.nil? and !id.empty?
-        %td= id
         %td= name
+        %td= User.find(id).first_lang_preference
+        %td= User.find(id).second_lang_preference
+        
         %td= link_to 'Remove User', admin_remove_from_pair_path(:pair_id => @pair.id, :id => @user.id, :user_id => id.to_i)
-      - else 
-        %td= 'None'
-        %td= 'None'
-        %td= link_to 'Add User', admin_view_users_path(:pair_id => @pair.id, :id => @user.id)
 
 %h4= "Pair Languages"
-= @pair.languages.empty? ? 'N/A' : @pair.languages.join(',')
+= @pair.languages.empty? ? 'N/A' : @pair.get_languages
+
