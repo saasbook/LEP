@@ -4,10 +4,16 @@ class UsersController < ApplicationController
   before_filter :check_email, :except => [:home, :create, :invalid]
 
   def check_user
+    # if params[:id] && session[:id]
+    #   @user = User.where(:id => session[:id])
+    #   @admin = @user.pluck(:admin)[0]
+    #   if ((params[:id].to_s != session[:id].to_s) && (!@admin))
+    #     redirect_to user_path(session[:id])
+    #   end
+    # end
     if params[:id] && session[:id]
       @user = User.where(:id => session[:id])
-      @admin = @user.pluck(:admin)[0]
-      if ((params[:id].to_s != session[:id].to_s) && (!@admin))
+      if (params[:id].to_s != session[:id].to_s) && !is_admin?
         redirect_to user_path(session[:id])
       end
     end
@@ -90,7 +96,7 @@ class UsersController < ApplicationController
   end
 
   def is_admin?
-    print @user.pluck(:admin)
+    #print @user.pluck(:admin)
     return @user.pluck(:admin)[0]
   end
 
