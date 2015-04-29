@@ -1,6 +1,6 @@
-= form_for :timesheet, url: {action: 'create'}, :class => "field_with_errors" do |f|
+= form_for :timesheet, url: {:action => @action}, :method => @method, :class => "field_with_errors" do |f|
 
-  - language_options = [["Select one", "select one"], ["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"]]
+  - language_options = [["Select one", "Select one"], ["Arabic", "Arabic"], ["Cantonese", "Cantonese"], ["English", "English"], ["Filipino", "Filipino"], ["French", "French"], ["German", "German"], ["Indonesian", "Indonesian"], ["Italian","Italian"], ["Japanese", "Japanese"], ["Korean", "Korean"], ["Mandarin", "Mandarin"], ["Portuguese", "Portuguese"], ["Russian", "Russian"], ["Spanish", "Spanish"], ["Swedish", "Swedish"], ["Thai", "Thai"], ["Vietnamese", "Vietnamese"]]
 
   %div.question
     = f.label :language , "What language did you practice?"
@@ -8,10 +8,10 @@
 
   %div.question
     = f.label :date, "When did you practice?"
-    = text_field_tag :timesheetdate, @timesheet.date? ? nil : @timesheet.date, {:class => 'datepicker', :id => 'timesheet-datepicker'}
+    = text_field_tag :timesheetdate, @timesheet.date.nil? ? nil : @timesheet.date.strftime("%m/%d/%Y"), {:class => 'datepicker', :id => 'timesheet-datepicker'}
 
   %div.question{ :style => "display:none;" }
-    = f.text_field :date, {:id => 'timesheet-date'}
+    = f.text_field :date, {:id => 'timesheet-date', :value => @timesheet.date.nil? ? nil : @timesheet.date.strftime("%d-%m-%Y")}
 
   %div.question
     = f.label :hours, "How many hours per week did you practice on this day?"

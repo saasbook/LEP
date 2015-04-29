@@ -7,16 +7,24 @@ class TimesheetsController < ApplicationController
     if params[:user_id] && session[:id]
       @user = User.where(:id => session[:id])
       @admin = @user.pluck(:admin)[0]
-      if ((params[:user_id].to_s != session[:id].to_s) && (!@admin))
-        redirect_to user_timesheets_path(session[:id])
+      @timesheet = Timesheet.where(:id => params[:id])[0]
+      if !@admin 
+        if (params[:user_id].to_s != session[:id].to_s)
+          redirect_to user_timesheets_path(session[:id])
+        end
+        if (not @timesheet.nil?) && (params[:user_id] != @timesheet.user_id.to_s)
+          debugger
+          redirect_to user_timesheets_path(session[:id])
+        end
       end
-      #todo: FILL THIS IN, add verification for timesheets id
     end
   end
 
   def new
     @user = User.find(session[:id])
     @timesheet = Timesheet.new()
+    @action = 'create'
+    @method = 'post'
   end
 
   def create
@@ -39,7 +47,8 @@ class TimesheetsController < ApplicationController
   def edit
     @user = User.find(session[:id])
     @timesheet = Timesheet.find(params[:id]) 
-    debugger
+    @action = 'update'
+    @method = 'put'
   end
 
   def index
@@ -63,6 +72,8 @@ class TimesheetsController < ApplicationController
       rescue ActiveRecord::RecordInvalid => e
         flash[:warning] = e.record.errors.to_a 
       end
+    else
+      redirect_to edit_user_timesheet_path(@user, @timesheet)
     end
   end
 
@@ -87,7 +98,6 @@ class TimesheetsController < ApplicationController
   end
 
   def timesheet_params
-    params[:timesheet][:language].capitalize!
     params.require(:timesheet).permit(:hours, :language, :date)
   end
 
