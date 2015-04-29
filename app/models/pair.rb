@@ -16,6 +16,11 @@ class Pair < ActiveRecord::Base
     return list
   end
 
+  def has_member?(id)
+    members = [self.member1, self.member2, self.member3]
+    members.include?(id) ? true : false
+  end
+
   def self.remove_user_from_pair(pair_id, user_id)
     @pair = Pair.find(pair_id)
     @user = User.find(user_id)
