@@ -203,21 +203,26 @@ describe AdminsController do
       get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 4}
       expect(response).to redirect_to(admin_show_pair_path)
     end
-     
-=begin
-    it 'should not add in an existing user in a pair' do
-      AdminsController.any_instance.stub(:check_admin)
-      Pair.should_receive(:add_user_to_pair).with(@pair.id, 3)
-      get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 3}
-      expect(response).to redirect_to(admin_show_pair_path)
-    end
-=end
   end
 
-  describe '#analyticcs' do
+  describe '#analytics' do
     it 'should bring up analytics' do
       get :analytics, {id: @admin.id}, {id: @admin.id}
       expect(response.status).to eq(200)
+    end
+  end
+
+  describe '#download_users' do
+    it 'should download a csv of the users' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.respond_to?(:to_csv).should be_true
+    end
+  end
+
+  describe '#download_pairs' do
+    it 'should download a csv of the pairs' do
+      AdminsController.any_instance.stub(:check_admin)
+      Pair.respond_to?(:to_csv).should be_true
     end
   end
 
