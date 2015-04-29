@@ -106,9 +106,10 @@ end
 
 Given /^I am (not )?an admin$/ do |not_admin|
   if not_admin
-    !(page.should have_content('Admin'))
-  else
-    page.should have_content('Admin')
+    #!(page.should have_content('Admin'))
+    !(page.should have_content('Analytics'))
+ else
+    page.should have_content('Analytics')
   end
 end
 
@@ -145,7 +146,7 @@ end
 When /^I (make)?(remove)? (.+) as an admin$/ do |make, remove, user|
   @other_user = User.find_by_first_name(user)
   if make
-    click_link('Grant admin')
+    click_link('Grant Admin')
   else
     within find('tr', text: "#{@other_user.first_name}") do
       click_link('Delete admin')
