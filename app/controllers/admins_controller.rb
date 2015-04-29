@@ -109,6 +109,16 @@ class AdminsController < ApplicationController
   def destroy
   end
 
+  def create_pair
+    @user = User.find(params[:id])
+    @pair = Pair.new(member1: params[:admin][:member1], 
+                    member2: params[:admin][:member2], 
+                    member3: params[:admin][:member3], 
+                    languages: [params[:admin][:lang1], params[:admin][:lang2]])
+    @pair.save!
+    redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
+  end
+
   def show_pair
     @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])
