@@ -3,31 +3,32 @@ class User < ActiveRecord::Base
   serialize :fluent_languages, Array
   serialize :time_preference, Array
 
-  validates :first_name, presence: true
-  validates :email, presence: true, 
-                    uniqueness: {:case_sensitive => true}
-  validates :sid, presence: true, 
-                  format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
-                  length: { is: 8},
-                  uniqueness: true
-
-  # validates :last_name, presence: true
-  # validates :academic_title, presence: true
-  # validates :major, presence: true
-  # validates :residency, presence: true
-  # validates :gender, presence: true
-  # validates :gender_preference, presence: true
-  # validates :fluent_languages, presence: true
-  # validates :first_lang_preference, presence: true
-  # validates :first_lang_proficiency, presence: true
-  # validates :second_lang_preference, presence: true
-  # validates :second_lang_proficiency, presence: true
-  # validates :group_leader, presence: true
-  # validates :time_preference, presence: true
-  validates :hours_per_week, presence: true,
-                             format: /\A^([01]?[0-9]|2[0-3])\Z/
-  # validates :user_motivation, presence: true
-  # validates :user_plan, presence: true
+  if not :admin
+    validates :first_name, presence: true
+    validates :email, presence: true, 
+                      uniqueness: {:case_sensitive => true}
+    validates :sid, presence: true, 
+                    format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
+                    length: { is: 8},
+                    uniqueness: true
+    validates :hours_per_week, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
+    # validates :last_name, presence: true
+    # validates :academic_title, presence: true
+    # validates :major, presence: true
+    # validates :residency, presence: true
+    # validates :gender, presence: true
+    # validates :gender_preference, presence: true
+    # validates :fluent_languages, presence: true
+    # validates :first_lang_preference, presence: true
+    # validates :first_lang_proficiency, presence: true
+    # validates :second_lang_preference, presence: true
+    # validates :second_lang_proficiency, presence: true
+    # validates :group_leader, presence: true
+    # validates :time_preference, presence: true
+    
+    # validates :user_motivation, presence: true
+    # validates :user_plan, presence: true
+  end
 
 
   APPLICATION_DEADLINE = Date.tomorrow.strftime("%m/%d/%Y").to_s # by default, the application is due tomorrow
