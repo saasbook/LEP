@@ -108,16 +108,25 @@ class AdminsController < ApplicationController
 
   def destroy
   end
+  
+  # params = params[:admin]
+  def get_members(params)
+    return [params[:member1], params[:member2], params[:member3]]
+  end
+
+  # params = params[:admin]
+  def get_languages(params)
+    return [params[:lang1], params[:lang2]]
+  end
 
   def create_pair
     @user = User.find(params[:id])
-    member1 = params[:admin][:member1]
-    member2 = params[:admin][:member2]
-    member3 = params[:admin][:member3]
-    languages = [params[:admin][:lang1], params[:admin][:lang2]]
+    member1, member2, member3 = get_members(params[:admin])
+    languages = get_languages(params[:admin])
 
     @pair = Pair.create(member1: member1, member2: member2,
                         member3: member3, languages: languages)
+
     redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
   end
 
