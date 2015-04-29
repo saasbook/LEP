@@ -3,12 +3,11 @@
 
   - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
   - days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
-  - group_language_options = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
-  - language_preferences = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+  - languages = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
     = f.label :first_name, "First Name"
-    = f.text_field :first_name, :required => true
+    = f.text_field :first_name
 
   %div.question
     = f.label :last_name, "Last Name"
@@ -58,7 +57,7 @@
   %div.question
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
     -#= f.select :first_lang_preference, languages, :multiple => true
-    = f.select :first_lang_preference, language_preferences, {:class => "first_lang_preference"}, :id => "first_lang_preference"
+    = f.select :first_lang_preference, languages, {:class => "first_lang_preference"}, :id => "first_lang_preference"
     = text_field_tag "first_lang_preference_other", nil, {:id => "first_lang_preference_other"}
 
   %div.question
@@ -68,7 +67,7 @@
   %div.question
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
     -#= f.select :second_lang_preference, languages, :multiple => true
-    = f.select :second_lang_preference, language_preferences, {:class => "second_lang_preference"}, :id => "second_lang_preference"
+    = f.select :second_lang_preference, languages, {:class => "second_lang_preference"}, :id => "second_lang_preference"
     = text_field_tag "second_lang_preference_other", nil, {:id => "second_lang_preference_other"}
 
   %div.question
@@ -81,7 +80,7 @@
 
   %div.question
     = f.label :group_language, "If you answered yes to the previous question, what language would you like to lead a language group in?"
-    = f.select :group_language, group_language_options, {:class => "group_language"}, :id => "group_language"
+    = f.select :group_language, languages, {:class => "group_language"}, :id => "group_language"
     = text_field_tag "group_language_other", nil, {:id => "group_language_other"}
 
 
