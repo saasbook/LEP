@@ -71,7 +71,12 @@ class TimesheetsController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:id])
+    @user = User.find(params[:user_id])
+    if @user.admin?
+      @users = User.where(:admin => false)
+      render "timesheets/admin_view_timesheets.html.haml"
+      return
+    end
     @timesheets = Timesheet.where(:user_id => @user.id).order('date')
   end
 

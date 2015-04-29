@@ -1,0 +1,13 @@
+%h2 All Nonadmin Users
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Select
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= "#{user.first_name} #{user.last_name}"
+        %td= link_to "View Timesheets", user_timesheets_path(user)
+

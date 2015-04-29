@@ -22,6 +22,8 @@ module NavigationHelpers
     
     when /^the timesheet home page$/ then '/users/1/timesheets'
     
+    when /^the admin timesheet home page$/ then '/users/2/timesheets'
+    
     when /^the invalid timesheet edit page$/ then '/users/1/timesheets/100'
 
     when /^\/users\/(.*)$/ then "/users/#{$1}"
