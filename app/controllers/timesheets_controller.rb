@@ -13,7 +13,6 @@ class TimesheetsController < ApplicationController
           redirect_to user_timesheets_path(session[:id])
         end
         if (not @timesheet.nil?) && (params[:user_id] != @timesheet.user_id.to_s)
-          debugger
           redirect_to user_timesheets_path(session[:id])
         end
       end
