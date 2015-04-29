@@ -12,7 +12,7 @@ Background:
 
 Scenario: Viewing data analytics
   When I go to the admin analytics page
-  Then I should see "Data Statistics"
+  Then I should see "Program Statistics"
   And I should see "Number of Applicants"
   And I should see "Number of Admins"
   And I should see "Major"
