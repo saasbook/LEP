@@ -54,46 +54,35 @@ class AdminsController < ApplicationController
     @pairs = Pair.all
   end
 
-  def activate
+  def modify_user(action, flash_msg)
     @user = User.find(params[:user_id])
-    User.activate(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been activated"
+    User.send(action, @user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} " + flash_msg
     redirect_to admins_path
+  end
+  
+  def activate
+    modify_user("activate", "has been activated")
   end
   
   def deactivate
-    @user = User.find(params[:user_id])
-    User.deactivate(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been deactivated"
-    redirect_to admins_path
+    modify_user("deactivate", "has been deactivated")
   end
   
   def make_admin
-    @user = User.find(params[:user_id])
-    User.make_admin(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now an admin"
-    redirect_to admins_path
+    modify_user("make_admin", "is now an admin")
   end
   
   def revoke_admin
-    @user = User.find(params[:user_id])
-    User.revoke_admin(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer an admin"
-    redirect_to admins_path
+    modify_user("revoke_admin", "is no longer an admin")
   end
 
   def make_facilitator
-    @user = User.find(params[:user_id])
-    User.make_facilitator(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now a language group facilitator"
-    redirect_to admins_path
+    modify_user("make_facilitator", "is now a language group facilitator")
   end
 
   def revoke_facilitator
-    @user = User.find(params[:user_id])
-    User.revoke_facilitator(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer a language group facilitator"
-    redirect_to admins_path
+    modify_user("revoke_facilitator", "is no longer a language group facilitator")
   end
 
   def edit_group
