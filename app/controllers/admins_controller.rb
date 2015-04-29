@@ -112,12 +112,12 @@ class AdminsController < ApplicationController
   end
 
   def create_pair
+    @user = User.find(params[:id])
     member1, member2, member3 = get_members(params[:admin])
     languages = get_languages(params[:admin])
     if (check_potential_members([member1, member2, member3]))
       @pair = Pair.create(member1: member1, member2: member2,
                         member3: member3, languages: languages)
-      @user = User.find(params[:id])
       redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
     else
       flash[:notice] = 'Pair could not be formed'
@@ -150,6 +150,10 @@ class AdminsController < ApplicationController
     end
   end
 
+  def modify_pair
+
+  end
+
   def remove_from_pair
     @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])  
@@ -160,9 +164,9 @@ class AdminsController < ApplicationController
   end
 
   def add_to_pair
+    @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])
     user = User.find(params[:user_id])
-    @user = User.find(params[:id])
     Pair.add_user_to_pair(@pair.id, user.id)
     flash[:notice] = "#{user.first_name} #{user.last_name} has been added to pair #{@pair.id}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
