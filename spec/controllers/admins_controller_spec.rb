@@ -226,4 +226,21 @@ describe AdminsController do
     end
   end
 
+=begin
+  describe '#create_pair' do 
+    it 'should manually create pairs' do
+      user1 = User.create(:id => 5)
+      user2 = User.create(:id => 6)
+      user3 = User.create(:id => 7)
+      AdminsController.any_instance.stub(:check_admin)
+      input = {:member1 => user1.id.to_s, :member2 => user2.id.to_s, :member3 => user3.id.to_s, :languages => ['Eng', 'Esp']}
+      AdminsController.stub(:params).and_return({ :id => 1, :admin => input })
+      Pair.should_receive(:create).with(input)
+      params = {:id => 1, :admin => {:member1 => 5, :member2 => 6, :member3 => 7, :lang1 => 'Eng', :lang2 => 'Esp'}}
+      post :create_pair, params
+      expect(response).to redirect_to(admin_show_pair_path)
+    end
+  end
+=end
+
 end
