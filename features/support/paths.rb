@@ -44,6 +44,7 @@ module NavigationHelpers
 
     when /^\/users\/(.*)\/edit$/ then "/users/#{$1}/edit"
     
+    when /^the user index page$/ then '/admins'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -111,11 +111,13 @@ class AdminsController < ApplicationController
 
   def create_pair
     @user = User.find(params[:id])
-    @pair = Pair.new(member1: params[:admin][:member1], 
-                    member2: params[:admin][:member2], 
-                    member3: params[:admin][:member3], 
-                    languages: [params[:admin][:lang1], params[:admin][:lang2]])
-    @pair.save!
+    member1 = params[:admin][:member1]
+    member2 = params[:admin][:member2]
+    member3 = params[:admin][:member3]
+    languages = [params[:admin][:lang1], params[:admin][:lang2]]
+
+    @pair = Pair.create(member1: member1, member2: member2,
+                        member3: member3, languages: languages)
     redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
   end
 
