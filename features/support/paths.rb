@@ -19,6 +19,10 @@ module NavigationHelpers
     when /^the admin home page$/ then '/admins'
 
     when /^the view groups page$/ then '/users'
+    
+    when /^the timesheet home page$/ then '/users/1/timesheets'
+    
+    when /^the invalid timesheet edit page$/ then '/users/1/timesheets/100'
 
     when /^\/users\/(.*)$/ then "/users/#{$1}"
     
@@ -41,6 +45,8 @@ module NavigationHelpers
     when /^the language group page$/ then '/groups/4'
 
     when /^the edit group page$/ then '/groups/4/edit'
+
+    when /^the new timesheet page$/ then '/users/1/timesheets/new'
 
     when /^\/users\/(.*)\/edit$/ then "/users/#{$1}/edit"
     

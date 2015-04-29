@@ -77,6 +77,7 @@ class TimesheetsController < ApplicationController
 
   def show
     @user = User.find(session[:id])
+    redirect_to user_timesheets_path(@user)
   end
 
   def update

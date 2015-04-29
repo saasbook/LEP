@@ -15,8 +15,8 @@
 
   %div.question
     = f.label :hours, "How many hours per week did you practice on this day?"
-    = f.text_field :hours
+    = f.text_field :hours, {:id => :hours}
 
   %div.question
     %p
-    = f.submit 'Submit'
+    = f.submit 'Submit', {:id => :submit}
