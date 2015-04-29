@@ -4,13 +4,6 @@ class UsersController < ApplicationController
   before_filter :check_email, :except => [:home, :create, :invalid]
 
   def check_user
-    # if params[:id] && session[:id]
-    #   @user = User.where(:id => session[:id])
-    #   @admin = @user.pluck(:admin)[0]
-    #   if ((params[:id].to_s != session[:id].to_s) && (!@admin))
-    #     redirect_to user_path(session[:id])
-    #   end
-    # end
     if params[:id] && session[:id]
       @user = User.where(:id => session[:id])
       if (params[:id].to_s != session[:id].to_s) && !is_admin?
@@ -41,7 +34,6 @@ class UsersController < ApplicationController
   def show
     @id = params[:id]
     @user = User.find(@id)
-    #groupid
     @groupID = nil
     @myGroup = nil
     Group.all.each do |group|
@@ -50,14 +42,6 @@ class UsersController < ApplicationController
         @groupID = group.id
       end
     end
-
-    # case where leaders lead more than one group
-    # @groups = Array.new
-    # Group.all.each do |group|
-    #   if group.facilitator == @user.id
-    #     @groups.push(group)
-    #   end
-    # end
   end
 
   def edit
@@ -98,32 +82,7 @@ class UsersController < ApplicationController
     return @user.pluck(:admin)[0]
   end
 
-  # def is_active?
-  #   return @user.pluck(:active)[0]
-  # end
-
-  # def is_facilitator?
-  #   return @user.pluck(:facilitator)[0]
-  # end
-
   def home
-    # @email = request.env['omniauth.auth']['info']['email']
-    # if @email =~ /.*berkeley.edu$/
-    #   @user = User.where(:email => @email)
-    #   #no application yet
-    #   if @user.blank?
-    #     redirect_to new_user_path
-    #   else
-    #     @id = @user.pluck(:id)[0]
-    #     session[:id] = @id
-    #     redirect_to admin_path(@id) if is_admin?
-    #     redirect_to user_path(@id) if not is_admin?
-    #   end
-    # else
-    #   flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
-    #   session[:invalid_email] = @email
-    #   redirect_to users_invalid_path
-    # end
     @email = request.env['omniauth.auth']['info']['email']
     if @email =~ /.*berkeley.edu$/
       valid_email(@email)

@@ -32,7 +32,6 @@ class AdminsController < ApplicationController
   def set_application_deadline
     deadline = params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
-    # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
   end
 
@@ -40,10 +39,6 @@ class AdminsController < ApplicationController
   end
 
   def create
-    #@auth = request.env['omniauth.auth']['credentials']
-    #@email = request.env['omniauth.auth']['info']['email']
-    #@user = User.create(params[:user])
-    #redirect_to users_path #redirect to show action
   end
 
   def index
@@ -117,7 +112,6 @@ class AdminsController < ApplicationController
   end
 
   def create_pair
-    #@user = User.find(params[:id])
     member1, member2, member3 = get_members(params[:admin])
     languages = get_languages(params[:admin])
     if (check_potential_members([member1, member2, member3]))
@@ -189,7 +183,6 @@ class AdminsController < ApplicationController
       format.csv { send_data User.to_csv, :filename => 'users.csv'
     }
     end
-    
   end
 
   def download_pairs
