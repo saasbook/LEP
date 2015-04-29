@@ -1,0 +1,22 @@
+= form_for :timesheet, url: {:action => @action}, :method => @method, :class => "field_with_errors" do |f|
+
+  - language_options = [["Select one", "Select one"], ["Arabic", "Arabic"], ["Cantonese", "Cantonese"], ["English", "English"], ["Filipino", "Filipino"], ["French", "French"], ["German", "German"], ["Indonesian", "Indonesian"], ["Italian","Italian"], ["Japanese", "Japanese"], ["Korean", "Korean"], ["Mandarin", "Mandarin"], ["Portuguese", "Portuguese"], ["Russian", "Russian"], ["Spanish", "Spanish"], ["Swedish", "Swedish"], ["Thai", "Thai"], ["Vietnamese", "Vietnamese"]]
+
+  %div.question
+    = f.label :language , "What language did you practice?"
+    = f.select :language, options_for_select(language_options, selected = @timesheet.language.nil? ? "select_one" : @timesheet.language)
+
+  %div.question
+    = f.label :date, "When did you practice?"
+    = text_field_tag :timesheetdate, @timesheet.date.nil? ? nil : @timesheet.date.strftime("%m/%d/%Y"), {:class => 'datepicker', :id => 'timesheet-datepicker'}
+
+  %div.question{ :style => "display:none;" }
+    = f.text_field :date, {:id => 'timesheet-date', :value => @timesheet.date.nil? ? nil : @timesheet.date.strftime("%d-%m-%Y")}
+
+  %div.question
+    = f.label :hours, "How many hours per week did you practice on this day?"
+    = f.text_field :hours, {:id => :hours}
+
+  %div.question
+    %p
+    = f.submit 'Submit', {:id => :submit}

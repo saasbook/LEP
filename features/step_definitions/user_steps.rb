@@ -52,6 +52,11 @@ Given /the following users exist/ do |users_table|
     User.create!(user) end
 end
 
+Given /the following timesheets exist/ do |timesheets_table|
+  timesheets_table.hashes.each do |timesheet|
+    Timesheet.create!(timesheet) end
+end
+
 Given /^I am an? (.*) user$/ do |user_type|
   OmniAuth.config.mock_auth[:google_oauth2] = nil
   if user_type == "existing"
@@ -106,9 +111,10 @@ end
 
 Given /^I am (not )?an admin$/ do |not_admin|
   if not_admin
-    !(page.should have_content('Admin'))
-  else
-    page.should have_content('Admin')
+    #!(page.should have_content('Admin'))
+    !(page.should have_content('All Users'))
+ else
+    page.should have_content('All Users')
   end
 end
 
@@ -117,6 +123,10 @@ end
 
 When /^I sign in$/ do
   visit "/auth/google_oauth2"
+end
+
+When /^I press submit for the form$/ do
+  page.execute_script("$('#submit').submit()")
 end
 
 # When step definitions
@@ -133,7 +143,6 @@ When /^I (de)?activate (.+)$/ do |deactivate, user|
 end
   
 Then /^that student should be (de)?activated$/ do |deactivated| 
-#debugger
   status = User.find(@other_user.id).active
   if deactivated
     status.should be_false
@@ -145,10 +154,10 @@ end
 When /^I (make)?(remove)? (.+) as an admin$/ do |make, remove, user|
   @other_user = User.find_by_first_name(user)
   if make
-    click_link('Make admin')
+    click_link('Grant Admin')
   else
     within find('tr', text: "#{@other_user.first_name}") do
-      click_link('Delete admin')
+      click_link('Revoke admin privileges')
     end
   end
 end
@@ -237,7 +246,12 @@ end
 
 When(/^I set the deadline to "(.*)"$/) do |new_deadline|
   puts page.current_path
-  page.execute_script("$('#datepicker').datepicker('setDate', '#{new_deadline}');")
+  page.execute_script("$('#deadline-datepicker').datepicker('setDate', '#{new_deadline}');")
+end
+
+When(/^I set the date to "(.*)"$/) do |date|
+  puts page.current_path
+  page.execute_script("$('#timesheet-datepicker').datepicker('setDate', '#{date}');")
 end
 
 When(/^I edit the application as "(.*)"$/) do |first_name|

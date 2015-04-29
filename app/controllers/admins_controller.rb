@@ -32,7 +32,6 @@ class AdminsController < ApplicationController
   def set_application_deadline
     deadline = params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
-    # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
   end
 
@@ -40,61 +39,45 @@ class AdminsController < ApplicationController
   end
 
   def create
-    #@auth = request.env['omniauth.auth']['credentials']
-    #@email = request.env['omniauth.auth']['info']['email']
-    #@user = User.create(params[:user])
-    #redirect_to users_path #redirect to show action
   end
 
   def index
-    #puts "why do i fail"
+    @admins = User.where(:admin => true)
     @user = User.find(session[:id]) if !(session[:id].nil?)
-    #puts "is that even the line where i fail"
-    @users = User.where(!:admin) # want to list all non-admin users
+    @users = User.where(:admin => false) # want to list all non-admin users
     @groups = Group.all
     @pairs = Pair.all
   end
 
-  def activate
+  def modify_user(action, flash_msg)
     @user = User.find(params[:user_id])
-    User.activate(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been activated"
+    User.send(action, @user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} " + flash_msg
     redirect_to admins_path
+  end
+  
+  def activate
+    modify_user("activate", "has been activated")
   end
   
   def deactivate
-    @user = User.find(params[:user_id])
-    User.deactivate(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been deactivated"
-    redirect_to admins_path
+    modify_user("deactivate", "has been deactivated")
   end
   
   def make_admin
-    @user = User.find(params[:user_id])
-    User.make_admin(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now an admin"
-    redirect_to admins_path
+    modify_user("make_admin", "is now an admin")
   end
   
   def revoke_admin
-    @user = User.find(params[:user_id])
-    User.revoke_admin(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer an admin"
-    redirect_to admins_path
+    modify_user("revoke_admin", "is no longer an admin")
   end
 
   def make_facilitator
-    @user = User.find(params[:user_id])
-    User.make_facilitator(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now a language group facilitator"
-    redirect_to admins_path
+    modify_user("make_facilitator", "is now a language group facilitator")
   end
 
   def revoke_facilitator
-    @user = User.find(params[:user_id])
-    User.revoke_facilitator(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer a language group facilitator"
-    redirect_to admins_path
+    modify_user("revoke_facilitator", "is no longer a language group facilitator")
   end
 
   def edit_group
@@ -104,22 +87,42 @@ class AdminsController < ApplicationController
   def show
   end
 
-  def show_user
-    @admin = User.find(params[:id])
-    @user = User.find(params[:user_id])
-  end
-
-  def delete_user
-    @admin = User.find(params[:id])
-    @user = User.find(params[:user_id])
-    @user.destroy!
-    redirect_to admins_path
-  end
-
   def edit
   end
 
   def destroy
+  end
+  
+  # params = params[:admin]
+  def get_members(params)
+    return [params[:member1].to_s, params[:member2].to_s, params[:member3].to_s]
+  end
+
+  # params = params[:admin]
+  def get_languages(params)
+    return [params[:lang1], params[:lang2]]
+  end
+
+  def check_potential_members(members)
+    members.each do |member|
+      user = User.find(member)
+      return false if (user.pair_id != 0 || user.active)
+    end
+    return true
+  end
+
+  def create_pair
+    member1, member2, member3 = get_members(params[:admin])
+    languages = get_languages(params[:admin])
+    if (check_potential_members([member1, member2, member3]))
+      @pair = Pair.create(member1: member1, member2: member2,
+                        member3: member3, languages: languages)
+      @user = User.find(params[:id])
+      redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
+    else
+      flash[:notice] = 'Pair could not be formed'
+      redirect_to admins_path
+    end
   end
 
   def show_pair
@@ -180,7 +183,6 @@ class AdminsController < ApplicationController
       format.csv { send_data User.to_csv, :filename => 'users.csv'
     }
     end
-    
   end
 
   def download_pairs
