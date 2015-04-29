@@ -134,7 +134,6 @@ When /^I (de)?activate (.+)$/ do |deactivate, user|
 end
   
 Then /^that student should be (de)?activated$/ do |deactivated| 
-#debugger
   status = User.find(@other_user.id).active
   if deactivated
     status.should be_false
@@ -238,7 +237,7 @@ end
 
 When(/^I set the deadline to "(.*)"$/) do |new_deadline|
   puts page.current_path
-  page.execute_script("$('#datepicker').datepicker('setDate', '#{new_deadline}');")
+  page.execute_script("$('#deadline-datepicker').datepicker('setDate', '#{new_deadline}');")
 end
 
 When(/^I edit the application as "(.*)"$/) do |first_name|
