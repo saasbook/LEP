@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   # validates :second_lang_proficiency, presence: true
   # validates :group_leader, presence: true
   # validates :time_preference, presence: true
-  validates :hours_per_week, presence: true
+  validates :hours_per_week, presence: true,
                              format: /\A^([01]?[0-9]|2[0-3])\Z/
   # validates :user_motivation, presence: true
   # validates :user_plan, presence: true
