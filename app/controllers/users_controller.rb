@@ -24,9 +24,13 @@ class UsersController < ApplicationController
     @user.admin = false
     @user.active = true
     @user.facilitator = false
-    @user.save
-    session[:id] = @user.id
-    redirect_to user_path(@user)
+    if !@user.save
+      flash[:error] = @user.errors.to_a if @user.invalid?
+      redirect_to :back
+    else
+      session[:id] = @user.id
+      redirect_to user_path(@user)
+    end
   end
 
   def index
