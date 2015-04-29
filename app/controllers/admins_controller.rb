@@ -108,6 +108,39 @@ class AdminsController < ApplicationController
 
   def destroy
   end
+  
+  # params = params[:admin]
+  def get_members(params)
+    return [params[:member1].to_s, params[:member2].to_s, params[:member3].to_s]
+  end
+
+  # params = params[:admin]
+  def get_languages(params)
+    return [params[:lang1], params[:lang2]]
+  end
+
+  def check_potential_members(members)
+    members.each do |member|
+      user = User.find(member)
+      return false if (user.pair_id != 0 || user.active)
+    end
+    return true
+  end
+
+  def create_pair
+    #@user = User.find(params[:id])
+    member1, member2, member3 = get_members(params[:admin])
+    languages = get_languages(params[:admin])
+    if (check_potential_members([member1, member2, member3]))
+      @pair = Pair.create(member1: member1, member2: member2,
+                        member3: member3, languages: languages)
+      @user = User.find(params[:id])
+      redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
+    else
+      flash[:notice] = 'Pair could not be formed'
+      redirect_to admins_path
+    end
+  end
 
   def show_pair
     @user = User.find(params[:id])

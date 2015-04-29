@@ -43,6 +43,44 @@
           - else
             %td= link_to "Activate", admin_activate_user_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
  
-= link_to 'Pair students', pairing_path(@user.id)
 
 
+= link_to 'Pair all students', pairing_path(@user.id)
+
+
+
+- 5.times do 
+  %br
+
+%h3 Manually Create Pair
+/CREATE NEW MANUAL PAIR
+/= form_for :user, url: {action: 'create'}, :class => "field_with_errors" do |f|
+= form_for :admin, url: {action: 'create_pair', id: @user.id} do |f|
+
+  - language_preferences = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+
+  %div.question
+    = f.label :member1, "User 1 ID"
+    = f.text_field :member1
+
+  %div.question
+    = f.label :member2, "User 2 ID"
+    = f.text_field :member2
+
+  %div.question
+    = f.label :member3, "User 3 ID"
+    = f.text_field :member3
+
+  %div.question
+    = f.label :languages, "Languages"
+    = #f.select :languages, language_preferences, {:class => "first_lang_preference"}, :id => "first_lang_preference"
+    = f.text_field :lang1
+    = f.text_field :lang2
+
+  %div.question
+    %p
+    = f.submit 'Manually Create Pair'
+
+
+- 5.times do 
+  %br
