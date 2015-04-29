@@ -1,9 +1,16 @@
 class PairsController < ApplicationController
+  
   def new
+    @pair = Pair.new
   end
 
   def create
-    
+    @pair = Pair.new(pair_params)
+    #id, members, languages
+    @pair.languages = [params[:lang1], params[:lang2]]
+    print "***********************************", @pair.languages
+    @pair.save!
+    redirect_to pairs_path
   end
 
   def index
@@ -31,7 +38,7 @@ class PairsController < ApplicationController
 
   #helper method for create
   def pair_params
-    params.require(:user).permit(:id, :members, :languages)
+    params.require(:pair).permit(:id, :members, :languages)
   end
 
 end
