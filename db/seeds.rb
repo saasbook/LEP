@@ -6,8 +6,35 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+default_user_params = {
+  first_name: "FIRSTNAME", 
+  last_name: "LASTNAME", 
+  sid: "00000000", 
+  email: "example@gmail.com", 
+  academic_title: "DEFAULT", 
+  major: "MAJOR", 
+  residency: "DEFAULT",
+  gender: "GENDER", 
+  gender_preference: "DEFAULT", 
+  fluent_languages: ["english"], 
+  fluent_languages_other: "DEFAULT", 
+  lang_additional_info: "DEFAULT",
+  first_lang_preference: "DEFAULT",
+  first_lang_proficiency: "DEFAULT", 
+  second_lang_preference: "DEFAULT",
+  second_lang_proficiency: "DEFAULT",
+  group_leader: 'No',
+  time_preference: ["monday"],
+  hours_per_week: "0",
+  user_motivation: "DEFAULT",
+  user_plan: "DEFAULT",
+  admin: false,
+  active: true,
+  facilitator: false,
+  group_language: "DEFAULT"
+}
 
-khuyen = {first_name: 'Khuyen',
+khuyen = default_user_params.merge({first_name: 'Khuyen',
     email: 'kvn@berkeley.edu',
 		academic_title: 'Staff',
 		major: 'Psychology',
@@ -28,9 +55,9 @@ khuyen = {first_name: 'Khuyen',
 		admin: false,
 		active: true,
 		facilitator: false
-}
+})
 
-jane = {first_name: 'Jane', 
+jane = default_user_params.merge({first_name: 'Jane', 
 		last_name: 'Doe', 
 		sid: '12345678', 
 		email: 'example@gmail.com',
@@ -53,10 +80,11 @@ jane = {first_name: 'Jane',
 		admin: false,
 		active: true,
 		facilitator: false
-		}
+		})
 
-shana = {first_name: 'Shana',
+shana = default_user_params.merge({first_name: 'Shana',
     	email: 'shanahu@berkeley.edu',
+      sid: "12345690",
       academic_title: 'Undergraduate',
       major: 'Computer Science', 
       residency: 'Domestic', 
@@ -74,10 +102,11 @@ shana = {first_name: 'Shana',
       user_plan: 'I will set a regular meeting time with them.',
       admin: true,
       active: true,
-      facilitator: true}
+      facilitator: true})
 
-iris = {first_name: 'Iris',
+iris = default_user_params.merge({first_name: 'Iris',
 	    email: 'iriswang@berkeley.edu',
+      sid: "12345691",
       academic_title: 'Instructor',
       major: 'Computer Science', 
       residency: 'Domestic', 
@@ -95,9 +124,9 @@ iris = {first_name: 'Iris',
       user_plan: 'I will set a regular meeting time with them.',
       admin: false,
       active: true,
-      facilitator: true}
+      facilitator: true})
 
-robyn = {first_name: 'Robyn', 
+robyn = default_user_params.merge({first_name: 'Robyn', 
 		last_name: 'Zhang', 
 		sid: '22223333', 
 		email: 'robynz@berkeley.edu',
@@ -119,10 +148,11 @@ robyn = {first_name: 'Robyn',
 		admin: false,
 		active: true,
 		facilitator: true
-		}
+		})
 
-admin = { first_name: 'Admin',
+admin = default_user_params.merge({ first_name: 'Admin',
     email: 'admin@berkeley.edu',
+    sid: "12345674",
 		academic_title: 'Scholar',
 		major: 'Economics',
 		residency: 'International',
@@ -141,11 +171,11 @@ admin = { first_name: 'Admin',
 		admin: true,
 		active: true,
 		facilitator: false
-}
+})
 
-admin2 = { first_name: 'Seungwoo', 
+admin2 = default_user_params.merge({ first_name: 'Seungwoo', 
     last_name: 'Choi',
-  	sid: '223333', 
+  	sid: "12345677", 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Graduate',
 		major: 'Business',
@@ -163,13 +193,13 @@ admin2 = { first_name: 'Seungwoo',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		active: true,
-	    admin: true,
-	    facilitator: false
-		}
+    admin: true,
+    facilitator: false
+})
 
-jason = { first_name: 'Jason',
+jason = default_user_params.merge({ first_name: 'Jason',
    	 	last_name: 'Jia',
-  		sid: '12345678',
+  		sid: '12347392',
   		email: 'jasonjia@berkeley.edu',
   		academic_title: 'Undergraduate',
       major: 'Computer Science', 
@@ -189,10 +219,11 @@ jason = { first_name: 'Jason',
       active: true,
 	    admin: false,
 	    facilitator: false
-		}
+		})
 
-tsion = { first_name: 'Tsion',
+tsion = default_user_params.merge({ first_name: 'Tsion',
    	 	last_name: 'Behailu',
+      sid: "12345622",
   		email: 'tsion@berkeley.edu',
   		academic_title: 'Undergraduate',
       major: 'Computer Science', 
@@ -212,11 +243,11 @@ tsion = { first_name: 'Tsion',
       active: true,
 	    admin: true,
 	    facilitator: false
-		}
+		})
 
-chris = { first_name: 'Chris',
+chris = default_user_params.merge({ first_name: 'Chris',
    	 	last_name: 'Hsu',
-  		sid: '12345678',
+  		sid: '12345633',
   		email: 'chrishsu@berkeley.edu',
   		academic_title: 'Staff',
       major: 'Computer Science', 
@@ -236,7 +267,7 @@ chris = { first_name: 'Chris',
       active: true,
 	    admin: true,
 	    facilitator: false
-		}
+		})
 
 users = User.create!([khuyen, shana, robyn, jane, admin, admin2, iris, jason, tsion, chris])
 
