@@ -1,7 +1,7 @@
 default_user_params = {
   'first_name' => "FIRSTNAME", 
   'last_name' => "LASTNAME", 
-  'sid' => "00000000", 
+  'sid' => "#{Random.new.rand(00000000..99999999)}", 
   'email' => "example@gmail.com", 
   'academic_title' => "DEFAULT", 
   'major' => "MAJOR", 
@@ -72,7 +72,8 @@ end
 Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user_params|
     # puts default_user_params.merge(user_params)
-    User.create!(default_user_params.merge(user_params)) end
+    puts User.create!(default_user_params.merge(user_params)).errors.messages
+  end
 end
 
 Given /the following timesheets exist/ do |timesheets_table|

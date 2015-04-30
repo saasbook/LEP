@@ -9,7 +9,7 @@
 default_user_params = {
   first_name: "FIRSTNAME", 
   last_name: "LASTNAME", 
-  sid: "00000000", 
+  sid: "#{Random.new.rand(00000000..99999999)}", 
   email: "example@gmail.com", 
   academic_title: "DEFAULT", 
   major: "MAJOR", 
