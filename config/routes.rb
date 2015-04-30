@@ -42,6 +42,10 @@ LEP::Application.routes.draw do
   get "admins/:id/download_users" => "admins#download_users", :as => :admin_dl_users
   get "admins/:id/download_pairs" => "admins#download_pairs", :as => :admin_dl_pairs
 
+
+  get "admins/:id/pairs" => "admins#pairs", :as => :admin_pairs
+  get "admins/:id/users" => "admins#users", :as => :admin_users
+
   #put "pairs/:id/add" => "pairs#add", :as => :pair_add
   #put "pairs/:id/remove" => "pairs#remove", :as => :pair_remove
 

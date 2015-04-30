@@ -37,12 +37,30 @@ class AdminsController < ApplicationController
   end
 
   def index
-    puts "why do i fail"
     @user = User.find(session[:id]) if !(session[:id].nil?)
-    puts "is that even the line where i fail"
-    @users = User.where(!:admin) # want to list all non-admin users
+
+    @admins = User.where(:admin)
+    print "************************************8", @admins
+    if params[:sort] then
+      @admins = @admins.reorder(params[:sort])
+    end
     @groups = Group.all
+  end
+
+  def users
+    @user = User.find(session[:id]) if !(session[:id].nil?)
+    @users = User.where(!:admin) # want to list all non-admin users
+    if params[:sort] then
+      @users = @users.reorder(params[:sort])
+    end
+  end
+
+  def pairs
+    @user = User.find(session[:id]) if !(session[:id].nil?)
     @pairs = Pair.all
+    if params[:sort] then
+      @pairs = @pairs.reorder(params[:sort])
+    end
   end
 
   def activate
