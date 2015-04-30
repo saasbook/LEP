@@ -5,17 +5,18 @@ Feature: Student Edit Application
 
 Background: 
   Given the following students exist:
-  | group_id | first_name | last_name |  sid     | email               | gender | fluent_languages | first_lang_preference |
-  |    1     |   Billy    |   Bob     |  1234566 |  billy@berkeley.edu | male | [arabic] | english |
-  |    1     |   Joe      |   Shmoe   |  1234567 |  joe@berkeley.edu | male | [arabic] | english |
-  |    1     |   Sally    |   Sue     |  1234568 |  sally@berkeley.edu | male | [arabic] | english |
-  |    2     |   Jane     |   Doe     |  1234570 |  jane@berkeley.edu | male | [arabic] | english |
-  |    2     |   John     |   Smith   |  1234530 |  john@berkeley.edu | male | [arabic] | english |
-  |    3     |   Jerry    |  Maguire  |  1234591 |  jerry@berkeley.edu | male | [arabic] | english |
+  | first_name | last_name |  sid     | email               | gender | fluent_languages | first_lang_preference |
+  | Billy    |   Bob     |  12345660 |  billy@berkeley.edu | male | [arabic] | english |
+  | Joe      |   Shmoe   |  12345671 |  joe@berkeley.edu | male | [arabic] | english |
+  | Sally    |   Sue     |  12345682 |  sally@berkeley.edu | male | [arabic] | english |
+  | Jane     |   Doe     |  12345703 |  jane@berkeley.edu | male | [arabic] | english |
+  | John     |   Smith   |  12345304 |  john@berkeley.edu | male | [arabic] | english |
+  | Jerry    |  Maguire  |  12345915 |  jerry@berkeley.edu | male | [arabic] | english |
 
 Scenario:
 	Given I am logged in as "Billy"
 	And I edit the application as "Billy"
 	And I update email to "billyjoe@berkeley.edu"
-	When I press "Submit"
-	And I should see "billyjoe@berkeley.edu"
+	And I press "Submit"
+	Then I should see "billyjoe@berkeley.edu"
+

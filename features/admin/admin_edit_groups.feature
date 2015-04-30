@@ -6,7 +6,7 @@ Background: admin in database
   Given the following users exist:
   | id | first_name | email                  | admin | first_lang_preference | active |
   | 1  | existing   | existing@berkeley.edu  | false | english               | true   |
-  | 2  | admin      | admin@berkeley.edu     | true  |                       |        |
+  | 2  | admin      | admin@berkeley.edu     | true  | NA 		               |        |
   And I am an admin user
   And I sign in
 

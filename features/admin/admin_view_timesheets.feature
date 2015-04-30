@@ -6,7 +6,7 @@ Background: One user is in the database
   Given the following users exist:
   | id | first_name | email                  | admin | first_lang_preference |
   | 1  | existing   | existing@berkeley.edu  | false | english               |
-  | 2  | admin      | admin@berkeley.edu     | true  |                           |
+  | 2  | admin      | admin@berkeley.edu     | true  | NA                    |
 
   And the following timesheets exist:
   | id | user_id | language   | hours | date           |
