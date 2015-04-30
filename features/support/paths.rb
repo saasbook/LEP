@@ -44,7 +44,9 @@ module NavigationHelpers
 
     when /^the groups page$/ then '/groups'
 
-    when /^I view pairs$/  then '/admins'
+    when /^I view pairs$/  then '/admins/2/pairs'
+
+    when /^the pairs index page$/ then '/admins/2/pairs'
 
     when /^the language group page$/ then '/groups/4'
 

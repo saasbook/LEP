@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :nav_link
+
   def check_email
     # Check that the user is properly logged in
     if session[:invalid_email]
@@ -27,5 +29,20 @@ class ApplicationController < ActionController::Base
   def is_admin?
     return @user.pluck(:admin)[0]
   end
+
+  def nav_link(link_text, link_path)
+    class_name = current_page?(link_path) ? 'current' : nil
+
+    content_tag(:li, :class => class_name) do
+      link_to link_text, link_path
+    end
+  end
+
+  def current_page?(link_path)
+#url = request.fullpath
+#if url
+
+  end
+  
 
 end

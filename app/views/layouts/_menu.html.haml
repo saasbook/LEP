@@ -23,7 +23,7 @@
               = link_to "HOME", user_path(@user)
         %li
           - if @user.admin
-            = link_to "USERS", admin_users_path(@user)
+            = link_to 'USERS', admin_users_path(@user)
         %li
           - if @user.admin
             = link_to "ADMINS", admins_path(@user)
