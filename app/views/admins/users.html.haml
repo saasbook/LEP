@@ -15,8 +15,9 @@
     - @users.each do |user|
       - if !user.admin
         %tr
-          %td= user.first_name
-          %td= user.last_name
+          /%td= user.first_name
+          /%td= user.last_name
+          %td= link_to "#{user.first_name} #{user.last_name}", admin_show_user_path(:id => @user.id, :user_id => user.id), :method => :get
           - if user.active
             %td= link_to "Deactivate", admin_deactivate_user_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put
             %td= link_to "Grant Admin", admin_make_admin_path(:id => @user.id, :user_id => user.id, :authenticity_token => form_authenticity_token), :method => :put

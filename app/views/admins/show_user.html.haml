@@ -12,25 +12,6 @@
       %td= @user.first_name
       %td= @user.last_name
 
-      - if @user.active
-        %td= link_to "Delete User", admin_delete_user_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :post
-        - if @user.admin
-          %td= link_to "Remove admin", admin_revoke_admin_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :put
-        - else
-          %td= link_to "Make admin", admin_make_admin_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :put
-        - if @user.active
-          %td= link_to "Deactivate", admin_deactivate_user_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :put
-          - if @user.group_leader == 'Yes' or @user.facilitator
-            - if @user.facilitator
-              %td= link_to "Revoke Facilitator", admin_revoke_facilitator_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :put
-            - if !@user.facilitator
-              %td= link_to "Grant Facilitator", admin_make_facilitator_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :put
-          - else
-            %td= "Not a Facilitator"
-      - else
-        %td= link_to "Activate", admin_activate_user_path(:id => @admin.id, :user_id => @user.id, :authenticity_token => form_authenticity_token), :method => :put
-
-
 %h3= "Student Information"
 %br
 
