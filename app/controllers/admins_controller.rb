@@ -39,8 +39,7 @@ class AdminsController < ApplicationController
   def index
     @user = User.find(session[:id]) if !(session[:id].nil?)
 
-    @admins = User.where(:admin)
-    print "************************************8", @admins
+    @admins = User.where(:admin => true)
     if params[:sort] then
       @admins = @admins.reorder(params[:sort])
     end
