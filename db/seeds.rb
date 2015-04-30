@@ -9,7 +9,7 @@
 default_user_params = {
   first_name: "FIRSTNAME", 
   last_name: "LASTNAME", 
-  sid: "#{Random.new.rand(00000000..99999999)}", 
+  sid: rand.to_s[2..9], 
   email: "example@gmail.com", 
   academic_title: "DEFAULT", 
   major: "MAJOR", 
@@ -269,7 +269,7 @@ chris = default_user_params.merge({ first_name: 'Chris',
 	    facilitator: false
 		})
 
-users = User.create!([khuyen, shana, robyn, jane, admin, admin2, iris, jason, tsion, chris])
+users = User.create!([khuyen, shana, robyn, jane, admin, admin2, iris, jason, chris])
 
 russian = {language: 'Russian',
            day: 'Monday',
