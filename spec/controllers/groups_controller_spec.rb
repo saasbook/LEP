@@ -61,7 +61,7 @@ describe GroupsController do
 
   describe '#show' do
     it 'should show a group' do
-      get(:show, {:id => @user.id} , {:id => @user.id})
+      get(:show, {:id => @group.id} , {:id => @user.id})
     end
   end
 
