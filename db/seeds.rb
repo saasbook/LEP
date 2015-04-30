@@ -187,7 +187,7 @@ jason = { first_name: 'Jason',
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
       active: true,
-	    admin: true,
+	    admin: false,
 	    facilitator: false
 		}
 
@@ -281,3 +281,13 @@ german =  {language: 'German',
         	facilitator: 7}
 groups = Group.create!([russian, english1, mandarin, english2, korean, swedish, german])
 
+iris_ts1 = {user_id: User.where(:first_name => 'Iris').pluck(:id)[0],
+            language: 'Chinese',
+            date: DateTime.new(2015, 4, 5),
+            hours: 1}
+iris_ts2 = {user_id: User.where(:first_name => 'Iris').pluck(:id)[0],
+            language: 'English',
+            date: DateTime.new(2014, 2, 4),
+            hours: 2}
+
+timesheets = Timesheet.create!([iris_ts1, iris_ts2])

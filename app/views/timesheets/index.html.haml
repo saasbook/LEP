@@ -1,0 +1,18 @@
+%h2 All Timesheets 
+= link_to "Add New Timesheet", new_user_timesheet_path(@user), class: "btn edit-prof"
+
+%table.table
+  %thead
+    %tr
+      %th Date
+      %th Language
+      %th Hours Practiced
+  %tbody
+    - @timesheets.each do |t|
+      %tr
+        %td= t.date.strftime "%m/%d/%Y"
+        %td= t.language
+        %td= t.hours
+        %td= link_to "Edit", edit_user_timesheet_path(:user_id => @user.id, :id => t.id, :authenticity_token => form_authenticity_token)
+        %td= link_to "Delete", user_timesheet_path(:user_id => @user.id, :id => t.id, :authenticity_token => form_authenticity_token), :method => :delete
+

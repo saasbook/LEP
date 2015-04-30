@@ -3,6 +3,33 @@ class User < ActiveRecord::Base
   serialize :fluent_languages, Array
   serialize :time_preference, Array
 
+  validates :first_name, presence: true
+  validate :last_name, presence: true
+  validate :email, presence: true, 
+                   uniqueness: true, 
+                   on: :create
+  validate :sid, presence: true,
+                  format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
+                  length: { is: 8},
+                  uniqueness: true, on: :create
+  validate :hours_per_week, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
+  validates :academic_title, presence: true
+  validates :major, presence: true
+  validates :residency, presence: true
+  validates :gender, presence: true
+  validate :gender_preference, presence: true
+  validates :fluent_languages, presence: true
+  validates :first_lang_preference, presence: true
+  validates :first_lang_proficiency, presence: true
+  validates :second_lang_preference, presence: true
+  validates :second_lang_proficiency, presence: true
+  validates :group_leader, presence: true
+  validates :time_preference, presence: true
+  
+  validates :user_motivation, presence: true
+  validates :user_plan, presence: true
+
+
   APPLICATION_DEADLINE = Date.tomorrow.strftime("%m/%d/%Y").to_s # by default, the application is due tomorrow
 
   def self.set_application_deadline(deadline)
@@ -36,8 +63,9 @@ class User < ActiveRecord::Base
     user.update_attributes pair_id: pair_id
   end
 
-  def full_name
-    return "#{self.first_name}" + " " + "#{self.last_name}"
+  def User.full_name(id)
+    user = User.find(id) if !id.empty?
+    return "#{user.first_name} #{user.last_name}" if !(user.nil?)
   end
 
   def User.activate(id)

@@ -1,11 +1,23 @@
 / = form_for :user, url: users_path, :class => "field_with_errors" do |f|
 = form_for :user, url: {action: 'create'}, :class => "field_with_errors" do |f|
 
+
+  -# PRINT OUT ANY ERRORS IF THEY EXIST
+  %p
+  - flash.each do |type, message|
+    %div.field_with_errors
+      - message.each do |msg|
+        = msg
+        %br
+      -#- @user.errors.full_messages.each do |msg|
+        -#= msg
+
+  -# SET UP OPTIONS ARRAYS
   - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
   - days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
-  - group_language_options = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
-  - language_preferences = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
+  - language_options = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
+  -# BEGIN FORM
   %div.question
     = f.label :first_name, "First Name"
     = f.text_field :first_name
@@ -58,8 +70,8 @@
   %div.question
     = f.label :first_lang_preference, "1. Language you are interested in practicing"
     -#= f.select :first_lang_preference, languages, :multiple => true
-    = f.select :first_lang_preference, language_preferences, {:class => "first_lang_preference"}, :id => "first_lang_preference"
-    = f.text_field :first_lang_preference, :id => "first_lang_preference_other"
+    = f.select :first_lang_preference, language_options, {:class => "first_lang_preference"}, :id => "first_lang_preference"
+    = text_field_tag "first_lang_preference_other", nil, {:id => "first_lang_preference_other"}
 
   %div.question
     = f.label :first_lang_proficiency, "How proficient are you in this language?"
@@ -68,8 +80,8 @@
   %div.question
     = f.label :second_lang_preference, "2. Language you are interested in practicing"
     -#= f.select :second_lang_preference, languages, :multiple => true
-    = f.select :second_lang_preference, language_preferences, {:class => "second_lang_preference"}, :id => "second_lang_preference"
-    = f.text_field :second_lang_preference, :id => "second_lang_preference_other"
+    = f.select :second_lang_preference, language_options, {:class => "second_lang_preference"}, :id => "second_lang_preference"
+    = text_field_tag "second_lang_preference_other", nil, {:id => "second_lang_preference_other"}
 
   %div.question
     = f.label :second_lang_proficiency, "How proficient are you in this language?"
@@ -77,12 +89,12 @@
 
   %div.question
     = f.label :group_leader, "Do you want to lead a language group?"
-    = f.select :group_leader, [["Yes"], ["No"]]
+    = f.select :group_leader, [["No"],["Yes"]]
 
   %div.question
-    = f.label :group_language, "What language would you like to lead a language group in?"
-    = f.select :group_language, group_language_options, {:class => "group_language"}, :id => "group_language"
-    = f.text_field :group_language, :id => "group_language_other"
+    = f.label :group_language, "If you answered yes to the previous question, what language would you like to lead a language group in?"
+    = f.select :group_language, language_options, {:class => "group_language"}, :id => "group_language"
+    = text_field_tag "group_language_other", nil, {:id => "group_language_other"}
 
 
   %div.question
@@ -93,7 +105,7 @@
     = f.label :time_preference, "Times you could meet with your partner(s)"
     -#= f.select :time_preference, grouped_options_for_select([['Monday',meeting_times],['Tuesday',meeting_times],['Wednesday',meeting_times],['Thursday',meeting_times], ['Friday',meeting_times]]), {}, :multiple => true
     - days_of_week.each do |day|
-      = f.check_box(:time_preference, { :multiple => true }, day)
+      = f.check_box(:time_preference, {:multiple => true }, day)
       = day
       %br
 

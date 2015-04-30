@@ -1,0 +1,8 @@
+%p
+	- flash.each do |type, message|
+		%div.field_with_errors
+			- message.each do |msg|
+				= msg
+				%br
+			-#- @user.errors.full_messages.each do |msg|
+				-#= msg

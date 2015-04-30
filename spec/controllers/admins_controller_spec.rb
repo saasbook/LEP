@@ -111,15 +111,18 @@ describe AdminsController do
 
   describe '#pairing' do
     it 'creates a CSV file and redirects to index' do 
-      User.should_receive(:to_csv)
+      User.should_receive(:pairing_csv)
       Pair.should_receive(:generate_pairs)
       get :pairing, {id: @admin.id}, {id: @admin.id}
+      expect(response).to redirect_to admins_path
     end
+=begin
     it 'should redirect to admins_path' do
       puts @admin.id
       get :pairing, {id: @admin.id}, {id: @admin.id}
       expect(response).to redirect_to admins_path
     end
+=end
   end
 
   describe '#activate' do
@@ -200,22 +203,44 @@ describe AdminsController do
       get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 4}
       expect(response).to redirect_to(admin_show_pair_path)
     end
-     
-=begin
-    it 'should not add in an existing user in a pair' do
-      AdminsController.any_instance.stub(:check_admin)
-      Pair.should_receive(:add_user_to_pair).with(@pair.id, 3)
-      get :add_to_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 3}
-      expect(response).to redirect_to(admin_show_pair_path)
-    end
-=end
   end
 
-  describe '#analyticcs' do
+  describe '#analytics' do
     it 'should bring up analytics' do
       get :analytics, {id: @admin.id}, {id: @admin.id}
       expect(response.status).to eq(200)
     end
   end
+
+  describe '#download_users' do
+    it 'should download a csv of the users' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.respond_to?(:to_csv).should be_true
+    end
+  end
+
+  describe '#download_pairs' do
+    it 'should download a csv of the pairs' do
+      AdminsController.any_instance.stub(:check_admin)
+      Pair.respond_to?(:to_csv).should be_true
+    end
+  end
+
+=begin
+  describe '#create_pair' do 
+    it 'should manually create pairs' do
+      user1 = User.create(:id => 5)
+      user2 = User.create(:id => 6)
+      user3 = User.create(:id => 7)
+      AdminsController.any_instance.stub(:check_admin)
+      input = {:member1 => user1.id.to_s, :member2 => user2.id.to_s, :member3 => user3.id.to_s, :languages => ['Eng', 'Esp']}
+      AdminsController.stub(:params).and_return({ :id => 1, :admin => input })
+      Pair.should_receive(:create).with(input)
+      params = {:id => 1, :admin => {:member1 => 5, :member2 => 6, :member3 => 7, :lang1 => 'Eng', :lang2 => 'Esp'}}
+      post :create_pair, params
+      expect(response).to redirect_to(admin_show_pair_path)
+    end
+  end
+=end
 
 end

@@ -1,4 +1,5 @@
 Feature: Activate/ Deactivate Students
+
   As an administrator
   I want to deactivate or activate students
   In order to track who is currently participating in the program and to store information about inactive students

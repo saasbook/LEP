@@ -4,12 +4,22 @@ class AdminsController < ApplicationController
 
   def check_admin
     if params[:id] then
-      @user = User.find(params[:id])
-      unless session[:id] == @user.id and @user.admin
-        redirect_to user_path(@user.id)
-      end
+      check_params
     else
-      @id = session[:id]
+      check_session
+    end
+  end
+
+  def check_params
+    @user = User.find(params[:id])
+    unless session[:id] == @user.id and @user.admin
+      redirect_to user_path(@user.id)
+    end
+  end
+
+  def check_session
+    @id = session[:id]
+    if !@id.nil?
       unless User.find(@id).admin
         redirect_to user_path :id => @id
       end
@@ -22,7 +32,6 @@ class AdminsController < ApplicationController
   def set_application_deadline
     deadline = params["deadline"]
     User.set_application_deadline(deadline) # set the application deadline
-    # flash[:notice] = "Application Successfully Updated"
     redirect_to admin_path
   end
 
@@ -30,10 +39,6 @@ class AdminsController < ApplicationController
   end
 
   def create
-    #@auth = request.env['omniauth.auth']['credentials']
-    #@email = request.env['omniauth.auth']['info']['email']
-    #@user = User.create(params[:user])
-    #redirect_to users_path #redirect to show action
   end
 
   def index
@@ -43,7 +48,7 @@ class AdminsController < ApplicationController
     if params[:sort] then
       @admins = @admins.reorder(params[:sort])
     end
-    @groups = Group.all
+   @groups = Group.all
   end
 
   def users
@@ -62,46 +67,35 @@ class AdminsController < ApplicationController
     end
   end
 
-  def activate
+  def modify_user(action, flash_msg)
     @user = User.find(params[:user_id])
-    User.activate(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been activated"
+    User.send(action, @user.id)
+    flash[:warning] = "#{@user.first_name} #{@user.last_name} " + flash_msg
     redirect_to admins_path
+  end
+  
+  def activate
+    modify_user("activate", "has been activated")
   end
   
   def deactivate
-    @user = User.find(params[:user_id])
-    User.deactivate(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} has been deactivated"
-    redirect_to admins_path
+    modify_user("deactivate", "has been deactivated")
   end
   
   def make_admin
-    @user = User.find(params[:user_id])
-    User.make_admin(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now an admin"
-    redirect_to admins_path
+    modify_user("make_admin", "is now an admin")
   end
   
   def revoke_admin
-    @user = User.find(params[:user_id])
-    User.revoke_admin(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer an admin"
-    redirect_to admins_path
+    modify_user("revoke_admin", "is no longer an admin")
   end
 
   def make_facilitator
-    @user = User.find(params[:user_id])
-    User.make_facilitator(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is now a language group facilitator"
-    redirect_to admins_path
+    modify_user("make_facilitator", "is now a language group facilitator")
   end
 
   def revoke_facilitator
-    @user = User.find(params[:user_id])
-    User.revoke_facilitator(@user.id)
-    flash[:warning] = "#{@user.first_name} #{@user.last_name} is no longer a language group facilitator"
-    redirect_to admins_path
+    modify_user("revoke_facilitator", "is no longer a language group facilitator")
   end
 
   def edit_group
@@ -115,6 +109,38 @@ class AdminsController < ApplicationController
   end
 
   def destroy
+  end
+  
+  # params = params[:admin]
+  def get_members(params)
+    return [params[:member1].to_s, params[:member2].to_s, params[:member3].to_s]
+  end
+
+  # params = params[:admin]
+  def get_languages(params)
+    return [params[:lang1], params[:lang2]]
+  end
+
+  def check_potential_members(members)
+    members.each do |member|
+      user = User.find(member)
+      return false if (user.pair_id != 0 || user.active)
+    end
+    return true
+  end
+
+  def create_pair
+    @user = User.find(params[:id])
+    member1, member2, member3 = get_members(params[:admin])
+    languages = get_languages(params[:admin])
+    if (check_potential_members([member1, member2, member3]))
+      @pair = Pair.create(member1: member1, member2: member2,
+                        member3: member3, languages: languages)
+      redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
+    else
+      flash[:notice] = 'Pair could not be formed'
+      redirect_to admins_path
+    end
   end
 
   def show_pair
@@ -142,22 +168,33 @@ class AdminsController < ApplicationController
     end
   end
 
-  def remove_from_pair
+  def modify_pair(action, flash)
     @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])  
     user = User.find(params[:user_id])
-    Pair.remove_user_from_pair(@pair.id, user.id)
-    flash[:notice] = "#{user.first_name} #{user.last_name}  has been deleted from pair #{@pair.id}"
+    Pair.send(action, @pair.id, user.id)
+    #flash[:notice] = "#{user.first_name} #{user.last_name} #{flash} #{@pair.id.to_s}"
     redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
 
+  def remove_from_pair
+    #@user = User.find(params[:id])
+    #@pair = Pair.find(params[:pair_id])  
+    #user = User.find(params[:user_id])
+    #Pair.remove_user_from_pair(@pair.id, user.id)
+    flash_msg = " has been deleted from pair "
+    modify_pair('remove_user_from_pair', flash_msg)
+    #redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
+  end
+
   def add_to_pair
-    @pair = Pair.find(params[:pair_id])
-    user = User.find(params[:user_id])
-    @user = User.find(params[:id])
-    Pair.add_user_to_pair(@pair.id, user.id)
-    flash[:notice] = "#{user.first_name} #{user.last_name} has been added to pair #{@pair.id}"
-    redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
+    #@user = User.find(params[:id])
+    #@pair = Pair.find(params[:pair_id])
+    #user = User.find(params[:user_id])
+    #Pair.add_user_to_pair(@pair.id, user.id)
+    flash_msg = " has been added to pair "
+    modify_pair('add_user_to_pair', flash_msg)
+    #redirect_to admin_show_pair_path(:id => @user.id, :pair_id => @pair.id)
   end
 
   # controller action that should call pairing algorithm
@@ -175,7 +212,6 @@ class AdminsController < ApplicationController
       format.csv { send_data User.to_csv, :filename => 'users.csv'
     }
     end
-    
   end
 
   def download_pairs

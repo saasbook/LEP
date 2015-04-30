@@ -3,30 +3,36 @@ class UsersController < ApplicationController
   before_filter :check_user
   before_filter :check_email, :except => [:home, :create, :invalid]
 
-  def check_user
-    if params[:id] && session[:id]
-      @user = User.where(:id => session[:id])
-      @admin = @user.pluck(:admin)[0]
-      if ((params[:id].to_s != session[:id].to_s) && (!@admin))
-        redirect_to user_path(session[:id])
-      end
-    end
-  end
+#  def check_user
+#    if params[:id] && session[:id]
+#      if (!verify_access)
+#        redirect_to user_path(session[:id])
+#      end
+#    end
+#  end
+
+#  def verify_access
+#    @user = User.where(:id => session[:id])
+#    return false if ((params[:id].to_s != session[:id].to_s) && !is_admin?)
+#    else return true
+#  end
 
   def new
     @user = User.new
   end
 
   def create
-    #@auth = request.env['omniauth.auth']['credentials']
-    #@email = request.env['omniauth.auth']['info']['email']
     @user = User.new(user_params)
     @user.admin = false
     @user.active = true
     @user.facilitator = false
-    @user.save
-    session[:id] = @user.id
-    redirect_to user_path(@user)
+    if !@user.save
+      flash[:error] = @user.errors.to_a if @user.invalid?
+      redirect_to :back
+    else
+      session[:id] = @user.id
+      redirect_to user_path(@user)
+    end
   end
 
   def index
@@ -37,7 +43,6 @@ class UsersController < ApplicationController
   def show
     @id = params[:id]
     @user = User.find(@id)
-    #groupid
     @groupID = nil
     @myGroup = nil
     Group.all.each do |group|
@@ -46,14 +51,6 @@ class UsersController < ApplicationController
         @groupID = group.id
       end
     end
-
-    # case where leaders lead more than one group
-    # @groups = Array.new
-    # Group.all.each do |group|
-    #   if group.facilitator == @user.id
-    #     @groups.push(group)
-    #   end
-    # end
   end
 
   def edit
@@ -81,7 +78,7 @@ class UsersController < ApplicationController
 
   def destroy
     if User.find(session[:id]).admin then
-      @user = User.find(params[:id])
+      @user = User.find(params[:id]) #might need to be user_id
       @user.destroy
       redirect_to admins_path
     else
@@ -89,37 +86,37 @@ class UsersController < ApplicationController
     end
   end
 
-  def is_admin?
-    print @user.pluck(:admin)
-    return @user.pluck(:admin)[0]
-  end
-
-  # def is_active?
-  #   return @user.pluck(:active)[0]
-  # end
-
-  # def is_facilitator?
-  #   return @user.pluck(:facilitator)[0]
-  # end
+#  def is_admin?
+#    #print @user.pluck(:admin)
+#    return @user.pluck(:admin)[0]
+#  end
 
   def home
     @email = request.env['omniauth.auth']['info']['email']
     if @email =~ /.*berkeley.edu$/
-      @user = User.where(:email => @email)
-      #no application yet
-      if @user.blank?
-        redirect_to new_user_path
-      else
-        @id = @user.pluck(:id)[0]
-        session[:id] = @id
-        redirect_to admin_path(@id) if is_admin?
-        redirect_to user_path(@id) if not is_admin?
-      end
+      valid_email(@email)
     else
-      flash[:warning] = "#{@email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
-      session[:invalid_email] = @email
-      redirect_to users_invalid_path
+      invalid_email(@email)
     end
+  end
+
+  def valid_email(email)
+    @user = User.where(:email => email)
+    #no application yet
+    if @user.blank?
+      redirect_to new_user_path
+    else
+      @id = @user.pluck(:id)[0]
+      session[:id] = @id
+      redirect_to admin_path(@id) if is_admin?
+      redirect_to user_path(@id) if not is_admin?
+    end
+  end
+
+  def invalid_email(email)
+    flash[:warning] = "#{email} is not a valid email. \n Please Logout and reauthenticate with a Berkeley email address."
+    session[:invalid_email] = email
+    redirect_to users_invalid_path
   end
 
   # check that the application is not being created after the deadline
@@ -136,14 +133,23 @@ class UsersController < ApplicationController
                                 :gender, :gender_preference, :fluent_languages, :fluent_languages_other, :lang_additional_info,
                                 :first_lang_preference, :first_lang_proficiency, :second_lang_preference,
                                 :second_lang_proficiency, :group_leader, :time_preference, :hours_per_week, 
-                                :user_motivation, :user_plan, :admin, :active, :facilitator).tap do |whitelisted|          
+                                :user_motivation, :user_plan, :admin, :active, :facilitator, :group_language).tap do |whitelisted|
                                     if not params[:user][:fluent_languages_other].nil? and params[:user][:fluent_languages_other] != ""
                                       params[:user][:fluent_languages][-1] = params[:user][:fluent_languages_other].downcase # add the user's entry for "other" to our fluent_languages list
                                     end
                                     whitelisted[:fluent_languages] = params[:user][:fluent_languages]
-                                    whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
-                                    whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
+                                    check_whitelist(whitelisted, :first_lang_preference, :first_lang_preference_other)
+                                    check_whitelist(whitelisted, :second_lang_preference, :second_lang_preference_other)
+                                    check_whitelist(whitelisted, :group_language, :group_language_other)
                                     whitelisted[:time_preference] = params[:user][:time_preference]
+    end
+  end
+
+  def check_whitelist(whitelisted, param, param_other)
+    if params[:user][param] == "other"
+      whitelisted[param] = params[param_other].downcase
+    else
+      whitelisted[param] = params[:user][param]
     end
   end
 

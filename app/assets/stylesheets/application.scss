@@ -166,3 +166,9 @@ h4 {
 p {
   margin-top: 0;
 }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
