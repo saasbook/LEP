@@ -182,7 +182,7 @@ When /^I (make)?(remove)? (.+) as an admin$/ do |make, remove, user|
     click_link('Grant Admin')
   else
     within find('tr', text: "#{@other_user.first_name}") do
-      click_link('Revoke admin privileges')
+      click_link('Revoke admin')
     end
   end
 end
