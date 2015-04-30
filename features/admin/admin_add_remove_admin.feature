@@ -15,12 +15,12 @@ Background: admin has been added to database
 
 Scenario: Make another user an admin
   Given I am an admin user
-  And I am on the admin home page
+  And I am on the users index page
   When I make aladdin as an admin
   Then that user should be an admin
 
 Scenario: Set an admin user to a non-admin user
   Given I am an admin user
-  And I am on the admin home page
+  And I am on the users index page
   When I remove jasmine as an admin
   Then that user should not be an admin

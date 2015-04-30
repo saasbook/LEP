@@ -12,7 +12,7 @@ Background: Two users are in the database
 
 Scenario: Admin goes to user index page 
 	Given I am an admin user
-	When I am on the user index page
+	When I am on the users index page
 	Then I should see See more
 	Then I should see Delete
 	Then I should see Deactivate

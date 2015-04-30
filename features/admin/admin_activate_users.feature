@@ -15,11 +15,11 @@ Background: admin has been added to database
   And I sign in
 
 Scenario: Activate a user
-  Given I am on the admin home page
+  Given I am on the users index page
   When I activate aladdin
   Then that student should be activated
 
 Scenario: Deactivate users
-  Given I am on the admin home page
+  Given I am on the users index page
   When I deactivate jasmine
   Then that student should be deactivated
