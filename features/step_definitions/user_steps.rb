@@ -1,14 +1,36 @@
+default_user_params = {
+  'first_name' => "FIRSTNAME", 
+  'last_name' => "LASTNAME", 
+  'sid' => "00000000", 
+  'email' => "example@gmail.com", 
+  'academic_title' => "DEFAULT", 
+  'major' => "MAJOR", 
+  'residency' => "DEFAULT",
+  'gender' => "GENDER", 
+  'gender_preference' => "DEFAULT", 
+  'fluent_languages' => ["english"], 
+  'fluent_languages_other' => "DEFAULT", 
+  'lang_additional_info' => "DEFAULT",
+  'first_lang_preference' => "DEFAULT",
+  'first_lang_proficiency' => "DEFAULT", 
+  'second_lang_preference' => "DEFAULT",
+  'second_lang_proficiency' => "DEFAULT",
+  'group_leader' => 'No',
+  'time_preference' => ["monday"],
+  'hours_per_week' => "0",
+  'user_motivation' => "DEFAULT",
+  'user_plan' => "DEFAULT",
+  'admin' => false,
+  'active' => true,
+  'facilitator' => false,
+  'group_language' => "DEFAULT"
+}
+
 Given /the following students exist/ do |students|
   students.hashes.each do |student|
-    User.create(first_name: student['first_name'], 
-		last_name: student['last_name'], 
-		sid: student['sid'], 
-		email: student['email'],
-		gender: student['gender'], 
-		fluent_languages: student['fluent_languages'].split(','), 
-		first_lang_preference: student['first_lang_preference'],
-    admin: false,
-    active: true)
+    student['fluent_languages'] = student['fluent_languages'].split(',')
+    # puts default_user_params.merge(student_params)
+    puts User.create(default_user_params.merge(student)).errors.messages
   end
 end
 
@@ -48,8 +70,9 @@ end
 
 # given step definitions
 Given /the following users exist/ do |users_table|
-  users_table.hashes.each do |user|
-    User.create!(user) end
+  users_table.hashes.each do |user_params|
+    # puts default_user_params.merge(user_params)
+    User.create!(default_user_params.merge(user_params)) end
 end
 
 Given /the following timesheets exist/ do |timesheets_table|
