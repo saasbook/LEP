@@ -21,7 +21,7 @@
               = link_to "HOME", admin_path(@user)
             - else
               = link_to "HOME", user_path(@user)
-        - if User.find(session[:id]).admin
+        - if @user.admin
           %li
             = link_to 'USERS', admin_users_path(@user)
           %li
@@ -33,7 +33,7 @@
         %li 
           - if !@user.id.nil?  
             = link_to "TIMESHEETS", user_timesheets_path(@user) 
-        - if User.find(session[:id]).admin 
+        - if @user.admin 
           %li 
             = link_to "ANALYTICS", admin_analytics_path(@user) 
 
