@@ -16,7 +16,7 @@ Background:
 Scenario:
 	Given I am logged in as "Billy"
 	And I edit the application as "Billy"
-	And I update email to "billyjoe@berkeley.edu"
+	And I fill in "Berkeley Email" with "billyjoe@berkeley.edu"
 	And I press "Submit"
 	Then I should see "billyjoe@berkeley.edu"
 
