@@ -61,7 +61,7 @@ class Pair < ActiveRecord::Base
       @member2 = row['partner2']
       @languages = nil
       @languages = row['language(s)'].split(",") if row['language(s)'] != nil
-      if Pair.verify_pair()
+      if Pair.verify_pair(@member1, @member2)
         @pair = Pair.create(:member1 => @member1,
             :member2 => @member2,
             :member3 => '',
@@ -73,9 +73,9 @@ class Pair < ActiveRecord::Base
     end
   end
 
-  def self.verify_pair()
-    pair1 = Pair.where(member1: @member1) or Pair.where(member2: @member1)
-    pair2 = Pair.where(member1: @member2) or Pair.where(member2: @member2)
+  def self.verify_pair(m1, m2)
+    pair1 = Pair.where(member1: m1) or Pair.where(member2: m1)
+    pair2 = Pair.where(member1: m2) or Pair.where(member2: m2)
     if pair1.nil? and pair2.nil?
       return false
     else
