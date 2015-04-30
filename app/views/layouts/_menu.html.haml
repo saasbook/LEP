@@ -22,13 +22,24 @@
             - else
               = link_to "HOME", user_path(@user)
         %li
-          = link_to "LANGUAGE GROUPS", groups_path 
-        %li
-          - if !@user.id.nil?
-            = link_to "TIMESHEETS", user_timesheets_path(@user)
+          - if @user.admin
+            = link_to "USERS", admin_users_path(@user)
         %li
           - if @user.admin
-            = link_to "ANALYTICS", admin_analytics_path(@user)
+            = link_to "ADMINS", admins_path(@user)
+        %li
+          - if @user.admin
+            = link_to "PAIRS", admin_pairs_path(@user)
+
+        %li 
+          = link_to "GROUPS", groups_path 
+        %li 
+          - if !@user.id.nil?  
+            = link_to "TIMESHEETS", user_timesheets_path(@user) 
+        %li 
+          - if @user.admin 
+            = link_to "ANALYTICS", admin_analytics_path(@user) 
+
         %li.logout 
           = link_to "LOGOUT", "https://mail.google.com/mail/u/0/?logout&hl=en" 
 

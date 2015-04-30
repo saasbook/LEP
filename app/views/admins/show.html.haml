@@ -1,11 +1,9 @@
 %h1= "Welcome, #{@user.first_name}!"
 
-= link_to 'Users', admin_users_path(@user)
-= link_to 'Admins', admins_path
-= link_to 'Pairs', admin_pairs_path(@user)
-= link_to 'Show groups', groups_path, :id => 'show groups'
+= render 'admin_nav'
 
-%h5= "Current Application Deadline: #{User::APPLICATION_DEADLINE}"
+%div.info
+  %h5= "Current Application Deadline: #{User::APPLICATION_DEADLINE}"
 
-%h4= "Set Application Deadline"
-= render 'set_app_deadline'
+  %h4= "Set Application Deadline"
+  = render 'set_app_deadline'
