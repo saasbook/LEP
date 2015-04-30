@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe GroupsController do
   before :each do
-    @user = User.create({id: 0, first_name: 'Blah', 
+    @user = User.create({
+      id: 0,
+      first_name: 'Blah', 
       email: 'blah@berkeley.edu', 
       admin: false,
-
       last_name: 'admin_lastname', 
       sid: '11111111', 
       academic_title: 'Undergraduate',
