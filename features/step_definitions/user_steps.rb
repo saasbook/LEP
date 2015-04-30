@@ -1,7 +1,6 @@
 default_user_params = {
   'first_name' => "FIRSTNAME", 
   'last_name' => "LASTNAME", 
-  'sid' => "#{Random.new.rand(00000000..99999999)}", 
   'email' => "example@gmail.com", 
   'academic_title' => "DEFAULT", 
   'major' => "MAJOR", 
@@ -71,6 +70,8 @@ end
 # given step definitions
 Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user_params|
+    params = default_user_params.merge(user_params)
+    default_user_params['sid'] = rand.to_s[2..9]
     # puts default_user_params.merge(user_params)
     puts User.create!(default_user_params.merge(user_params)).errors.messages
   end
@@ -284,8 +285,3 @@ When(/^I edit the application as "(.*)"$/) do |first_name|
   visit path_to("/users/#{@user.id}/edit")
   puts page.current_path
 end
-
-When(/^I update email to "(.*?)"$/) do |new_email|
-  fill_in 'Berkeley Email', with: new_email
-end
-
