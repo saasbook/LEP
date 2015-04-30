@@ -4,9 +4,55 @@ describe AdminsController do
 
   before :each do
 
-    @test = User.create({id: 0, first_name: 'test', email: 'test@berkeley.edu', admin: false})
+    @test = User.create({id: 0, first_name: 'test', 
+      email: 'test@berkeley.edu', 
+      admin: false,
 
-    @admin = User.create({id: 1, first_name: 'admin', email: 'sample@berkeley.edu', admin: true})
+      last_name: 'admin_lastname', 
+      sid: '11111111', 
+      academic_title: 'Undergraduate',
+      major: 'x', 
+      residency: 'x', 
+      gender: 'x', 
+      gender_preference: 'x',
+      fluent_languages: ['x'], 
+      lang_additional_info: 'x',
+      first_lang_preference: 'x', 
+      first_lang_proficiency: 'x', 
+      second_lang_preference: 'x', 
+      second_lang_proficiency: 'x',
+      time_preference: ['x'], 
+      hours_per_week: '0',
+      user_motivation: 'x', 
+      user_plan: 'x',
+      group_leader: 'x',
+      active: true
+    })
+
+    @admin = User.create({id: 1, first_name: 'admin', 
+      email: 'sample@berkeley.edu', 
+      admin: true,
+
+      last_name: 'admin_lastname', 
+      sid: '11111111', 
+      academic_title: 'Undergraduate',
+      major: 'x', 
+      residency: 'x', 
+      gender: 'x', 
+      gender_preference: 'x',
+      fluent_languages: ['x'], 
+      lang_additional_info: 'x',
+      first_lang_preference: 'x', 
+      first_lang_proficiency: 'x', 
+      second_lang_preference: 'x', 
+      second_lang_proficiency: 'x',
+      time_preference: ['x'], 
+      hours_per_week: '0',
+      user_motivation: 'x', 
+      user_plan: 'x',
+      group_leader: 'x',
+      active: true
+    })
 
     @user = User.create({id: 2, first_name: 'Robyn', 
       last_name: 'Zhang', 
@@ -28,6 +74,7 @@ describe AdminsController do
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
       admin: false,
+      group_leader: 'No',
       active: true
     })
 
@@ -51,6 +98,7 @@ describe AdminsController do
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
       admin: false,
+      group_leader: 'No',
       active: true
     })
 
@@ -74,10 +122,11 @@ describe AdminsController do
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
       admin: false,
+      group_leader: 'No',
       active: true
     })
 
-    @pair = Pair.create({:id => 1, :member1 => '2', :member2 => '3', :member3 => ''})
+    @pair = Pair.create!({:id => 1, :member1 => '2', :member2 => '3', :member3 => ''})
 
   end
 
