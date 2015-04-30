@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
   serialize :time_preference, Array
 
   validates :first_name, presence: true
-  validate :last_name, presence: true
-  validate :email, presence: true, 
+  validates :last_name, presence: true
+  validates :email, presence: true, 
                    uniqueness: true, 
                    on: :create
-  validate :sid, presence: true,
+  validates :sid, presence: true,
                   format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
-                  length: { is: 8},
+                  length: { is: 8, message: "SID must be 8 characters"},
                   uniqueness: true, on: :create
   validate :hours_per_week, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
   validates :academic_title, presence: true
