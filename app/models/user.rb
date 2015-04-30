@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def User.full_name(id)
-    user = User.find(id) if !id.empty?
+    user = User.find(id) if id != nil
     return "#{user.first_name} #{user.last_name}" if !(user.nil?)
   end
 
