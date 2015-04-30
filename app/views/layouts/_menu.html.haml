@@ -33,8 +33,8 @@
         %li 
           - if !@user.id.nil?  
             = link_to "TIMESHEETS", user_timesheets_path(@user) 
-        %li 
-          - if @user.admin 
+        - if User.find(session[:id]).admin 
+          %li 
             = link_to "ANALYTICS", admin_analytics_path(@user) 
 
         %li.logout 
