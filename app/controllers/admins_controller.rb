@@ -168,6 +168,11 @@ class AdminsController < ApplicationController
     end
   end
 
+  def show_user
+    @admin = User.find(params[:id])
+    @user = User.find(params[:user_id])
+  end
+
   def modify_pair(action, flash)
     @user = User.find(params[:id])
     @pair = Pair.find(params[:pair_id])  
