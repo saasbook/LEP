@@ -11,7 +11,7 @@ class AdminsController < ApplicationController
   end
 
   def check_params
-    @user = User.find(params[:id])
+   @user = User.find(params[:id])
     unless session[:id] == @user.id and @user.admin
       redirect_to user_path(@user.id)
     end
