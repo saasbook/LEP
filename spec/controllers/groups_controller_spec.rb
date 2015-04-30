@@ -2,8 +2,32 @@ require 'spec_helper'
 
 describe GroupsController do
   before :each do
-    @user = User.create!(first_name: 'Blah', admin: false)
-    @group = Group.create!(language: "German", day: "Tuesday", time: "2-3PM", location: "1 Evans", facilitator: @user.id)
+    @user = User.create({id: 0, first_name: 'Blah', 
+      email: 'blah@berkeley.edu', 
+      admin: false,
+
+      last_name: 'admin_lastname', 
+      sid: '11111111', 
+      academic_title: 'Undergraduate',
+      major: 'x', 
+      residency: 'x', 
+      gender: 'x', 
+      gender_preference: 'x',
+      fluent_languages: ['x'], 
+      lang_additional_info: 'x',
+      first_lang_preference: 'x', 
+      first_lang_proficiency: 'x', 
+      second_lang_preference: 'x', 
+      second_lang_proficiency: 'x',
+      time_preference: ['x'], 
+      hours_per_week: '0',
+      user_motivation: 'x', 
+      user_plan: 'x',
+      group_leader: 'x',
+      active: true
+    })
+
+    @group = Group.create(language: "German", day: "Tuesday", time: "2-3PM", location: "1 Evans", facilitator: @user.id)
   end
 
   describe '#index' do
