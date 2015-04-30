@@ -13,8 +13,8 @@
       - @pairs.each do |pair|
         %tr
           %td= link_to "Pair #{pair.id}", admin_show_pair_path(:id => @user.id, :pair_id => pair.id)
-          %td= User.find(pair.member1).full_name 
-          %td= User.find(pair.member2).full_name 
+          %td= User.full_name(pair.member1)
+          %td= User.full_name(pair.member2)
           %td= (!pair.languages.empty?) ? pair.get_languages : 'N/A'
 - else
   %h2 There are currently no students paired.
