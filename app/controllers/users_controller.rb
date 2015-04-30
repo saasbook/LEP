@@ -3,19 +3,19 @@ class UsersController < ApplicationController
   before_filter :check_user
   before_filter :check_email, :except => [:home, :create, :invalid]
 
-  def check_user
-    if params[:id] && session[:id]
-      if (!verify_access)
-        redirect_to user_path(session[:id])
-      end
-    end
-  end
+#  def check_user
+#    if params[:id] && session[:id]
+#      if (!verify_access)
+#        redirect_to user_path(session[:id])
+#      end
+#    end
+#  end
 
-  def verify_access
-    @user = User.where(:id => session[:id])
-    return false if ((params[:id].to_s != session[:id].to_s) && !is_admin?)
-    else return true
-  end
+#  def verify_access
+#    @user = User.where(:id => session[:id])
+#    return false if ((params[:id].to_s != session[:id].to_s) && !is_admin?)
+#    else return true
+#  end
 
   def new
     @user = User.new
@@ -86,10 +86,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def is_admin?
-    #print @user.pluck(:admin)
-    return @user.pluck(:admin)[0]
-  end
+#  def is_admin?
+#    #print @user.pluck(:admin)
+#    return @user.pluck(:admin)[0]
+#  end
 
   def home
     @email = request.env['omniauth.auth']['info']['email']
@@ -141,22 +141,6 @@ class UsersController < ApplicationController
                                     check_whitelist(whitelisted, :first_lang_preference, :first_lang_preference_other)
                                     check_whitelist(whitelisted, :second_lang_preference, :second_lang_preference_other)
                                     check_whitelist(whitelisted, :group_language, :group_language_other)
-
-#                                    if params[:user][:first_lang_preference] == "other"
-#                                      whitelisted[:first_lang_preference] = params[:first_lang_preference_other].downcase
-#                                    else
-#                                      whitelisted[:first_lang_preference] = params[:user][:first_lang_preference]
-#                                    end
-#                                    if params[:user][:second_lang_preference] == "other"
-#                                      whitelisted[:second_lang_preference] = params[:second_lang_preference_other].downcase
-#                                    else
-#                                      whitelisted[:second_lang_preference] = params[:user][:second_lang_preference]
-#                                    end
-#                                    if params[:user][:group_language] == "other"
-#                                      whitelisted[:group_language] = params[:group_language_other].downcase
-#                                    else
-#                                      whitelisted[:group_language] = params[:user][:group_language]
-#                                    end
                                     whitelisted[:time_preference] = params[:user][:time_preference]
     end
   end
