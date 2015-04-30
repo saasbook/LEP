@@ -1,10 +1,23 @@
 / = form_for :user, url: users_path, :class => "field_with_errors" do |f|
 = form_for :user, url: {action: 'create'}, :class => "field_with_errors" do |f|
 
+
+  -# PRINT OUT ANY ERRORS IF THEY EXIST
+  %p
+  - flash.each do |type, message|
+    %div.field_with_errors
+      - message.each do |msg|
+        = msg
+        %br
+      -#- @user.errors.full_messages.each do |msg|
+        -#= msg
+
+  -# SET UP OPTIONS ARRAYS
   - languages = ["Arabic", "Cantonese", "English", "Filipino", "French", "German", "Indonesian", "Italian", "Japanese", "Korean", "Mandarin", "Portuguese", "Russian", "Spanish", "Swedish", "Thai", "Vietnamese", "Other"]
   - days_of_week = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
   - language_options = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["Thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
+  -# BEGIN FORM
   %div.question
     = f.label :first_name, "First Name"
     = f.text_field :first_name
