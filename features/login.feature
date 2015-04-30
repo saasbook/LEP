@@ -28,3 +28,4 @@ Scenario: Redirects invalid user to invalid page when successfully authenticated
   Given I am an invalid user
   When I sign in
   Then I should be on the invalid page
+  Then I should see "LOGOUT"
