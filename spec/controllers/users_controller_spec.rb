@@ -10,7 +10,33 @@ describe UsersController do
   end
 
   describe '#create' do
-    let(:valid_params) { {'user' => {first_name: 'Bob', id: 5, email: 'bob@berkeley.edu'} }}
+    let(:valid_params) { 
+      {'user' => {
+          id: 5, first_name: 'Bob', 
+          email: 'bob@berkeley.edu', 
+          admin: false,
+          last_name: 'Smith', 
+          sid: '11111111', 
+          academic_title: 'Undergraduate',
+          major: 'x', 
+          residency: 'x', 
+          gender: 'x', 
+          gender_preference: 'x',
+          fluent_languages: ['x'], 
+          lang_additional_info: 'x',
+          first_lang_preference: 'x', 
+          first_lang_proficiency: 'x', 
+          second_lang_preference: 'x', 
+          second_lang_proficiency: 'x',
+          time_preference: ['x'], 
+          hours_per_week: '0',
+          user_motivation: 'x', 
+          user_plan: 'x',
+          group_leader: 'x',
+          active: true
+        } 
+      }
+    }
     it 'creates a user' do
       post :create, valid_params
       assigns(:user).should be_persisted
@@ -57,11 +83,58 @@ describe UsersController do
 
   describe '#destroy' do
     before :each do
-      @user = User.create(id: 2, first_name: 'Bob', email: 'delete@berkeley.edu', admin: false)
+      @user = User.create(id: 2, first_name: 'Bob', 
+        email: 'delete@berkeley.edu', 
+        admin: false,
+        last_name: 'Smith', 
+        sid: '11111111', 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'x', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: true
+      )
+
+      @admin = User.create(first_name: 'Admin', 
+        id: 1, 
+        admin: true,
+        email: 'admin56@berkeley.edu',
+
+        last_name: 'admin_lastname', 
+        sid: '11111111', 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'x', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: true
+        )
     end
 
     it 'should redirect to admin path when admin deletes a user' do
-      @admin = User.create(first_name: 'Admin', id: 1, admin: true)
       get(:destroy, {id: @user.id}, {id: @admin.id})
       response.should redirect_to admins_path
     end
