@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, 
                    uniqueness: true, 
                    on: :create
-  validate :sid, presence: true,
+  validates :sid, presence: true, uniqueness: true, on: :create,
                   format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
-                  length: { is: 8, message: "SID must be 8 characters"},
-                  uniqueness: true, on: :create
+                  length: { is: 8, message: "must be 8 characters"}
+                  
   validate :hours_per_week, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
   validates :academic_title, presence: true
   validates :major, presence: true

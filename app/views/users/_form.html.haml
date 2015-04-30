@@ -1,9 +1,7 @@
-/ = form_for :user, url: users_path, :class => "field_with_errors" do |f|
-= form_for :user, url: {action: 'create'}, :class => "field_with_errors" do |f|
+-# = form_for :user, url: {action: "create"}, :class => "field_with_errors" do |f|
+= form_for(@user) do |f|
 
-
-  -# PRINT OUT ANY ERRORS IF THEY EXIST
-  %p
+  -# PRINT 2
   - flash.each do |type, message|
     %div.field_with_errors
       - message.each do |msg|
@@ -42,7 +40,7 @@
 
   %div.question
     = f.label :residency, "Residency"
-    = f.select :residency, [["International", "international"], ["Domestic", "domestic"]]
+    = f.select :residency, [["Domestic", "domestic"], ["International", "international"]]
 
   %div.question
     = f.label :gender, "Self-Identified Gender (For matching purpose only)"

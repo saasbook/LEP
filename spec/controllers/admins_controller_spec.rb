@@ -7,9 +7,8 @@ describe AdminsController do
     @test = User.create({id: 0, first_name: 'test', 
       email: 'test@berkeley.edu', 
       admin: false,
-
+      sid: rand.to_s[2..9],
       last_name: 'admin_lastname', 
-      sid: '11111111', 
       academic_title: 'Undergraduate',
       major: 'x', 
       residency: 'x', 
@@ -32,9 +31,8 @@ describe AdminsController do
     @admin = User.create({id: 1, first_name: 'admin', 
       email: 'sample@berkeley.edu', 
       admin: true,
-
+      sid: rand.to_s[2..9],
       last_name: 'admin_lastname', 
-      sid: '11111111', 
       academic_title: 'Undergraduate',
       major: 'x', 
       residency: 'x', 
@@ -56,7 +54,7 @@ describe AdminsController do
 
     @user = User.create({id: 2, first_name: 'Robyn', 
       last_name: 'Zhang', 
-      sid: '22223333', 
+      sid: rand.to_s[2..9],
       email: 'robynz@berkeley.edu',
       academic_title: 'Undergraduate',
       major: 'Computer Science', 
@@ -80,7 +78,7 @@ describe AdminsController do
 
     @user2 = User.create({id: 3, first_name: 'Rob', 
       last_name: 'Zheng', 
-      sid: '22223443', 
+      sid: rand.to_s[2..9], 
       email: 'rob@berkeley.edu',
       academic_title: 'Undergraduate',
       major: 'Computer Science', 

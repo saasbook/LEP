@@ -1,8 +1,8 @@
 
 %h2 Edit your application
 
--#= render 'errors'
-= render 'form'
+= form_for :user, url: {action: "update"}, :class => "field_with_errors" do |f|
+	= render 'form', :f => f
 
 %p
 = link_to 'Back', users_path
