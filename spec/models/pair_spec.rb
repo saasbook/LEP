@@ -3,9 +3,78 @@ require 'spec_helper'
 describe Pair do
   
   before :each do
-    @user1 = User.create(id: 2)
-    @user2 = User.create(id: 3)
-    @user3 = User.create(id: 4)
+    @user1 = User.create(id: 2,
+      first_name: 'User1', 
+      email: 'user1@berkeley.edu', 
+      admin: false,
+      last_name: 'user_lastname', 
+      sid: '11111111', 
+      academic_title: 'Undergraduate',
+      major: 'x', 
+      residency: 'x', 
+      gender: 'x', 
+      gender_preference: 'x',
+      fluent_languages: ['x'], 
+      lang_additional_info: 'x',
+      first_lang_preference: 'x', 
+      first_lang_proficiency: 'x', 
+      second_lang_preference: 'x', 
+      second_lang_proficiency: 'x',
+      time_preference: ['x'], 
+      hours_per_week: '0',
+      user_motivation: 'x', 
+      user_plan: 'x',
+      group_leader: 'x',
+      active: true
+    )
+    @user2 = User.create(id: 3,
+      first_name: 'User2', 
+      email: 'user2@berkeley.edu', 
+      admin: false,
+      last_name: 'user_lastname', 
+      sid: '22222222', 
+      academic_title: 'Undergraduate',
+      major: 'x', 
+      residency: 'x', 
+      gender: 'x', 
+      gender_preference: 'x',
+      fluent_languages: ['x'], 
+      lang_additional_info: 'x',
+      first_lang_preference: 'x', 
+      first_lang_proficiency: 'x', 
+      second_lang_preference: 'x', 
+      second_lang_proficiency: 'x',
+      time_preference: ['x'], 
+      hours_per_week: '0',
+      user_motivation: 'x', 
+      user_plan: 'x',
+      group_leader: 'x',
+      active: true
+    )
+    @user3 = User.create(id: 4,
+      first_name: 'User3', 
+      email: 'user3@berkeley.edu', 
+      admin: false,
+      last_name: 'user_lastname', 
+      sid: '33333333', 
+      academic_title: 'Undergraduate',
+      major: 'x', 
+      residency: 'x', 
+      gender: 'x', 
+      gender_preference: 'x',
+      fluent_languages: ['x'], 
+      lang_additional_info: 'x',
+      first_lang_preference: 'x', 
+      first_lang_proficiency: 'x', 
+      second_lang_preference: 'x', 
+      second_lang_proficiency: 'x',
+      time_preference: ['x'], 
+      hours_per_week: '0',
+      user_motivation: 'x', 
+      user_plan: 'x',
+      group_leader: 'x',
+      active: true
+    )
     @pair1 = Pair.create(id: 1, member1: @user1.id.to_s, member2: @user2.id.to_s, member3: '')
   end
 

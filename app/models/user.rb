@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, 
                    uniqueness: true, 
                    on: :create
-  validates :sid, presence: true,
+  validate :sid, presence: true,
                   format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
                   length: { is: 8, message: "SID must be 8 characters"},
                   uniqueness: true, on: :create
