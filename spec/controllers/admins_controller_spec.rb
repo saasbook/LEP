@@ -102,7 +102,7 @@ describe AdminsController do
 
     @user3 = User.create({id: 4, first_name: 'Robin', 
       last_name: 'Zhong', 
-      sid: '22223443', 
+      sid: rand.to_s[2..9], 
       email: 'robin@berkeley.edu',
       academic_title: 'Undergraduate',
       major: 'Computer Science', 
