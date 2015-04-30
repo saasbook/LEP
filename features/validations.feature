@@ -5,12 +5,12 @@ Feature:
 
 Scenario: 
 	Given I am on the form page
-	And I do not fill out the first_name field
-	When I press "submit"
-	Then I should see “Please provide entries for all required fields.”
+	And I fill in "First Name" with ""
+	When I press "Submit"
+	Then I should see "First name can't be blank"
 
 Scenario: 
 	Given I am on the form page
-	And I fill in sid with "12456"
-	When I press "submit"
-	Then I should see “Invalid SID.”
+	And I fill in "Student ID Number" with "12456"
+	When I press "Submit"
+	Then I should see "SID is the wrong length"
