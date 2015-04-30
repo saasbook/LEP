@@ -62,6 +62,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   def activate
     @user = User.find(params[:id])
     @user.update_attributes active: true
