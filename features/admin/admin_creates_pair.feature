@@ -15,13 +15,31 @@ Background: student has been added to a group
   And I am an admin user
   And I sign in
 
-Scenario: Admin creates pair
+Scenario: Admin creates pair with 3 users
   Given I am on the pairing page
   And I fill in "User 1 Email" with "aladdin@berkeley.edu"
   And I fill in "User 2 Email" with "bob@berkeley.edu"
   And I fill in "User 3 Email" with "jasmine@berkeley.edu"
   And I press "Manually Create Pair"
   Then I should see "aladdin"
+  Then I should see "bob"
+  Then I should see "jasmine"
 
-  #Then I should be on the admin home page
+Scenario: Admin creates pair with 2 users
+  Given I am on the pairing page
+  And I fill in "User 1 Email" with "aladdin@berkeley.edu"
+  And I fill in "User 2 Email" with "bob@berkeley.edu"
+  And I press "Manually Create Pair"
+  Then I should see "aladdin"
+  Then I should see "aladdin"
+  Then I should see "bob"
+  Then I should not see "jasmine"
+
+  Scenario: Admin creates pair with no users
+  Given I am on the pairing page
+  And I fill in "User 1 Email" with ""
+  And I fill in "User 2 Email" with ""
+  And I fill in "User 3 Email" with ""
+  And I press "Manually Create Pair"
+  Then I should be on the admin home page
 

@@ -307,26 +307,7 @@ describe AdminsController do
       post :create_pair, params
       expect(response).to redirect_to admins_path
     end
-
-    # it 'should manually create pairs if filled out form' do
-    #   AdminsController.any_instance.stub(:check_admin)
-    #   input = {:member1 => @user4.id.to_s, :member2 => @user3.id.to_s, :member3 => "", :languages => ['Eng', 'Esp']}
-    #   params = {:id => @admin.id, :admin => {:member1 => "5", :member2 => "4", :member3 => "", :lang1 => 'Eng', :lang2 => 'Esp'}}
-    #   Pair.should_receive(:create).with(input).and_return(double('Pair'))
-    #   post :create_pair, params
-    #   expect(response).to redirect_to(admin_show_pair_path(id: @admin.id, pair_id: '10'))
-    # end
-
   end
-
-  # describe '#create_pair' do
-  #   it 'should create a pair' do
-  #     AdminsController.any_instance.stub(:check_admin)
-  #     #Pair.should_receive()
-  #     get :create_pair, {:id => @admin.id, :pair_id => @pair.id, :user_id => 4}
-  #     expect(response).to redirect_to(admin_show_pair_path)
-  #   end
-  # end
 
 
 end
