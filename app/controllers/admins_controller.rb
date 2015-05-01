@@ -137,37 +137,64 @@ class AdminsController < ApplicationController
       end
     end
     return count
-    #return false if count > 1
-    #return true
+  end
+
+  def check_emails(emails)
+    users = Array.new
+    emails.each do |e|
+      if !e.empty?
+        users.push(User.where(email: e).first)
+      else
+        users.push(nil)
+      end
+    end
+    return users
+  end
+
+  def pair_three(user1ID, user2ID, user3ID, languages)
+    @pair = Pair.create(member1: user1ID, 
+                        member2: user2ID, 
+                        member3: user3ID,
+                        languages: languages)
+    #return @pair
+  end
+  def pair_two(user1ID, user2ID, languages)
+    @pair = Pair.create(member1: user1ID, 
+                        member2: user2ID, 
+                        languages: languages)
+    #return @pair
   end
 
   def create_pair
     @user = User.find(params[:id])
     email1, email2, email3 = get_emails(params[:admin])
     languages = get_languages(params[:admin])
-    if !email1.empty?
-      user1 = User.where(email: email1).first
-    end
-    if !email2.empty?
-      user2 = User.where(email: email2).first
-    end
-    if !email3.empty?
-      user3 = User.where(email: email3).first
-    end
 
+    # if !email1.empty?
+    #   user1 = User.where(email: email1).first
+    # end
+    # if !email2.empty?
+    #   user2 = User.where(email: email2).first
+    # end
+    # if !email3.empty?
+    #   user3 = User.where(email: email3).first
+    # end
+
+    user1, user2, user3 = check_emails([email1, email2, email3])
     num_invalid = check_potential_members([user1, user2, user3])
 
     if num_invalid == 0
-      @pair = Pair.create(member1: user1.id, 
-                          member2: user2.id, 
-                          member3: user3.id,
-                          languages: languages)
+      # @pair = Pair.create(member1: user1.id, 
+      #                     member2: user2.id, 
+      #                     member3: user3.id,
+      #                     languages: languages)
+      @pair = pair_three(user1.id, user2.id, user3.id, languages)
       redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
     elsif num_invalid == 1
-      @pair = Pair.create(member1: user1.id, 
-                          member2: user2.id, 
-                          #member3: user3.id,
-                          languages: languages)
+      # @pair = Pair.create(member1: user1.id, 
+      #                     member2: user2.id, 
+      #                     languages: languages)
+      @pair = pair_two(user1.id, user2.id, languages)
       redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
     else 
       flash[:notice] = 'Pair could not be formed'
