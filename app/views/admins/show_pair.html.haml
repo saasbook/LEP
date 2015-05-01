@@ -19,5 +19,6 @@
         %td= link_to 'Remove User', admin_remove_from_pair_path(:pair_id => @pair.id, :id => @user.id, :user_id => id.to_i)
 
 %h4= "Pair Languages"
-= @pair.languages.empty? ? 'N/A' : @pair.get_languages
+/= @pair.languages.empty? ? 'N/A' : @pair.get_languages
+= "#{@pair.languages[0]}, #{@pair.languages[1]}"
 
