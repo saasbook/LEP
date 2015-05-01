@@ -113,8 +113,8 @@ describe UsersController do
         email: 'admin56@berkeley.edu',
 
         last_name: 'admin_lastname', 
-        sid: '11111111', 
-        academic_title: 'Undergraduate',
+        sid: '12341234', 
+        academic_title: 'Faculty',
         major: 'x', 
         residency: 'x', 
         gender: 'x', 
