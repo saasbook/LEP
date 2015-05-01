@@ -15,7 +15,8 @@
           %td= link_to "Pair #{pair.id}", admin_show_pair_path(:id => @user.id, :pair_id => pair.id)
           %td= User.full_name(pair.member1)
           %td= User.full_name(pair.member2)
-          %td= (!pair.languages.empty?) ? pair.get_languages : 'N/A'
+          %td= "#{pair.languages[0]}, #{pair.languages[1]}"
+          /%td= (!pair.languages.empty?) ? pair.get_languages : 'N/A'
 - else
   %h2 There are currently no students paired.
   = link_to 'Pair students', pairing_path(@user.id), :class => "edit-prof btn"
@@ -28,16 +29,16 @@
   - language_preferences = [["Arabic", "arabic"], ["Cantonese", "cantonese"], ["English", "english"], ["Filipino", "filipino"], ["French", "french"], ["German", "german"], ["Indonesian", "indonesian"], ["Italian","italian"], ["Japanese", "japanese"], ["Korean", "korean"], ["Mandarin", "mandarin"], ["Portuguese", "portuguese"], ["Russian", "russian"], ["Spanish", "spanish"], ["Swedish", "swedish"], ["thai", "thai"], ["Vietnamese", "vietnamese"], ["Other", "other"]]
 
   %div.question
-    = f.label :member1, "User 1 ID"
-    = f.text_field :member1
+    = f.label :email1, "User 1 Email"
+    = f.text_field :email1
 
   %div.question
-    = f.label :member2, "User 2 ID"
-    = f.text_field :member2
+    = f.label :email2, "User 2 Email"
+    = f.text_field :email2
 
   %div.question
-    = f.label :member3, "User 3 ID"
-    = f.text_field :member3
+    = f.label :email3, "User 3 Email"
+    = f.text_field :email3
 
   %div.question
     = f.label :languages, "Languages"
