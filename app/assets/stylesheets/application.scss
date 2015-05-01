@@ -97,6 +97,11 @@ h1 {
 form {
   .question {
     margin-bottom: 2*$unit;
+
+    textarea {
+      border: 1px solid #D3D3D3;
+    }
+
   }
 
   label {
@@ -108,6 +113,14 @@ form {
   input {
     border: 1px solid $grey;
     padding: $unit/2;
+
+    &[type=submit] {
+      border: none;
+      padding: $unit $unit*2;
+      color: $white;
+      border-radius: 10px;
+      background-color: $berkblue;
+    }
   }
 
 
