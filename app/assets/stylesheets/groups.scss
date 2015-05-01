@@ -3,6 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.group-title {
+  display: block;
+  width: 50%;
+  margin-right: 0;
+  float: left;
+}
+
+.clearfix {
+  clear: both;
+}
 .groups li {
   width: 400px;
   margin-bottom: 20px;
@@ -11,6 +21,11 @@
 
 h2 {
   display: inline-block;
+}
+
+h4 {
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 

@@ -1,10 +1,10 @@
 %h1= "Program Statistics"
 
 %div.info
-  %p= link_to "Download users", admin_dl_users_path(format: 'csv')
+  %p= link_to "Download users", admin_dl_users_path(format: 'csv'), :class => 'btn'
 
 %div.info
-  %p= link_to "Download pairs", admin_dl_pairs_path(format: 'csv')
+  %p= link_to "Download pairs", admin_dl_pairs_path(format: 'csv'), :class => 'btn'
 
 - @users = User.get_users
 
