@@ -148,10 +148,14 @@ describe Pair do
     it 'should add a specified user to a pair' do
       Pair.add_user_to_pair(@pair1.id, @user3.id)
       expect(Pair.find(@pair1.id).member3).to eq(@user3.id.to_s)
+      Pair.should_receive(:remove_user_from_pair)
       Pair.remove_user_from_pair(@pair1.id, @user1.id)
+      Pair.should_receive(:add_user_to_pair)
       Pair.add_user_to_pair(@pair1.id, @user1.id)
       expect(Pair.find(@pair1.id).member1).to eq(@user1.id.to_s)
+      Pair.should_receive(:remove_user_from_pair)
       Pair.remove_user_from_pair(@pair1.id, @user2.id)
+      Pair.should_receive(:add_user_to_pair)
       Pair.add_user_to_pair(@pair1.id, @user2.id)
       expect(Pair.find(@pair1.id).member2).to eq(@user2.id.to_s)
     end
