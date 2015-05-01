@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :major, presence: true
   validates :residency, presence: true
   validates :gender, presence: true
-  validate :gender_preference, presence: true
+  validates :gender_preference, presence: true
   validates :fluent_languages, presence: true
   validates :first_lang_preference, presence: true
   validates :first_lang_proficiency, presence: true
