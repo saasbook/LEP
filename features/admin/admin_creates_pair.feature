@@ -20,7 +20,7 @@ Scenario: Admin creates pair
   And I fill in "User 1 Email" with "aladdin@berkeley.edu"
   And I fill in "User 2 Email" with "bob@berkeley.edu"
   And I fill in "User 3 Email" with "jasmine@berkeley.edu"
-  And I click "Manually Create Pair"
+  And I press "Manually Create Pair"
   Then I should see "aladdin"
 
   #Then I should be on the admin home page
