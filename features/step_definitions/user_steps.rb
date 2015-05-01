@@ -72,8 +72,8 @@ Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user_params|
     params = default_user_params.merge(user_params)
     default_user_params['sid'] = rand.to_s[2..9]
-    # puts default_user_params.merge(user_params)
-    puts User.create!(default_user_params.merge(user_params)).errors.messages
+    #default_user_params.merge(user_params)
+    User.create!(default_user_params.merge(user_params))
   end
 end
 
@@ -235,11 +235,12 @@ When /^I view pairs$/ do
 end
 
 Then /^I should see three pairs$/ do
-  page.all('table#pairs tr').count.should == 3
+  # including the headers, there should be 4 rows
+  page.all('table#pairs.table tr').count.should == 4
 end
 
 Then /^there should be one pair$/ do
-  page.all('table#pairs tr').count.should == 1
+  page.all('table#pairs.table tr').count.should == 2
 end
 
 Then /^I should see the following pair ids:$/ do |ids|

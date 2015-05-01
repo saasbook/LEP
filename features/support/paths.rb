@@ -57,7 +57,8 @@ module NavigationHelpers
     when /^\/users\/(.*)\/edit$/ then "/users/#{$1}/edit"
 
     when /^the pairs page$/ then "/admins/4/pairs"
-    
+
+    when /^the pairing page$/ then "/admins/1/pairs"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
