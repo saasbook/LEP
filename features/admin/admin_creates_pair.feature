@@ -16,12 +16,11 @@ Background: student has been added to a group
 Scenario: Admin creates pair
     Given I am logged in as "admin"
     And I am on the pairs page
-		#When I fill out the form with the following attributes:
-    #  | email1 | aladdin@berkeley.edu |
-    #  | email2 | bob@berkeley.edu     |
-    #  | email3 | jasmine@berkeley.edu |
-    #  | lang1  | Japanese             |
-    #  | lang2  | Korean               |
+    And I fill in "User 1 Email" with "aladdin@berkeley.edu"
+    And I fill in "User 2 Email" with "bob@berkeley.edu"
+    And I fill in "User 3 Email" with "jasmine@berkeley.edu"
     And I click "Manually Create Pair"
+    Then I should see "aladdin"
+
     #Then I should be on the admin home page
 
