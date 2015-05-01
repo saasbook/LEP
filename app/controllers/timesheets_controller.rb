@@ -72,12 +72,26 @@ class TimesheetsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
+
+    # We first get the user id from params.
+    # This is the id of the student whose timesheets we are trying to view 
     if @user.admin?
       @users = User.where(:admin => false)
       render "timesheets/admin_view_timesheets.html.haml"
       return
     end
+
     @timesheets = Timesheet.where(:user_id => @user.id).order('date')
+
+# This second user assignment is necessary.
+# If the current user is an admin trying to view a student's
+# timesheet, then this reassignment makes sure that all admin
+# menu bar options are visible.
+# This makes sure that the application knows that the current
+# user is still an admin, not the student whose timesheet the user is viewing.
+# It also makes sure the timesheets are pulled BEFORE this reassignment,
+# So they correspond to the right student
+    @user = User.find(session[:id])
   end
 
   def show
