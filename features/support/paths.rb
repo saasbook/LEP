@@ -55,6 +55,8 @@ module NavigationHelpers
     when /^the new timesheet page$/ then '/users/1/timesheets/new'
 
     when /^\/users\/(.*)\/edit$/ then "/users/#{$1}/edit"
+
+    when /^the pairs page$/ then "/admins/4/pairs"
     
 
     # Add more mappings here.
