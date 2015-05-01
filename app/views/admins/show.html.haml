@@ -3,7 +3,8 @@
 = render 'admin_nav'
 
 %div.info
-  %h5= "Current Application Deadline: #{User::APPLICATION_DEADLINE}"
-
+  %h4= "Current Application Deadline"
+  %p= "#{User::APPLICATION_DEADLINE}"
+%div.info
   %h4= "Set Application Deadline"
   = render 'set_app_deadline'
