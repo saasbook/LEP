@@ -187,13 +187,6 @@ describe AdminsController do
       get :pairing, {id: @admin.id}, {id: @admin.id}
       expect(response).to redirect_to admins_path
     end
-=begin
-    it 'should redirect to admins_path' do
-      puts @admin.id
-      get :pairing, {id: @admin.id}, {id: @admin.id}
-      expect(response).to redirect_to admins_path
-    end
-=end
   end
 
   describe '#activate' do
@@ -309,5 +302,22 @@ describe AdminsController do
     end
   end
 
+  describe '#pairs' do
+    it 'should return all pairs' do
+      AdminsController.any_instance.stub(:check_admin)
+      Pair.should_receive(:all)
+      get :pairs, :id => @admin
+      expect(response).to render_template('pairs')
+    end
+  end
+
+  describe '#users' do
+    it 'should return all users' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(:where).with(!:admin)
+      get :users, :id => @admin
+      expect(response).to render_template('users')
+   end
+  end
 
 end
