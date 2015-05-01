@@ -13,10 +13,14 @@
 .clearfix {
   clear: both;
 }
-.groups li {
+.group{
   width: 400px;
   margin-bottom: 20px;
   list-style-type: none;
+}
+
+.group-manage {
+  clear: both;
 }
 
 h2 {

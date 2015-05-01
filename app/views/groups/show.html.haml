@@ -19,9 +19,16 @@
   %h4 Location
   %p="#{@group.location}"
 
+  - if !@group.info.nil? && !@group.info.empty?
+    %h4 Additional Info
+    %p="#{@group.info}"
+
 
 %div.info
   %h4= "Members"
-  = @group.members.each do |id|
-    - user = User.find(id)
-    %p= "#{user.first_name} #{user.last_name}"
+  - if !@group.members.empty?
+    = @group.members.each do |id|
+      - user = User.find(id)
+      %p= "#{user.first_name} #{user.last_name}"
+  - else
+    %p No current members

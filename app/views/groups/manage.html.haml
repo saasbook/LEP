@@ -1,36 +1,39 @@
-%h2 Language Groups
+%h2 Your Groups
 
 -#if @user.admin
   =# link_to "Add group", new_group_path, :id => "add group"
 
 %div#groups
-  %ul.groups
-    %h4 Your Group
-    - @groups.each do |group|
-      - if @user.id == group.facilitator
-        %li.group
-          %span= "Leader: #{@user.first_name} #{@user.last_name}"
-          %br
-          %span="Language: #{group.language}"
-          %br
-          %span="Time: #{group.time}"
-          %br
-          %span="Where: #{group.location}"
-          %br
-          %br
-          %span= "Members"
-          %br
-          - group.members.each do |id|
-            - user = User.find(id)
-            = "#{user.first_name} #{user.last_name}"
-            %br
-          %br
+  - @groups.each do |group|
+    - if @user.id == group.facilitator
+      %div.group-manage
         - if @user.admin or @user.facilitator
           %div.edit-group
-            = link_to "Edit group", edit_group_path(group.id)
-          %div.delete-group
-            = link_to "Delete group", group, :method => :delete, :confirm => "Are you sure?"
+            = link_to "Edit group", edit_group_path(group.id), :class => "btn edit-prof"
 
+        %div.info
+          %h4 Facilitator
+          %p= "#{@user.first_name} #{@user.last_name}"
 
+          %h4 Language
+          %p="#{group.language}"
 
+          %h4 Time
+          %p="#{group.time}"
 
+          %h4 Location
+          %p="#{group.location}"
+
+          - if !group.info.nil? && !group.info.empty?
+            %h4 Additional Info
+            %p="#{group.info}"
+
+        %div.info
+          %h4 Members
+          - if !group.members.empty?
+            - group.members.each do |id|
+              - user = User.find(id)
+              %p= "#{user.first_name} #{user.last_name}"
+
+          - else
+            %p No current members
