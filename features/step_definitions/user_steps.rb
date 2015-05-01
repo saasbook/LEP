@@ -286,3 +286,7 @@ When(/^I edit the application as "(.*)"$/) do |first_name|
   visit path_to("/users/#{@user.id}/edit")
   puts page.current_path
 end
+
+When(/^I download the analytics$/) do
+  click_link('Download users') 
+end
