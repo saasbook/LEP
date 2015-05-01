@@ -8,9 +8,7 @@
   %thead
     %tr
       %th
-        =link_to 'First name', admins_path(:sort => 'first_name')
-      %th
-        =link_to 'Last name', admins_path(:sort => 'last_name')
+        =link_to 'First name', admins_path(:user_sort => 'first_name')
   %tbody
     - @users.each do |user|
       - if !user.admin
