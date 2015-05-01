@@ -15,7 +15,7 @@ class PairsController < ApplicationController
 
   def index
     @pairs = Pair.all
-    # @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def show

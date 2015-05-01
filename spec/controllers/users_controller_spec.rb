@@ -81,6 +81,16 @@ describe UsersController do
     end
   end
 
+  describe '#update' do
+    before :each do
+      @user = double(User, first_name: 'John', id: '27')
+    end
+    it 'should call User with find' do
+      User.should_receive(:find).with(@user.id).and_return(double('User'))
+      get :show, id: '27'
+    end
+  end
+
   describe '#destroy' do
     before :each do
       @user = User.create(id: 2, first_name: 'Bob', 
