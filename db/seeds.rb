@@ -35,6 +35,7 @@ default_user_params = {
 }
 
 khuyen = default_user_params.merge({first_name: 'Khuyen',
+    last_name: 'Nguyen',
     email: 'kvn@berkeley.edu',
 		academic_title: 'Staff',
 		major: 'Psychology',
@@ -52,7 +53,7 @@ khuyen = default_user_params.merge({first_name: 'Khuyen',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
 		group_leader: 'Yes',
-		admin: false,
+		admin: true,
 		active: true,
 		facilitator: false
 })
@@ -83,6 +84,7 @@ jane = default_user_params.merge({first_name: 'Jane',
 		})
 
 shana = default_user_params.merge({first_name: 'Shana',
+      last_name: 'Hu',
     	email: 'shanahu@berkeley.edu',
       sid: "12345690",
       academic_title: 'Undergraduate',
@@ -105,6 +107,7 @@ shana = default_user_params.merge({first_name: 'Shana',
       facilitator: true})
 
 iris = default_user_params.merge({first_name: 'Iris',
+      last_name: 'Wang',
 	    email: 'iriswang@berkeley.edu',
       sid: "12345691",
       academic_title: 'Instructor',
