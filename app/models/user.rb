@@ -12,12 +12,12 @@ class User < ActiveRecord::Base
                   format: { with: /\A[0-9]+\z/, message: "only allows numbers"},
                   length: { is: 8, message: "must be 8 characters"}
                   
-  validate :hours_per_week, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
+  validates :hours_per_week, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
   validates :academic_title, presence: true
   validates :major, presence: true
   validates :residency, presence: true
   validates :gender, presence: true
-  validate :gender_preference, presence: true
+  validates :gender_preference, presence: true
   validates :fluent_languages, presence: true
   validates :first_lang_preference, presence: true
   validates :first_lang_proficiency, presence: true

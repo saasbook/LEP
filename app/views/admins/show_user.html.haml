@@ -44,7 +44,8 @@
   -# Find the pair an user is associated with
   - @pair = nil
   - Pair.all.each do |pair|
-    - if pair.members.include? @user.id
+    /- if pair.members.include? @user.id
+    - if pair.member1 == @user.id or pair.member2 == @user.id or pair.member2 == @user.id
       - @pair = pair
   - if @pair.nil?
     = "Student is not currently in a pair"

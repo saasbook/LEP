@@ -39,3 +39,15 @@ Scenario:
 	And I fill in "Major(s)" with ""
 	When I press "Submit"
 	Then I should see "Major can't be blank"
+
+Scenario: 
+	Given I am on the form page
+	And I fill in "How many hours per week do you wish to practice with your partner(s)?" with ""
+	When I press "Submit"
+	Then I should see "Hours per week can't be blank"
+
+Scenario: 
+	Given I am on the form page
+	And I fill in "How many hours per week do you wish to practice with your partner(s)?" with "none"
+	When I press "Submit"
+	Then I should see "Hours per week only allows numbers"
