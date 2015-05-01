@@ -280,6 +280,7 @@ describe AdminsController do
     it 'should download a csv of the users' do
       AdminsController.any_instance.stub(:check_admin)
       User.respond_to?(:to_csv).should be_true
+      get :download_users, :id => @admin.id 
     end
   end
 
@@ -287,6 +288,7 @@ describe AdminsController do
     it 'should download a csv of the pairs' do
       AdminsController.any_instance.stub(:check_admin)
       Pair.respond_to?(:to_csv).should be_true
+      get :download_pairs, :id => @admin.id 
     end
   end
 
@@ -319,5 +321,25 @@ describe AdminsController do
       expect(response).to render_template('users')
    end
   end
+
+  describe '#set_app_deadline' do
+    it 'should set the application deadline' do
+      AdminsController.any_instance.stub(:check_admin)
+      params = {:deadline => '3/12/2015', :id => @admin.id}
+      User.should_receive(:set_application_deadline)
+      post :set_application_deadline, params
+      expect(response).to redirect_to admin_path
+    end
+  end
+
+=begin
+  describe '#show_user' do
+    it 'should show a specific user' do
+      AdminsController.any_instance.stub(:check_admin)
+      User.should_receive(find).with(@user.id)
+      get :show_user, :user_id => @user.id, :id => @admin.id
+    end
+  end
+=end
 
 end

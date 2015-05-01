@@ -98,9 +98,9 @@ class AdminsController < ApplicationController
     modify_user("revoke_facilitator", "is no longer a language group facilitator")
   end
 
-  def edit_group
-    @pair = Pair.find(params[:pair_id])
-  end
+  #def edit_group
+  #  @pair = Pair.find(params[:pair_id])
+  #end
 
   def show
   end
