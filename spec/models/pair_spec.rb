@@ -112,7 +112,7 @@ describe Pair do
 
   describe 'get_languages' do
     it 'should return languages in a string?' do
-
+#expect(@pair1.get_languages).to include("Chinese, English")
     end
   end
 

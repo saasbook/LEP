@@ -231,9 +231,9 @@ describe UsersController do
 
   describe '#valid_email' do
     before :each do
-      @user = User.create(first_name: 'Admin', 
+      @user = User.create({first_name: 'Admin', 
         id: 1, 
-        admin: true,
+        admin: false,
         email: 'admin56@berkeley.edu',
         last_name: 'admin_lastname', 
         sid: rand.to_s[2..9], 
@@ -253,14 +253,15 @@ describe UsersController do
         user_motivation: 'x', 
         user_plan: 'x',
         group_leader: 'x',
-        active: true
+        active: true}
         )
-
     end
 
     it "should redirect to admin path" do
-#UsersController.new.send(:valid_email, "hello@berkeley.edu")
-
+      #get :show, :id => 1 and return
+      controller.should_receive(:redirect_to).with(user_path(1))
+      controller.send(:valid_email, @user.email)
+#response.should redirect_to(:action => :show, :id => 1)
     end
   end
 
