@@ -336,14 +336,4 @@ describe AdminsController do
     end
   end
 
-=begin
-  describe '#show_user' do
-    it 'should show a specific user' do
-      AdminsController.any_instance.stub(:check_admin)
-      User.should_receive(find).with(@user.id)
-      get :show_user, :user_id => @user.id, :id => @admin.id
-    end
-  end
-=end
-
 end

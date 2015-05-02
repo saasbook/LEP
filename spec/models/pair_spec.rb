@@ -112,7 +112,7 @@ describe Pair do
 
   describe 'get_languages' do
     it 'should return languages in a string?' do
-      expect(@pair1.get_languages).to include("Chinese, English")
+
     end
   end
 
@@ -177,6 +177,7 @@ describe Pair do
     end
   end
 
+=begin
   describe 'generate_pairs' do
     it 'should generate a csv file of pairs' do
       Pair.should_receive(:generate_pairs)
@@ -186,5 +187,6 @@ describe Pair do
       result_csv.should == expected_csv 
     end
   end
+=end
 
 end

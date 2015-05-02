@@ -8,6 +8,7 @@ class Pair < ActiveRecord::Base
     return (s.nil? || s.empty?) ? true : false
   end
 
+=begin
   def get_languages
     list = "#{self.languages[0]}"
     for i in 1..self.languages.length-1
@@ -15,6 +16,7 @@ class Pair < ActiveRecord::Base
     end
     return list
   end
+=end
 
   def has_member?(id)
     members = [self.member1, self.member2, self.member3]
