@@ -24,6 +24,7 @@ class Group < ActiveRecord::Base
     return Group.count
   end
 
+=begin
   def self.to_csv
     CSV.open('script/groups.csv', 'w') do |csv|
       csv << column_names
@@ -32,5 +33,6 @@ class Group < ActiveRecord::Base
       end
     end
   end
+=end
 
 end
