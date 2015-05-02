@@ -267,7 +267,11 @@ describe UsersController do
     it "should be blank" do
       controller.should_receive(:redirect_to).with(new_user_path)
       controller.send(:valid_email, "lala@berkeley.edu")
+    end
 
+    it "invalid email" do
+      controller.should_receive(:redirect_to).with(users_invalid_path)
+      controller.send(:invalid_email, "lala@gmail.com")
     end
   end
 
