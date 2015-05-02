@@ -263,6 +263,12 @@ describe UsersController do
       controller.send(:valid_email, @user.email)
 #response.should redirect_to(:action => :show, :id => 1)
     end
+
+    it "should be blank" do
+      controller.should_receive(:redirect_to).with(new_user_path)
+      controller.send(:valid_email, "lala@berkeley.edu")
+
+    end
   end
 
 
