@@ -255,6 +255,12 @@ describe AdminsController do
     end
   end
 
+  describe '#show_pair' do
+    it 'should show a specific user' do
+      AdminsController.any_instance.stub(:check_admin)
+      get :show_user, {:id => @admin.id, :user_id => @pair.id}
+    end
+  end
   describe '#remove_from_pair' do
     it 'should remove a user from a pair' do
       AdminsController.any_instance.stub(:check_admin)
