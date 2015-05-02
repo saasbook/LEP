@@ -177,11 +177,7 @@ describe Pair do
     end
   end
 
-=begin
   describe 'generate_pairs' do
-    it "should be able to be balled" do
-      Pair.generate_pairs()
-    end
     it 'should generate a csv file of pairs' do
       Pair.should_receive(:generate_pairs)
       Pair.generate_pairs()
@@ -190,7 +186,5 @@ describe Pair do
       result_csv.should == expected_csv 
     end
   end
-
-=end
 
 end
