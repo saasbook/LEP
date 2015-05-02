@@ -149,7 +149,6 @@ describe AdminsController do
     })
 
     @pair = Pair.create!({:id => 1, :member1 => '2', :member2 => '3', :member3 => ''})
-
   end
 
   describe '#index' do
@@ -160,6 +159,11 @@ describe AdminsController do
 
     it 'redirects if the user is not an admin' do
       get(:index, nil, {id: @user.id})
+      response.should redirect_to user_path(@user.id)
+    end
+
+    it 'should sort' do
+      get(:index, nil, {id: @user.id, sort: 'first_name'})
       response.should redirect_to user_path(@user.id)
     end
   end

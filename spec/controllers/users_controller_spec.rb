@@ -77,17 +77,67 @@ describe UsersController do
     end
     it 'should call User with find' do
       User.should_receive(:find).with(@user.id).and_return(double('User'))
-      get :edit, {:id =>"27"}
+      get :edit, id: '27'
     end
   end
 
   describe '#update' do
     before :each do
-      @user = double(User, first_name: 'John', id: '27')
+      @user = FactoryGirl.create(
+        :user, 
+        id: 27,
+        first_name: 'Blah', 
+        email: 'blah@berkeley.edu', 
+        admin: false,
+        last_name: 'admin_lastname', 
+        sid: '11111111', 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'x', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: false
+        )
     end
     it 'should call User with find' do
-      User.should_receive(:find).with(@user.id).and_return(double('User'))
-      get :show, id: '27'
+      User.should_receive(:find).with("27").and_return(@user)
+      @attr = { 
+        id: 27,
+        first_name: 'Blah', 
+        email: 'blah@berkeley.edu', 
+        admin: false,
+        last_name: 'admin_lastname', 
+        sid: '12222111', 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'F', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: false
+        }
+      put :update, id: '27', user: @attr
     end
   end
 
@@ -176,6 +226,41 @@ describe UsersController do
       @user.should_receive(:update_attributes).with({:active => false}).and_return(true)
       post :deactivate, :id => "27"
       flash[:warning].should eq("John Smith's account has been deactivated.")
+    end
+  end
+
+  describe '#valid_email' do
+    before :each do
+      @user = User.create(first_name: 'Admin', 
+        id: 1, 
+        admin: true,
+        email: 'admin56@berkeley.edu',
+        last_name: 'admin_lastname', 
+        sid: rand.to_s[2..9], 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'x', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: true
+        )
+
+    end
+
+    it "should redirect to admin path" do
+#UsersController.new.send(:valid_email, "hello@berkeley.edu")
+
     end
   end
 
