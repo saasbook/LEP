@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     APPLICATION_DEADLINE.replace deadline # set the application deadline
   end
 
+  def self.get_application_deadline()
+    APPLICATION_DEADLINE
+  end
+
   # http://railscasts.com/episodes/362-exporting-csv-and-excel?view=asciicast
   def self.pairing_csv
     CSV.open('script/newsheet.csv', 'w') do |csv|
@@ -59,7 +63,7 @@ class User < ActiveRecord::Base
 
   # set user's pair_id attr to a pair id
   def User.set_pair_id(user_id, pair_id)
-    user = User.find(user_id) 
+    user = User.find(user_id)
     user.update_attributes pair_id: pair_id
   end
 

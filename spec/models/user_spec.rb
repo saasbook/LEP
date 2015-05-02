@@ -184,7 +184,57 @@ describe User do
       User.revoke_facilitator(@user.id) 
       expect(User.find(@user.id).facilitator).to eq(false)
     end
-  end 
+  end
+
+  describe "Creating a csv file" do
+    it "Should create a csv file" do
+      @user = FactoryGirl.create(:user)
+      User.to_csv
+    end
+  end
+
+  describe "Updating pair id" do
+    it "should update a user's pair id" do
+      @user = FactoryGirl.create(:user)
+      User.set_pair_id(@user.id, 0)
+      @user.pair_id.should eq(0)
+    end
+  end
+
+  describe "Get User's full name" do
+    it "should get the user's full name" do
+      @user = FactoryGirl.create(:user)
+      User.full_name(@user.id).should eq("#{@user.first_name} #{@user.last_name}")
+    end
+  end
+
+  describe "Get analytics info" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+    end
+    it "Should get total users" do
+      User.total_users.should eq(1)
+    end
+    it "Should get all users" do
+      User.get_users.should eq([@user])
+    end
+    it "Should get total admins" do
+      User.total_admins.should eq(0)
+    end
+  end
+
+  describe "Generate pairing csv" do
+    it "should generate a pairing csv" do
+      User.pairing_csv
+    end
+  end
+
+  describe "Set Application Deadline" do
+    it "should set an application deadline" do
+      User.set_application_deadline("05/01/2015")
+      User.get_application_deadline.should eq("05/01/2015")
+    end
+  end
 
 end
 
