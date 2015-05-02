@@ -77,17 +77,70 @@ describe UsersController do
     end
     it 'should call User with find' do
       User.should_receive(:find).with(@user.id).and_return(double('User'))
-      get :edit, {:id =>"27"}
+      get :edit, id: '27'
     end
   end
 
   describe '#update' do
     before :each do
-      @user = double(User, first_name: 'John', id: '27')
+      #@user = double(User, first_name: 'John', id: '27')
+      @user = FactoryGirl.create(
+        :user, 
+        id: 27,
+        first_name: 'Blah', 
+        email: 'blah@berkeley.edu', 
+        admin: false,
+        last_name: 'admin_lastname', 
+        sid: '11111111', 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'x', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: false
+        )
+ 
     end
     it 'should call User with find' do
-      User.should_receive(:find).with(@user.id).and_return(double('User'))
-      get :show, id: '27'
+      User.should_receive(:find).with("27").and_return(@user)
+      @attr = { 
+        id: 27,
+        first_name: 'Blah', 
+        email: 'blah@berkeley.edu', 
+        admin: false,
+        last_name: 'admin_lastname', 
+        sid: '12222111', 
+        academic_title: 'Undergraduate',
+        major: 'x', 
+        residency: 'x', 
+        gender: 'F', 
+        gender_preference: 'x',
+        fluent_languages: ['x'], 
+        lang_additional_info: 'x',
+        first_lang_preference: 'x', 
+        first_lang_proficiency: 'x', 
+        second_lang_preference: 'x', 
+        second_lang_proficiency: 'x',
+        time_preference: ['x'], 
+        hours_per_week: '0',
+        user_motivation: 'x', 
+        user_plan: 'x',
+        group_leader: 'x',
+        active: false
+        }
+      put :update, id: '27', user: @attr
+
     end
   end
 
