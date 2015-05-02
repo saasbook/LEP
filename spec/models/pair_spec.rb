@@ -145,6 +145,10 @@ describe Pair do
   end
 
   describe 'add_user_to_pair' do
+    before :each do
+      @pair2 = Pair.create(:member2 => @user2.id.to_s)
+      @pair3 = Pair.create(:member1 => @user1.id.to_s)
+    end
     it 'should add a specified user to a pair' do
       Pair.add_user_to_pair(@pair1.id, @user3.id)
       expect(Pair.find(@pair1.id).member3).to eq(@user3.id.to_s)
@@ -159,16 +163,23 @@ describe Pair do
       Pair.add_user_to_pair(@pair1.id, @user2.id)
       expect(Pair.find(@pair1.id).member2).to eq(@user2.id.to_s)
     end
+    it 'should add a user at member1' do
+      Pair.add_user_to_pair(@pair2.id, @user1.id)
+      expect(Pair.find(@pair2.id).member1).to eq(@user1.id.to_s)
+    end
+    it 'should add a user at member2' do
+      Pair.add_user_to_pair(@pair3.id, @user2.id)
+      expect(Pair.find(@pair3.id).member2).to eq(@user2.id.to_s)
+    end
+
   end
 
   describe 'verify_pair' do
     it 'should check for valid pairs' do
-      Pair.should_receive(:verify_pair).and_return(true)
-      Pair.verify_pair(@user3.id, @user4.id)
+      Pair.verify_pair(@user3.id, @user4.id).should == true
     end
     it 'should return false if users in pairs' do
-      Pair.should_receive(:verify_pair).and_return(false)
-      Pair.verify_pair(@user2.id, @user4.id)
+      Pair.verify_pair(@user2.id, @user4.id).should == true
     end
   end
 
