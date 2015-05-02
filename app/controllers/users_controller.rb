@@ -3,20 +3,6 @@ class UsersController < ApplicationController
   before_filter :check_user
   before_filter :check_email, :except => [:home, :create, :invalid]
 
-#  def check_user
-#    if params[:id] && session[:id]
-#      if (!verify_access)
-#        redirect_to user_path(session[:id])
-#      end
-#    end
-#  end
-
-#  def verify_access
-#    @user = User.where(:id => session[:id])
-#    return false if ((params[:id].to_s != session[:id].to_s) && !is_admin?)
-#    else return true
-#  end
-
   def new
     @user = User.new
   end

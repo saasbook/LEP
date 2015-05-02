@@ -77,7 +77,7 @@ describe UsersController do
     end
     it 'should call User with find' do
       User.should_receive(:find).with(@user.id).and_return(double('User'))
-      get :edit, id: '27'
+      get :edit, :id => '27'
     end
   end
 
