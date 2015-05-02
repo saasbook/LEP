@@ -177,6 +177,7 @@ describe Pair do
     end
   end
 
+=begin
   describe 'generate_pairs' do
     it "should be able to be balled" do
       Pair.generate_pairs()
@@ -190,16 +191,6 @@ describe Pair do
     end
   end
 
-  describe "Generate csv" do
-    it "Should generate a csv" do
-      Pair.to_csv
-    end
-  end
-
-  describe "get languages" do
-    it "Should return all of the languages of a pair" do
-      @pair1.get_languages.should eq("Chinese, English")
-    end
-  end
+=end
 
 end
