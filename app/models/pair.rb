@@ -9,9 +9,9 @@ class Pair < ActiveRecord::Base
   end
 
   def get_languages
-    list = "#{self.languages[0].delete! "'"}"
+    list = "#{self.languages[0]}"
     for i in 1..self.languages.length-1
-      list += ", " + "#{self.languages[i].delete! "'"}"
+      list += ", " + "#{self.languages[i]}"
     end
     return list
   end
