@@ -71,6 +71,12 @@ describe GroupsController do
     end
   end
 
+  describe '#manage' do
+    it 'should call manage' do
+      get(:manage, {}, {:id => @user.id})
+    end
+  end
+
   describe '#update' do
     it 'should update a group' do
       get(:update, {id: @group.id, group: {language: 'Italian'} })
