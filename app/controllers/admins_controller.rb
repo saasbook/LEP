@@ -110,24 +110,6 @@ class AdminsController < ApplicationController
 
   def destroy
   end
-  
-  # params = params[:admin]
-  def get_emails(params)
-    return [params[:email1].to_s, params[:email2].to_s, params[:email3].to_s]
-  end
-
-  # params = params[:admin]
-  def get_languages(params)
-    return [params[:lang1], params[:lang2]]
-  end
-
-  # def check_potential_members(members)
-  #   members.each do |member|
-  #     user = User.find(member)
-  #     return false if (user.pair_id != 0 || user.active)
-  #   end
-  #   return true
-  # end
 
   def check_potential_members(members)
     count = 0 
@@ -151,64 +133,46 @@ class AdminsController < ApplicationController
     return users
   end
 
-  def pair_three(user1ID, user2ID, user3ID, languages)
-    @pair = Pair.create(member1: user1ID, 
-                        member2: user2ID, 
-                        member3: user3ID,
+  def pair_three(members, languages)
+    @pair = Pair.create(member1: members[0].id, 
+                        member2: members[1].id, 
+                        member3: members[2].id,
                         languages: languages)
-    #return @pair
   end
-  def pair_two(user1ID, user2ID, languages)
-    @pair = Pair.create(member1: user1ID, 
-                        member2: user2ID, 
+  def pair_two(members, languages)
+    @pair = Pair.create(member1: members[0].id, 
+                        member2: members[1].id, 
                         languages: languages)
-    #return @pair
+  end
+
+  # params = params[:admin]
+  def get_emails(params)
+    return [params[:email1].to_s, params[:email2].to_s, params[:email3].to_s]
+  end
+
+  # params = params[:admin]
+  def get_languages(params)
+    return [params[:lang1], params[:lang2]]
   end
 
   def create_pair
     @user = User.find(params[:id])
-    email1, email2, email3 = get_emails(params[:admin])
+    #email1, email2, email3 = get_emails(params[:admin])
     languages = get_languages(params[:admin])
 
-    # if !email1.empty?
-    #   user1 = User.where(email: email1).first
-    # end
-    # if !email2.empty?
-    #   user2 = User.where(email: email2).first
-    # end
-    # if !email3.empty?
-    #   user3 = User.where(email: email3).first
-    # end
-
-    user1, user2, user3 = check_emails([email1, email2, email3])
-    num_invalid = check_potential_members([user1, user2, user3])
+    members = check_emails(get_emails(params[:admin]))
+    num_invalid = check_potential_members(members)
 
     if num_invalid == 0
-      # @pair = Pair.create(member1: user1.id, 
-      #                     member2: user2.id, 
-      #                     member3: user3.id,
-      #                     languages: languages)
-      @pair = pair_three(user1.id, user2.id, user3.id, languages)
+      @pair = pair_three(members, languages)
       redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
     elsif num_invalid == 1
-      # @pair = Pair.create(member1: user1.id, 
-      #                     member2: user2.id, 
-      #                     languages: languages)
-      @pair = pair_two(user1.id, user2.id, languages)
+      @pair = pair_two(members, languages)
       redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
     else 
       flash[:notice] = 'Pair could not be formed'
       redirect_to admins_path
     end
-
-    # if (check_potential_members([member1, member2, member3]))
-    #   @pair = Pair.create(member1: member1, member2: member2,
-    #                     member3: member3, languages: languages)
-    #   redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
-    # else
-    #   flash[:notice] = 'Pair could not be formed'
-    #   redirect_to admins_path
-    # end
   end
 
   def show_pair
