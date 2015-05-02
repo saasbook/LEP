@@ -44,10 +44,9 @@ class User < ActiveRecord::Base
   def self.pairing_csv
     CSV.open('script/newsheet.csv', 'w') do |csv|
       csv << column_names
-      User.all.each do |user|
-        if not user.admin
-          csv << user.attributes.values_at(*column_names)
-        end
+      nonadmins = User.where(!:admin)
+      nonadmins.each do |user|
+        csv << user.attributes.values_at(*column_names)
       end
     end
   end

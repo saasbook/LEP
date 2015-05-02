@@ -180,7 +180,7 @@ describe Pair do
   describe 'generate_pairs' do
     it 'should generate a csv file of pairs' do
       Pair.should_receive(:generate_pairs)
-      Pair.generate_pairs()
+      Pair.generate_pairs
       expected_csv = File.read('script/test_pairs.csv')
       result_csv = File.read('script/final_pairs.csv')
       result_csv.should == expected_csv 

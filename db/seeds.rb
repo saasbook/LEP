@@ -272,7 +272,7 @@ chris = default_user_params.merge({ first_name: 'Chris',
 	    facilitator: false
 		})
 
-users = User.create!([khuyen, shana, robyn, jane, admin, admin2, iris, tsion, jason, chris])
+users = User.create!([khuyen, shana, robyn, jane, admin2, iris, tsion, jason, chris])
 
 russian = {language: 'Russian',
            day: 'Monday',
