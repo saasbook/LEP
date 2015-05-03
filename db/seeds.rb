@@ -220,7 +220,7 @@ jason = default_user_params.merge({ first_name: 'Jason',
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
       active: true,
-	    admin: false,
+	    admin: true,
 	    facilitator: false
 		})
 
