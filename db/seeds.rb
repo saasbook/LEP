@@ -52,16 +52,92 @@ khuyen = default_user_params.merge({first_name: 'Khuyen',
 		hours_per_week: '1',
 		user_motivation: 'I will be studying abroad.', 
 		user_plan: 'I will set a regular meeting time with them.',
-		group_leader: 'Yes',
+		group_leader: 'No',
 		admin: true,
+		active: true,
+		facilitator: false
+})
+
+george = default_user_params.merge({first_name: 'George', 
+		last_name: 'Yoshi', 
+		sid: '32345678', 
+		email: 'yoshi@gmail.com',
+		academic_title: 'Undergraduate',
+		major: 'Theater',
+		residency: 'Domestic', 
+		gender: 'Male', 
+		gender_preference: 'Memale',
+		fluent_languages: ['English'],
+		lang_additional_info: '',
+		first_lang_preference: 'German', 
+		first_lang_proficiency: 'elementary', 
+		second_lang_preference: 'Chinese', 
+		second_lang_proficiency: 'elementary',
+		time_preference: ['Friday', 'Tuesday'], 
+		hours_per_week: '1',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		group_leader: 'No',
+		admin: false,
+		active: true,
+		facilitator: false
+})
+
+jack = default_user_params.merge({first_name: 'Jack', 
+		last_name: 'Doe', 
+		sid: '99345678', 
+		email: 'jack@gmail.com',
+		academic_title: 'Undergraduate',
+		major: 'Business',
+		residency: 'Domestic', 
+		gender: 'Male', 
+		gender_preference: 'Female',
+		fluent_languages: ['English'],
+		lang_additional_info: '',
+		first_lang_preference: 'Spanish', 
+		first_lang_proficiency: 'elementary', 
+		second_lang_preference: 'English', 
+		second_lang_proficiency: 'elementary',
+		time_preference: ['Monday', 'Tuesday'], 
+		hours_per_week: '1',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		group_leader: 'Yes',
+		admin: false,
+		active: true,
+		facilitator: false
+})
+
+
+jill = default_user_params.merge({first_name: 'Jill', 
+		last_name: 'Moore', 
+		sid: '44345678', 
+		email: 'jill@gmail.com',
+		academic_title: 'Undergraduate',
+		major: 'Psychology',
+		residency: 'Domestic', 
+		gender: 'Female', 
+		gender_preference: 'Female',
+		fluent_languages: ['Chinese'],
+		lang_additional_info: '',
+		first_lang_preference: 'French', 
+		first_lang_proficiency: 'elementary', 
+		second_lang_preference: 'German', 
+		second_lang_proficiency: 'elementary',
+		time_preference: ['Monday', 'Tuesday'], 
+		hours_per_week: '1',
+		user_motivation: 'I will be studying abroad.', 
+		user_plan: 'I will set a regular meeting time with them.',
+		group_leader: 'Yes',
+		admin: false,
 		active: true,
 		facilitator: false
 })
 
 jane = default_user_params.merge({first_name: 'Jane', 
 		last_name: 'Doe', 
-		sid: '12345678', 
-		email: 'example@gmail.com',
+		sid: '92345678', 
+		email: 'jane@gmail.com',
 		academic_title: 'Graduate',
 		major: 'Business',
 		residency: 'Domestic', 
@@ -81,7 +157,7 @@ jane = default_user_params.merge({first_name: 'Jane',
 		admin: false,
 		active: true,
 		facilitator: false
-		})
+})
 
 shana = default_user_params.merge({first_name: 'Shana',
       last_name: 'Hu',
@@ -178,7 +254,7 @@ admin = default_user_params.merge({ first_name: 'Admin',
 
 admin2 = default_user_params.merge({ first_name: 'Seungwoo', 
     last_name: 'Choi',
-  	sid: "12345677", 
+  	sid: "32345677", 
 		email: 'swchoi727@berkeley.edu',
 		academic_title: 'Graduate',
 		major: 'Business',
@@ -222,7 +298,7 @@ jason = default_user_params.merge({ first_name: 'Jason',
       active: true,
 	    admin: true,
 	    facilitator: false
-		})
+})
 
 tsion = default_user_params.merge({ first_name: 'Tsion',
    	 	last_name: 'Behailu',
@@ -272,7 +348,7 @@ chris = default_user_params.merge({ first_name: 'Chris',
 	    facilitator: false
 		})
 
-users = User.create!([khuyen, shana, robyn, jane, admin2, iris, tsion, jason, chris])
+users = User.create!([khuyen, shana, robyn, jane, admin2, iris, tsion, jason, chris, jack, jill])
 
 russian = {language: 'Russian',
            day: 'Monday',
