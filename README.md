@@ -1,7 +1,7 @@
 The Berkeley Language Exchange Program
 ====
 [![Code Climate](https://codeclimate.com/github/swchoi727/LEP/badges/gpa.svg)](https://codeclimate.com/github/swchoi727/LEP)
-[![Test Coverage](https://codeclimate.com/github/swchoi727/LEP/badges/coverage.svg)](https://codeclimate.com/github/swchoi727/LEP)
+[![Test Coverage](https://travis-ci.org/swchoi727/LEP.svg?branch=master)](https://travis-ci.org/swchoi727/LEP)
 
 ## Contributing
 
