@@ -20,7 +20,7 @@ Run ```cd . && bin/setup``` from the project root to get everything set up.
 ## Screencast
 PLACE LINK TO SCREENCAST HERE
 
-## Note for Client
+## Notes for Client
 * Update config/secret.yml with your own Google developer API keys
 * If you are interested in using Calnet directly, rather than the current implementation with Google OAuth, the application can be found [here](https://wikihub.berkeley.edu/display/calnet/CalNet+Developer+Support).
 
