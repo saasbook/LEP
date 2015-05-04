@@ -11,8 +11,9 @@ Dependencies:
 
 Run ```cd . && bin/setup``` from the project root to get everything set up.
 
-## The Berkeley Language Exchange Program
+<!-- ## The Berkeley Language Exchange Program -->
 ![lep](app/assets/images/banner.png "LEP Banner")
+
 **[The Berkeley Language Exchange Program](http://slc.berkeley.edu/international-student-program)** is a fun & free platform for Cal students from around the globe to meet and share their language skills.
 
 <!-- ## License
