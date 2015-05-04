@@ -145,6 +145,14 @@ class AdminsController < ApplicationController
                         languages: languages)
   end
 
+  def get_pairs(num_invalid, members, languages)
+    if num_valid == 0
+      return pair_two(members, languages)
+    elsif num_valid == 1
+      return pair_three(members, languages)
+    end
+  end
+
   # params = params[:admin]
   def get_emails(params)
     return [params[:email1].to_s, params[:email2].to_s, params[:email3].to_s]
@@ -163,12 +171,13 @@ class AdminsController < ApplicationController
     members = check_emails(get_emails(params[:admin]))
     num_invalid = check_potential_members(members)
 
-    if num_invalid == 0
-      @pair = pair_three(members, languages)
+    if num_invalid == 0 or num_invalid == 1
+      #@pair = pair_three(members, languages)
+      @pair = get_pairs(num_invalid, members, languages)
       redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
-    elsif num_invalid == 1
-      @pair = pair_two(members, languages)
-      redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
+    #elsif num_invalid == 1
+    #  @pair = pair_two(members, languages)
+    #  redirect_to admin_show_pair_path(id: @user.id, pair_id: @pair.id)
     else 
       flash[:notice] = 'Pair could not be formed'
       redirect_to admins_path
