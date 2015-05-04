@@ -33,7 +33,7 @@
           - if !group.members.empty?
             - group.members.each do |id|
               - user = User.find(id)
-              %p= "#{user.first_name} #{user.last_name}"
+              %p= "#{user.first_name} #{user.last_name}, #{user.email}"
 
           - else
             %p No current members

@@ -80,9 +80,9 @@
             - user = User.find(id)
             %tr
               - if !user.first_name.nil? and !user.last_name.nil?
-                %td= user.first_name + " " + user.last_name
+                %td= user.first_name + " " + user.last_name + ", " + user.email
               - if !user.first_name.nil? and user.last_name.nil?
-                %td= user.first_name
+                %td= user.first_name + ", " + user.email
 
 - if !@groupID.nil? and @user.facilitator?
   %div.info
