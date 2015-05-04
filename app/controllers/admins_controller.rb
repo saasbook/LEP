@@ -146,10 +146,10 @@ class AdminsController < ApplicationController
   end
 
   def get_pairs(num_invalid, members, languages)
-    if num_valid == 0
-      return pair_two(members, languages)
-    elsif num_valid == 1
+    if num_invalid == 0
       return pair_three(members, languages)
+    elsif num_invalid == 1
+      return pair_two(members, languages)
     end
   end
 

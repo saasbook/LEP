@@ -15,7 +15,12 @@
           %td= link_to "Pair #{pair.id}", admin_show_pair_path(:id => @user.id, :pair_id => pair.id)
           %td= User.full_name(pair.member1)
           %td= User.full_name(pair.member2)
-          %td= "#{pair.languages[0]}, #{pair.languages[1]}"
+          - if !pair.languages[0].nil? and !pair.languages[1].nil?
+            %td= "#{pair.languages[0][1...-1]}, #{pair.languages[1][2...-1]}"
+          - elsif pair.languages[0].nil? and !pair.languages[1].nil?
+            %td= "#{pair.languages[1][1...-1]}"
+          - elsif pair.languages[1].nil? and !pair.languages[0].nil?
+            %td= "#{pair.languages[0][1...-1]}"
           /%td= (!pair.languages.empty?) ? pair.get_languages : 'N/A'
 - else
   %h2 There are currently no students paired.

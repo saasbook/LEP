@@ -147,10 +147,7 @@ def meetup(s1_time, s2_time):
   meetup_time = []
   s1_time = s1_time.replace('"', '').strip('[]').split(',')
   s2_time = s2_time.replace('"', '').strip('[]').split(',')
-  print s1_time
-  print s2_time
   for s1_day in s1_time:
-    print 's1_day: ', s1_day
     for s2_day in s2_time:
       if s1_day == s2_day:
         meetup_time.append(s1_day)
@@ -183,7 +180,7 @@ def extract_student_info(student):
   info['academic'] = student.fields['academic_title']
   info['residency'] = student.fields['residency']
   info['gender'] = (student.fields['gender'], student.fields['gender_preference'])
-  info['lang_to_teach'] = [(x, 4) for x in student.fields['fluent_languages'].split(",")]
+  info['lang_to_teach'] = [(x[2:len(x)-2], 4) for x in student.fields['fluent_languages'].split(",")]
   info['lang_to_learn'] = data_clean([(student.fields['first_lang_preference'], student.fields['first_lang_proficiency']),
               (student.fields['second_lang_preference'], student.fields['second_lang_proficiency'])])
   info['time'] = student.fields['time_preference']
@@ -214,7 +211,6 @@ writer.writeheader()
 
 # attempt to pair every student with another student
 while len(students) != 0:
-  print(len(students))
   if len(students) == 1:
     student = students.pop()
     writer.writerow({'partner1': student['id']})
@@ -223,8 +219,9 @@ while len(students) != 0:
 
   # Find the best match amoung all of the students
   for student1 in students:
-    highest = 0.0
+    final = 0.0
     for student2 in students:
+      highest = 0.0
       if student2 != student1:
         score = calculate_match_score(student1, student2)
         if highest < score:
