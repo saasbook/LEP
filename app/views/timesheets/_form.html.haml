@@ -14,7 +14,7 @@
     = f.text_field :date, {:id => 'timesheet-date', :value => @timesheet.date.nil? ? nil : @timesheet.date.strftime("%d-%m-%Y")}
 
   %div.question
-    = f.label :hours, "How many hours per week did you practice on this day?"
+    = f.label :hours, "How many hours did you practice on this day?"
     = f.text_field :hours, {:id => :hours}
 
   %div.question

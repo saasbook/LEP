@@ -27,7 +27,7 @@
 %div.info
   %h4= "Members"
   - if !@group.members.empty?
-    = @group.members.each do |id|
+    - @group.members.each do |id|
       - user = User.find(id)
       %p= "#{user.first_name} #{user.last_name}"
   - else
