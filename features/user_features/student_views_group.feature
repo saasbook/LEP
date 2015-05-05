@@ -17,15 +17,12 @@ Background: student has been added to a group
 
   Given the following groups exist:
   | language | day      | time  | location | members |
-  | arabic  | Tuesday  | 2-3PM | 1 Evans  |    1,2,3   |
+  | Arabic  | Tuesday  | 2-3PM | 1 Evans  |    1,2,3   |
 
 Scenario: student is in a group
   Given I am logged in as "Billy"
-  Then I should see "Group Information"
-  And I should see "Joe Shmoe"
-  And I should see "Sally Sue"
-  And I should not see "Jane Doe"
-  And I should not see "John Smith"
-  And I should not see "Jerry Maguire"
+  Then I should see "Groups you attend"
+  Then I should see "Arabic"
+  Then I should see "2-3PM on Tuesdays, 1 Evans"
 
 
