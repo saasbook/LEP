@@ -71,7 +71,7 @@ class AdminsController < ApplicationController
     @user = User.find(params[:user_id])
     User.send(action, @user.id)
     flash[:warning] = "#{@user.first_name} #{@user.last_name} " + flash_msg
-    redirect_to admins_path
+    redirect_to admin_users_path
   end
   
   def activate
