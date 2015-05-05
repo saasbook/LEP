@@ -18,7 +18,7 @@ Run ```cd . && bin/setup``` from the project root to get everything set up.
 
 
 ## Screencast
-PLACE LINK TO SCREENCAST HERE
+[Language Exchange Program Screencast](https://www.youtube.com/watch?v=Pg2d6p9Kftc)
 
 ## Notes for Client
 * Update config/secret.yml with your own Google developer API keys
