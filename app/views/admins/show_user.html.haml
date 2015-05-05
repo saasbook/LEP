@@ -8,33 +8,33 @@
       %th Last Name
   %tbody
     %tr
-      %td= @user.id
-      %td= @user.first_name
-      %td= @user.last_name
+      %td= @view_user.id
+      %td= @view_user.first_name
+      %td= @view_user.last_name
 
 %h3= "Student Information"
 %br
 
 %h4= "Email"
-%p #{@user.email}
+%p #{@view_user.email}
 
 %h4= "Your Languages"
-- @fluent_languages = @user.fluent_languages.delete_if {|lang| lang == "0"}
+- @fluent_languages = @view_user.fluent_languages.delete_if {|lang| lang == "0"}
 - @fluent_languages.each {|lang| lang.capitalize!}
 %p= @fluent_languages.join(", ")
 
 %div.info
   %h4= "Language Preference 1"
-  - @user.first_lang_preference.capitalize!
-  %p= @user.first_lang_preference
+  - @view_user.first_lang_preference.capitalize!
+  %p= @view_user.first_lang_preference
 
 %div.info
   %h4= "Language Preference 2"
-  - if @user.second_lang_preference == nil
+  - if @view_user.second_lang_preference == nil
     %p= "You have no second language preference"
   - else
-    - @user.first_lang_preference.capitalize!
-    %p= @user.second_lang_preference
+    - @view_user.first_lang_preference.capitalize!
+    %p= @view_user.second_lang_preference
 
 
 %div.row
@@ -44,8 +44,8 @@
   -# Find the pair an user is associated with
   - @pair = nil
   - Pair.all.each do |pair|
-    /- if pair.members.include? @user.id
-    - if pair.member1 == @user.id or pair.member2 == @user.id or pair.member2 == @user.id
+    /- if pair.members.include? @view_user.id
+    - if pair.member1 == @view_user.id or pair.member2 == @view_user.id or pair.member2 == @view_user.id
       - @pair = pair
   - if @pair.nil?
     = "Student is not currently in a pair"
@@ -69,8 +69,8 @@
   %h3= "Student Group Information"
   - @group = nil
   - Group.all.each do |group|
-    - "user id = #{@user.id}, group.members = #{group.members}"
-    - if group.members.include? @user.id
+    - "user id = #{@view_user.id}, group.members = #{group.members}"
+    - if group.members.include? @view_user.id
       - @group = group
 
   - if @group.nil?
@@ -89,7 +89,7 @@
               - if !user.first_name.nil? and user.last_name.nil?
                 %td= user.first_name
 
-- if !@groupID.nil? and @user.facilitator?
+- if !@groupID.nil? and @view_user.facilitator?
   %div.info
     %h3= "Language groups student is leading"
     = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
