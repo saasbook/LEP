@@ -1,22 +1,9 @@
-%h2 All Users
-
-%table
-  %thead
-    %tr
-      %th First Name
-      %th Last Name
-  %tbody
-    %tr
-      %td= @view_user.first_name
-      %td= @view_user.last_name
-
-%h3= "Student Information"
-%br
+%h2 Student Information: #{@view_user.first_name} #{@view_user.last_name}
 
 %h4= "Email"
 %p #{@view_user.email}
 
-%h4= "#{@view_user.first_name} Languages"
+%h4= "#{@view_user.first_name}'s Languages"
 - @fluent_languages = @view_user.fluent_languages.delete_if {|lang| lang == "0"}
 - @fluent_languages.each {|lang| lang.capitalize!}
 %p= @fluent_languages.join(", ")
@@ -37,7 +24,7 @@
 
 %div.row
 %div.info
-  %h3= "#{@view_user.first_name} Pair Information"
+  %h3= "#{@view_user.first_name}'s Pair Information"
 
   -# Find the pair an user is associated with
   - @pair = nil
@@ -46,7 +33,7 @@
     - if pair.member1 == @view_user.id or pair.member2 == @view_user.id or pair.member2 == @view_user.id
       - @pair = pair
   - if @pair.nil?
-    = "#{@view_user.first_name} not currently in a pair"
+    = "#{@view_user.first_name} is not currently in a pair"
   - else
     %h4= "Pair ID: #{@pair.id}"
 
