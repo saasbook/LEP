@@ -178,7 +178,7 @@ shana = default_user_params.merge({first_name: 'Shana',
       hours_per_week: '2',
       user_motivation: 'I will be studying abroad.', 
       user_plan: 'I will set a regular meeting time with them.',
-      admin: true,
+      admin: false,
       active: true,
       facilitator: true})
 

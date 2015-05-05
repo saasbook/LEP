@@ -61,30 +61,20 @@
             %td= user.first_name + " " + user.last_name
             %td= user.email
 %div.info
-  %h3= "Your Group Information"
+  %h3= "Groups you attend"
   - @group = nil
   - Group.all.each do |group|
     - "user id = #{@user.id}, group.members = #{group.members}"
     - if group.members.include? @user.id
       - @group = group
 
-  - if @group.nil?
-    = "You are not currently in a group"
-  - else
-    %h4= #"Group ID: #{@group.id}"
-    %table
-      %tr
-        %th Group Member
-        - if !@group.members.empty?
-          - @group.members.each do |id|
-            - user = User.find(id)
-            %tr
-              - if !user.first_name.nil? and !user.last_name.nil?
-                %td= user.first_name + " " + user.last_name + ", " + user.email
-              - if !user.first_name.nil? and user.last_name.nil?
-                %td= user.first_name + ", " + user.email
+      %h4= "#{@group.language} Group"
+      %table
+        %tr
+          %td= "#{@group.time} on #{@group.day}s, #{@group.location}"
+
 
 - if !@groupID.nil? and @user.facilitator?
   %div.info
-    %h3= "Language groups you are leading"
+    %h3= "Language groups you facilitate"
     = link_to "#{@myGroup.language} on #{@myGroup.day}s", manage_groups_path
