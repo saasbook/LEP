@@ -1,6 +1,13 @@
 class Group < ActiveRecord::Base
 
 	serialize :members, Array
+  # validates :members, presence: true
+  validates :time, presence: true
+  validates :location, presence: true
+  validates :language, presence: true
+  validates :day, presence: true
+  # validates :info, presence: true
+  # validates :facilitator, presence: true, format: { with: /\A[0-9]+\z/, message: "only allows numbers"}
 
   def has_member?(id)
     #return true if members.include?(id)
